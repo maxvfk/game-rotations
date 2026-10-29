@@ -4,6 +4,15 @@
 
 **Сайт:** https://maxvfk.github.io/game-rotations/ · **исследования:** https://github.com/maxvfk/Games/tree/main/guides
 
+## Добавление ротаций — с чего начать
+
+**Новый чат/агент:** открой [AGENTS.md](AGENTS.md) → [пошаговую инструкцию](docs/ADDING_ROTATIONS.md) → [справочник JSON](docs/FORMAT_REFERENCE.md). Для ревью используй [чеклист приёмки](docs/REVIEW_CHECKLIST.md).
+
+- **Вымышленный, целиком согласованный пример:** [examples/](examples/) — rotation JSON + controls JSON + запись каталога; не публикуется на сайте.
+- **Рабочая команда:** `data/rotations/wuthering-waves/yyxl-suisui-chisa.json` + `data/controls/wuthering-waves.json` + `data/catalog.json`.
+- **Верификация без второй настоящей игры:** `npm run test:onboarding` добавляет пример в временный каталог, затем проверяет, что ошибочные targets, stage IDs, kind и схемы отвергаются.
+- Сначала проверяется актуальная механика в `maxvfk/Games`, затем выбор пользователя; только после этого новая ротация публикуется здесь. Не считай `Verified` на сайте калькулятора подтверждением исполнения в бою.
+
 ## v0.2 — data-driven rotations
 
 - Каталог игр/команд, поиск, избранное и локально сохраняемые предпочтения.
@@ -19,7 +28,8 @@
 | `data/catalog.json` | Карточки игр и команд; ссылки/инвестиции/метки |
 | `data/rotations/<game>/<team>.json` | Единственный источник **последовательностей действий** |
 | `data/controls/<game>.json` | Привязка семантических действий к клавишам PC / PS5 / универсальным терминам |
-| `data/rotation.schema.json` | Контракт версии 1 |
+| `data/rotation.schema.json` | Контракт версии 1 для ротаций |
+| `data/controls.schema.json` | Контракт версии 1 для per-game схем управления |
 | `scripts/validate-rotations.mjs` | Схема + перекрёстные проверки команд/этапов/персонажей/портретов |
 | `src/rotation.ts` | Общий renderer; автоматически подхватывает JSON через `import.meta.glob` |
 | `src/rotation.css` | Сохранённое мобильное оформление WuWa v1.3 |
@@ -38,12 +48,13 @@
 ```bash
 npm install
 npm run validate:data
+npm run test:onboarding
 npm run typecheck
 npm run build
 npm run dev
 ```
 
-CI проверяет данные перед сборкой и публикует `dist/` из `main` с GitHub Actions → GitHub Pages. Vite base: `/game-rotations/`.
+CI проверяет JSON, связность каталога и учебный путь добавления новой игры перед сборкой и публикует `dist/` из `main` с GitHub Actions → GitHub Pages. Vite base: `/game-rotations/`.
 
 ## Источники и степень проверки
 
