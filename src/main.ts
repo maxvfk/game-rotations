@@ -49,7 +49,7 @@ function render(){
    card.append(faces,node('div','team-copy',node('h3','',team.name),node('p','',team.subtitle),node('div','team-labels',node('span','version',team.gameVersion),node('span','adapted',team.variants.length+' варианта'))));
    const buttons=node('div','team-actions');
    const f=node('button','star'+(favorites.has(team.id)?' active':''),favorites.has(team.id)?'★':'☆') as HTMLButtonElement;f.setAttribute('aria-label',favorites.has(team.id)?'Убрать из избранного':'Добавить в избранное');f.setAttribute('aria-pressed',String(favorites.has(team.id)));f.onclick=()=>{if(favorites.has(team.id))favorites.delete(team.id);else favorites.add(team.id);save('favorites',JSON.stringify([...favorites]));render()};
-   const open=node('a','open-route','Открыть ротации ›') as HTMLAnchorElement;open.href=base+team.path;
+   const open=node('a','open-route','Открыть ротации ›') as HTMLAnchorElement;open.href=base+'?team='+encodeURIComponent(team.id);
    buttons.append(f,open);card.append(buttons);section.append(card);
   }
   list.append(section);
@@ -58,4 +58,9 @@ function render(){
  const footer=node('footer','footer',node('p','','Исследования и механики хранятся в maxvfk/Games. Здесь — только выбранные боевые памятки.'),node('a','','Исходные гайды ↗'));(footer.lastChild as HTMLAnchorElement).href='https://github.com/maxvfk/Games/tree/main/guides';(footer.lastChild as HTMLAnchorElement).target='_blank';
  root.append(header,hero,controls,nav,list,footer);
 }
-render();
+const requestedTeam=new URLSearchParams(window.location.search).get('team');
+if(requestedTeam){
+ import('./rotation').then(({hasRotation,mountRotation})=>{
+  if(hasRotation(requestedTeam)){mountRotation(root,requestedTeam,base,base)}else{render();root.prepend(node('p','empty-state','Ротация не найдена. Открой команду из каталога.'))}
+ }).catch((error:unknown)=>{console.error('Could not open rotation',error);render();root.prepend(node('p','empty-state','Не удалось открыть ротацию. Проверь соединение и попробуй снова.'))});
+}else render();
