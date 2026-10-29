@@ -1,0 +1,609 @@
+{
+  "schemaVersion": 1,
+  "id": "hsin-suoming-shorekeeper",
+  "game": "wuthering-waves",
+  "title": "Hsin / Suoming / Shorekeeper",
+  "gameVersion": "Global live 3.7 (2026-10-27)",
+  "source": "https://github.com/maxvfk/Games/blob/main/guides/wuthering-waves/HSIN_SUOMING_SHOREKEEPER_ROTATIONS.md",
+  "verificationNote": "Sourced Prydwen (Hsin/Suoming/Shorekeeper) + practical iWinToLose; адаптировано для Hsin S3R1 / Suoming S0R0 / Shorekeeper S0R1. Игровое исполнение пользователя и steady-loop пока не проверены. Quickswap-opener Shorekeeper сюда не включён: BA-chain preservation не подтверждён.",
+  "characters": [
+    {
+      "id": "hsin",
+      "name": "Hsin",
+      "glyph": "H",
+      "color": "#92cddc",
+      "portrait": "portraits/hsin.webp",
+      "investment": "S3R1"
+    },
+    {
+      "id": "suoming",
+      "name": "Suoming",
+      "glyph": "S",
+      "color": "#dd6675",
+      "portrait": "portraits/suoming.webp",
+      "investment": "S0R0"
+    },
+    {
+      "id": "shorekeeper",
+      "name": "Shorekeeper",
+      "glyph": "SK",
+      "color": "#a4d5e4",
+      "portrait": "portraits/shorekeeper.webp",
+      "investment": "S0R1"
+    }
+  ],
+  "controls": "wuthering-waves",
+  "defaultSlots": {
+    "hsin": "1",
+    "suoming": "2",
+    "shorekeeper": "3"
+  },
+  "variants": [
+    {
+      "id": "simple",
+      "label": "Простая",
+      "sub": "Памятка iWinToLose + проверки ресурсов",
+      "type": "Safe / practice",
+      "intro": "Освоить Unison без дополнительных E Hsin и сложных Dash Cancel. Suoming — два отдельных E; шкалы Forte/Delusion проверяются вручную. Непроверенный quickswap Shorekeeper не используется.",
+      "verification": "adapted",
+      "opener": [
+        "skOpener",
+        "suomingFirst",
+        "hsinFirstSimple",
+        "suomingSecondSimple",
+        "hsinFinalSimple"
+      ],
+      "loop": [
+        "skLoop",
+        "suomingFirst",
+        "hsinFirstSimple",
+        "suomingSecondSimple",
+        "hsinFinalSimple"
+      ]
+    },
+    {
+      "id": "prydwen",
+      "label": "Prydwen + Swap Cancel",
+      "sub": "E Swap Cancel Hsin; точные Dash-комбо",
+      "type": "Advanced / TC-derived",
+      "intro": "Более плотная Prydwen-цепочка: два E Swap Cancel Hsin и точный ход Suoming. Если исполнение медленное, дополнительную E Hsin пропускай. Реальный DPS-выигрыш и steady-loop требуют теста.",
+      "verification": "partial",
+      "opener": [
+        "skOpener",
+        "suomingFirst",
+        "hsinFirstAdv",
+        "suomingSecondAdv",
+        "hsinFinalAdv"
+      ],
+      "loop": [
+        "skLoop",
+        "suomingFirst",
+        "hsinFirstAdv",
+        "suomingSecondAdv",
+        "hsinFinalAdv"
+      ]
+    }
+  ],
+  "stages": {
+    "skOpener": {
+      "person": "shorekeeper",
+      "title": "Shorekeeper · первый заход",
+      "sub": "Cold start: без Intro и стартового Concerto",
+      "actions": [
+        {
+          "text": "BA ×4",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "count": 4
+          }
+        },
+        {
+          "text": "Illation · Heavy",
+          "tone": "key",
+          "input": {
+            "kind": "heavy"
+          }
+        },
+        {
+          "text": "BA ×4",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "count": 4
+          }
+        },
+        {
+          "text": "Illation · Heavy",
+          "tone": "key",
+          "input": {
+            "kind": "heavy"
+          }
+        },
+        {
+          "text": "E · Chaos Theory",
+          "tone": "key",
+          "input": {
+            "kind": "skill"
+          }
+        },
+        {
+          "text": "Echo",
+          "tone": "normal",
+          "input": {
+            "kind": "echo"
+          }
+        },
+        {
+          "text": "R · End Loop",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate"
+          }
+        },
+        {
+          "text": "Outro → Suoming",
+          "tone": "swap",
+          "input": {
+            "kind": "outro",
+            "target": "suoming"
+          }
+        }
+      ],
+      "check": "Empirical Data: по 5 после каждого BA×4; перед Outro нужна готовая шкала Concerto. Два Intro команды после R должны повысить Stellarealm.",
+      "extra": "Порядок Prydwen. Если не хватает Concerto после стандартного opener, добери попадания или Dodge Counter. Не вставляй неиспытанный quickswap BA3."
+    },
+    "skLoop": {
+      "person": "shorekeeper",
+      "title": "Shorekeeper · повторный цикл",
+      "sub": "Discernment после Supernal Stellarealm",
+      "actions": [
+        {
+          "text": "Intro · Discernment",
+          "tone": "key",
+          "input": {
+            "kind": "intro"
+          }
+        },
+        {
+          "text": "BA ×4",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "count": 4
+          }
+        },
+        {
+          "text": "Illation · Heavy",
+          "tone": "key",
+          "input": {
+            "kind": "heavy"
+          }
+        },
+        {
+          "text": "E · Chaos Theory",
+          "tone": "key",
+          "input": {
+            "kind": "skill"
+          }
+        },
+        {
+          "text": "Echo",
+          "tone": "normal",
+          "input": {
+            "kind": "echo"
+          }
+        },
+        {
+          "text": "R · End Loop",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate"
+          }
+        },
+        {
+          "text": "Outro → Suoming",
+          "tone": "swap",
+          "input": {
+            "kind": "outro",
+            "target": "suoming"
+          }
+        }
+      ],
+      "check": "Discernment доступен после Supernal Stellarealm предыдущего цикла; Concerto для следующего Outro заполнено.",
+      "extra": "На S0 Discernment завершает прежнее Stellarealm. Если его нет или не хватает ресурсов, вернись к более длинному opener; граница непрерывного loop ещё не проверена пользователем."
+    },
+    "suomingFirst": {
+      "person": "suoming",
+      "title": "Suoming · первый заход",
+      "sub": "Короткая передача Unison",
+      "actions": [
+        {
+          "text": "Intro · Deep Mind",
+          "tone": "key",
+          "input": {
+            "kind": "intro"
+          }
+        },
+        {
+          "text": "R · Miasma Lock",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate"
+          }
+        },
+        {
+          "text": "Unison Outro → Hsin",
+          "tone": "swap",
+          "input": {
+            "kind": "outro",
+            "target": "hsin"
+          }
+        }
+      ],
+      "check": "После R горит Unison (5 с); перейти на Hsin до истечения окна.",
+      "extra": "Не нажимай обычную E (Rift Cleaver): она тратит собственный Unison на Seal Master вместо передачи Hsin."
+    },
+    "hsinFirstSimple": {
+      "person": "hsin",
+      "title": "Hsin · первый заход",
+      "sub": "Answering Heart → Formshift (без swap-cancel)",
+      "actions": [
+        {
+          "text": "Intro · Manifold Unison",
+          "tone": "key",
+          "input": {
+            "kind": "intro"
+          }
+        },
+        {
+          "text": "Echo · Suhsin (удобное окно)",
+          "tone": "normal",
+          "input": {
+            "kind": "echo"
+          }
+        },
+        {
+          "text": "BA3 → BA4 (если Forte < 100)",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "count": 2
+          }
+        },
+        {
+          "text": "Forte Heavy · Realm Protector",
+          "tone": "vital",
+          "input": {
+            "kind": "heavy"
+          }
+        },
+        {
+          "text": "R · Formshift",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate"
+          }
+        },
+        {
+          "text": "Unison Outro → Suoming",
+          "tone": "swap",
+          "input": {
+            "kind": "outro",
+            "target": "suoming"
+          }
+        }
+      ],
+      "check": "Answering Heart = 100 ДО Forte Heavy; после Formshift есть Unison (5 с).",
+      "extra": "S2 Hsin не гарантирует полную шкалу на каждом Intro. BA3–4 можно убрать только если уже 100. Echo по практическому варианту iWinToLose."
+    },
+    "hsinFirstAdv": {
+      "person": "hsin",
+      "title": "Hsin · первый заход + E Swap",
+      "sub": "Prydwen: отмена анимации после Formshift",
+      "actions": [
+        {
+          "text": "Intro · Manifold Unison",
+          "tone": "key",
+          "input": {
+            "kind": "intro"
+          }
+        },
+        {
+          "text": "Echo · Suhsin (вариант iWinToLose)",
+          "tone": "normal",
+          "input": {
+            "kind": "echo"
+          }
+        },
+        {
+          "text": "BA3 → BA4 (если Forte < 100)",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "count": 2
+          }
+        },
+        {
+          "text": "Forte Heavy · Realm Protector",
+          "tone": "vital",
+          "input": {
+            "kind": "heavy"
+          }
+        },
+        {
+          "text": "R · Formshift",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate"
+          }
+        },
+        {
+          "text": "E · Illumining (Swap Cancel!)",
+          "tone": "sensitive",
+          "input": {
+            "kind": "skill"
+          }
+        },
+        {
+          "text": "Сразу Unison Outro → Suoming",
+          "tone": "swap",
+          "input": {
+            "kind": "outro",
+            "target": "suoming"
+          }
+        }
+      ],
+      "check": "Answering Heart = 100; после R Unison 5 с, E нажать только если успеваешь мгновенно уйти.",
+      "extra": "Опциональный DPS-tech Prydwen: не ждать анимации E. Если задерживаешь Unison, пропускай E. Echo на первом заходе — практическая адаптация."
+    },
+    "suomingSecondSimple": {
+      "person": "suoming",
+      "title": "Suoming · второй заход",
+      "sub": "Набрать Delusion, выполнить два E",
+      "actions": [
+        {
+          "text": "Intro · Whirling Thunder (Unison)",
+          "tone": "key",
+          "input": {
+            "kind": "intro"
+          }
+        },
+        {
+          "text": "BA · до 800 Delusion",
+          "tone": "flow",
+          "input": {
+            "kind": "basic",
+            "repeat": true
+          }
+        },
+        {
+          "text": "E · Unforsaken Mind (нажать)",
+          "tone": "vital",
+          "input": {
+            "kind": "skill"
+          }
+        },
+        {
+          "text": "E · Engraved Heart (ЗАЖАТЬ)",
+          "tone": "vital",
+          "input": {
+            "kind": "skill"
+          }
+        },
+        {
+          "text": "Echo (если Moonlit)",
+          "tone": "normal",
+          "input": {
+            "kind": "echo"
+          }
+        },
+        {
+          "text": "Outro → Hsin",
+          "tone": "swap",
+          "input": {
+            "kind": "outro",
+            "target": "hsin"
+          }
+        }
+      ],
+      "check": "В Deep Mind 800/800 Delusion перед первым E; второе E — отдельное удержание ПОСЛЕ отпускания первого.",
+      "extra": "Engraved Heart нельзя сокращать ради таймера и нельзя уходить в середине. Если Echo не Moonlit, скорректируй его место по набору. Отдать Hsin 8-секундное окно."
+    },
+    "suomingSecondAdv": {
+      "person": "suoming",
+      "title": "Suoming · второй заход + Dash",
+      "sub": "Точная цепочка Prydwen к 800 Delusion",
+      "actions": [
+        {
+          "text": "Intro · Whirling Thunder (Unison)",
+          "tone": "key",
+          "input": {
+            "kind": "intro"
+          }
+        },
+        {
+          "text": "Whirling BA2",
+          "tone": "flow",
+          "input": {
+            "kind": "basic"
+          }
+        },
+        {
+          "text": "Dash Cancel",
+          "tone": "sensitive",
+          "input": {
+            "kind": "dodge"
+          }
+        },
+        {
+          "text": "Unfurled BA1 → BA2",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "count": 2
+          }
+        },
+        {
+          "text": "E · Unforsaken Mind (tap)",
+          "tone": "vital",
+          "input": {
+            "kind": "skill"
+          }
+        },
+        {
+          "text": "E · Engraved Heart (HOLD)",
+          "tone": "vital",
+          "input": {
+            "kind": "skill"
+          }
+        },
+        {
+          "text": "Echo · Heron (если Moonlit)",
+          "tone": "normal",
+          "input": {
+            "kind": "echo"
+          }
+        },
+        {
+          "text": "Outro → Hsin",
+          "tone": "swap",
+          "input": {
+            "kind": "outro",
+            "target": "hsin"
+          }
+        }
+      ],
+      "check": "800/800 Delusion к первому E; второе E зажать отдельно. Hsin получает short-duration buff.",
+      "extra": "Между двумя E отпустить кнопку! Если при промахах нет 800 Delusion — добрать ресурс перед E. Смена во время Engraved Heart невозможна."
+    },
+    "hsinFinalSimple": {
+      "person": "hsin",
+      "title": "Hsin · финишер",
+      "sub": "Mechanism Dominion → Pillars Across Heaven",
+      "actions": [
+        {
+          "text": "Intro · Manifold Unison",
+          "tone": "key",
+          "input": {
+            "kind": "intro"
+          }
+        },
+        {
+          "text": "Pillars BA · до 0 Heart",
+          "tone": "flow",
+          "input": {
+            "kind": "basic",
+            "repeat": true
+          }
+        },
+        {
+          "text": "Forte Heavy · Stilling All Horizons",
+          "tone": "vital",
+          "input": {
+            "kind": "heavy"
+          }
+        },
+        {
+          "text": "R · Pillars Across Heaven",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate"
+          }
+        },
+        {
+          "text": "Outro → Shorekeeper",
+          "tone": "swap",
+          "input": {
+            "kind": "outro",
+            "target": "shorekeeper"
+          }
+        }
+      ],
+      "check": "После Intro 300 Illumining Heart; Pillars расходуют его до 0, затем Forte Heavy → R пока бафф Suoming активен.",
+      "extra": "iWinToLose даёт краткую подсказку BA1–4, но число может зависеть от попаданий. Ориентируйся на шкалу. R считается Skill DMG; S3 усиливает именно финишер."
+    },
+    "hsinFinalAdv": {
+      "person": "hsin",
+      "title": "Hsin · финишер + E Swap",
+      "sub": "Prydwen: Pillars 2 + Dash + 2 + Dash + 1",
+      "actions": [
+        {
+          "text": "Intro · Manifold Unison",
+          "tone": "key",
+          "input": {
+            "kind": "intro"
+          }
+        },
+        {
+          "text": "Pillars BA1 → BA2",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "count": 2
+          }
+        },
+        {
+          "text": "Dash Cancel",
+          "tone": "sensitive",
+          "input": {
+            "kind": "dodge"
+          }
+        },
+        {
+          "text": "Pillars BA1 → BA2",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "count": 2
+          }
+        },
+        {
+          "text": "Dash Cancel",
+          "tone": "sensitive",
+          "input": {
+            "kind": "dodge"
+          }
+        },
+        {
+          "text": "Pillars BA1",
+          "tone": "normal",
+          "input": {
+            "kind": "basic"
+          }
+        },
+        {
+          "text": "Forte Heavy · Stilling All Horizons",
+          "tone": "vital",
+          "input": {
+            "kind": "heavy"
+          }
+        },
+        {
+          "text": "R · Pillars Across Heaven",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate"
+          }
+        },
+        {
+          "text": "E · Answering (Swap Cancel!)",
+          "tone": "sensitive",
+          "input": {
+            "kind": "skill"
+          }
+        },
+        {
+          "text": "Сразу Outro → Shorekeeper",
+          "tone": "swap",
+          "input": {
+            "kind": "outro",
+            "target": "shorekeeper"
+          }
+        }
+      ],
+      "check": "Illumining Heart = 0 после Pillars, Forte Heavy открыла R; окно баффов Suoming ещё действует.",
+      "extra": "Опциональная E после R только с быстрым Swap Cancel. Не задерживай финальную R ради дополнительной E."
+    }
+  }
+}
