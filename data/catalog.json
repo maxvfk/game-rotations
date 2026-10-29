@@ -55,6 +55,47 @@
               "verification": "experimental"
             }
           ]
+        },
+        {
+          "id": "hsin-suoming-shorekeeper",
+          "name": "Hsin / Suoming / Shorekeeper",
+          "subtitle": "Unison · простая · Prydwen + E Swap Cancel",
+          "characters": [
+            {
+              "id": "hsin",
+              "name": "Hsin",
+              "investment": "S3R1",
+              "portrait": "portraits/hsin.webp"
+            },
+            {
+              "id": "suoming",
+              "name": "Suoming",
+              "investment": "S0R0",
+              "portrait": "portraits/suoming.webp"
+            },
+            {
+              "id": "shorekeeper",
+              "name": "Shorekeeper",
+              "investment": "S0R1",
+              "portrait": "portraits/shorekeeper.webp"
+            }
+          ],
+          "status": "research-adapted",
+          "statusDescription": "Prydwen + iWinToLose; игровое исполнение и repeat-loop не проверены. Quickswap-opener Shorekeeper отдельно.",
+          "gameVersion": "Global live 3.7 (2026-10-27)",
+          "source": "https://github.com/maxvfk/Games/blob/main/guides/wuthering-waves/HSIN_SUOMING_SHOREKEEPER_ROTATIONS.md",
+          "variants": [
+            {
+              "id": "simple",
+              "name": "Простая",
+              "verification": "adapted"
+            },
+            {
+              "id": "prydwen",
+              "name": "Prydwen + Swap Cancel",
+              "verification": "partial"
+            }
+          ]
         }
       ]
     },
