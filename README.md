@@ -20,7 +20,7 @@ npm run typecheck
 npm run build
 ```
 
-На первом деплое в GitHub Settings → Pages выставить **Source: GitHub Actions**. Workflow проверяет build в PR и деплоит только `main`. Адрес использует Vite `base: /game-rotations/`.
+В GitHub Settings → Pages установлен **Source: GitHub Actions** (подтверждено владельцем). Workflow проверяет сборку в PR и публикует сайт из `main`. Для повторной публикации можно запустить **Actions → Build and deploy Pages → Run workflow** или отправить новый коммит в `main`. Адрес использует Vite `base: /game-rotations/`.
 
 ## Ограничения качества данных
 
