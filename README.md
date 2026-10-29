@@ -9,7 +9,7 @@
 **Новый чат/агент:** открой [AGENTS.md](AGENTS.md) → [пошаговую инструкцию](docs/ADDING_ROTATIONS.md) → [справочник JSON](docs/FORMAT_REFERENCE.md). Для ревью используй [чеклист приёмки](docs/REVIEW_CHECKLIST.md).
 
 - **Вымышленный, целиком согласованный пример:** [examples/](examples/) — rotation JSON + controls JSON + запись каталога; не публикуется на сайте.
-- **Рабочая команда:** `data/rotations/wuthering-waves/yyxl-suisui-chisa.json` + `data/controls/wuthering-waves.json` + `data/catalog.json`.
+- **Рабочие команды:** `data/rotations/wuthering-waves/yyxl-suisui-chisa.json` и `data/rotations/wuthering-waves/hsin-suoming-shorekeeper.json`; общий `data/controls/wuthering-waves.json` и каталог `data/catalog.json`.
 - **Верификация без второй настоящей игры:** `npm run test:onboarding` добавляет пример в временный каталог, затем проверяет, что ошибочные targets, stage IDs, kind и схемы отвергаются.
 - Сначала проверяется актуальная механика в `maxvfk/Games`, затем выбор пользователя; только после этого новая ротация публикуется здесь. Не считай `Verified` на сайте калькулятора подтверждением исполнения в бою.
 
@@ -60,6 +60,7 @@ CI проверяет JSON, связность каталога и учебны�
 
 `maxvfk/Games` остаётся канонической базой механик, рекомендаций и исследований. В этом репозитории — **только отобранные пользователем практические варианты**. Разделять опубликованные TC-ротации, адаптации и экспериментальные реконструкции.
 
+- **WuWa Hsin / Suoming / Shorekeeper:** простая ротация Prydwen/iWinToLose (`adapted`) и advanced Prydwen c E Swap Cancel (`partial`); Hsin S3R1 / Suoming S0R0 / Shorekeeper S0R1, repeat-loop и quickswap-opener требуют практической проверки. [Гайд](https://github.com/maxvfk/Games/blob/main/guides/wuthering-waves/HSIN_SUOMING_SHOREKEEPER_ROTATIONS.md) · [механики](https://github.com/maxvfk/Games/blob/main/guides/wuthering-waves/HSIN_SUOMING_SHOREKEEPER_KIT_MECHANICS.md) · [открыть в приложении](https://maxvfk.github.io/game-rotations/?team=hsin-suoming-shorekeeper).
 - **WuWa 1F1A:** Prydwen-derived, account-specific адаптация.
 - **WuWa 2F:** эксперимент с Double Feather; граница повторяющегося цикла требует live-проверки.
 - **WuWa 2F QS:** собственная реконструкция, не подтверждённый TC optimal.
@@ -67,4 +68,4 @@ CI проверяет JSON, связность каталога и учебны�
 
 Исходный гайд: https://github.com/maxvfk/Games/blob/main/guides/wuthering-waves/YANGYANG_XUANLING_SUISUI_CHISA_ROTATIONS.md
 
-Портреты получены из сохранённых пользователем страниц Prydwen; оригинальные изображения и персонажи принадлежат Kuro Games. Неаффилированный некоммерческий проект.
+Портреты первой WuWa-команды получены из сохранённых пользователем страниц Prydwen; новые небольшие портреты Hsin/Suoming/Shorekeeper вырезаны из предоставленного пользователем скриншота памятки iWinToLose и пока являются временными. Оригинальные изображения и персонажи принадлежат Kuro Games. Неаффилированный некоммерческий проект.
