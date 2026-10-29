@@ -2,7 +2,7 @@ import catalog from '../data/catalog.json';
 import './style.css';
 
 type Character = {id:string;name:string;investment:string;portrait:string};
-type Team = {id:string;name:string;subtitle:string;path:string;characters:Character[];status:string;statusDescription:string;gameVersion:string;source:string;variants:{id:string;name:string;verification:string}[]};
+type Team = {id:string;name:string;subtitle:string;characters:Character[];status:string;statusDescription:string;gameVersion:string;source:string;variants:{id:string;name:string;verification:string}[]};
 type Game = {id:string;name:string;shortName:string;mark:string;accent:string;status:string;subtitle:string;teams:Team[]};
 type Catalog = {schemaVersion:number;games:Game[]};
 const data:Catalog=catalog;
