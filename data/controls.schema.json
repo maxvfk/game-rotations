@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://maxvfk.github.io/game-rotations/controls.schema.json",
+  "title": "Game Rotations controls document v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "game",
+    "schemes"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "game": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "schemes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "label",
+          "help",
+          "keys",
+          "slotKeys",
+          "slotExplain",
+          "summary"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "help": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "prefixItems": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "minLength": 1
+                }
+              ],
+              "items": false
+            }
+          },
+          "keys": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "basic",
+              "heavy",
+              "skill",
+              "ultimate",
+              "echo",
+              "dodge",
+              "auto",
+              "repeat"
+            ],
+            "properties": {
+              "basic": {
+                "type": "string",
+                "minLength": 1
+              },
+              "heavy": {
+                "type": "string",
+                "minLength": 1
+              },
+              "skill": {
+                "type": "string",
+                "minLength": 1
+              },
+              "ultimate": {
+                "type": "string",
+                "minLength": 1
+              },
+              "echo": {
+                "type": "string",
+                "minLength": 1
+              },
+              "dodge": {
+                "type": "string",
+                "minLength": 1
+              },
+              "auto": {
+                "type": "string",
+                "minLength": 1
+              },
+              "repeat": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "slotKeys": {
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "slotExplain": {
+            "type": "string",
+            "minLength": 1
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}
