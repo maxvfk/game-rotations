@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#10101c" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="WuWa Rotation" />
+<meta name="description" content="Интерактивная памятка трёх ротаций Yangyang: Xuanling / Suisui / Chisa" />
+
+<link rel="icon" type="image/svg+xml" href="./icon.svg" />
+<link rel="apple-touch-icon" href="./icon-192.png" />
+<title>Game Rotations · WuWa</title>
+<style>
+:root{color-scheme:dark;--bg:#0b0c15;--panel:#141725;--panel2:#191d2f;--border:rgba(180,188,228,.14);--text:#f6f4ff;--sub:#a3a7bd;--muted:#777e99;--gold:#f4d39a;--gold-dark:#715a35;--violet:#a89df9;--teal:#7be0d8;--rose:#f6a0ae;--r:22px;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+*{box-sizing:border-box}html{min-height:100%;background:var(--bg)}body{margin:0;min-height:100vh;background:radial-gradient(ellipse 110% 430px at 100% -90px,rgba(118,85,183,.21),transparent 70%),radial-gradient(ellipse 500px 500px at -180px 170px,rgba(47,166,164,.10),transparent 70%),var(--bg);color:var(--text)}
+button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offset:3px}a{color:var(--gold)}.wrap{max-width:880px;margin:0 auto;padding:24px clamp(15px,4vw,28px) 104px}.overline{font-size:10px;letter-spacing:.26em;font-weight:800;color:var(--gold);text-transform:uppercase}.topline{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px}.sigil{display:flex;align-items:center;gap:10px}.emblem{width:36px;height:36px;display:grid;place-items:center;border:1px solid rgba(244,211,154,.45);border-radius:11px;background:linear-gradient(150deg,#363046,#191722);color:var(--gold);font-family:Georgia,serif;font-size:24px;box-shadow:0 0 28px #e6ca8d12}.little{font-size:12px;color:var(--sub)}.iconbtn{width:36px;height:36px;border:1px solid var(--border);background:#ffffff07;color:var(--text);border-radius:12px;font-size:17px;display:grid;place-items:center}
+h1{font-family:Georgia,"Times New Roman",serif;font-weight:500;letter-spacing:-.05em;font-size:clamp(38px,8vw,68px);margin:2px 0 5px;line-height:1.05}h1 em{font-style:normal;color:var(--gold)}.hero-sub{color:var(--sub);line-height:1.5;margin:8px 0 21px;font-size:14px}.team{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:25px}.team-pill{display:flex;align-items:center;gap:8px;padding:5px 12px 5px 5px;border:1px solid var(--border);border-radius:999px;background:#ffffff04;font-size:12px;font-weight:700}.orb{width:25px;height:25px;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:900;color:#121424;letter-spacing:-.07em}.orb.suisui{background:linear-gradient(150deg,#b8f3ef,#67c2d8)}.orb.chisa{background:linear-gradient(150deg,#f0afc5,#bd8ba9)}.orb.yyxl{background:linear-gradient(150deg,#efd6a1,#ac97dc)}.orb.portrait-orb{object-fit:cover;object-position:center;border:1px solid #ffffff30;background:#23243a}.team-arrow{color:#726c85;font-size:13px}
+.section-label{font-size:10px;color:var(--muted);font-weight:750;letter-spacing:.18em;text-transform:uppercase;margin:0 0 10px 3px}.tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-bottom:17px}.tab{border:1px solid var(--border);border-radius:16px;background:#171928b8;color:var(--sub);min-width:0;padding:14px 8px 12px;text-align:center;transition:background .15s,border-color .15s,transform .15s}.tab:active{transform:scale(.985)}.tab[aria-selected="true"]{background:linear-gradient(150deg,#41344c,#242134);border-color:#dfbf8a;box-shadow:inset 0 1px #d6bf8b33,0 7px 24px #06050a66;color:var(--text)}.tab strong{display:block;font-size:18px;letter-spacing:-.03em}.tab small{display:block;font-size:11px;line-height:1.15;margin-top:4px}.tab[aria-selected="true"] strong{color:#f9dcaa}
+.meta{background:linear-gradient(100deg,#1d2130,#191a2c);border:1px solid var(--border);border-radius:17px;padding:15px 16px;margin-bottom:17px;display:flex;gap:12px;align-items:flex-start}.meta-badge{color:#151324;background:#dfc796;border-radius:8px;font-size:9px;font-weight:900;text-transform:uppercase;padding:6px 8px;white-space:nowrap;margin-top:2px}.meta-badge.exp{background:#e4b6bd}.meta p{color:var(--sub);font-size:12px;line-height:1.6;margin:0}.meta strong{color:var(--text)}
+.controlbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:space-between;margin:26px 0 16px}.seg{display:flex;border:1px solid var(--border);border-radius:13px;background:#111323;padding:3px;gap:2px}.seg button{background:transparent;border:0;border-radius:9px;color:var(--sub);padding:9px 12px;font-size:12px;font-weight:700;white-space:nowrap}.seg button[aria-pressed="true"]{color:var(--text);background:#333246;box-shadow:0 1px 3px #03040a55}.control-right{display:flex;gap:7px}.mini{border:1px solid var(--border);color:var(--text);background:#ffffff06;border-radius:11px;padding:9px 10px;font-size:12px;font-weight:650}.mini:active{transform:scale(.98)}
+.progress-wrap{margin-bottom:21px}.progress-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}.progress-row strong{font-size:12px}.progress-row span{font-size:11px;color:var(--sub)}.progress-track{height:4px;background:#272a3e;overflow:hidden;border-radius:4px}.progress-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#82d4d8,#ebd0a1);width:0;transition:width .3s}
+.route{display:flex;flex-direction:column;gap:15px}.stage{position:relative;border:1px solid var(--border);border-radius:var(--r);background:linear-gradient(145deg,rgba(34,36,55,.92),rgba(17,20,34,.96));box-shadow:0 16px 44px #05060b27;overflow:hidden}.stage::before{content:"";position:absolute;width:3px;left:0;top:24px;bottom:24px;background:var(--accent);border-radius:3px;opacity:.8}.stage.completed{opacity:.63}.stage.active{border-color:#c5ad8d6d;box-shadow:0 16px 46px #05060b65,0 0 0 1px #c7ae7b10}.stage-head{padding:18px 17px 8px 20px;display:flex;align-items:center;gap:12px}.portrait{width:58px;height:58px;flex:0 0 58px;border-radius:15px;overflow:hidden;display:grid;place-items:center;background:linear-gradient(145deg,color-mix(in srgb,var(--accent) 35%,#17172b),#1d2030);border:1px solid color-mix(in srgb,var(--accent) 50%,transparent);box-shadow:0 0 24px color-mix(in srgb,var(--accent) 16%,transparent)}.portrait img{display:block;width:100%;height:100%;object-fit:cover}.portrait .fallback{font-size:20px;color:var(--accent)}.stage-num{font-size:10px;letter-spacing:.1em;font-weight:850;color:var(--sub);margin-bottom:2px}.stage-title{font-size:17px;font-weight:800;letter-spacing:-.015em;line-height:1.35}.stage-sub{font-size:11px;color:var(--sub);margin-top:2px}.complete{margin-left:auto;width:36px;height:36px;flex:0 0 36px;border-radius:50%;border:1px solid #ffffff30;background:#ffffff08;color:var(--muted);font-size:19px;display:grid;place-items:center}.complete[aria-pressed=true]{background:#b9e4d1;color:#15332d;border-color:#b9e4d1}.stage-body{padding:10px 17px 19px 20px}.sequence{display:flex;flex-wrap:wrap;align-items:center;row-gap:8px;column-gap:5px;margin:0 0 13px}.action{padding:8px 10px;border-radius:9px;font-weight:800;font-size:12px;letter-spacing:-.01em;color:#eae9f9;background:#ffffff0d;border:1px solid #ffffff12;line-height:1.2}.action{display:inline-flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:4px;min-height:57px;max-width:100%;white-space:normal}.action .keycap{font-size:15px;line-height:1.05;font-weight:900;color:#fff6df;white-space:nowrap}.action .action-label{font-size:10px;font-weight:650;line-height:1.25;letter-spacing:0;color:#c4c5d3;overflow-wrap:anywhere}.action.key .keycap{color:#ffe4a5}.action.flow .keycap{color:#b9f4ed}.action.swap .keycap{color:#ffced9}.action.sensitive .keycap{color:#f0dbff}.action.auto .keycap{color:#c3c8d7}.action.auto{border-style:dashed}.keyhelp{display:flex;align-items:center;gap:7px 11px;flex-wrap:wrap;margin:0 0 13px;font-size:11px;color:var(--sub)}.keyhelp b{font-weight:900;color:var(--gold)}.slots-btn{border:1px solid #bca16d72;border-radius:9px;background:#3a3345;color:#f7dfb8;padding:7px 10px;font-weight:800;font-size:11px}.slots-panel{background:#1a1c2d;border:1px solid var(--border);border-radius:15px;padding:12px 14px;margin:-3px 0 18px;display:flex;flex-wrap:wrap;gap:11px;align-items:center}.slots-panel label{font-size:12px;color:var(--sub);display:flex;align-items:center;gap:7px}.slots-panel select{background:#292b3c;color:#fff;border:1px solid #ffffff40;padding:7px;border-radius:8px;font-size:13px}.slots-explain{flex-basis:100%;color:var(--sub);font-size:11px;line-height:1.4}.keylegend{display:flex;flex-wrap:wrap;gap:6px 13px;margin-top:2px}.keylegend strong{color:var(--gold)}
+.input-controls{display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin:3px 0 12px}.control-caption{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:.13em}.input-seg button{min-width:64px;padding:8px 12px}.input-seg #control-terms{min-width:68px}.keyhelp{padding:0 2px;margin-bottom:13px}.keyhelp span{white-space:nowrap}.team-pill .portrait-orb{width:27px;height:27px;border-radius:50%}.action.ps5 .keycap{font-family:Arial,system-ui,sans-serif;font-size:16px;font-weight:900;letter-spacing:-.025em}.action.ps5{min-width:56px}.action.ps5 .action-label{font-size:10px}.control-footnote{color:#9da1b7;font-size:11px;line-height:1.6;margin-top:5px}.input-controls .slots-btn{margin-left:auto}@media(max-width:480px){.input-controls .slots-btn{margin-left:0}.stage-head{padding-left:17px}.stage-body{padding-left:17px}.portrait{width:54px;height:54px;flex-basis:54px}}
+.action.key{background:#f2d29a16;border:1px solid #ebca9270;color:#f9dfaf}.action.sensitive{background:#c5a5fb20;border:1px solid #ba9be68c;color:#e8d6ff}.action.flow{background:#81dad21b;border:1px solid #70d8ca79;color:#b9f4ed}.action.swap{background:#f0afbd18;border:1px solid #e6a5b779;color:#f9c9d4}.action.vital{background:#ffffff16;border-color:#ffffff55}.arr{font-size:13px;color:#6d7288;padding:0 1px}.checks{display:flex;align-items:flex-start;gap:8px;padding:10px 12px;background:#0a0e1c70;border:1px solid #ffffff0a;border-radius:10px;color:#cdd2df;font-size:12px;line-height:1.5}.checks .diamond{color:var(--accent);font-size:13px;margin-top:1px}.extras{font-size:12px;color:var(--sub);margin:9px 2px 0;line-height:1.6}.extras b{color:#e1deec}.foot-steps{margin-top:16px;display:flex;justify-content:space-between;gap:10px}.nav{border:1px solid #ffffff25;background:#202337;color:var(--text);border-radius:13px;padding:13px 16px;font-weight:750;flex:1}.nav.primary{background:linear-gradient(140deg,#e7ca9d,#ceaf84);color:#222034;border:0}.nav:disabled{opacity:.36;cursor:not-allowed}.nav:active:not(:disabled){transform:translateY(1px)}
+.bottom{margin-top:28px;border-top:1px solid var(--border);padding-top:22px;font-size:11px;color:var(--sub);line-height:1.7}.bottom p{margin:0 0 10px}.bottom a{font-size:11px;text-underline-offset:3px}.toast{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px) + 25px);left:50%;transform:translateX(-50%);background:#ddc698;color:#1b1c28;border-radius:999px;padding:11px 18px;font-size:12px;font-weight:800;box-shadow:0 9px 25px #0008;z-index:30;pointer-events:none}.hidden{display:none!important}.install{position:fixed;z-index:20;bottom:calc(14px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);width:calc(100% - 30px);max-width:840px;padding:12px 14px;background:#29273c;border:1px solid #e2c99360;border-radius:15px;box-shadow:0 10px 35px #0008;display:flex;align-items:center;gap:10px}.install p{font-size:12px;margin:0;flex:1;color:#edeaf2}.install button{border:0;border-radius:10px;padding:9px 12px;font-size:12px;font-weight:800;background:#eccf9f;color:#232036}.install .dismiss{background:transparent;border:1px solid var(--border);color:#d4d0db;padding:8px 10px}
+@media(min-width:700px){.wrap{padding-top:35px}.stage-head{padding:22px 24px 12px}.stage-body{padding:12px 24px 24px}.action{font-size:14px;padding:10px 12px}.sequence{column-gap:8px;row-gap:11px}.stage-title{font-size:19px}.stage{border-radius:23px}.controls{display:flex;gap:12px}.meta p{font-size:13px}}
+@media(max-width:360px){.tab strong{font-size:16px}.tab small{font-size:10px}.controlbar{margin-top:20px}.seg button{padding:8px 9px}.stage-head{gap:9px}.stage-title{font-size:15px}.action{padding:7px 8px;min-height:53px}.action .keycap{font-size:13px}.action .action-label{font-size:9px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+.catalog-back{position:sticky;top:0;z-index:30;backdrop-filter:blur(15px);background:#0b0c15ed;border-bottom:1px solid #ffffff16;padding:11px max(15px,calc((100% - 820px)/2));font-size:12px;font-weight:750}.catalog-back a{color:#e9d2a8;text-decoration:none}
+</style>
+</head>
+<body>
+<nav class="catalog-back"><a href="../index.html">← Каталог игр и команд</a></nav>
+<div class="wrap">
+ <div class="topline"><div class="sigil"><div class="emblem" aria-hidden="true">✦</div><div><div class="overline">FIELD NOTES / WUWA</div><div class="little">Global 3.7 · Library v0.1</div></div></div><button class="iconbtn" id="info" title="Справка" aria-label="Справка">ⓘ</button></div>
+ <header><h1>Боевые <em>ротации</em></h1><p class="hero-sub">Три маршрута одной команды. Без переключения между гайдами — всё нужное прямо во время боя.</p></header>
+ <div class="team" aria-label="Состав команды"><div class="team-pill"><img class="orb portrait-orb suisui" src="../portraits/suisui.webp" alt="" loading="eager" />Suisui <span style="color:#8f91a8">S0R1</span></div><span class="team-arrow">→</span><div class="team-pill"><img class="orb portrait-orb chisa" src="../portraits/chisa.webp" alt="" loading="eager" />Chisa <span style="color:#8f91a8">S0R1</span></div><span class="team-arrow">→</span><div class="team-pill"><img class="orb portrait-orb yyxl" src="../portraits/yyxl.webp" alt="" loading="eager" />YYXL <span style="color:#8f91a8">S2R1</span></div></div>
+ <p class="section-label">Выбери ротацию</p><div class="tabs" role="tablist" aria-label="Вариант ротации" id="tabs"></div>
+ <div class="meta" id="meta" aria-live="polite"></div>
+ <div class="input-controls"><span class="control-caption">ОБОЗНАЧЕНИЯ</span><div class="seg input-seg" role="group" aria-label="Схема управления"><button id="control-pc" type="button" aria-pressed="true">⌨ ПК</button><button id="control-ps5" type="button" aria-pressed="false">🎮 PS5</button><button id="control-terms" type="button" aria-pressed="false" title="Обозначения без привязки к устройству" aria-label="Универсальные обозначения A H Skill Ult">A / H</button></div><button class="slots-btn" id="slots-btn" type="button" aria-expanded="false" aria-controls="slots-panel">Слоты: 1 / 2 / 3 · изменить</button></div><div id="keyhelp" class="keyhelp" aria-live="polite"></div>
+ <div class="slots-panel hidden" id="slots-panel"><label>Suisui <select id="slot-suisui" aria-label="Слот Suisui"><option>1</option><option>2</option><option>3</option></select></label><label>Chisa <select id="slot-chisa" aria-label="Слот Chisa"><option>1</option><option>2</option><option>3</option></select></label><label>YYXL <select id="slot-yyxl" aria-label="Слот YYXL"><option>1</option><option>2</option><option>3</option></select></label><span class="slots-explain" id="slot-explain">Цифры относятся к слотам отряда в игре. При изменении одной цифры остальные автоматически переставляются.</span></div>
+ <div class="controlbar"><div class="seg" role="group" aria-label="Начало или повторный цикл"><button id="opener" aria-pressed="false">Первый заход</button><button id="loop" aria-pressed="true">Повтор</button></div><div class="control-right"><button class="mini" id="view" aria-label="Переключить режим просмотра">☷ Все этапы</button><button class="mini" id="reset" aria-label="Сбросить прогресс">↺ Сброс</button></div></div>
+ <div class="progress-wrap"><div class="progress-row"><strong id="progress-label">ПРОГРЕСС</strong><span id="progress-count"></span></div><div class="progress-track" role="progressbar" aria-label="Выполненные этапы" aria-valuemin="0" aria-valuemax="100" id="progress-track"><div class="progress-fill" id="progress-fill"></div></div></div>
+ <main id="route" class="route" aria-live="polite"></main><div id="navigation" class="foot-steps hidden"><button class="nav" id="prev">← Назад</button><button class="nav primary" id="next">Далее →</button></div>
+ <footer class="bottom"><p id="control-summary"></p><p><strong style="color:#e5e0e4">Точность:</strong> 1F1A — Prydwen-derived. 2F — адаптация Double Feather; следующие циклы требуют проверки стойки. 2F Quickswap — экспериментальная реконструкция. Это не подтверждённые optimal-ротации для YYXL S2R1.</p><p class="control-footnote">Портреты из страниц Prydwen, предоставленных пользователем; персонажи и оригинальные изображения — Kuro Games. Изображения встроены локально для офлайн-режима.</p><a href="https://github.com/maxvfk/Games/blob/main/guides/wuthering-waves/YANGYANG_XUANLING_SUISUI_CHISA_ROTATIONS.md" target="_blank" rel="noopener noreferrer">Открыть подробный гайд в Games ↗</a></footer>
+</div>
+<div class="install hidden" id="install"><p>Установить памятку как приложение для офлайн-доступа?</p><button id="install-btn">Установить</button><button id="install-close" class="dismiss" aria-label="Закрыть">×</button></div><div class="toast hidden" id="toast" role="status"></div>
+<script>
+const A=(text,type='')=>({text,type});
+const DEFAULT_SLOTS={suisui:'1',chisa:'2',yyxl:'3'};
+let slots={...DEFAULT_SLOTS};
+function slotForName(name){const n=name.toLowerCase();return n.includes('suisui')?'suisui':n.includes('chisa')?'chisa':'yyxl'}
+/** Keyboard + mouse: primary input first, ability name as optional secondary help. */
+const PS5_SWAP={'1':'↑','2':'→','3':'↓'};
+let controls='pc';
+const TERMS_KEYS={
+ 'ЛКМ':'A','ЛКМ ×2':'A ×2','ЛКМ ×3':'A ×3','ЛКМ ×4':'A ×4',
+ 'ЛКМ · повтор':'A · серия','удерж. ЛКМ':'H',
+ 'E':'Skill','R':'Ult','Q':'Echo','Shift / ПКМ':'Dash','АВТО':'Auto'
+};
+function inputKey(key){
+ if(controls==='terms')return TERMS_KEYS[key]||key;
+ if(controls==='pc')return key;
+ const map={'ЛКМ':'□','ЛКМ ×2':'□ ×2','ЛКМ ×3':'□ ×3','ЛКМ ×4':'□ ×4',
+ 'ЛКМ · повтор':'□ · повтор','удерж. ЛКМ':'удерж. □',
+ 'E':'△','R':'R2','Q':'L1 + □','Shift / ПКМ':'R1'};
+ return map[key]||key;
+}
+function slotKey(who){return controls==='ps5'?'D-Pad '+PS5_SWAP[slots[who]]:slots[who]}
+/** Standard PC controls or default WuWa DualSense layout, independently switchable. */
+function actionBinding(action,person){
+ const x=action.text;
+ if(x==='Intro')return {key:controls==='terms'?'Intro':slotKey(person.id),name:'Intro · смена персонажа'};
+ const swap=x.match(/(?:Outro|Swap)\s*→\s*(Suisui|Chisa|YYXL)/i);
+ if(swap)return {key:controls==='terms'?(x.includes('Outro')?'Outro':'Swap'):slotKey(slotForName(swap[1])),name:x};
+ let pc;
+ if(x.startsWith('E · '))pc={key:'E',name:x.slice(4)};
+ else if(x==='R'||x.startsWith('R · '))pc={key:'R',name:x==='R'?'Liberation':x.slice(4)};
+ else if(x==='Echo'||x.startsWith('Echo '))pc={key:'Q',name:x};
+ else if(x==='Heron')pc={key:'Q',name:'Heron · Echo'};
+ else if(x==='Dash Cancel')pc={key:'Shift / ПКМ',name:'Dash Cancel'};
+ else if(x==='Feather Fall')pc={key:'АВТО',name:'Feather Fall · после попадания HA',kind:'auto'};
+ else if(x==='Feather HA'||x==='Azure HA')pc={key:'удерж. ЛКМ',name:x};
+ else if(x==='Swallow’s Cut'||x==="Swallow's Cut")pc={key:'ЛКМ',name:'Swallow’s Cut · в воздухе'};
+ else if(x.startsWith('Death Snip'))pc={key:x.includes('FULL')?'ЛКМ · повтор':'ЛКМ',name:x.includes('FULL')?'Death Snip FULL · добить удары':x};
+ else if(x==='Rending Lunge'||x==='Eradication'||x==='Blitz 2'||x==='Blitz 3')pc={key:'ЛКМ',name:x};
+ else if(x==='BA3–4 / Rending Lunge')pc={key:'ЛКМ ×2',name:x};
+ else if(x==='BA ×1')pc={key:'ЛКМ',name:'BA ×1'};
+ else if(x==='Azure BA ×2')pc={key:'ЛКМ ×2',name:x};
+ else if(x==='BA2')pc={key:'ЛКМ',name:x};
+ else if(/BA1–3/.test(x))pc={key:'ЛКМ ×3',name:x};
+ else if(/BA1–4/.test(x))pc={key:'ЛКМ ×4',name:x};
+ else if(x==='Bloom 1–3')pc={key:'ЛКМ ×3',name:'Havoc in Bloom 1–3'};
+ else pc={key:'?',name:x,kind:'sensitive'};
+ return {...pc,key:inputKey(pc.key)};
+}
+function renderControls(){
+ document.querySelector('#control-pc').setAttribute('aria-pressed',String(controls==='pc'));
+ document.querySelector('#control-ps5').setAttribute('aria-pressed',String(controls==='ps5'));
+ document.querySelector('#control-terms').setAttribute('aria-pressed',String(controls==='terms'));
+ const help=document.querySelector('#keyhelp');
+ const kb=[['ЛКМ','атака'],['удерж. ЛКМ','Heavy'],['E','Skill'],['R','Liberation'],['Q','Echo'],['Shift','Dodge']];
+ const pad=[['□','атака'],['удерж. □','Heavy'],['△','Skill'],['R2','Liberation'],['L1 + □','Echo'],['R1','Dodge']];
+ const terms=[['A','Basic'],['H','Heavy'],['Skill','навык'],['Ult','Liberation'],['Echo','Echo'],['Dash','уклонение'],['Swap','смена']];
+ help.replaceChildren(...(controls==='terms'?terms:controls==='ps5'?pad:kb).map(([key,meaning])=>{
+   const wrap=document.createElement('span');
+   const strong=document.createElement('b');strong.textContent=key;
+   wrap.append(strong,document.createTextNode(' '+meaning));return wrap;
+ }));
+ const descriptive=controls==='terms';
+ const slotsBtn=document.querySelector('#slots-btn');
+ slotsBtn.classList.toggle('hidden',descriptive);
+ if(descriptive){slotsOpen=false;document.querySelector('#slots-panel').classList.add('hidden');slotsBtn.setAttribute('aria-expanded','false');}
+ document.querySelector('#slot-explain').textContent=controls==='ps5'
+  ?'Слоты 1 / 2 / 3 → крестовина ↑ / → / ↓. В этой памятке стандартная раскладка DualSense: Echo — L1 + □. При ремаппинге в настройках WuWa используйте свои назначения.'
+  :'Цифры относятся к слотам отряда в игре. При изменении одной цифры остальные автоматически переставляются. Если клавиши переназначены в WuWa, ориентируйтесь на свои бинды.';
+ document.querySelector('#control-summary').textContent=controls==='terms'
+  ?'Универсальные обозначения (не раскладка клавиш): A — Basic Attack, A ×N — серия, H — Heavy Attack, Skill — Resonance Skill, Ult — Liberation, Echo — Echo, Dash — уклонение/отмена, Intro/Outro — вход/выход с эффектом, Swap — обычная смена героя, Auto — автоматическое действие. Flow — Skill при Melody=0.'
+  :controls==='ps5'
+  ?'Управление PS5 (стандартная раскладка): □ — Basic, удерж. □ — Heavy, △ — Skill, R2 — Liberation, L1 + □ — Echo, R1 — Dodge. D-Pad ↑ / → / ↓ — слоты 1 / 2 / 3. «АВТО» — отдельного ввода нет. Flow — Skill при Melody=0.'
+  :'Управление ПК (стандартная раскладка): ЛКМ — Basic, удерж. ЛКМ — Heavy, E — Skill, R — Liberation, Q — Echo, Shift/ПКМ — Dodge. 1/2/3 — слоты персонажей. «АВТО» — отдельного ввода нет. Flow — Skill при Melody=0.';
+}
+
+const PORTRAIT_SOURCES={suisui:'../portraits/suisui.webp',chisa:'../portraits/chisa.webp',yyxl:'../portraits/yyxl.webp'};
+const SU={id:'suisui',name:'Suisui',color:'#8fd8dc',glyph:'水'},CH={id:'chisa',name:'Chisa',color:'#e3a8bd',glyph:'✣'},YY={id:'yyxl',name:'Yangyang · Xuanling',color:'#e4c69d',glyph:'羽'};
+const step=(person,title,sub,actions,check,extra='')=>({person,title,sub,actions,check,extra});
+const arrow=' → ';
+const suiFirst=step(SU,'Подготовка поля','Первый заход · Zephyr → Drizzle',[
+ A('BA1–3'),A('E · Awakening Spring','key'),A('Swallow’s Cut'),A('Drizzle BA1–4'),A('Echo'),A('R · Song of Thoroughfare','vital'),A('Outro → Chisa','swap')],
+ 'Перед Outro: 600 Floral Epistle и активное поле Ceaseless Landscape.','R/Outro могут быть недоступны при пустых начальных Energy и Concerto.');
+const suiLoop=step(SU,'Подготовка поля','Повтор · сразу Drizzle через Intro',[
+ A('Intro','key'),A('E · Drizzle','key'),A('Drizzle BA1–4'),A('Echo (если готов)'),A('R','vital'),A('Outro → Chisa','swap')],
+ '600 Floral Epistle перед Outro; R создаёт поле.','Если Echo или R ещё недоступны, не считай баффовый цикл полностью подготовленным.');
+const chisa=step(CH,'Передача усилений','Moonlit Clouds + Impermanence Heron',[
+ A('Intro','key'),A('BA2'),A('Rending Lunge'),A('Death Snip · FULL'),A('Heron','key'),A('R','vital'),A('E · Serrated Loop','sensitive'),A('Blitz 2'),A('Blitz 3'),A('Eradication','vital'),A('Outro → YYXL','swap')],
+ '100 Ring перед E. Перед Outro: 1-й Plume Step Suisui (3 жёлтых сегмента → 2).','FULL → Heron → R — удобная адаптация, не подтверждённый frame-optimal cancel.');
+const yy1=step(YY,'Основное окно урона','1 Feather + 1 Azure · 1F1A',[
+ A('Intro','key'),A('Echo'),A('Azure BA1–4'),A('E · FLOW → Feather','flow'),A('Feather HA','vital'),A('Feather Fall'),A('Bloom 1–3'),A('R','vital'),A('E · FLOW → Azure','flow'),A('Azure HA','vital'),A('Outro → Suisui','swap')],
+ 'Melody = 0 ПЕРЕД ОБОИМИ E. Для Feather HA нужны 2 Azure Plume.','При S2 в начале боя Plume уже могут быть полными; не вставляй лишнюю Azure HA перед Feather.');
+const yy2=step(YY,'Double Feather','Две Feather-последовательности подряд · 2F',[
+ A('Intro','key'),A('Echo'),A('Azure BA1–4'),A('E · FLOW → Feather','flow'),A('Feather HA','vital'),A('Feather Fall'),A('Bloom 1–3'),A('R','vital'),A('E · FLOW → Azure','flow'),A('Dash Cancel','sensitive'),A('E · SWITCH → Feather','sensitive'),A('Feather HA','vital'),A('Feather Fall'),A('Bloom 1–3'),A('Outro → Suisui','swap')],
+ 'Первое и второе E — Flow при Melody=0; третье E — обычный Switch. Перед каждой Feather HA нужны 2 Plume.','После 2F персонаж остаётся в Feather: следующий оборот с Azure BA1–4 нельзя повторять вслепую. Вариант с дополнительным BA после Dash требует проверки.');
+const cQ1=step(CH,'Первый короткий выход','Начало подготовки Melody на YYXL',[
+ A('Intro','key'),A('E · Eye of Unraveling','sensitive'),A('BA ×1'),A('Обычный Swap → YYXL','swap')],
+ 'Это обычный Swap, не Outro. E должна быть обычной Eye of Unraveling при Ring < 100.','Сохранение стадии атаки Chisa при дальнейшем возврате не подтверждено для всех таймингов.');
+const yQ1=step(YY,'Melody · часть 1','Первый предварительный выход YYXL',[
+ A('Azure BA ×2'),A('Обычный Swap → Chisa','swap')],
+ 'Начать расход Melody; E здесь не использовать.','Если YYXL осталась в Feather после предыдущей 2F, сначала проверь стойку.');
+const cQ2=step(CH,'Разгон Chainsaw','Вернуться к комбо Chisa',[
+ A('BA3–4 / Rending Lunge'),A('Death Snip'),A('R','vital'),A('Heron','key'),A('Dash Cancel','sensitive'),A('E · Serrated Loop','sensitive'),A('Blitz 2'),A('Обычный Swap → YYXL','swap')],
+ 'Ring = 100 перед Serrated Loop. Обычный Swap до Eradication.','Последовательность R → Heron → Dash → E — реконструкция, не подтверждённая как frame-optimal.');
+const yQ2=step(YY,'Melody · часть 2','Второй предварительный выход YYXL',[
+ A('Azure BA ×2'),A('Обычный Swap → Chisa','swap')],
+ 'Главная цель — реально обнулить Melody до следующего Intro.','BA ×2 + BA ×2 не гарантирует Melody = 0, если были промахи или другая стойка.');
+const cQ3=step(CH,'Отдать бафф YYXL','Завершить комбо и выполнить настоящий Outro',[
+ A('Blitz 3'),A('Eradication','vital'),A('Outro → YYXL','swap')],
+ 'Первый Plume Step Suisui уже прошёл: 3 сегмента → 2. Concerto заполнено.','Передай Moonlit + Heron непосредственно YYXL. Не уходи до первого Plume Step.');
+const yQFinal=step(YY,'Double Feather · основное окно','Подготовленная Melody; быстрый старт после Intro',[
+ A('Intro','key'),A('Echo'),A('E · FLOW → Feather','flow'),A('Feather HA','vital'),A('Feather Fall'),A('Bloom 1–3'),A('R','vital'),A('E · FLOW → Azure','flow'),A('Dash Cancel','sensitive'),A('E · SWITCH → Feather','sensitive'),A('Feather HA','vital'),A('Feather Fall'),A('Bloom 1–3'),A('Outro → Suisui','swap')],
+ 'Melody должна быть 0 ДО первого Flow. Для каждой Feather HA — 2 Plume.','Точный Quickswap-loop и восстановление стойки следующего оборота не верифицированы; не продолжай цепочку при неверных ресурсах.');
+const MODES=[
+ {id:'one',label:'1F1A',sub:'Стандарт',type:'Основной',intro:'Самая надёжная последовательность. Один усиленный Feather и один Azure, без промежуточных Quickswap.',stages:op=>[op?suiFirst:suiLoop,chisa,yy1]},
+ {id:'two',label:'2F',sub:'Double Feather',type:'Альтернатива',intro:'Две Feather-последовательности за один выход YYXL. Переход Flow → Dash → Switch требует точного ввода.',stages:op=>[op?suiFirst:suiLoop,chisa,yy2]},
+ {id:'quick',label:'2F QS',sub:'Quickswap',type:'Эксперимент',intro:'Два коротких выхода YYXL между действиями Chisa для расхода Melody заранее. Не подтверждено как optimal.',stages:op=>[op?suiFirst:suiLoop,cQ1,yQ1,cQ2,yQ2,cQ3,yQFinal]}
+];
+const store={get(k,fb){try{let v=localStorage.getItem('wuwa-r-v1:'+k);return v===null?fb:JSON.parse(v)}catch{return fb}},set(k,v){try{localStorage.setItem('wuwa-r-v1:'+k,JSON.stringify(v))}catch{}}};
+const savedSlots=store.get('slots',DEFAULT_SLOTS);
+if(savedSlots && ['1','2','3'].every(n=>Object.values(savedSlots).includes(n)))slots={...savedSlots};
+const savedControls=store.get('controls','pc'); controls=['pc','ps5','terms'].includes(savedControls)?savedControls:'pc';
+for(const id of ['pc','ps5','terms'])document.querySelector('#control-'+id).onclick=()=>{controls=id;store.set('controls',id);render()};
+let slotsOpen=false;
+function renderSlots(){
+ const b=document.querySelector('#slots-btn');b.textContent=`Слоты: ${slots.suisui} Suisui · ${slots.chisa} Chisa · ${slots.yyxl} YYXL`;
+ b.setAttribute('aria-expanded',String(slotsOpen));document.querySelector('#slots-panel').classList.toggle('hidden',!slotsOpen);
+ for(const who of Object.keys(DEFAULT_SLOTS))document.querySelector('#slot-'+who).value=slots[who];
+}
+document.querySelector('#slots-btn').onclick=()=>{slotsOpen=!slotsOpen;renderSlots()};
+for(const who of Object.keys(DEFAULT_SLOTS))document.querySelector('#slot-'+who).onchange=e=>{
+ const value=e.target.value,other=Object.keys(DEFAULT_SLOTS).find(k=>k!==who && slots[k]===value);
+ if(other)slots[other]=slots[who];slots[who]=value;store.set('slots',slots);renderSlots();render();
+};
+
+let mode=store.get('mode','one'), opener=store.get('opener',false), focus=store.get('focus',false), at=0, done=[];
+function key(){return mode+'-'+(opener?'opener':'loop')}
+function stages(){return MODES.find(m=>m.id===mode).stages(opener)}
+function readProgress(){const size=stages().length;const prev=store.get('done:'+key(),[]);done=Array.from({length:size},(_,i)=>!!prev[i]);at=Math.min(store.get('at:'+key(),0),size-1)}
+function persist(){store.set('done:'+key(),done);store.set('at:'+key(),at)}
+readProgress();
+function toast(message){const el=document.querySelector('#toast');el.textContent=message;el.classList.remove('hidden');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.add('hidden'),2300)}
+function el(t,c='',txt=''){const e=document.createElement(t);if(c)e.className=c;if(txt)e.textContent=txt;return e}
+function render(){
+ renderSlots();renderControls();
+ document.querySelector('#tabs').replaceChildren(...MODES.map(m=>{let b=el('button','tab');b.setAttribute('role','tab');b.setAttribute('aria-selected',String(mode===m.id));b.setAttribute('tabindex',mode===m.id?'0':'-1');b.append(el('strong','',m.label),el('small','',m.sub));b.onclick=()=>{mode=m.id;store.set('mode',mode);readProgress();render()};return b}));
+ const m=MODES.find(x=>x.id===mode);const meta=document.querySelector('#meta');meta.replaceChildren();meta.append(el('span','meta-badge'+(mode==='quick'?' exp':''),m.type),el('p','',m.intro));
+ document.querySelector('#opener').setAttribute('aria-pressed',String(opener));document.querySelector('#loop').setAttribute('aria-pressed',String(!opener));document.querySelector('#view').textContent=focus?'▦ Все этапы':'☷ По шагам';
+ const arr=stages();let completed=done.filter(Boolean).length;const perc=Math.round(completed/arr.length*100);document.querySelector('#progress-count').textContent=`${completed} / ${arr.length} этапов`;document.querySelector('#progress-fill').style.width=perc+'%';document.querySelector('#progress-track').setAttribute('aria-valuenow',String(perc));
+ const route=document.querySelector('#route');route.replaceChildren();
+ arr.forEach((s,i)=>{if(focus&&i!==at)return;const card=el('article','stage'+(done[i]?' completed':'')+(i===at?' active':''));card.style.setProperty('--accent',s.person.color);const head=el('div','stage-head');const portrait=el('div','portrait');const face=document.createElement('img');face.src=PORTRAIT_SOURCES[s.person.id];face.alt='Портрет '+s.person.name;face.loading='lazy';face.onerror=()=>{portrait.replaceChildren(el('span','fallback',s.person.glyph))};portrait.append(face);head.append(portrait);const heading=el('div');heading.style.flex='1';heading.append(el('div','stage-num',`${String(i+1).padStart(2,'0')} / ${String(arr.length).padStart(2,'0')} · ${s.person.name}`),el('div','stage-title',s.title),el('div','stage-sub',s.sub));head.append(heading);const check=el('button','complete',done[i]?'✓':'○');check.setAttribute('aria-label',done[i]?'Отменить выполнение этапа':'Отметить этап выполненным');check.setAttribute('aria-pressed',String(!!done[i]));check.onclick=()=>{done[i]=!done[i];persist();render()};head.append(check);card.append(head);
+ const body=el('div','stage-body');const seq=el('div','sequence');s.actions.forEach((a,j)=>{if(j)seq.append(el('span','arr','›'));const binding=actionBinding(a,s.person);const chip=el('span','action '+(a.type||'')+' '+(binding.kind||'')+(controls==='ps5'?' ps5':''));chip.title=a.text;chip.append(el('strong','keycap',binding.key),el('span','action-label',binding.name));seq.append(chip)});body.append(seq);const c=el('div','checks');c.append(el('span','diamond','✧'),el('span','',s.check));body.append(c);if(s.extra){const d=el('p','extras',s.extra);body.append(d)}card.append(body);route.append(card)});
+ document.querySelector('#navigation').classList.toggle('hidden',!focus);document.querySelector('#prev').disabled=at===0;const next=document.querySelector('#next');next.textContent=at===arr.length-1?'↺ Новый круг':'Далее →';
+}
+function setOpener(x){if(opener===x)return;opener=x;store.set('opener',opener);readProgress();render()}
+document.querySelector('#opener').onclick=()=>setOpener(true);document.querySelector('#loop').onclick=()=>setOpener(false);document.querySelector('#view').onclick=()=>{focus=!focus;store.set('focus',focus);render();if(focus)document.querySelector('#route').scrollIntoView({block:'start',behavior:'smooth'})};document.querySelector('#reset').onclick=()=>{done=done.map(()=>false);at=0;persist();render();toast('Прогресс сброшен')};document.querySelector('#prev').onclick=()=>{at=Math.max(0,at-1);persist();render();document.querySelector('#route').scrollIntoView({block:'start',behavior:'smooth'})};document.querySelector('#next').onclick=()=>{if(at>=stages().length-1){at=0;done=done.map(()=>false);toast('Новый круг')}else {done[at]=true;at++}persist();render();document.querySelector('#route').scrollIntoView({block:'start',behavior:'smooth'})};document.querySelector('#info').onclick=()=>toast('Тапни ✓ для отметки этапа. Переключай ротации сверху.');
+render();
+
+let installEvent=null;const installBanner=document.querySelector('#install');window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEvent=e;installBanner.classList.remove('hidden')});document.querySelector('#install-btn').onclick=async()=>{if(!installEvent)return;installBanner.classList.add('hidden');installEvent.prompt();try{await installEvent.userChoice}catch{}installEvent=null};document.querySelector('#install-close').onclick=()=>installBanner.classList.add('hidden');window.addEventListener('appinstalled',()=>{installBanner.classList.add('hidden');toast('Приложение установлено')});
+</script>
+</body>
+</html>

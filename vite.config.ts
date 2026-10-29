@@ -1,0 +1,3 @@
+import {defineConfig} from 'vite';
+import {VitePWA} from 'vite-plugin-pwa';
+export default defineConfig({base:'/game-rotations/',plugins:[VitePWA({registerType:'autoUpdate',includeAssets:['icon.svg','portraits/*.webp','rotations/*.html'],manifest:{name:'Game Rotations',short_name:'Rotations',description:'Персональная библиотека игровых ротаций',theme_color:'#0b0d17',background_color:'#0b0d17',display:'standalone',start_url:'/game-rotations/',scope:'/game-rotations/',icons:[{src:'icon.svg',sizes:'any',type:'image/svg+xml',purpose:'any'}]},workbox:{globPatterns:['**/*.{html,js,css,svg,webp,json,png}'],maximumFileSizeToCacheInBytes:1000000,navigateFallback:'index.html'}})]});
