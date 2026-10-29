@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run validate:data && tsc --noEmit && vite build",
+    "build": "npm run validate:data && npm run test:onboarding && tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "validate:data": "node scripts/validate-rotations.mjs"
+    "validate:data": "node scripts/validate-rotations.mjs",
+    "test:onboarding": "node scripts/test-onboarding.mjs"
   },
   "devDependencies": {
     "vite": "^7.1.0",
