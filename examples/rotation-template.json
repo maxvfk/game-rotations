@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "id": "example-alpha-beta",
+  "game": "example-game",
+  "title": "Alpha / Beta (EXAMPLE ONLY)",
+  "gameVersion": "Example live v1 — replace before publishing",
+  "source": "https://example.org/not-a-real-guide",
+  "verificationNote": "FICTIONAL example; do not publish as a verified gaming rotation.",
+  "characters": [
+    {
+      "id": "alpha",
+      "name": "Alpha (fictional)",
+      "glyph": "A",
+      "color": "#a7d6cc",
+      "portrait": "portraits/example-alpha.webp",
+      "investment": "example"
+    },
+    {
+      "id": "beta",
+      "name": "Beta (fictional)",
+      "glyph": "B",
+      "color": "#e8c99b",
+      "portrait": "portraits/example-beta.webp",
+      "investment": "example"
+    }
+  ],
+  "controls": "example-game",
+  "defaultSlots": {
+    "alpha": "1",
+    "beta": "2"
+  },
+  "variants": [
+    {
+      "id": "basic-route",
+      "label": "Demo",
+      "sub": "Training fixture",
+      "type": "Experimental",
+      "intro": "Example only; requires real kit before use.",
+      "verification": "experimental",
+      "opener": [
+        "alphaOpener",
+        "betaFinish"
+      ],
+      "loop": [
+        "alphaLoop",
+        "betaFinish"
+      ]
+    }
+  ],
+  "stages": {
+    "alphaOpener": {
+      "person": "alpha",
+      "title": "Example preparation",
+      "sub": "Opener",
+      "actions": [
+        {
+          "text": "Basic ×2",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "count": 2
+          }
+        },
+        {
+          "text": "Skill — prepare",
+          "tone": "key",
+          "input": {
+            "kind": "skill"
+          }
+        },
+        {
+          "text": "Outro → Beta",
+          "tone": "swap",
+          "input": {
+            "kind": "outro",
+            "target": "beta"
+          }
+        }
+      ],
+      "check": "EXAMPLE: replace with real resource check.",
+      "extra": "EXAMPLE: replace with real caveat."
+    },
+    "alphaLoop": {
+      "person": "alpha",
+      "title": "Example loop",
+      "sub": "Loop",
+      "actions": [
+        {
+          "text": "Intro",
+          "tone": "key",
+          "input": {
+            "kind": "intro"
+          }
+        },
+        {
+          "text": "Skill — refresh",
+          "tone": "key",
+          "input": {
+            "kind": "skill"
+          }
+        },
+        {
+          "text": "Swap → Beta",
+          "tone": "swap",
+          "input": {
+            "kind": "swap",
+            "target": "beta"
+          }
+        }
+      ],
+      "check": "EXAMPLE: replace with real loop check.",
+      "extra": "Example loop is not a real rotation."
+    },
+    "betaFinish": {
+      "person": "beta",
+      "title": "Example finisher",
+      "sub": "Finish",
+      "actions": [
+        {
+          "text": "Intro",
+          "tone": "key",
+          "input": {
+            "kind": "intro"
+          }
+        },
+        {
+          "text": "Heavy attack",
+          "tone": "vital",
+          "input": {
+            "kind": "heavy"
+          }
+        },
+        {
+          "text": "Ult",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate"
+          }
+        },
+        {
+          "text": "Outro → Alpha",
+          "tone": "swap",
+          "input": {
+            "kind": "outro",
+            "target": "alpha"
+          }
+        }
+      ],
+      "check": "EXAMPLE: check a real trigger.",
+      "extra": "Example source is not real."
+    }
+  }
+}

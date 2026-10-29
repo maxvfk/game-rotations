@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "game": "example-game",
+  "schemes": [
+    {
+      "id": "terms",
+      "label": "A / H",
+      "help": [
+        [
+          "A",
+          "basic"
+        ],
+        [
+          "H",
+          "heavy"
+        ],
+        [
+          "Skill",
+          "skill"
+        ],
+        [
+          "Ult",
+          "ultimate"
+        ]
+      ],
+      "keys": {
+        "basic": "A",
+        "heavy": "H",
+        "skill": "Skill",
+        "ultimate": "Ult",
+        "echo": "Echo",
+        "dodge": "Dash",
+        "auto": "Auto",
+        "repeat": "A ×N"
+      },
+      "slotKeys": {
+        "1": "",
+        "2": ""
+      },
+      "slotExplain": "Универсальные обозначения без номеров персонажей.",
+      "summary": "Example only; replace with actual per-game semantics."
+    },
+    {
+      "id": "pc",
+      "label": "PC (example)",
+      "help": [
+        [
+          "Key A",
+          "basic"
+        ],
+        [
+          "Key E",
+          "skill"
+        ]
+      ],
+      "keys": {
+        "basic": "Key A",
+        "heavy": "Hold A",
+        "skill": "Key E",
+        "ultimate": "Key R",
+        "echo": "—",
+        "dodge": "Key Shift",
+        "auto": "Auto",
+        "repeat": "A ×N"
+      },
+      "slotKeys": {
+        "1": "1",
+        "2": "2"
+      },
+      "slotExplain": "Example only — no real game bindings.",
+      "summary": "Fictional game, replace with real controls."
+    }
+  ]
+}
