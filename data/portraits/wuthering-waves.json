@@ -1,0 +1,631 @@
+{
+  "schemaVersion": 1,
+  "game": "wuthering-waves",
+  "snapshot": "2026-10-29 saved user-provided Prydwen MHT; page updated 2026-10-22",
+  "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters",
+  "generatedThumbnail": {
+    "width": 160,
+    "height": 160,
+    "format": "webp",
+    "crop": "374x374 source at y=50; face-oriented upper crop"
+  },
+  "aliases": {
+    "yyxl": "yangyang-xuanling",
+    "xuanling": "yangyang-xuanling",
+    "yangyang: xuanling": "yangyang-xuanling",
+    "shorekeeper": "the-shorekeeper",
+    "sk": "the-shorekeeper"
+  },
+  "characters": [
+    {
+      "id": "aalto",
+      "name": "Aalto",
+      "element": "Aero",
+      "rarity": 4,
+      "portrait": "portraits/wuthering-waves/aalto.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/aalto",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/aalto_card.webp",
+      "sourceSha256Prefix": "2889d53dac10"
+    },
+    {
+      "id": "aemeath",
+      "name": "Aemeath",
+      "element": "Fusion",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/aemeath.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/aemeath",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/math_card.webp",
+      "sourceSha256Prefix": "7cf3d852660d"
+    },
+    {
+      "id": "augusta",
+      "name": "Augusta",
+      "element": "Electro",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/augusta.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/augusta",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/aug_card.webp",
+      "sourceSha256Prefix": "17bef2d5902b"
+    },
+    {
+      "id": "baizhi",
+      "name": "Baizhi",
+      "element": "Glacio",
+      "rarity": 4,
+      "portrait": "portraits/wuthering-waves/baizhi.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/baizhi",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/baizhi_card.webp",
+      "sourceSha256Prefix": "dcbd45a2591d"
+    },
+    {
+      "id": "brant",
+      "name": "Brant",
+      "element": "Fusion",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/brant.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/brant",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/card_brant.webp",
+      "sourceSha256Prefix": "8d6a8965ffb7"
+    },
+    {
+      "id": "buling",
+      "name": "Buling",
+      "element": "Electro",
+      "rarity": 4,
+      "portrait": "portraits/wuthering-waves/buling.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/buling",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/buling_card.webp",
+      "sourceSha256Prefix": "7e2de3bc79b0"
+    },
+    {
+      "id": "calcharo",
+      "name": "Calcharo",
+      "element": "Electro",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/calcharo.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/calcharo",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/kakarot_card.webp",
+      "sourceSha256Prefix": "b423615ccd0d"
+    },
+    {
+      "id": "camellya",
+      "name": "Camellya",
+      "element": "Havoc",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/camellya.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/camellya",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/card_cam.webp",
+      "sourceSha256Prefix": "d2a059e52cb3"
+    },
+    {
+      "id": "cantarella",
+      "name": "Cantarella",
+      "element": "Havoc",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/cantarella.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/cantarella",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/card_canta.webp",
+      "sourceSha256Prefix": "89eaaef09e18"
+    },
+    {
+      "id": "carlotta",
+      "name": "Carlotta",
+      "element": "Glacio",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/carlotta.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/carlotta",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/card_carlotta.webp",
+      "sourceSha256Prefix": "0052c21a41f7"
+    },
+    {
+      "id": "cartethyia",
+      "name": "Cartethyia",
+      "element": "Aero",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/cartethyia.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/cartethyia",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/cart_card.webp",
+      "sourceSha256Prefix": "c56c8207f23a"
+    },
+    {
+      "id": "changli",
+      "name": "Changli",
+      "element": "Fusion",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/changli.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/changli",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/card_changli.webp",
+      "sourceSha256Prefix": "590b5392e73b"
+    },
+    {
+      "id": "chisa",
+      "name": "Chisa",
+      "element": "Havoc",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/chisa.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/chisa",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/chisa_card.webp",
+      "sourceSha256Prefix": "f582f6811415"
+    },
+    {
+      "id": "chixia",
+      "name": "Chixia",
+      "element": "Fusion",
+      "rarity": 4,
+      "portrait": "portraits/wuthering-waves/chixia.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/chixia",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/chixia_card.webp",
+      "sourceSha256Prefix": "8b4401a0f218"
+    },
+    {
+      "id": "ciaccona",
+      "name": "Ciaccona",
+      "element": "Aero",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/ciaccona.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/ciaccona",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/cia_card.webp",
+      "sourceSha256Prefix": "cee22fe2e1bd"
+    },
+    {
+      "id": "danjin",
+      "name": "Danjin",
+      "element": "Havoc",
+      "rarity": 4,
+      "portrait": "portraits/wuthering-waves/danjin.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/danjin",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/danjin_card.webp",
+      "sourceSha256Prefix": "e6ba2e1a35b7"
+    },
+    {
+      "id": "denia",
+      "name": "Denia",
+      "element": "Fusion",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/denia.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/denia",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/denia_card.webp",
+      "sourceSha256Prefix": "0b21a1094db4"
+    },
+    {
+      "id": "encore",
+      "name": "Encore",
+      "element": "Fusion",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/encore.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/encore",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/encore_card.webp",
+      "sourceSha256Prefix": "09cd8f930ab4"
+    },
+    {
+      "id": "galbrena",
+      "name": "Galbrena",
+      "element": "Fusion",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/galbrena.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/galbrena",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/gal_card.webp",
+      "sourceSha256Prefix": "b40df4b21757"
+    },
+    {
+      "id": "hiyuki",
+      "name": "Hiyuki",
+      "element": "Glacio",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/hiyuki.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/hiyuki",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/hiyuki_card.webp",
+      "sourceSha256Prefix": "3b5c3b12e2fa"
+    },
+    {
+      "id": "hsin",
+      "name": "Hsin",
+      "element": "Electro",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/hsin.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/hsin",
+      "sourceImage": "https://cdn.prydwen.gg/images/wuthering-waves/characters/hsin_card.webp",
+      "sourceSha256Prefix": "b59c67c0f8ef"
+    },
+    {
+      "id": "iuno",
+      "name": "Iuno",
+      "element": "Aero",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/iuno.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/iuno",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/iuno_card.webp",
+      "sourceSha256Prefix": "34f331b8f582"
+    },
+    {
+      "id": "jianxin",
+      "name": "Jianxin",
+      "element": "Aero",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/jianxin.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/jianxin",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/jiaxin_card.webp",
+      "sourceSha256Prefix": "22f12fbf3800"
+    },
+    {
+      "id": "jingran",
+      "name": "Jingran",
+      "element": "Fusion",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/jingran.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/jingran",
+      "sourceImage": "https://cdn.prydwen.gg/images/wuthering-waves/characters/jingran_card.webp",
+      "sourceSha256Prefix": "e9de59adb5c2"
+    },
+    {
+      "id": "jinhsi",
+      "name": "Jinhsi",
+      "element": "Spectro",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/jinhsi.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/jinhsi",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/jihni_card.webp",
+      "sourceSha256Prefix": "2b8ac4ae29b2"
+    },
+    {
+      "id": "jiyan",
+      "name": "Jiyan",
+      "element": "Aero",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/jiyan.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/jiyan",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/jiyan_card.webp",
+      "sourceSha256Prefix": "b32930be154a"
+    },
+    {
+      "id": "lily",
+      "name": "Lily",
+      "element": "Spectro",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/lily.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/lily",
+      "sourceImage": "https://cdn.prydwen.gg/images/wuthering-waves/characters/lily_card.webp",
+      "sourceSha256Prefix": "4fdd64012c34"
+    },
+    {
+      "id": "lingyang",
+      "name": "Lingyang",
+      "element": "Glacio",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/lingyang.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/lingyang",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/ling_card.webp",
+      "sourceSha256Prefix": "724fda9ce823"
+    },
+    {
+      "id": "lucilla",
+      "name": "Lucilla",
+      "element": "Glacio",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/lucilla.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/lucilla",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/47_card.webp",
+      "sourceSha256Prefix": "bc326600daa4"
+    },
+    {
+      "id": "lucy",
+      "name": "Lucy",
+      "element": "Spectro",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/lucy.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/lucy",
+      "sourceImage": "https://cdn.prydwen.gg/images/wuthering-waves/characters/lucy_card.webp",
+      "sourceSha256Prefix": "020843f22095"
+    },
+    {
+      "id": "lumi",
+      "name": "Lumi",
+      "element": "Electro",
+      "rarity": 4,
+      "portrait": "portraits/wuthering-waves/lumi.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/lumi",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/card_lumi.webp",
+      "sourceSha256Prefix": "422270c7777d"
+    },
+    {
+      "id": "lupa",
+      "name": "Lupa",
+      "element": "Fusion",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/lupa.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/lupa",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/lupa_card.webp",
+      "sourceSha256Prefix": "4aa80d1105e1"
+    },
+    {
+      "id": "luuk-herssen",
+      "name": "Luuk Herssen",
+      "element": "Spectro",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/luuk-herssen.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/luuk-herssen",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/45_card.webp",
+      "sourceSha256Prefix": "2fec9583ca28"
+    },
+    {
+      "id": "lynae",
+      "name": "Lynae",
+      "element": "Spectro",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/lynae.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/lynae",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/48_card.webp",
+      "sourceSha256Prefix": "eecf5df1ce84"
+    },
+    {
+      "id": "mornye",
+      "name": "Mornye",
+      "element": "Fusion",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/mornye.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/mornye",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/46_card.webp",
+      "sourceSha256Prefix": "f2a28659d3b2"
+    },
+    {
+      "id": "mortefi",
+      "name": "Mortefi",
+      "element": "Fusion",
+      "rarity": 4,
+      "portrait": "portraits/wuthering-waves/mortefi.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/mortefi",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/mortefi_card.webp",
+      "sourceSha256Prefix": "7eb6c57150be"
+    },
+    {
+      "id": "phoebe",
+      "name": "Phoebe",
+      "element": "Spectro",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/phoebe.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/phoebe",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/card_phoebe.webp",
+      "sourceSha256Prefix": "0dc233351c80"
+    },
+    {
+      "id": "phrolova",
+      "name": "Phrolova",
+      "element": "Havoc",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/phrolova.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/phrolova",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/phr_card.webp",
+      "sourceSha256Prefix": "0c66127b4807"
+    },
+    {
+      "id": "qingxiao",
+      "name": "Qingxiao",
+      "element": "Aero",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/qingxiao.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/qingxiao",
+      "sourceImage": "https://cdn.prydwen.gg/images/wuthering-waves/characters/qingxiao_card.webp",
+      "sourceSha256Prefix": "70fe820ca0b1"
+    },
+    {
+      "id": "qiuyuan",
+      "name": "Qiuyuan",
+      "element": "Aero",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/qiuyuan.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/qiuyuan",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/qiu_card.webp",
+      "sourceSha256Prefix": "52b4ddfc1a60"
+    },
+    {
+      "id": "rebecca",
+      "name": "Rebecca",
+      "element": "Electro",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/rebecca.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/rebecca",
+      "sourceImage": "https://cdn.prydwen.gg/images/wuthering-waves/characters/rebecca_card.webp",
+      "sourceSha256Prefix": "a06ec386ec38"
+    },
+    {
+      "id": "roccia",
+      "name": "Roccia",
+      "element": "Havoc",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/roccia.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/roccia",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/card_roccia.webp",
+      "sourceSha256Prefix": "9a2916fc2017"
+    },
+    {
+      "id": "rover-aero",
+      "name": "Rover (Aero)",
+      "element": "Aero",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/rover-aero.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/rover-aero",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/rover_card.webp",
+      "sourceSha256Prefix": "a43bf46c2318"
+    },
+    {
+      "id": "rover-electro",
+      "name": "Rover (Electro)",
+      "element": "Electro",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/rover-electro.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/rover-electro",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/rover_card.webp",
+      "sourceSha256Prefix": "a43bf46c2318"
+    },
+    {
+      "id": "rover-havoc",
+      "name": "Rover (Havoc)",
+      "element": "Havoc",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/rover-havoc.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/rover-havoc",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/rover_card.webp",
+      "sourceSha256Prefix": "a43bf46c2318"
+    },
+    {
+      "id": "rover-spectro",
+      "name": "Rover (Spectro)",
+      "element": "Spectro",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/rover-spectro.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/rover-spectro",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/rover_card.webp",
+      "sourceSha256Prefix": "a43bf46c2318"
+    },
+    {
+      "id": "sanhua",
+      "name": "Sanhua",
+      "element": "Glacio",
+      "rarity": 4,
+      "portrait": "portraits/wuthering-waves/sanhua.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/sanhua",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/senhua_card.webp",
+      "sourceSha256Prefix": "1a764ad0e13b"
+    },
+    {
+      "id": "sigrika",
+      "name": "Sigrika",
+      "element": "Aero",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/sigrika.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/sigrika",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/44_card.webp",
+      "sourceSha256Prefix": "d543c5160f3d"
+    },
+    {
+      "id": "suisui",
+      "name": "Suisui",
+      "element": "Glacio",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/suisui.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/suisui",
+      "sourceImage": "https://cdn.prydwen.gg/images/wuthering-waves/characters/suisui_card.webp",
+      "sourceSha256Prefix": "b68e88e20e98"
+    },
+    {
+      "id": "suoming",
+      "name": "Suoming",
+      "element": "Electro",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/suoming.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/suoming",
+      "sourceImage": "https://cdn.prydwen.gg/images/wuthering-waves/characters/suoming_card.webp",
+      "sourceSha256Prefix": "b7b84ed94c29"
+    },
+    {
+      "id": "taoqi",
+      "name": "Taoqi",
+      "element": "Havoc",
+      "rarity": 4,
+      "portrait": "portraits/wuthering-waves/taoqi.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/taoqi",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/taoqi_card.webp",
+      "sourceSha256Prefix": "80fbe301e8f0"
+    },
+    {
+      "id": "the-shorekeeper",
+      "name": "The Shorekeeper",
+      "element": "Spectro",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/the-shorekeeper.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/the-shorekeeper",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/card_keeper.webp",
+      "sourceSha256Prefix": "2d0fc897fbd5"
+    },
+    {
+      "id": "verina",
+      "name": "Verina",
+      "element": "Spectro",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/verina.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/verina",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/verina_card.webp",
+      "sourceSha256Prefix": "59e1465d9a83"
+    },
+    {
+      "id": "xiangli-yao",
+      "name": "Xiangli Yao",
+      "element": "Electro",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/xiangli-yao.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/xiangli-yao",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/card_xiang.webp",
+      "sourceSha256Prefix": "52ede7deb0fe"
+    },
+    {
+      "id": "yangyang",
+      "name": "Yangyang",
+      "element": "Aero",
+      "rarity": 4,
+      "portrait": "portraits/wuthering-waves/yangyang.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/yangyang",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/yang_card.webp",
+      "sourceSha256Prefix": "9b219c7e6b82"
+    },
+    {
+      "id": "yangyang-xuanling",
+      "name": "Yangyang Xuanling",
+      "element": "Havoc",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/yangyang-xuanling.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/yangyang-xuanling",
+      "sourceImage": "https://cdn.prydwen.gg/images/wuthering-waves/characters/yangyang-xuanling_card.webp",
+      "sourceSha256Prefix": "034a9f1d5c97"
+    },
+    {
+      "id": "yinlin",
+      "name": "Yinlin",
+      "element": "Electro",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/yinlin.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/yinlin",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/yinglin_card.webp",
+      "sourceSha256Prefix": "727b032310d8"
+    },
+    {
+      "id": "youhu",
+      "name": "Youhu",
+      "element": "Glacio",
+      "rarity": 4,
+      "portrait": "portraits/wuthering-waves/youhu.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/youhu",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/card_youhu.webp",
+      "sourceSha256Prefix": "c6078828b37f"
+    },
+    {
+      "id": "yuanwu",
+      "name": "Yuanwu",
+      "element": "Electro",
+      "rarity": 4,
+      "portrait": "portraits/wuthering-waves/yuanwu.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/yuanwu",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/yuanwu_card.webp",
+      "sourceSha256Prefix": "888c3377ec88"
+    },
+    {
+      "id": "zani",
+      "name": "Zani",
+      "element": "Spectro",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/zani.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/zani",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/card_zani.webp",
+      "sourceSha256Prefix": "81da5e696d03"
+    },
+    {
+      "id": "zhezhi",
+      "name": "Zhezhi",
+      "element": "Glacio",
+      "rarity": 5,
+      "portrait": "portraits/wuthering-waves/zhezhi.webp",
+      "sourcePage": "https://www.prydwen.gg/wuthering-waves/characters/zhezhi",
+      "sourceImage": "https://cdn.prydwen.gg/images/ww/characters/card_zhe.webp",
+      "sourceSha256Prefix": "0582f00bd640"
+    }
+  ]
+}

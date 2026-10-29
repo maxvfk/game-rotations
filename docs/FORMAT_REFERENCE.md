@@ -86,6 +86,12 @@
 - `help` — парные элементы `[кнопка, значение]`, `summary` и `slotExplain` — объясняют управление в UI.
 - Важно: схема не моделирует сложные комбинации, удержание+условие, статус-комбо/карты как отдельные action kinds без изменения движка.
 
+## Именованные библиотеки изображений
+
+Для WuWa больше не подбирай арт вручную. Каноническая база — `data/portraits/wuthering-waves.json` (61 entry) и локальные файлы `public/portraits/wuthering-waves/<character-id>.webp`. Подробно: [PORTRAITS.md](PORTRAITS.md).
+
+`characters[].portrait` в book и `teams[].characters[].portrait` в каталоге должен совпадать с `portrait` выбранного ID (например, `yyxl → yangyang-xuanling`). Валидатор `npm run validate:portraits` не пропустит несовпадение. Для других игр без готовой библиотеки возможны старые пути `portraits/name.webp`, но предпочтительна именованная папка игры.
+
 ## Catalog
 
 В `games[]`: `id`, `name`, `shortName`, `mark`, `accent`, `status` (`available` при наличии команды), `subtitle`, `teams[]`.

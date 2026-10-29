@@ -2,6 +2,10 @@
 
 **Назначение:** публикуемая пользователем библиотека **выбранных** практических игровых ротаций, удобных на телефоне и офлайн. Канонический репозиторий приложения — `maxvfk/game-rotations`; ветка выпуска — `main`.
 
+## Канонические изображения WuWa
+
+**Не ищи миниатюры заново.** Для Wuthering Waves читай [docs/PORTRAITS.md](docs/PORTRAITS.md), выбирай ID в [data/portraits/wuthering-waves.json](data/portraits/wuthering-waves.json), используй точный `portrait` в данных команды. Сайт показывает [каталог изображений](https://maxvfk.github.io/game-rotations/?portraits=wuthering-waves). Не путай Yangyang с Yangyang Xuanling, Rover стихий и другие варианты. Проверка `npm run validate:portraits` обязательна.
+
 ## Начать здесь
 
 1. Прочитай [docs/ADDING_ROTATIONS.md](docs/ADDING_ROTATIONS.md) перед созданием/изменением ротации.

@@ -12,7 +12,7 @@
       "name": "Suisui",
       "glyph": "水",
       "color": "#8fd8dc",
-      "portrait": "portraits/suisui.webp",
+      "portrait": "portraits/wuthering-waves/suisui.webp",
       "investment": "S0R1"
     },
     {
@@ -20,7 +20,7 @@
       "name": "Chisa",
       "glyph": "✣",
       "color": "#e3a8bd",
-      "portrait": "portraits/chisa.webp",
+      "portrait": "portraits/wuthering-waves/chisa.webp",
       "investment": "S0R1"
     },
     {
@@ -28,7 +28,7 @@
       "name": "Yangyang · Xuanling",
       "glyph": "羽",
       "color": "#e4c69d",
-      "portrait": "portraits/yyxl.webp",
+      "portrait": "portraits/wuthering-waves/yangyang-xuanling.webp",
       "investment": "S2R1"
     }
   ],

@@ -83,7 +83,7 @@
           },
           "portrait": {
             "type": "string",
-            "pattern": "^portraits/[a-zA-Z0-9_-]+\\.(webp|png|jpg)$"
+            "pattern": "^portraits/(?:[a-zA-Z0-9_-]+/)*[a-zA-Z0-9_-]+\\.(webp|png|jpg)$"
           },
           "investment": {
             "$ref": "#/$defs/nonempty"
