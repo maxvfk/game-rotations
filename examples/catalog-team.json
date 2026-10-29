@@ -1,0 +1,30 @@
+{
+  "id": "example-alpha-beta",
+  "name": "Alpha / Beta (EXAMPLE ONLY)",
+  "subtitle": "Training fixture; never publish",
+  "characters": [
+    {
+      "id": "alpha",
+      "name": "Alpha (fictional)",
+      "investment": "example",
+      "portrait": "portraits/example-alpha.webp"
+    },
+    {
+      "id": "beta",
+      "name": "Beta (fictional)",
+      "investment": "example",
+      "portrait": "portraits/example-beta.webp"
+    }
+  ],
+  "status": "experimental",
+  "statusDescription": "Fictional example not a real rotation",
+  "gameVersion": "Example live v1 — replace before publishing",
+  "source": "https://example.org/not-a-real-guide",
+  "variants": [
+    {
+      "id": "basic-route",
+      "name": "Demo",
+      "verification": "experimental"
+    }
+  ]
+}
