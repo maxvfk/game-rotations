@@ -12,7 +12,7 @@
       "name": "Hsin",
       "glyph": "H",
       "color": "#92cddc",
-      "portrait": "portraits/hsin.webp",
+      "portrait": "portraits/wuthering-waves/hsin.webp",
       "investment": "S3R1"
     },
     {
@@ -20,7 +20,7 @@
       "name": "Suoming",
       "glyph": "S",
       "color": "#dd6675",
-      "portrait": "portraits/suoming.webp",
+      "portrait": "portraits/wuthering-waves/suoming.webp",
       "investment": "S0R0"
     },
     {
@@ -28,7 +28,7 @@
       "name": "Shorekeeper",
       "glyph": "SK",
       "color": "#a4d5e4",
-      "portrait": "portraits/shorekeeper.webp",
+      "portrait": "portraits/wuthering-waves/the-shorekeeper.webp",
       "investment": "S0R1"
     }
   ],
