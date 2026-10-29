@@ -1,0 +1,33 @@
+name: Import WuWa portrait snapshot
+on:
+  push:
+    branches: [feat/wuwa-portrait-catalog]
+    paths:
+      - data/portraits/wuthering-waves.json
+      - scripts/import-wuwa-portraits.mjs
+      - .github/workflows/import-wuwa-portraits.yml
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/wuwa-portrait-catalog
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save --no-package-lock --no-audit --no-fund sharp
+      - run: node scripts/import-wuwa-portraits.mjs
+      - name: Commit validated thumbnails to feature branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/portraits/wuthering-waves/
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"
+            exit 0
+          fi
+          git commit -m "assets(wuwa): import 61 pinned MHT character thumbnails"
+          git push origin HEAD:feat/wuwa-portrait-catalog
