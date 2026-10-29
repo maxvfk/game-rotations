@@ -1,0 +1,812 @@
+{
+  "schemaVersion": 1,
+  "id": "yyxl-suisui-chisa",
+  "game": "wuthering-waves",
+  "title": "YYXL / Suisui / Chisa",
+  "gameVersion": "Global 3.7",
+  "source": "https://github.com/maxvfk/Games/blob/main/guides/wuthering-waves/YANGYANG_XUANLING_SUISUI_CHISA_ROTATIONS.md",
+  "verificationNote": "1F1A — Prydwen-derived. 2F — адаптация; следующий цикл требует проверки стойки. 2F Quickswap — экспериментальная реконструкция. Ни один вариант не доказан как optimal для YYXL S2R1.",
+  "characters": [
+    {
+      "id": "suisui",
+      "name": "Suisui",
+      "glyph": "水",
+      "color": "#8fd8dc",
+      "portrait": "portraits/suisui.webp",
+      "investment": "S0R1"
+    },
+    {
+      "id": "chisa",
+      "name": "Chisa",
+      "glyph": "✣",
+      "color": "#e3a8bd",
+      "portrait": "portraits/chisa.webp",
+      "investment": "S0R1"
+    },
+    {
+      "id": "yyxl",
+      "name": "Yangyang · Xuanling",
+      "glyph": "羽",
+      "color": "#e4c69d",
+      "portrait": "portraits/yyxl.webp",
+      "investment": "S2R1"
+    }
+  ],
+  "controls": "wuthering-waves",
+  "defaultSlots": {
+    "suisui": "1",
+    "chisa": "2",
+    "yyxl": "3"
+  },
+  "variants": [
+    {
+      "id": "one",
+      "label": "1F1A",
+      "sub": "Стандарт",
+      "type": "Основной",
+      "intro": "Самая надёжная последовательность. Один усиленный Feather и один Azure, без промежуточных Quickswap.",
+      "verification": "adapted",
+      "opener": [
+        "suiFirst",
+        "chisa",
+        "yy1"
+      ],
+      "loop": [
+        "suiLoop",
+        "chisa",
+        "yy1"
+      ]
+    },
+    {
+      "id": "two",
+      "label": "2F",
+      "sub": "Double Feather",
+      "type": "Альтернатива",
+      "intro": "Две Feather-последовательности за один выход YYXL. Переход Flow → Dash → Switch требует точного ввода.",
+      "verification": "partial",
+      "opener": [
+        "suiFirst",
+        "chisa",
+        "yy2"
+      ],
+      "loop": [
+        "suiLoop",
+        "chisa",
+        "yy2"
+      ]
+    },
+    {
+      "id": "quick",
+      "label": "2F QS",
+      "sub": "Quickswap",
+      "type": "Эксперимент",
+      "intro": "Два коротких выхода YYXL между действиями Chisa для расхода Melody заранее. Не подтверждено как optimal.",
+      "verification": "experimental",
+      "opener": [
+        "suiFirst",
+        "cQ1",
+        "yQ1",
+        "cQ2",
+        "yQ2",
+        "cQ3",
+        "yQFinal"
+      ],
+      "loop": [
+        "suiLoop",
+        "cQ1",
+        "yQ1",
+        "cQ2",
+        "yQ2",
+        "cQ3",
+        "yQFinal"
+      ]
+    }
+  ],
+  "stages": {
+    "suiFirst": {
+      "person": "suisui",
+      "title": "Подготовка поля",
+      "sub": "Первый заход · Zephyr → Drizzle",
+      "actions": [
+        {
+          "text": "BA1–3",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "count": 3
+          }
+        },
+        {
+          "text": "E · Awakening Spring",
+          "tone": "key",
+          "input": {
+            "kind": "skill"
+          }
+        },
+        {
+          "text": "Swallow’s Cut",
+          "tone": "normal",
+          "input": {
+            "kind": "basic"
+          }
+        },
+        {
+          "text": "Drizzle BA1–4",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "count": 4
+          }
+        },
+        {
+          "text": "Echo",
+          "tone": "normal",
+          "input": {
+            "kind": "echo"
+          }
+        },
+        {
+          "text": "R · Song of Thoroughfare",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate"
+          }
+        },
+        {
+          "text": "Outro → Chisa",
+          "tone": "swap",
+          "input": {
+            "kind": "outro",
+            "target": "chisa"
+          }
+        }
+      ],
+      "check": "Перед Outro: 600 Floral Epistle и активное поле Ceaseless Landscape.",
+      "extra": "R/Outro могут быть недоступны при пустых начальных Energy и Concerto."
+    },
+    "suiLoop": {
+      "person": "suisui",
+      "title": "Подготовка поля",
+      "sub": "Повтор · сразу Drizzle через Intro",
+      "actions": [
+        {
+          "text": "Intro",
+          "tone": "key",
+          "input": {
+            "kind": "intro"
+          }
+        },
+        {
+          "text": "E · Drizzle",
+          "tone": "key",
+          "input": {
+            "kind": "skill"
+          }
+        },
+        {
+          "text": "Drizzle BA1–4",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "count": 4
+          }
+        },
+        {
+          "text": "Echo (если готов)",
+          "tone": "normal",
+          "input": {
+            "kind": "echo"
+          }
+        },
+        {
+          "text": "R",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate"
+          }
+        },
+        {
+          "text": "Outro → Chisa",
+          "tone": "swap",
+          "input": {
+            "kind": "outro",
+            "target": "chisa"
+          }
+        }
+      ],
+      "check": "600 Floral Epistle перед Outro; R создаёт поле.",
+      "extra": "Если Echo или R ещё недоступны, не считай баффовый цикл полностью подготовленным."
+    },
+    "chisa": {
+      "person": "chisa",
+      "title": "Передача усилений",
+      "sub": "Moonlit Clouds + Impermanence Heron",
+      "actions": [
+        {
+          "text": "Intro",
+          "tone": "key",
+          "input": {
+            "kind": "intro"
+          }
+        },
+        {
+          "text": "BA2",
+          "tone": "normal",
+          "input": {
+            "kind": "basic"
+          }
+        },
+        {
+          "text": "Rending Lunge",
+          "tone": "normal",
+          "input": {
+            "kind": "basic"
+          }
+        },
+        {
+          "text": "Death Snip · FULL",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "repeat": true
+          }
+        },
+        {
+          "text": "Heron",
+          "tone": "key",
+          "input": {
+            "kind": "echo"
+          }
+        },
+        {
+          "text": "R",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate"
+          }
+        },
+        {
+          "text": "E · Serrated Loop",
+          "tone": "sensitive",
+          "input": {
+            "kind": "skill"
+          }
+        },
+        {
+          "text": "Blitz 2",
+          "tone": "normal",
+          "input": {
+            "kind": "basic"
+          }
+        },
+        {
+          "text": "Blitz 3",
+          "tone": "normal",
+          "input": {
+            "kind": "basic"
+          }
+        },
+        {
+          "text": "Eradication",
+          "tone": "vital",
+          "input": {
+            "kind": "basic"
+          }
+        },
+        {
+          "text": "Outro → YYXL",
+          "tone": "swap",
+          "input": {
+            "kind": "outro",
+            "target": "yyxl"
+          }
+        }
+      ],
+      "check": "100 Ring перед E. Перед Outro: 1-й Plume Step Suisui (3 жёлтых сегмента → 2).",
+      "extra": "FULL → Heron → R — удобная адаптация, не подтверждённый frame-optimal cancel."
+    },
+    "yy1": {
+      "person": "yyxl",
+      "title": "Основное окно урона",
+      "sub": "1 Feather + 1 Azure · 1F1A",
+      "actions": [
+        {
+          "text": "Intro",
+          "tone": "key",
+          "input": {
+            "kind": "intro"
+          }
+        },
+        {
+          "text": "Echo",
+          "tone": "normal",
+          "input": {
+            "kind": "echo"
+          }
+        },
+        {
+          "text": "Azure BA1–4",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "count": 4
+          }
+        },
+        {
+          "text": "E · FLOW → Feather",
+          "tone": "flow",
+          "input": {
+            "kind": "skill"
+          }
+        },
+        {
+          "text": "Feather HA",
+          "tone": "vital",
+          "input": {
+            "kind": "heavy"
+          }
+        },
+        {
+          "text": "Feather Fall",
+          "tone": "normal",
+          "input": {
+            "kind": "auto"
+          }
+        },
+        {
+          "text": "Bloom 1–3",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "count": 3
+          }
+        },
+        {
+          "text": "R",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate"
+          }
+        },
+        {
+          "text": "E · FLOW → Azure",
+          "tone": "flow",
+          "input": {
+            "kind": "skill"
+          }
+        },
+        {
+          "text": "Azure HA",
+          "tone": "vital",
+          "input": {
+            "kind": "heavy"
+          }
+        },
+        {
+          "text": "Outro → Suisui",
+          "tone": "swap",
+          "input": {
+            "kind": "outro",
+            "target": "suisui"
+          }
+        }
+      ],
+      "check": "Melody = 0 ПЕРЕД ОБОИМИ E. Для Feather HA нужны 2 Azure Plume.",
+      "extra": "При S2 в начале боя Plume уже могут быть полными; не вставляй лишнюю Azure HA перед Feather."
+    },
+    "yy2": {
+      "person": "yyxl",
+      "title": "Double Feather",
+      "sub": "Две Feather-последовательности подряд · 2F",
+      "actions": [
+        {
+          "text": "Intro",
+          "tone": "key",
+          "input": {
+            "kind": "intro"
+          }
+        },
+        {
+          "text": "Echo",
+          "tone": "normal",
+          "input": {
+            "kind": "echo"
+          }
+        },
+        {
+          "text": "Azure BA1–4",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "count": 4
+          }
+        },
+        {
+          "text": "E · FLOW → Feather",
+          "tone": "flow",
+          "input": {
+            "kind": "skill"
+          }
+        },
+        {
+          "text": "Feather HA",
+          "tone": "vital",
+          "input": {
+            "kind": "heavy"
+          }
+        },
+        {
+          "text": "Feather Fall",
+          "tone": "normal",
+          "input": {
+            "kind": "auto"
+          }
+        },
+        {
+          "text": "Bloom 1–3",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "count": 3
+          }
+        },
+        {
+          "text": "R",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate"
+          }
+        },
+        {
+          "text": "E · FLOW → Azure",
+          "tone": "flow",
+          "input": {
+            "kind": "skill"
+          }
+        },
+        {
+          "text": "Dash Cancel",
+          "tone": "sensitive",
+          "input": {
+            "kind": "dodge"
+          }
+        },
+        {
+          "text": "E · SWITCH → Feather",
+          "tone": "sensitive",
+          "input": {
+            "kind": "skill"
+          }
+        },
+        {
+          "text": "Feather HA",
+          "tone": "vital",
+          "input": {
+            "kind": "heavy"
+          }
+        },
+        {
+          "text": "Feather Fall",
+          "tone": "normal",
+          "input": {
+            "kind": "auto"
+          }
+        },
+        {
+          "text": "Bloom 1–3",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "count": 3
+          }
+        },
+        {
+          "text": "Outro → Suisui",
+          "tone": "swap",
+          "input": {
+            "kind": "outro",
+            "target": "suisui"
+          }
+        }
+      ],
+      "check": "Первое и второе E — Flow при Melody=0; третье E — обычный Switch. Перед каждой Feather HA нужны 2 Plume.",
+      "extra": "После 2F персонаж остаётся в Feather: следующий оборот с Azure BA1–4 нельзя повторять вслепую. Вариант с дополнительным BA после Dash требует проверки."
+    },
+    "cQ1": {
+      "person": "chisa",
+      "title": "Первый короткий выход",
+      "sub": "Начало подготовки Melody на YYXL",
+      "actions": [
+        {
+          "text": "Intro",
+          "tone": "key",
+          "input": {
+            "kind": "intro"
+          }
+        },
+        {
+          "text": "E · Eye of Unraveling",
+          "tone": "sensitive",
+          "input": {
+            "kind": "skill"
+          }
+        },
+        {
+          "text": "BA ×1",
+          "tone": "normal",
+          "input": {
+            "kind": "basic"
+          }
+        },
+        {
+          "text": "Обычный Swap → YYXL",
+          "tone": "swap",
+          "input": {
+            "kind": "swap",
+            "target": "yyxl"
+          }
+        }
+      ],
+      "check": "Это обычный Swap, не Outro. E должна быть обычной Eye of Unraveling при Ring < 100.",
+      "extra": "Сохранение стадии атаки Chisa при дальнейшем возврате не подтверждено для всех таймингов."
+    },
+    "yQ1": {
+      "person": "yyxl",
+      "title": "Melody · часть 1",
+      "sub": "Первый предварительный выход YYXL",
+      "actions": [
+        {
+          "text": "Azure BA ×2",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "count": 2
+          }
+        },
+        {
+          "text": "Обычный Swap → Chisa",
+          "tone": "swap",
+          "input": {
+            "kind": "swap",
+            "target": "chisa"
+          }
+        }
+      ],
+      "check": "Начать расход Melody; E здесь не использовать.",
+      "extra": "Если YYXL осталась в Feather после предыдущей 2F, сначала проверь стойку."
+    },
+    "cQ2": {
+      "person": "chisa",
+      "title": "Разгон Chainsaw",
+      "sub": "Вернуться к комбо Chisa",
+      "actions": [
+        {
+          "text": "BA3–4 / Rending Lunge",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "count": 2
+          }
+        },
+        {
+          "text": "Death Snip",
+          "tone": "normal",
+          "input": {
+            "kind": "basic"
+          }
+        },
+        {
+          "text": "R",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate"
+          }
+        },
+        {
+          "text": "Heron",
+          "tone": "key",
+          "input": {
+            "kind": "echo"
+          }
+        },
+        {
+          "text": "Dash Cancel",
+          "tone": "sensitive",
+          "input": {
+            "kind": "dodge"
+          }
+        },
+        {
+          "text": "E · Serrated Loop",
+          "tone": "sensitive",
+          "input": {
+            "kind": "skill"
+          }
+        },
+        {
+          "text": "Blitz 2",
+          "tone": "normal",
+          "input": {
+            "kind": "basic"
+          }
+        },
+        {
+          "text": "Обычный Swap → YYXL",
+          "tone": "swap",
+          "input": {
+            "kind": "swap",
+            "target": "yyxl"
+          }
+        }
+      ],
+      "check": "Ring = 100 перед Serrated Loop. Обычный Swap до Eradication.",
+      "extra": "Последовательность R → Heron → Dash → E — реконструкция, не подтверждённая как frame-optimal."
+    },
+    "yQ2": {
+      "person": "yyxl",
+      "title": "Melody · часть 2",
+      "sub": "Второй предварительный выход YYXL",
+      "actions": [
+        {
+          "text": "Azure BA ×2",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "count": 2
+          }
+        },
+        {
+          "text": "Обычный Swap → Chisa",
+          "tone": "swap",
+          "input": {
+            "kind": "swap",
+            "target": "chisa"
+          }
+        }
+      ],
+      "check": "Главная цель — реально обнулить Melody до следующего Intro.",
+      "extra": "BA ×2 + BA ×2 не гарантирует Melody = 0, если были промахи или другая стойка."
+    },
+    "cQ3": {
+      "person": "chisa",
+      "title": "Отдать бафф YYXL",
+      "sub": "Завершить комбо и выполнить настоящий Outro",
+      "actions": [
+        {
+          "text": "Blitz 3",
+          "tone": "normal",
+          "input": {
+            "kind": "basic"
+          }
+        },
+        {
+          "text": "Eradication",
+          "tone": "vital",
+          "input": {
+            "kind": "basic"
+          }
+        },
+        {
+          "text": "Outro → YYXL",
+          "tone": "swap",
+          "input": {
+            "kind": "outro",
+            "target": "yyxl"
+          }
+        }
+      ],
+      "check": "Первый Plume Step Suisui уже прошёл: 3 сегмента → 2. Concerto заполнено.",
+      "extra": "Передай Moonlit + Heron непосредственно YYXL. Не уходи до первого Plume Step."
+    },
+    "yQFinal": {
+      "person": "yyxl",
+      "title": "Double Feather · основное окно",
+      "sub": "Подготовленная Melody; быстрый старт после Intro",
+      "actions": [
+        {
+          "text": "Intro",
+          "tone": "key",
+          "input": {
+            "kind": "intro"
+          }
+        },
+        {
+          "text": "Echo",
+          "tone": "normal",
+          "input": {
+            "kind": "echo"
+          }
+        },
+        {
+          "text": "E · FLOW → Feather",
+          "tone": "flow",
+          "input": {
+            "kind": "skill"
+          }
+        },
+        {
+          "text": "Feather HA",
+          "tone": "vital",
+          "input": {
+            "kind": "heavy"
+          }
+        },
+        {
+          "text": "Feather Fall",
+          "tone": "normal",
+          "input": {
+            "kind": "auto"
+          }
+        },
+        {
+          "text": "Bloom 1–3",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "count": 3
+          }
+        },
+        {
+          "text": "R",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate"
+          }
+        },
+        {
+          "text": "E · FLOW → Azure",
+          "tone": "flow",
+          "input": {
+            "kind": "skill"
+          }
+        },
+        {
+          "text": "Dash Cancel",
+          "tone": "sensitive",
+          "input": {
+            "kind": "dodge"
+          }
+        },
+        {
+          "text": "E · SWITCH → Feather",
+          "tone": "sensitive",
+          "input": {
+            "kind": "skill"
+          }
+        },
+        {
+          "text": "Feather HA",
+          "tone": "vital",
+          "input": {
+            "kind": "heavy"
+          }
+        },
+        {
+          "text": "Feather Fall",
+          "tone": "normal",
+          "input": {
+            "kind": "auto"
+          }
+        },
+        {
+          "text": "Bloom 1–3",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "count": 3
+          }
+        },
+        {
+          "text": "Outro → Suisui",
+          "tone": "swap",
+          "input": {
+            "kind": "outro",
+            "target": "suisui"
+          }
+        }
+      ],
+      "check": "Melody должна быть 0 ДО первого Flow. Для каждой Feather HA — 2 Plume.",
+      "extra": "Точный Quickswap-loop и восстановление стойки следующего оборота не верифицированы; не продолжай цепочку при неверных ресурсах."
+    }
+  }
+}

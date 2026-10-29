@@ -14,7 +14,6 @@
           "id": "yyxl-suisui-chisa",
           "name": "YYXL / Suisui / Chisa",
           "subtitle": "1F1A · Double Feather · 2F Quickswap",
-          "path": "rotations/yyxl-suisui-chisa.html",
           "characters": [
             {
               "id": "suisui",
@@ -41,17 +40,17 @@
           "source": "https://github.com/maxvfk/Games/blob/main/guides/wuthering-waves/YANGYANG_XUANLING_SUISUI_CHISA_ROTATIONS.md",
           "variants": [
             {
-              "id": "1f1a",
+              "id": "one",
               "name": "1F1A",
               "verification": "adapted"
             },
             {
-              "id": "2f",
+              "id": "two",
               "name": "2F",
               "verification": "partial"
             },
             {
-              "id": "2f-quickswap",
+              "id": "quick",
               "name": "2F Quickswap",
               "verification": "experimental"
             }
