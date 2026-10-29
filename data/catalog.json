@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "games": [
+    {
+      "id": "wuthering-waves",
+      "name": "Wuthering Waves",
+      "shortName": "WuWa",
+      "mark": "✦",
+      "accent": "#8ddbd6",
+      "status": "available",
+      "subtitle": "Боевые последовательности и Quickswap",
+      "teams": [
+        {
+          "id": "yyxl-suisui-chisa",
+          "name": "YYXL / Suisui / Chisa",
+          "subtitle": "1F1A · Double Feather · 2F Quickswap",
+          "path": "rotations/yyxl-suisui-chisa.html",
+          "characters": [
+            {
+              "id": "suisui",
+              "name": "Suisui",
+              "investment": "S0R1",
+              "portrait": "portraits/suisui.webp"
+            },
+            {
+              "id": "chisa",
+              "name": "Chisa",
+              "investment": "S0R1",
+              "portrait": "portraits/chisa.webp"
+            },
+            {
+              "id": "yyxl",
+              "name": "YYXL",
+              "investment": "S2R1",
+              "portrait": "portraits/yyxl.webp"
+            }
+          ],
+          "status": "research-adapted",
+          "statusDescription": "1F1A — Prydwen-derived; 2F — адаптация; 2F Quickswap — эксперимент.",
+          "gameVersion": "Global 3.7",
+          "source": "https://github.com/maxvfk/Games/blob/main/guides/wuthering-waves/YANGYANG_XUANLING_SUISUI_CHISA_ROTATIONS.md",
+          "variants": [
+            {
+              "id": "1f1a",
+              "name": "1F1A",
+              "verification": "adapted"
+            },
+            {
+              "id": "2f",
+              "name": "2F",
+              "verification": "partial"
+            },
+            {
+              "id": "2f-quickswap",
+              "name": "2F Quickswap",
+              "verification": "experimental"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "honkai-star-rail",
+      "name": "Honkai: Star Rail",
+      "shortName": "HSR",
+      "mark": "✧",
+      "accent": "#c0aae5",
+      "status": "planned",
+      "subtitle": "Команды и скорость ходов",
+      "teams": []
+    },
+    {
+      "id": "zenless-zone-zero",
+      "name": "Zenless Zone Zero",
+      "shortName": "ZZZ",
+      "mark": "◈",
+      "accent": "#e5b68e",
+      "status": "planned",
+      "subtitle": "Комбо, Stun и окна урона",
+      "teams": []
+    },
+    {
+      "id": "arknights-endfield",
+      "name": "Arknights: Endfield",
+      "shortName": "Endfield",
+      "mark": "▣",
+      "accent": "#a8c0c8",
+      "status": "planned",
+      "subtitle": "Skill и Combo-последовательности",
+      "teams": []
+    },
+    {
+      "id": "neverness-to-everness",
+      "name": "Neverness to Everness",
+      "shortName": "NTE",
+      "mark": "✳",
+      "accent": "#e7a4cc",
+      "status": "planned",
+      "subtitle": "Ротации основных отрядов",
+      "teams": []
+    },
+    {
+      "id": "genshin-impact",
+      "name": "Genshin Impact",
+      "shortName": "Genshin",
+      "mark": "❖",
+      "accent": "#96b3e0",
+      "status": "planned",
+      "subtitle": "Элементальные ротации",
+      "teams": []
+    },
+    {
+      "id": "chaos-zero-nightmare",
+      "name": "Chaos Zero Nightmare",
+      "shortName": "CZN",
+      "mark": "◇",
+      "accent": "#d3a8ad",
+      "status": "planned",
+      "subtitle": "Последовательности карт и персонажей",
+      "teams": []
+    }
+  ]
+}
