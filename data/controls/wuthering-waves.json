@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "game": "wuthering-waves",
+  "schemes": [
+    {
+      "id": "pc",
+      "label": "⌨ ПК",
+      "help": [
+        [
+          "ЛКМ",
+          "атака"
+        ],
+        [
+          "удерж. ЛКМ",
+          "Heavy"
+        ],
+        [
+          "E",
+          "Skill"
+        ],
+        [
+          "R",
+          "Liberation"
+        ],
+        [
+          "Q",
+          "Echo"
+        ],
+        [
+          "Shift",
+          "Dodge"
+        ]
+      ],
+      "keys": {
+        "basic": "ЛКМ",
+        "heavy": "удерж. ЛКМ",
+        "skill": "E",
+        "ultimate": "R",
+        "echo": "Q",
+        "dodge": "Shift / ПКМ",
+        "auto": "АВТО",
+        "repeat": "ЛКМ · повтор"
+      },
+      "slotKeys": {
+        "1": "1",
+        "2": "2",
+        "3": "3"
+      },
+      "slotExplain": "Цифры относятся к слотам отряда в игре. При изменении одной цифры остальные автоматически переставляются. Если клавиши переназначены в WuWa, ориентируйтесь на свои бинды.",
+      "summary": "Управление ПК (стандартная раскладка): ЛКМ — Basic, удерж. ЛКМ — Heavy, E — Skill, R — Liberation, Q — Echo, Shift/ПКМ — Dodge. 1/2/3 — слоты персонажей. «АВТО» — отдельного ввода нет. Flow — Skill при Melody=0."
+    },
+    {
+      "id": "ps5",
+      "label": "🎮 PS5",
+      "help": [
+        [
+          "□",
+          "атака"
+        ],
+        [
+          "удерж. □",
+          "Heavy"
+        ],
+        [
+          "△",
+          "Skill"
+        ],
+        [
+          "R2",
+          "Liberation"
+        ],
+        [
+          "L1 + □",
+          "Echo"
+        ],
+        [
+          "R1",
+          "Dodge"
+        ]
+      ],
+      "keys": {
+        "basic": "□",
+        "heavy": "удерж. □",
+        "skill": "△",
+        "ultimate": "R2",
+        "echo": "L1 + □",
+        "dodge": "R1",
+        "auto": "АВТО",
+        "repeat": "□ · повтор"
+      },
+      "slotKeys": {
+        "1": "D-Pad ↑",
+        "2": "D-Pad →",
+        "3": "D-Pad ↓"
+      },
+      "slotExplain": "Слоты 1 / 2 / 3 → крестовина ↑ / → / ↓. Здесь стандартная раскладка DualSense: Echo — L1 + □. Если управление изменено, используй свои бинды.",
+      "summary": "Управление PS5: □ — Basic, удерж. □ — Heavy, △ — Skill, R2 — Liberation, L1 + □ — Echo, R1 — Dodge. D-Pad ↑ / → / ↓ — слоты 1 / 2 / 3. «АВТО» — отдельного ввода нет. Flow — Skill при Melody=0."
+    },
+    {
+      "id": "terms",
+      "label": "A / H",
+      "help": [
+        [
+          "A",
+          "Basic"
+        ],
+        [
+          "H",
+          "Heavy"
+        ],
+        [
+          "Skill",
+          "навык"
+        ],
+        [
+          "Ult",
+          "Liberation"
+        ],
+        [
+          "Echo",
+          "Echo"
+        ],
+        [
+          "Dash",
+          "уклонение"
+        ],
+        [
+          "Swap",
+          "смена"
+        ]
+      ],
+      "keys": {
+        "basic": "A",
+        "heavy": "H",
+        "skill": "Skill",
+        "ultimate": "Ult",
+        "echo": "Echo",
+        "dodge": "Dash",
+        "auto": "Auto",
+        "repeat": "A · серия"
+      },
+      "slotKeys": {
+        "1": "",
+        "2": "",
+        "3": ""
+      },
+      "slotExplain": "Схема без привязки к кнопкам и номерам слотов.",
+      "summary": "Универсальная схема: A — Basic, A ×N — серия, H — Heavy, Skill — навык, Ult — Liberation, Echo — Echo, Dash — уклонение/отмена, Intro/Outro — вход/выход с эффектом, Swap — обычная смена, Auto — автоматическое действие. Flow — Skill при Melody=0."
+    }
+  ]
+}
