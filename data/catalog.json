@@ -65,19 +65,19 @@
               "id": "hsin",
               "name": "Hsin",
               "investment": "S3R1",
-              "portrait": "portraits/hsin.webp"
+              "portrait": "portraits/wuthering-waves/hsin.webp"
             },
             {
               "id": "suoming",
               "name": "Suoming",
               "investment": "S0R0",
-              "portrait": "portraits/suoming.webp"
+              "portrait": "portraits/wuthering-waves/suoming.webp"
             },
             {
               "id": "shorekeeper",
               "name": "Shorekeeper",
               "investment": "S0R1",
-              "portrait": "portraits/shorekeeper.webp"
+              "portrait": "portraits/wuthering-waves/the-shorekeeper.webp"
             }
           ],
           "status": "research-adapted",
