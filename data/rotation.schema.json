@@ -135,14 +135,14 @@
             "type": "array",
             "minItems": 1,
             "items": {
-              "$ref": "#/$defs/id"
+              "$ref": "#/$defs/stageId"
             }
           },
           "loop": {
             "type": "array",
             "minItems": 1,
             "items": {
-              "$ref": "#/$defs/id"
+              "$ref": "#/$defs/stageId"
             }
           }
         }
@@ -255,6 +255,10 @@
     "id": {
       "type": "string",
       "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "stageId": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9]*$"
     }
   }
 }
