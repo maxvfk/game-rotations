@@ -64,6 +64,9 @@
 
 ## 4. Подключи каталог и картинки
 
+**Для WuWa** миниатюры уже собраны и проверены. Открой [PORTRAITS.md](PORTRAITS.md) и выбери персонажа в `data/portraits/wuthering-waves.json`. Вставляй `portrait` без изменений: `portraits/wuthering-waves/<id>.webp`. Не ищи картинки повторно и не пытайся угадать по исходному имени WebP. Выполняй `npm run validate:portraits`.
+
+
 - Добавь запись `team` по образцу `examples/catalog-team.json` в `data/catalog.json → games[id=<game>].teams[]`.
 - `team.id`, `team.variants[].id`, `team.characters[].id`, `gameVersion`, `source` должны соответствовать book. Автоматическая проверка контролирует связность и уникальность ID.
 - `game.status` = `available`, если опубликована хотя бы одна команда. Не меняй прочие игры.
