@@ -68,6 +68,7 @@ try{
   baseFixture();
   write('data/rotations/example-game/unlisted.json',{schemaVersion:1});
   validate(false,'orphan rotation JSON not linked from catalog is rejected');
+  rmSync(file('data/rotations/example-game/unlisted.json'));
  }
  {
   const {book}=baseFixture();
