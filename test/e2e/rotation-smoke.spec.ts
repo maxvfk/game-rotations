@@ -95,3 +95,52 @@ test('mobile P2: Suoming tap/hold, Hsin optional conditions and honest loop warn
  expect(await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
  expect(errors).toEqual([]);
 });
+
+test('Endfield gallery: 34 genuine icons, names, gender variants and offline PWA',async({page,context},testInfo)=>{
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('?portraits=arknights-endfield');
+ await expect(page.locator('h1')).toContainText('Arknights: Endfield');
+ await expect(page.locator('.portrait-card')).toHaveCount(34);
+ await expect(page.locator('.portrait-counter')).toContainText('34 / 34');
+ const arcane=page.locator('.portrait-card').filter({has:page.locator('.portrait-id',{hasText:'arcane'})});
+ await expect(arcane.locator('.portrait-name')).toHaveText('Arcane');
+ await arcane.locator('img').scrollIntoViewIfNeeded();
+ await expect.poll(()=>arcane.locator('img').evaluate(img=>(img as HTMLImageElement).naturalWidth)).toBe(150);
+ await expect(arcane.locator('img')).toHaveAttribute('src',/\/portraits\/arknights-endfield\/arcane\.png$/);
+ await expect(arcane.locator('.portrait-source')).toHaveAttribute('href','https://endfieldtools.dev/characters/arcane/');
+ const si=page.locator('.portrait-card').filter({has:page.locator('.portrait-id',{hasText:'si'})});
+ await si.locator('img').scrollIntoViewIfNeeded();
+ await expect.poll(()=>si.locator('img').evaluate(img=>(img as HTMLImageElement).naturalWidth)).toBe(150);
+ await page.locator('.portrait-search').fill('endministrator');
+ await expect(page.locator('.portrait-card')).toHaveCount(2);
+ await expect(page.locator('.portrait-id')).toHaveText(['endministrator-f','endministrator-m']);
+ await page.locator('.portrait-search').fill('');
+ await expect(page.locator('.portrait-card')).toHaveCount(34);
+ const urls=await page.locator('.portrait-card img').evaluateAll(imgs=>imgs.map(x=>(x as HTMLImageElement).src));
+ await page.screenshot({path:testInfo.outputPath('endfield-34-mobile.png'),fullPage:true,animations:'disabled'});
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
+ await page.evaluate(async()=>{await navigator.serviceWorker.ready});
+ await page.reload();
+ await page.waitForFunction(()=>navigator.serviceWorker.controller!==null);
+ await context.setOffline(true);
+ await page.reload({waitUntil:'domcontentloaded'});
+ await expect(page.locator('.portrait-card')).toHaveCount(34);
+ const result=await page.evaluate(async(images)=>{
+  const checks=await Promise.all(images.map(async url=>{
+   try{const r=await fetch(url);return r.ok&&r.headers.get('content-type')?.includes('image/png')&&(await r.arrayBuffer()).byteLength>300}
+   catch{return false}
+  }));
+  return {checked:checks.length,failed:checks.filter(ok=>!ok).length};
+ },urls);
+ expect(result).toEqual({checked:34,failed:0});
+ expect(errors).toEqual([]);
+});
+
+test('WuWa portrait gallery remains unchanged after adding Endfield',async({page})=>{
+ await page.goto('?portraits=wuthering-waves');
+ await expect(page.locator('h1')).toContainText('Wuthering Waves');
+ await expect(page.locator('.portrait-card')).toHaveCount(61);
+ await page.locator('.portrait-search').fill('yangyang');
+ await expect(page.locator('.portrait-card')).toHaveCount(2);
+ await expect(page.locator('.portrait-id')).toHaveText(['yangyang','yangyang-xuanling']);
+});
