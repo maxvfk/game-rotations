@@ -270,7 +270,8 @@
                         "condition": {
                           "type": "string"
                         }
-                      }
+                      },
+                      "type": "object"
                     },
                     "then": {
                       "properties": {
@@ -280,7 +281,8 @@
                       },
                       "required": [
                         "optional"
-                      ]
+                      ],
+                      "type": "object"
                     }
                   },
                   {
@@ -294,12 +296,14 @@
                             "press": {
                               "type": "string"
                             }
-                          }
+                          },
+                          "type": "object"
                         }
                       },
                       "required": [
                         "input"
-                      ]
+                      ],
+                      "type": "object"
                     },
                     "then": {
                       "properties": {
@@ -311,9 +315,11 @@
                           },
                           "required": [
                             "kind"
-                          ]
+                          ],
+                          "type": "object"
                         }
-                      }
+                      },
+                      "type": "object"
                     }
                   }
                 ]
