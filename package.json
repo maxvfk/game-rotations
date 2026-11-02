@@ -11,7 +11,8 @@
     "validate:data": "node scripts/validate-rotations.mjs",
     "test:onboarding": "node scripts/test-onboarding.mjs",
     "validate:portraits": "node scripts/validate-portraits.mjs",
-    "test:renderer": "vitest run test/rotation-renderer.test.ts"
+    "test:renderer": "vitest run test/rotation-renderer.test.ts",
+    "test:e2e": "playwright test"
   },
   "devDependencies": {
     "vite": "^7.1.0",
@@ -20,6 +21,7 @@
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",
     "vitest": "^3.2.4",
-    "jsdom": "^26.1.0"
+    "jsdom": "^26.1.0",
+    "@playwright/test": "^1.56.0"
   }
 }
