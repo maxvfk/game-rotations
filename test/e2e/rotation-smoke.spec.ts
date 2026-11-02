@@ -108,7 +108,7 @@ test('Endfield gallery: 34 genuine icons, names, gender variants and offline PWA
  await expect.poll(()=>arcane.locator('img').evaluate(img=>(img as HTMLImageElement).naturalWidth)).toBe(150);
  await expect(arcane.locator('img')).toHaveAttribute('src',/\/portraits\/arknights-endfield\/arcane\.png$/);
  await expect(arcane.locator('.portrait-source')).toHaveAttribute('href','https://endfieldtools.dev/characters/arcane/');
- const si=page.locator('.portrait-card').filter({has:page.locator('.portrait-id',{hasText:'si'})});
+ const si=page.locator('.portrait-card').filter({has:page.locator('.portrait-id',{hasText:/^si$/})});
  await si.locator('img').scrollIntoViewIfNeeded();
  await expect.poll(()=>si.locator('img').evaluate(img=>(img as HTMLImageElement).naturalWidth)).toBe(150);
  await page.locator('.portrait-search').fill('endministrator');
