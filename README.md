@@ -4,6 +4,19 @@
 
 **Сайт:** https://maxvfk.github.io/game-rotations/ · **исследования:** https://github.com/maxvfk/Games/tree/main/guides
 
+## Новый authoring workflow (D3/D4)
+
+Для новой команды **не синхронизируй вручную два JSON**. Используй [один минимальный authoring spec](examples/new-team.authoring.json) и [инструкцию CLI](docs/AUTHORING_CLI.md):
+
+```bash
+npm run team:add -- --spec path/to/my-team.authoring.json         # dry-run, без записи
+npm run team:add -- --spec path/to/my-team.authoring.json --write # создать book + catalog
+npm run catalog:check                                           # сверить производные поля
+npm run catalog:sync -- --team my-team --write                   # обновить каталог из book после правки
+```
+
+`book` остаётся единственным источником для `source`, `gameVersion`, `investment/portrait` и variant `verification`; редакционные тексты каталога сохраняются отдельно. Генератор автоматически берёт WuWa-портреты из canonical manifest, защищает существующие команды от перезаписи и отказывается публиковать `TEST/TODO` placeholders. Полный [авторский workflow и статус проверки](docs/AUTHORING_CLI.md).
+
 ## Добавление ротаций — с чего начать
 
 **Новый чат/агент:** открой [AGENTS.md](AGENTS.md) → [пошаговую инструкцию](docs/ADDING_ROTATIONS.md) → [справочник JSON](docs/FORMAT_REFERENCE.md). Для ревью используй [чеклист приёмки](docs/REVIEW_CHECKLIST.md).
