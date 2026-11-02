@@ -42,6 +42,13 @@
 - [ ] `npm run test:authoring` зелёный: no-op повторный импорт, отказ перезаписи, canonical portrait lookup, отсутствие мутаций действующих команд и IDs.
 - [ ] `--write` не выполнялся на незавершённом шаблоне; в repository не опубликована вымышленная игровая команда.
 
+## Endfield portrait-library QA
+
+- [ ] ID операторов взяты из `data/portraits/arknights-endfield.json`, без попытки угадать по `icon_chr_*.`
+- [ ] Endministrator F/M не перепутаны; оригинальные PNG не перекроены и доступны офлайн.
+- [ ] `npm run validate:portraits` проверил все 34 PNG и full SHA-256.
+- [ ] Публикация самой ротации (в отличие от каталога картинок) не начата без live-kit и `data/controls/arknights-endfield.json`.
+
 ## C. Автоматическая и пользовательская проверка
 
 - [ ] `npm run validate:data` зелёный.
