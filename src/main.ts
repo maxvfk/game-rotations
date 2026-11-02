@@ -20,9 +20,12 @@ function render(){
  root.replaceChildren();
  const header=node('header','head',node('div','brandmark','✦'),node('div','head-text',node('div','eyebrow','PERSONAL ROTATION LIBRARY'),node('div','brandname','Game Rotations')));
  const meta=node('div','head-meta',node('span','online-pip'),node('span','',counter()+' команда · '+data.games.filter(g=>g.status==='available').length+' игра'));
- const portraitLink=node('a','portrait-header-link','Портреты WuWa') as HTMLAnchorElement;
-portraitLink.href=base+'?portraits=wuthering-waves';
-header.append(portraitLink,meta);
+ const portraitLinks=node('div','portrait-header-links');
+ for(const [gameId,label] of [['wuthering-waves','Портреты WuWa'],['arknights-endfield','Портреты Endfield']]){
+  const link=node('a','portrait-header-link',label) as HTMLAnchorElement;
+  link.href=base+'?portraits='+gameId;portraitLinks.append(link);
+ }
+ header.append(portraitLinks,meta);
  const hero=node('section','hero',node('div','eyebrow','КОМАНДЫ, КОТОРЫЕ ТЫ ВЫБРАЛ'),node('h1','','Все ротации ','в одном месте'),node('p','','Выбирай игру и команду. Памятки по кнопкам, пошаговые действия и собственные варианты — даже без интернета.'));
  const controls=node('section','searchbar');
  const searchBox=document.createElement('input');searchBox.type='search';searchBox.placeholder='Найти игру или команду';searchBox.setAttribute('aria-label','Поиск по играм и командам');searchBox.value=search;
@@ -61,8 +64,8 @@ header.append(portraitLink,meta);
  root.append(header,hero,controls,nav,list,footer);
 }
 const requestedPortraits=new URLSearchParams(window.location.search).get('portraits');
-if(requestedPortraits==='wuthering-waves'){
- import('./portrait-gallery').then(({mountPortraitGallery})=>mountPortraitGallery(root,base))
+if(requestedPortraits==='wuthering-waves'||requestedPortraits==='arknights-endfield'){
+ import('./portrait-gallery').then(({mountPortraitGallery})=>mountPortraitGallery(root,base,requestedPortraits))
  .catch((e:unknown)=>{console.error(e);render();root.prepend(node('p','empty-state','Каталог портретов недоступен'))});
 }else{
 const requestedTeam=new URLSearchParams(window.location.search).get('team');
