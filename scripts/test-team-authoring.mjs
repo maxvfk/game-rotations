@@ -37,7 +37,7 @@ try{
  spec.title='Hsin / Suoming training fixture';
  spec.gameVersion='Global live 3.7 (fixture snapshot)';
  spec.source='https://github.com/maxvfk/Games/blob/main/guides/wuthering-waves/HSIN_SUOMING_SHOREKEEPER_ROTATIONS.md';
- spec.evidence.userSelection='Fixture is selected only inside an isolated test directory';
+ spec.evidence.userSelection='Fixture selected only inside an isolated temporary directory';
  put(specPath,spec);
  run(['add','--spec',specPath]);
  if(digest(catPath)!==originalCatalog||existsSync(join(temp,bookPath)))throw Error('Validated dry run wrote data');
