@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "game": "wuthering-waves",
+  "id": "example-training-hsin-suoming",
+  "title": "Hsin / Suoming (FICTIONAL TEMPLATE)",
+  "subtitle": "Учебный пример — не публиковать",
+  "status": "experimental",
+  "statusDescription": "Шаблон с вымышленными действиями; не игровая рекомендация",
+  "gameVersion": "TEST: replace with current live server/version",
+  "source": "https://example.org/not-a-real-rotation",
+  "verificationNote": "TEST: source and rotation mechanics are intentionally fictional",
+  "evidence": {
+    "author": "TEST: guide/TC author or own reconstruction",
+    "liveKit": "TEST: live server and version; verified resource triggers",
+    "resources": "TEST: generation and spending",
+    "triggers": "TEST: reaction/trigger conditions and ICD",
+    "swaps": "TEST: normal swap vs Intro/Outro",
+    "buffWindows": "TEST: duration and refresh conditions",
+    "userSelection": "TEST: explicit chosen variant",
+    "limitations": "TEST: unverified steps and assumptions",
+    "codeTesting": "TEST: CI result",
+    "uiTesting": "TEST: rendered labels/mobile",
+    "offlineTesting": "TEST: PWA reload",
+    "combatTesting": "TEST: practical execution status"
+  },
+  "characters": [
+    {
+      "id": "hsin",
+      "investment": "TEST S/R",
+      "slot": "1"
+    },
+    {
+      "id": "suoming",
+      "investment": "TEST S/R",
+      "slot": "2"
+    }
+  ],
+  "variants": [
+    {
+      "id": "demo",
+      "label": "Demo",
+      "sub": "Учебный fixture",
+      "type": "Эксперимент",
+      "intro": "Это не настоящая последовательность. Замени все действия и источники.",
+      "verification": "experimental",
+      "opener": [
+        "demoHsin",
+        "demoSuoming"
+      ],
+      "loop": [
+        "demoHsin",
+        "demoSuoming"
+      ],
+      "loopCaution": "Шаблон — не проверено в бою"
+    }
+  ],
+  "stages": {
+    "demoHsin": {
+      "person": "hsin",
+      "title": "Учебный этап Hsin",
+      "sub": "Показывает механику описания",
+      "actions": [
+        {
+          "text": "TEST Basic",
+          "tone": "normal",
+          "input": {
+            "kind": "basic"
+          }
+        },
+        {
+          "text": "TEST Outro → Suoming",
+          "tone": "swap",
+          "input": {
+            "kind": "outro",
+            "target": "suoming"
+          }
+        }
+      ],
+      "check": "TEST resource state",
+      "extra": "TEST replace with live-kit analysis"
+    },
+    "demoSuoming": {
+      "person": "suoming",
+      "title": "Учебный этап Suoming",
+      "sub": "Показывает переход",
+      "actions": [
+        {
+          "text": "TEST Intro",
+          "tone": "key",
+          "input": {
+            "kind": "intro"
+          }
+        },
+        {
+          "text": "TEST Hold Skill",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "press": "hold"
+          }
+        },
+        {
+          "text": "TEST Outro → Hsin",
+          "tone": "swap",
+          "input": {
+            "kind": "outro",
+            "target": "hsin"
+          }
+        }
+      ],
+      "check": "TEST required resource",
+      "extra": "TEST all attacks are fictitious"
+    }
+  }
+}
