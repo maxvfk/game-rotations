@@ -34,6 +34,14 @@
 - [ ] Если повторный цикл не проверен, у `variant` указан `loopCaution`, видимый при выборе «Повтор»; сохраняются старые ID и прогресс.
 - [ ] DOM + Playwright проверяют реально отображаемые подписи/подсказки/предупреждения, а не только schema JSON.
 
+## D3/D4 — приёмка нового authoring workflow
+
+- [ ] Для новой команды использован единый spec `examples/new-team.authoring.json` → `npm run team:add -- --spec ...` без записи, затем `--write` после проверки источников и выбранного варианта.
+- [ ] В spec есть атрибуция author/TC, server/live kit, ресурсы/triggers/swaps/buff, явно выбранная пользователем ротация, ограничения и раздельные code/UI/offline/combat statuses.
+- [ ] `npm run catalog:check` зелёный; после правок book использован `catalog:sync` для source/version/investment/portrait/verification вместо ручного дублирования.
+- [ ] `npm run test:authoring` зелёный: no-op повторный импорт, отказ перезаписи, canonical portrait lookup, отсутствие мутаций действующих команд и IDs.
+- [ ] `--write` не выполнялся на незавершённом шаблоне; в repository не опубликована вымышленная игровая команда.
+
 ## C. Автоматическая и пользовательская проверка
 
 - [ ] `npm run validate:data` зелёный.
