@@ -265,7 +265,12 @@
                     "if": {
                       "required": [
                         "condition"
-                      ]
+                      ],
+                      "properties": {
+                        "condition": {
+                          "type": "string"
+                        }
+                      }
                     },
                     "then": {
                       "properties": {
@@ -284,7 +289,12 @@
                         "input": {
                           "required": [
                             "press"
-                          ]
+                          ],
+                          "properties": {
+                            "press": {
+                              "type": "string"
+                            }
+                          }
                         }
                       },
                       "required": [
