@@ -1,5 +1,6 @@
 import {readFileSync,existsSync} from 'node:fs';
 import {resolve} from 'node:path';
+import {createHash} from 'node:crypto';
 const root=process.cwd(),load=p=>JSON.parse(readFileSync(resolve(root,p),'utf8'));
 const errors=[];
 const manifest=load('data/portraits/wuthering-waves.json');
@@ -37,5 +38,49 @@ for(const team of game?.teams||[]){
   if(ch.portrait!==expected.portrait)errors.push('rotation portrait mismatch '+team.id+'/'+ch.id+' (expected '+expected.portrait+')');
  }
 }
-if(errors.length){console.error(errors.join('\n'));process.exit(1)}
+console.log('Checked WuWa portrait metadata and linked teams; validating Endfield PNGs next.');
 console.log('Validated '+ids.size+' named WuWa portraits, '+new Set(manifest.characters.map(x=>x.sourceImage)).size+' original source images and linked team portraits');
+
+/* EndfieldTools.DEV English MHT: preserve original PNG bytes, not cropped fan art.
+   Validate *all* 34 pinned icon ID/image bindings by file hash and dimensions. */
+const endfield=load('data/portraits/arknights-endfield.json');
+const endfieldGame='arknights-endfield';
+if(endfield.schemaVersion!==1||endfield.game!==endfieldGame||endfield.characters?.length!==34)errors.push('Endfield: expected exact 34-icon snapshot');
+const endNames=new Set(),endIds=new Set(),endPaths=new Set(),endPageIds=new Set();
+const endMap=new Map();
+for(const icon of endfield.characters||[]){
+ if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(icon.id))errors.push('Endfield: invalid character ID '+icon.id);
+ if(endIds.has(icon.id)||endPaths.has(icon.portrait)||endNames.has(icon.name))errors.push('Endfield: duplicate ID/portrait/name '+icon.id);
+ endIds.add(icon.id);endPaths.add(icon.portrait);endNames.add(icon.name);endMap.set(icon.id,icon);
+ if(icon.portrait!=='portraits/arknights-endfield/'+icon.id+'.png')errors.push('Endfield: portrait filename mismatches operator '+icon.id);
+ const expectedPageId=icon.id.startsWith('endministrator-')?'endministrator':icon.id;
+ if(icon.sourcePage!=='https://endfieldtools.dev/characters/'+expectedPageId+'/')errors.push('Endfield: wrong operator source page '+icon.id);
+ endPageIds.add(expectedPageId);
+ if(!/^https:\/\/endfieldtools\.dev\/assets\/images\/endfield\/charicon\/icon_chr_[a-zA-Z0-9_]+\.png$/.test(icon.sourceImage))errors.push('Endfield: unexpected charicon source '+icon.id);
+ if(!/^[a-f0-9]{64}$/.test(icon.sha256))errors.push('Endfield: incomplete SHA-256 '+icon.id);
+ if(icon.width!==150||icon.height<200||icon.height>210)errors.push('Endfield: unexpected PNG dimensions '+icon.id);
+ const file=resolve(root,'public',icon.portrait);
+ if(!existsSync(file)){errors.push('Endfield: missing PNG '+file);continue}
+ const bytes=readFileSync(file),actual=createHash('sha256').update(bytes).digest('hex');
+ if(bytes.length<300||bytes.length>200000||bytes.subarray(0,8).toString('hex')!=='89504e470d0a1a0a'||bytes.toString('ascii',12,16)!=='IHDR')errors.push('Endfield: invalid PNG '+icon.id);
+ else if(bytes.readUInt32BE(16)!==icon.width||bytes.readUInt32BE(20)!==icon.height)errors.push('Endfield: dimensions changed '+icon.id);
+ if(actual!==icon.sha256)errors.push('Endfield: SHA-256 mismatch for '+icon.id+' — image differs from MHT');
+}
+if(endIds.size!==34||endPageIds.size!==33)errors.push('Endfield: missing or duplicated operator variants');
+for(const [alias,target] of Object.entries(endfield.aliases||{})){
+ if(!endMap.has(target))errors.push('Endfield: invalid alias '+alias+' -> '+target);
+ if(alias==='endministrator')errors.push('Endfield: ambiguous Endministrator gender must not silently resolve');
+}
+const endCatalogGame=catalog.games.find(g=>g.id===endfieldGame);
+if(!endCatalogGame)errors.push('Endfield: no game entry in catalog');
+for(const team of endCatalogGame?.teams||[]){
+ const book=load('data/rotations/'+endfieldGame+'/'+team.id+'.json');
+ for(const character of book.characters){
+  const canonicalId=endfield.aliases?.[character.id]??character.id;
+  const canonical=endMap.get(canonicalId);
+  if(!canonical)errors.push('Endfield: unknown operator ID '+character.id+' in '+team.id);
+  else if(character.portrait!==canonical.portrait)errors.push('Endfield: mismatched portrait '+team.id+'/'+character.id);
+ }
+}
+if(errors.length){console.error(errors.join('\n'));process.exit(1)}
+console.log('Validated '+endIds.size+' original Endfield icon PNGs, '+endPageIds.size+' operator pages and the canonical character/portrait bindings.');

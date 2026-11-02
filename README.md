@@ -26,6 +26,12 @@ npm run catalog:sync -- --team my-team --write                   # обнови�
 - **Верификация без второй настоящей игры:** `npm run test:onboarding` добавляет пример в временный каталог, затем проверяет, что ошибочные targets, stage IDs, kind и схемы отвергаются.
 - Сначала проверяется актуальная механика в `maxvfk/Games`, затем выбор пользователя; только после этого новая ротация публикуется здесь. Не считай `Verified` на сайте калькулятора подтверждением исполнения в бою.
 
+## Каталог портретов Arknights: Endfield
+
+**34 оригинальных компактных PNG** из сохранённой англоязычной страницы EndfieldTools.DEV — без ручного кадрирования или перерисовки. [Открыть просмотрщик](https://maxvfk.github.io/game-rotations/?portraits=arknights-endfield) · [JSON-реестр](data/portraits/arknights-endfield.json) · [инструкция и provenance](docs/ENDFIELD_PORTRAITS.md). Отдельные портреты Endministrator F/M, без автоматического выбора пола.
+
+`npm run validate:portraits` проверяет все 34 PNG по полному SHA-256 и соответствие IDs; импортированное изображение хранится локально и кешируется PWA. **Составы и ротации Endfield ещё не опубликованы; нужен отдельный live-kit/controls review.**
+
 ## Каталог миниатюр WuWa
 
 **61 проверенная связка «персонаж → миниатюра»** из сохранённой страницы Prydwen. Открой [документацию портретов](docs/PORTRAITS.md), [JSON-базу](data/portraits/wuthering-waves.json) или визуальный каталог по адресу https://maxvfk.github.io/game-rotations/?portraits=wuthering-waves. Ссылка есть и на главной странице. Не загружай портреты заново при добавлении WuWa-ротаций.

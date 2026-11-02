@@ -1,0 +1,355 @@
+{
+  "schemaVersion": 1,
+  "game": "arknights-endfield",
+  "sourcePage": "https://endfieldtools.dev/characters/",
+  "snapshot": "User-provided English EndfieldTools.DEV MHT (2026-11-02)",
+  "source": "EndfieldTools.DEV compact charicon PNGs (original bytes, no recropping)",
+  "display": {
+    "aspectRatio": "1:1",
+    "fit": "cover",
+    "objectPosition": "center top"
+  },
+  "aliases": {},
+  "characters": [
+    {
+      "id": "akekuri",
+      "name": "Akekuri",
+      "portrait": "portraits/arknights-endfield/akekuri.png",
+      "sourcePage": "https://endfieldtools.dev/characters/akekuri/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0019_karin.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "b40967831851ff604aa3562668e21fbafc0ebf1d169a896455d2d9454b733083"
+    },
+    {
+      "id": "alesh",
+      "name": "Alesh",
+      "portrait": "portraits/arknights-endfield/alesh.png",
+      "sourcePage": "https://endfieldtools.dev/characters/alesh/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0024_deepfin.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "53b2bd9739428a1b2052134df591ef52b1cc862da1eca242d360771255ceca5c"
+    },
+    {
+      "id": "antal",
+      "name": "Antal",
+      "portrait": "portraits/arknights-endfield/antal.png",
+      "sourcePage": "https://endfieldtools.dev/characters/antal/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0023_antal.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "4c3f932595b34215788a22c0f28d0f40b441dc7846902e434981812895fcb29d"
+    },
+    {
+      "id": "arcane",
+      "name": "Arcane",
+      "portrait": "portraits/arknights-endfield/arcane.png",
+      "sourcePage": "https://endfieldtools.dev/characters/arcane/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0032_lizhiyan.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "1a9203007d0714c0b0ef6314959b53af8572985ad10639f14fb6c4bd50cfc27a"
+    },
+    {
+      "id": "arclight",
+      "name": "Arclight",
+      "portrait": "portraits/arknights-endfield/arclight.png",
+      "sourcePage": "https://endfieldtools.dev/characters/arclight/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0007_ikut.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "29ca6aaa8922924e38988c9aefa0348c2589a9c1d86cdf21265d148aed74496a"
+    },
+    {
+      "id": "ardelia",
+      "name": "Ardelia",
+      "portrait": "portraits/arknights-endfield/ardelia.png",
+      "sourcePage": "https://endfieldtools.dev/characters/ardelia/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0025_ardelia.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "0894b7b5d378af5cae10a892ed56a66c843f6e811863a138b02e619fe1aac86e"
+    },
+    {
+      "id": "avywenna",
+      "name": "Avywenna",
+      "portrait": "portraits/arknights-endfield/avywenna.png",
+      "sourcePage": "https://endfieldtools.dev/characters/avywenna/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0012_avywen.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "dca3019e03ec5561b3bb4148899befca62baf55a73bb81964a6951868cb1d6b9"
+    },
+    {
+      "id": "camille",
+      "name": "Camille",
+      "portrait": "portraits/arknights-endfield/camille.png",
+      "sourcePage": "https://endfieldtools.dev/characters/camille/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0033_camille.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "7ecd120fe21b7a0e0856de61dbe343b9e3bcd8ab2a175cec29f75737f2f65e64"
+    },
+    {
+      "id": "catcher",
+      "name": "Catcher",
+      "portrait": "portraits/arknights-endfield/catcher.png",
+      "sourcePage": "https://endfieldtools.dev/characters/catcher/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0020_meurs.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "130092ee27e0de51b46aceaedb96a42db8abb5141c20f46869c6cd93b9ce0e66"
+    },
+    {
+      "id": "chen-qianyu",
+      "name": "Chen Qianyu",
+      "portrait": "portraits/arknights-endfield/chen-qianyu.png",
+      "sourcePage": "https://endfieldtools.dev/characters/chen-qianyu/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0005_chen.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "e059e357213947cf2c2c88fbff81438b744edb166a2b6cb990779b4801369b22"
+    },
+    {
+      "id": "da-pan",
+      "name": "Da Pan",
+      "portrait": "portraits/arknights-endfield/da-pan.png",
+      "sourcePage": "https://endfieldtools.dev/characters/da-pan/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0018_dapan.png",
+      "width": 150,
+      "height": 208,
+      "sha256": "0415d23e2f26cc7a06b64621b0825260cda9e052db1cf9acbf6f915b0a99b032"
+    },
+    {
+      "id": "ember",
+      "name": "Ember",
+      "portrait": "portraits/arknights-endfield/ember.png",
+      "sourcePage": "https://endfieldtools.dev/characters/ember/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0009_azrila.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "2b25538a29f4ce6d7a76f6741d5c21a33e9cd4082259fdd416a1823f3cb98f19"
+    },
+    {
+      "id": "endministrator-f",
+      "name": "Endministrator (F)",
+      "portrait": "portraits/arknights-endfield/endministrator-f.png",
+      "sourcePage": "https://endfieldtools.dev/characters/endministrator/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0003_endminf.png",
+      "width": 150,
+      "height": 206,
+      "sha256": "711c08f0cd80821c517de74c7fdafdd360e3e7e87a2cb9bcf8dca764d89d4eeb"
+    },
+    {
+      "id": "endministrator-m",
+      "name": "Endministrator (M)",
+      "portrait": "portraits/arknights-endfield/endministrator-m.png",
+      "sourcePage": "https://endfieldtools.dev/characters/endministrator/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0002_endminm.png",
+      "width": 150,
+      "height": 208,
+      "sha256": "55ac4ffd6a7a6d5e71d9cb64e7f162c0f871846844a6a8bcaac25c1d920fc3fb"
+    },
+    {
+      "id": "estella",
+      "name": "Estella",
+      "portrait": "portraits/arknights-endfield/estella.png",
+      "sourcePage": "https://endfieldtools.dev/characters/estella/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0021_whiten.png",
+      "width": 150,
+      "height": 209,
+      "sha256": "3b4f19367ec43022ac3ecc7024cb9bef364816a206e2cf7087d98427651ca3dc"
+    },
+    {
+      "id": "fluorite",
+      "name": "Fluorite",
+      "portrait": "portraits/arknights-endfield/fluorite.png",
+      "sourcePage": "https://endfieldtools.dev/characters/fluorite/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0022_bounda.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "fd7ebee136a7abb39616c3c19b44f8256db1fe8901fd4b61f9aabc40bf0b90d9"
+    },
+    {
+      "id": "gilberta",
+      "name": "Gilberta",
+      "portrait": "portraits/arknights-endfield/gilberta.png",
+      "sourcePage": "https://endfieldtools.dev/characters/gilberta/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0013_aglina.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "e314c4f37d2f5dacfa0ff226213014c02ab563234bc18e4b42ee5ee1a2fcc274"
+    },
+    {
+      "id": "laevatain",
+      "name": "Laevatain",
+      "portrait": "portraits/arknights-endfield/laevatain.png",
+      "sourcePage": "https://endfieldtools.dev/characters/laevatain/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0016_laevat.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "45c05dcdd765cdf533c26fed4202a6327f1325a05cb60c1637619843606f7599"
+    },
+    {
+      "id": "last-rite",
+      "name": "Last Rite",
+      "portrait": "portraits/arknights-endfield/last-rite.png",
+      "sourcePage": "https://endfieldtools.dev/characters/last-rite/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0026_lastrite.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "c3b8efee2c11208d8f6c5aace873358119246e48f6ae03e40132f17a552106d7"
+    },
+    {
+      "id": "lifeng",
+      "name": "Lifeng",
+      "portrait": "portraits/arknights-endfield/lifeng.png",
+      "sourcePage": "https://endfieldtools.dev/characters/lifeng/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0015_lifeng.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "6b15a1980da34bdd014bf17c418690e49691bc74c7ff2baa09f47929d449ff0c"
+    },
+    {
+      "id": "liino",
+      "name": "Liino",
+      "portrait": "portraits/arknights-endfield/liino.png",
+      "sourcePage": "https://endfieldtools.dev/characters/liino/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0035_liino.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "a819ad2b7f4b35e1b346e44a97bd67f05e283cf255d3c81bf5a2fcd2e842612e"
+    },
+    {
+      "id": "mifu",
+      "name": "Mifu",
+      "portrait": "portraits/arknights-endfield/mifu.png",
+      "sourcePage": "https://endfieldtools.dev/characters/mifu/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0031_mifu.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "9ce7e767a1df0c5b1ffd0c8cb474a6eb83cbc45d3ed2dbd66172207cf82d7c01"
+    },
+    {
+      "id": "perlica",
+      "name": "Perlica",
+      "portrait": "portraits/arknights-endfield/perlica.png",
+      "sourcePage": "https://endfieldtools.dev/characters/perlica/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0004_pelica.png",
+      "width": 150,
+      "height": 208,
+      "sha256": "87406ea7e18ccd4d19a90ea41f5fcbf995d00c1bfb2cfe601aead1be58cec2f0"
+    },
+    {
+      "id": "pogranichnik",
+      "name": "Pogranichnik",
+      "portrait": "portraits/arknights-endfield/pogranichnik.png",
+      "sourcePage": "https://endfieldtools.dev/characters/pogranichnik/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0029_pograni.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "b459e9f2b3d821574896eead2a4a9ccc2fb4bcd243563f84fc615269e664420d"
+    },
+    {
+      "id": "purrchena",
+      "name": "Purrchena",
+      "portrait": "portraits/arknights-endfield/purrchena.png",
+      "sourcePage": "https://endfieldtools.dev/characters/purrchena/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0038_purrche.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "fb564ca2bdab8796697cdb5b3e6f3ae4a9b9b5381bce615fb4ef23b13c47193b"
+    },
+    {
+      "id": "rossi",
+      "name": "Rossi",
+      "portrait": "portraits/arknights-endfield/rossi.png",
+      "sourcePage": "https://endfieldtools.dev/characters/rossi/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0028_wulfa.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "ce0148f5b2c6ebc88cc6b54c5d51a68ad1647dff583974579109667678ea6e18"
+    },
+    {
+      "id": "si",
+      "name": "Si",
+      "portrait": "portraits/arknights-endfield/si.png",
+      "sourcePage": "https://endfieldtools.dev/characters/si/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0036_jsspsi.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "b59f7ff298a3e1c8bd0e9a615a747edd26e2245b103d67291be4952971ab854a"
+    },
+    {
+      "id": "snowshine",
+      "name": "Snowshine",
+      "portrait": "portraits/arknights-endfield/snowshine.png",
+      "sourcePage": "https://endfieldtools.dev/characters/snowshine/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0014_aurora.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "cd05bbea1d4a2132aa316086e40cdf8eca796f91c8bb05588c37bf06e6484466"
+    },
+    {
+      "id": "tangtang",
+      "name": "Tangtang",
+      "portrait": "portraits/arknights-endfield/tangtang.png",
+      "sourcePage": "https://endfieldtools.dev/characters/tangtang/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0027_tangtang.png",
+      "width": 150,
+      "height": 208,
+      "sha256": "0e065a96afb7d4fa89bee889fd92e0fbdd9c0c176746e22f8ec05c274758ea9d"
+    },
+    {
+      "id": "typhoeus",
+      "name": "Typhoeus",
+      "portrait": "portraits/arknights-endfield/typhoeus.png",
+      "sourcePage": "https://endfieldtools.dev/characters/typhoeus/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0034_typhoea.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "8b9311d87dc99f5a6534d5db922630c99c6c8244f1a08172958b9c5a048bf0f4"
+    },
+    {
+      "id": "wulfgard",
+      "name": "Wulfgard",
+      "portrait": "portraits/arknights-endfield/wulfgard.png",
+      "sourcePage": "https://endfieldtools.dev/characters/wulfgard/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0006_wolfgd.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "9c38e549671b25c994e97c1a909d96750114debec5d63e608a40e88c9bb13c49"
+    },
+    {
+      "id": "xaihi",
+      "name": "Xaihi",
+      "portrait": "portraits/arknights-endfield/xaihi.png",
+      "sourcePage": "https://endfieldtools.dev/characters/xaihi/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0011_seraph.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "e20966a2b46e63e58286a58ba6a32cbf3e27283c3f1fcbaa95f7fbfa6a5a76f4"
+    },
+    {
+      "id": "yvonne",
+      "name": "Yvonne",
+      "portrait": "portraits/arknights-endfield/yvonne.png",
+      "sourcePage": "https://endfieldtools.dev/characters/yvonne/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0017_yvonne.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "6d844d99bf7cd62e3e578037cb0019dcb51caa3d067ed07c3b442fcde3bf5783"
+    },
+    {
+      "id": "zhuang-fangyi",
+      "name": "Zhuang Fangyi",
+      "portrait": "portraits/arknights-endfield/zhuang-fangyi.png",
+      "sourcePage": "https://endfieldtools.dev/characters/zhuang-fangyi/",
+      "sourceImage": "https://endfieldtools.dev/assets/images/endfield/charicon/icon_chr_0030_zhuangfy.png",
+      "width": 150,
+      "height": 210,
+      "sha256": "a969828c1582ebb77d1bfeebdc6c736fb0d81434dfe5381439f5889d10baa043"
+    }
+  ]
+}
