@@ -74,6 +74,7 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
   // replacing the actual skill name. This applies only to matching input kinds.
   if(k==='skill'&&x.startsWith('E · '))name=x.slice(4);
   if(k==='ultimate')name=x==='R'?'Liberation':x.replace(/^R · /,'');
+  if(input.press==='hold')key=(isDescriptive()?'Hold ':'удерж. ')+key;
   return {key,name,kind:k==='auto'?'auto':undefined};
  }
  const slotsBtn=q<HTMLButtonElement>('#slots-btn');
@@ -92,6 +93,10 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
   slotsExplain.textContent=currentScheme().slotExplain;
   q('#control-summary').textContent=currentScheme().summary;
  }
+ const loopWarning=node('div','loop-warning');
+ loopWarning.setAttribute('role','note');
+ loopWarning.setAttribute('aria-live','polite');
+ root.querySelector('.controlbar')?.after(loopWarning);
  let mode=String(get('mode',book.variants[0].id)),opener=Boolean(get('opener',true)),focus=Boolean(get('focus',false));
  if(!book.variants.some(v=>v.id===mode))mode=book.variants[0].id;
  let at=0,done:boolean[]=[];
@@ -118,6 +123,9 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
    b.append(node('strong','',v.label),node('small','',v.sub));b.onclick=()=>{mode=v.id;set('mode',mode);readProgress();render()};tabs.append(b);
   }
   const v=currentVariant(),meta=q('#meta');meta.replaceChildren(node('span','meta-badge'+(v.verification==='experimental'?' exp':''),v.type),node('p','',v.intro));
+  const showLoopCaution=!opener&&!!v.loopCaution;
+  loopWarning.classList.toggle('hidden',!showLoopCaution);
+  loopWarning.textContent=showLoopCaution?'⚠ Повторный цикл: '+v.loopCaution:'';
   q('#opener').setAttribute('aria-pressed',String(opener));q('#loop').setAttribute('aria-pressed',String(!opener));
   q('#view').textContent=focus?'▦ Все этапы':'☷ По шагам';
   const ids=stageKeys(),pct=Math.round(done.filter(Boolean).length/ids.length*100);
@@ -143,7 +151,13 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
    for(const [j,a] of s.actions.entries()){
     if(j)seq.append(node('span','arr','›'));
     const b=binding(a,person),chip=node('span','action '+(a.tone==='normal'?'':a.tone)+(b.kind?' '+b.kind:'')+(controls==='ps5'?' ps5':''));
-    chip.title=a.text;chip.append(node('strong','keycap',b.key),node('span','action-label',b.name));seq.append(chip);
+    chip.title=a.text;
+    chip.append(node('strong','keycap',b.key),node('span','action-label',b.name));
+    if(a.optional)chip.append(node('span','action-optional',a.condition?'УСЛОВНО':'НЕОБЯЗАТЕЛЬНО'));
+    if(a.condition)chip.append(node('span','action-condition','Если: '+a.condition));
+    if(a.hint)chip.append(node('span','action-hint',a.hint));
+    if(a.optional)chip.classList.add('optional-action');
+    seq.append(chip);
    }
    body.append(seq);
    const note=node('div','checks');note.append(node('span','diamond','✧'),node('span','',s.check));body.append(note);

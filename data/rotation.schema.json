@@ -144,6 +144,10 @@
             "items": {
               "$ref": "#/$defs/stageId"
             }
+          },
+          "loopCaution": {
+            "type": "string",
+            "minLength": 1
           }
         }
       }
@@ -235,10 +239,90 @@
                       },
                       "target": {
                         "$ref": "#/$defs/id"
+                      },
+                      "press": {
+                        "enum": [
+                          "tap",
+                          "hold"
+                        ]
                       }
                     }
+                  },
+                  "optional": {
+                    "type": "boolean"
+                  },
+                  "condition": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "hint": {
+                    "type": "string",
+                    "minLength": 1
                   }
-                }
+                },
+                "allOf": [
+                  {
+                    "if": {
+                      "required": [
+                        "condition"
+                      ],
+                      "properties": {
+                        "condition": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "then": {
+                      "properties": {
+                        "optional": {
+                          "const": true
+                        }
+                      },
+                      "required": [
+                        "optional"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  {
+                    "if": {
+                      "properties": {
+                        "input": {
+                          "required": [
+                            "press"
+                          ],
+                          "properties": {
+                            "press": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "required": [
+                        "input"
+                      ],
+                      "type": "object"
+                    },
+                    "then": {
+                      "properties": {
+                        "input": {
+                          "properties": {
+                            "kind": {
+                              "const": "skill"
+                            }
+                          },
+                          "required": [
+                            "kind"
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  }
+                ]
               }
             }
           }

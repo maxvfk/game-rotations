@@ -59,7 +59,8 @@
         "hsinFirstSimple",
         "suomingSecondSimple",
         "hsinFinalSimple"
-      ]
+      ],
+      "loopCaution": "Steady-loop Shorekeeper после Discernment и необходимые ресурсы ещё не проверены в бою; при нехватке условий возвращайся к opener."
     },
     {
       "id": "prydwen",
@@ -81,7 +82,8 @@
         "hsinFirstAdv",
         "suomingSecondAdv",
         "hsinFinalAdv"
-      ]
+      ],
+      "loopCaution": "Повторный цикл и тайминги Swap Cancel не подтверждены; Discernment и ресурсные условия требуют проверки."
     }
   ],
   "stages": {
@@ -269,7 +271,9 @@
           "input": {
             "kind": "basic",
             "count": 2
-          }
+          },
+          "optional": true,
+          "condition": "Forte < 100 (если шкала уже полная — пропусти)"
         },
         {
           "text": "Forte Heavy · Realm Protector",
@@ -322,7 +326,9 @@
           "input": {
             "kind": "basic",
             "count": 2
-          }
+          },
+          "optional": true,
+          "condition": "Forte < 100 (если шкала уже полная — пропусти)"
         },
         {
           "text": "Forte Heavy · Realm Protector",
@@ -343,7 +349,9 @@
           "tone": "sensitive",
           "input": {
             "kind": "skill"
-          }
+          },
+          "optional": true,
+          "condition": "Успеваешь сделать мгновенный Swap Cancel без потери окна Unison/баффов"
         },
         {
           "text": "Сразу Unison Outro → Suoming",
@@ -381,22 +389,27 @@
           "text": "E · Unforsaken Mind (нажать)",
           "tone": "vital",
           "input": {
-            "kind": "skill"
+            "kind": "skill",
+            "press": "tap"
           }
         },
         {
           "text": "E · Engraved Heart (ЗАЖАТЬ)",
           "tone": "vital",
           "input": {
-            "kind": "skill"
-          }
+            "kind": "skill",
+            "press": "hold"
+          },
+          "hint": "Отпусти кнопку после первого Skill, затем нажми и удерживай снова."
         },
         {
           "text": "Echo (если Moonlit)",
           "tone": "normal",
           "input": {
             "kind": "echo"
-          }
+          },
+          "optional": true,
+          "condition": "Используется Moonlit Echo в соответствующем варианте"
         },
         {
           "text": "Outro → Hsin",
@@ -448,22 +461,27 @@
           "text": "E · Unforsaken Mind (tap)",
           "tone": "vital",
           "input": {
-            "kind": "skill"
+            "kind": "skill",
+            "press": "tap"
           }
         },
         {
           "text": "E · Engraved Heart (HOLD)",
           "tone": "vital",
           "input": {
-            "kind": "skill"
-          }
+            "kind": "skill",
+            "press": "hold"
+          },
+          "hint": "Отпусти кнопку после первого Skill, затем нажми и удерживай снова."
         },
         {
           "text": "Echo · Heron (если Moonlit)",
           "tone": "normal",
           "input": {
             "kind": "echo"
-          }
+          },
+          "optional": true,
+          "condition": "Используется Moonlit Echo в соответствующем варианте"
         },
         {
           "text": "Outro → Hsin",
@@ -591,7 +609,9 @@
           "tone": "sensitive",
           "input": {
             "kind": "skill"
-          }
+          },
+          "optional": true,
+          "condition": "Успеваешь сделать мгновенный Swap Cancel без потери окна Unison/баффов"
         },
         {
           "text": "Сразу Outro → Shorekeeper",

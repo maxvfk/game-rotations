@@ -69,3 +69,29 @@ test('PWA offline reload preserves team, portraits and saved repeat selection',a
  const broken=await page.locator('.stage img').evaluateAll(images=>images.filter(i=>(i as HTMLImageElement).complete&&!(i as HTMLImageElement).naturalWidth).length);
  expect(broken).toBe(0);
 });
+test('mobile P2: Suoming tap/hold, Hsin optional conditions and honest loop warning',async({page},testInfo)=>{
+ const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));
+ await page.goto(hsin);
+ const hold=page.locator('.action').filter({hasText:'Engraved Heart'}).first();
+ const tap=page.locator('.action').filter({hasText:'Unforsaken Mind'}).first();
+ for(const [scheme,normal,held] of [['pc','E','удерж. E'],['ps5','△','удерж. △'],['terms','Skill','Hold Skill']] as const){
+  await page.locator('#control-'+scheme).click();
+  await expect(tap.locator('.keycap')).toHaveText(normal);
+  await expect(hold.locator('.keycap')).toHaveText(held);
+  await expect(hold.locator('.action-hint')).toContainText('Отпусти кнопку');
+ }
+ const conditional=page.locator('.action').filter({hasText:'BA3 → BA4'}).first();
+ await expect(conditional.locator('.action-optional')).toHaveText('УСЛОВНО');
+ await expect(conditional.locator('.action-condition')).toContainText('Forte < 100');
+ await expect(page.locator('.loop-warning')).toBeHidden();
+ await page.locator('#loop').click();
+ await expect(page.locator('.loop-warning')).toContainText('Steady-loop Shorekeeper');
+ await page.locator('#tabs button').filter({has:page.locator('strong',{hasText:'Prydwen + Swap Cancel'})}).first().click();
+ await expect(page.locator('.loop-warning')).toContainText('Swap Cancel');
+ await expect(page.locator('.action').filter({hasText:'Illumining (Swap Cancel!)'}).first().locator('.action-optional')).toHaveText('УСЛОВНО');
+ await page.locator('#opener').click();
+ await expect(page.locator('.loop-warning')).toBeHidden();
+ await page.screenshot({path:testInfo.outputPath('hsin-p2-mobile.png'),fullPage:true,animations:'disabled'});
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
+ expect(errors).toEqual([]);
+});
