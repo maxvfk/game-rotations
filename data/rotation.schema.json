@@ -144,6 +144,10 @@
             "items": {
               "$ref": "#/$defs/stageId"
             }
+          },
+          "loopCaution": {
+            "type": "string",
+            "minLength": 1
           }
         }
       }
@@ -235,10 +239,79 @@
                       },
                       "target": {
                         "$ref": "#/$defs/id"
+                      },
+                      "press": {
+                        "enum": [
+                          "tap",
+                          "hold"
+                        ]
+                      }
+                    }
+                  },
+                  "optional": {
+                    "type": "boolean"
+                  },
+                  "condition": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "hint": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "allOf": [
+                  {
+                    "if": {
+                      "required": [
+                        "condition"
+                      ]
+                    },
+                    "then": {
+                      "properties": {
+                        "optional": {
+                          "const": true
+                        }
+                      },
+                      "required": [
+                        "optional"
+                      ]
+                    }
+                  },
+                  {
+                    "if": {
+                      "properties": {
+                        "input": {
+                          "properties": {
+                            "press": {
+                              "const": "hold"
+                            }
+                          },
+                          "required": [
+                            "press"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "input"
+                      ]
+                    },
+                    "then": {
+                      "properties": {
+                        "input": {
+                          "properties": {
+                            "kind": {
+                              "const": "skill"
+                            }
+                          },
+                          "required": [
+                            "kind"
+                          ]
+                        }
                       }
                     }
                   }
-                }
+                ]
               }
             }
           }
