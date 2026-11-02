@@ -2,6 +2,10 @@
 
 **Назначение:** публикуемая пользователем библиотека **выбранных** практических игровых ротаций, удобных на телефоне и офлайн. Канонический репозиторий приложения — `maxvfk/game-rotations`; ветка выпуска — `main`.
 
+## Канонические изображения Endfield
+
+**Не искать портреты заново.** Для Arknights: Endfield читай [docs/ENDFIELD_PORTRAITS.md](docs/ENDFIELD_PORTRAITS.md) и `data/portraits/arknights-endfield.json` (**34 оригинальных PNG** с ID/name/SHA), просмотрщик `?portraits=arknights-endfield`. ID `endministrator-m` и `endministrator-f` **раздельные**: не выбирай пол автоматически. Скрипт `team:add` сам разрешает `portrait` по реестру. Перед первой Endfield-ротацией отдельно проверь механики, исходные расчёты и добавь `data/controls/arknights-endfield.json` — каталог портретов не означает готовые кнопки.
+
 ## Канонические изображения WuWa
 
 **Не ищи миниатюры заново.** Для Wuthering Waves читай [docs/PORTRAITS.md](docs/PORTRAITS.md), выбирай ID в [data/portraits/wuthering-waves.json](data/portraits/wuthering-waves.json), используй точный `portrait` в данных команды. Сайт показывает [каталог изображений](https://maxvfk.github.io/game-rotations/?portraits=wuthering-waves). Не путай Yangyang с Yangyang Xuanling, Rover стихий и другие варианты. Проверка `npm run validate:portraits` обязательна.
