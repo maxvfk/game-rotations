@@ -108,6 +108,17 @@ function generate(spec){
  assert(Array.isArray(spec.variants)&&spec.variants.length>=1,'spec.variants must be non-empty');
  assert(spec.stages&&typeof spec.stages==='object'&&!Array.isArray(spec.stages)&&Object.keys(spec.stages).length,'spec.stages required');
  requireEvidence(spec.evidence);
+ if(write){
+  // This is a publication guard, not an assertion of gameplay correctness.
+  const unresolved=(function walk(v,where='spec'){
+   if(typeof v==='string')return /\\b(?:TODO|TBD|TEST|PLACEHOLDER|FICTIONAL)\\b/i.test(v)?where:null;
+   if(Array.isArray(v)){for(let i=0;i<v.length;i++){const found=walk(v[i],where+'['+i+']');if(found)return found}}
+   else if(v&&typeof v==='object'){for(const [key,value] of Object.entries(v)){const found=walk(value,where+'.'+key);if(found)return found}}
+   return null;
+  })(spec);
+  if(unresolved)die('Unresolved publication placeholder in '+unresolved+'; complete the authoring spec first');
+  if(/example\\.org|invalid\\.example/i.test(spec.source))die('Replace the fictional source URL before --write');
+ }
  const charIds=new Set(),slots=new Set();
  const defaultSlots={};
  const characters=spec.characters.map(c=>{
