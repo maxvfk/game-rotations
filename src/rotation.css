@@ -17,3 +17,10 @@ h1{font-family:Georgia,"Times New Roman",serif;font-weight:500;letter-spacing:-.
 .catalog-back{position:sticky;top:0;z-index:30;backdrop-filter:blur(15px);background:#0b0c15ed;border-bottom:1px solid #ffffff16;padding:11px max(15px,calc((100% - 820px)/2));font-size:12px;font-weight:750}.catalog-back a{color:#e9d2a8;text-decoration:none}
 
 #app.rotation-app{max-width:none;padding:0;margin:0}
+
+/* Optional metadata only: it never changes the stage's action sequence. */
+.loop-warning{display:flex;align-items:flex-start;margin:-5px 0 20px;padding:11px 13px;border:1px solid #d4b57b70;border-radius:11px;background:#66512c20;color:#f0d5ac;font-size:12px;line-height:1.55;overflow-wrap:anywhere}
+.action.optional-action{border-style:dashed;border-color:#d1b78280;background:#7a63401c}
+.action .action-optional{font-size:9px;letter-spacing:.06em;font-weight:850;color:#f1d3a2}
+.action .action-condition,.action .action-hint{font-size:10px;font-weight:500;line-height:1.4;letter-spacing:0;color:#cfcede;overflow-wrap:anywhere}
+.action .action-hint{color:#b3eee5}
