@@ -5,14 +5,18 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run validate:data && npm run validate:portraits && npm run test:onboarding && npm run test:renderer && tsc --noEmit && vite build",
+    "build": "npm run catalog:check && npm run validate:data && npm run validate:portraits && npm run test:onboarding && npm run test:authoring && npm run test:renderer && tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "validate:data": "node scripts/validate-rotations.mjs",
     "test:onboarding": "node scripts/test-onboarding.mjs",
     "validate:portraits": "node scripts/validate-portraits.mjs",
     "test:renderer": "vitest run test/rotation-renderer.test.ts",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "team:add": "node scripts/team-authoring.mjs add",
+    "catalog:sync": "node scripts/team-authoring.mjs sync",
+    "catalog:check": "node scripts/team-authoring.mjs sync --check",
+    "test:authoring": "node scripts/test-team-authoring.mjs"
   },
   "devDependencies": {
     "vite": "^7.1.0",
