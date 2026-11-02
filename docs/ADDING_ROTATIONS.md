@@ -9,6 +9,27 @@
 - Для персонального выбора при необходимости сверяй «Игровые персонажи» (`Games/SOURCES.md`, `S-001`); новые сведения пользователя важнее.
 - Зафиксируй источник(и) и автора; в `book.source` укажи **реальный** долговечный URL (предпочтительно guide в `Games`). Несколько источников/авторов и дополнительные детали сохрани в guide/PR, а не выдавай недокументированную адаптацию за `verified`.
 
+## Рекомендуемый путь: единый authoring spec
+
+Для **новой команды** используй [AUTHORING_CLI.md](AUTHORING_CLI.md) и `examples/new-team.authoring.json` вместо ручной синхронизации book/catalog. Команды:
+
+```bash
+npm run team:add -- --spec path/to/my-team.authoring.json
+npm run team:add -- --spec path/to/my-team.authoring.json --write
+npm run catalog:check
+```
+
+В spec указаны выбранные персонажи с `investment` и `slot`, стадии, variants, server/version, ссылка на guide и `evidence`: автор/TC, проверенный live-kit, ресурсы/триггеры/swap/buff, выбор пользователя, ограничения, отдельные статусы code/UI/offline/combat. Генератор сам привяжет ID к каноническим WuWa-портретам и заполнит book + catalog без подмены механики. Путь `--write` заблокирован для незаполненного шаблона и при конфликте с существующей командой.
+
+После изменения `book` синхронизируй **только его производные поля** с каталогом:
+
+```bash
+npm run catalog:sync -- --team your-team --write
+npm run catalog:check
+```
+
+Команды работают без установки сервера или БД. Старые форматы и добавление игры с новыми controls остаются поддержанными; generator требует подключённую игру и схему кнопок. При необходимости править существующую команду — вручную book + безопасный sync, не перезапускать generator.
+
 ## 1. Подготовь файлы в отдельной ветке
 
 Репозиторий: `maxvfk/game-rotations`, основная ветка: `main`.
@@ -79,8 +100,10 @@
 
 ```bash
 npm install
+npm run catalog:check
 npm run validate:data
 npm run test:onboarding
+npm run test:authoring
 npm run test:renderer
 npm run typecheck
 npm run build
