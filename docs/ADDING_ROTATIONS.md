@@ -78,13 +78,16 @@
 npm install
 npm run validate:data
 npm run test:onboarding
+npm run test:renderer
 npm run typecheck
 npm run build
 ```
 
 - `validate:data`: JSON Schema + связанные данные, team IDs, targets, stage refs, assets/controls.
 - `test:onboarding`: временно собирает **вымышленную** вторую игру, проверяет положительный пример и несколько намеренно ошибочных файлов. Не публикует fixture.
+- `test:renderer`: монтирует **реальный** `src/rotation.ts` в jsdom (не имитатор карточек); проверяет имена Intro/Basic repeat, схемы PC/PS5/A-H, default opener, saved loop и неизменность YYXL.
 - `build`: повторяет проверки и собирает PWA для GitHub Pages.
+- `test:e2e` (после `build`; требуется `npx playwright install chromium`): запускает production preview в настоящем Chromium на ширине 390px и проверяет DOM, скриншоты и offline service-worker reload. В GitHub Actions Chromium устанавливается автоматически, и этот тест **обязателен** до деплоя.
 - Вручную открой `http://localhost:5173/game-rotations/?team=<id>` через dev-сервер (для разработки Vite; фактический base см. `vite.config.ts`), затем production `https://maxvfk.github.io/game-rotations/?team=<id>`.
 - Проверь mobile layout, выбор вариантов, первый заход/loop, PC/PS5/A-H (что реально поддерживает игра), Intro vs Swap, stage progress, ссылки на research, изображения, офлайн-повторное открытие и сохранение данных. Не меняй существующие `id`, если не предусмотрена миграция localStorage.
 
