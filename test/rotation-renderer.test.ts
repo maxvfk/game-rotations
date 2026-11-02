@@ -109,4 +109,47 @@ describe('real shared renderer (actual mounted DOM)',()=>{
   expect(labels()).toContain('Intro · Discernment');
   expect(labels()).not.toContain('Intro · смена персонажа');
  });
+ for(const [scheme,normal,held] of [['pc','E','удерж. E'],['ps5','△','удерж. △'],['terms','Skill','Hold Skill']] as const){
+  it('renders explicit Suoming tap, release hint and hold keycaps in '+scheme,()=>{
+   mount('hsin-suoming-shorekeeper');click('#control-'+scheme);
+   const tap=[...root().querySelectorAll<HTMLElement>('.action')].find(el=>el.querySelector('.action-label')?.textContent?.includes('Unforsaken Mind'))!;
+   const hold=[...root().querySelectorAll<HTMLElement>('.action')].find(el=>el.querySelector('.action-label')?.textContent?.includes('Engraved Heart'))!;
+   expect(tap.querySelector('.keycap')?.textContent).toBe(normal);
+   expect(hold.querySelector('.keycap')?.textContent).toBe(held);
+   expect(hold.querySelector('.action-hint')?.textContent).toContain('Отпусти кнопку');
+   selectTab('Prydwen + Swap Cancel');
+   const advHold=[...root().querySelectorAll<HTMLElement>('.action')].find(el=>el.querySelector('.action-label')?.textContent?.includes('Engraved Heart'))!;
+   expect(advHold.querySelector('.keycap')?.textContent).toBe(held);
+  });
+ }
+ it('displays condition/optional only on explicitly annotated Hsin actions',()=>{
+  mount('hsin-suoming-shorekeeper');
+  const ba=[...root().querySelectorAll<HTMLElement>('.action')].find(el=>el.querySelector('.action-label')?.textContent?.includes('BA3 → BA4'))!;
+  expect(ba.classList.contains('optional-action')).toBe(true);
+  expect(ba.querySelector('.action-optional')?.textContent).toBe('УСЛОВНО');
+  expect(ba.querySelector('.action-condition')?.textContent).toContain('Forte < 100');
+  const outro=[...root().querySelectorAll<HTMLElement>('.action')].find(el=>el.querySelector('.action-label')?.textContent?.includes('Unison Outro → Suoming'))!;
+  expect(outro.querySelector('.action-optional')).toBeNull();
+  selectTab('Prydwen + Swap Cancel');
+  const extra=[...root().querySelectorAll<HTMLElement>('.action')].find(el=>el.querySelector('.action-label')?.textContent?.includes('Illumining (Swap Cancel!)'))!;
+  expect(extra.querySelector('.action-condition')?.textContent).toContain('Swap Cancel');
+  expect(extra.querySelector('.action-optional')?.textContent).toBe('УСЛОВНО');
+ });
+ it('warns about precisely flagged unverified repeat cycles near the selector',()=>{
+  mount('hsin-suoming-shorekeeper');
+  expect(element('.loop-warning').classList.contains('hidden')).toBe(true);
+  click('#loop');
+  expect(element('.loop-warning').textContent).toContain('Steady-loop Shorekeeper');
+  selectTab('Prydwen + Swap Cancel');
+  expect(element('.loop-warning').textContent).toContain('Swap Cancel');
+  click('#opener');
+  expect(element('.loop-warning').classList.contains('hidden')).toBe(true);
+  mount('yyxl-suisui-chisa');click('#loop');
+  expect(element('.loop-warning').classList.contains('hidden')).toBe(true);
+  selectTab('2F');
+  expect(element('.loop-warning').textContent).toContain('проверки');
+  selectTab('2F QS');
+  expect(element('.loop-warning').textContent).toContain('Quickswap');
+ });
+
 });
