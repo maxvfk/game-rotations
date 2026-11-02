@@ -39,6 +39,10 @@ npm run test:e2e
 
 **Никакой магии над ротациями:** скрипт не вычисляет ресурсы, не улучшает порядок, не создаёт несуществующих действий и не заменяет TC. Он только переносит уже проверенные данные между файлами.
 
+### Подключённый каталог Endfield
+
+Каталог Endfield уже подготовлен: `data/portraits/arknights-endfield.json`, 34 PNG `public/portraits/arknights-endfield/`, просмотр `?portraits=arknights-endfield`. `team:add` автоматически найдёт операторов по точному slug (Arcane = `arcane`, Zhuang Fangyi = `zhuang-fangyi`); Endministrator `endministrator-f` и `endministrator-m` обязательно выбирать раздельно. **Перед первой Endfield-командой всё ещё требуется `data/controls/arknights-endfield.json` и live-kit/TC research.** Инструкция: [ENDFIELD_PORTRAITS.md](ENDFIELD_PORTRAITS.md).
+
 ### Портреты и контроль identity
 
 Для WuWa `characters[].id = "shorekeeper"` разрешается через alias в `the-shorekeeper.webp`; `yyxl` разрешается в `yangyang-xuanling.webp`. Поля `name` и `portrait` для персонажа с записью в registry лучше опускать: скрипт добавит проверенные значения и отклонит конфликтующие override. `slot` должен быть уникальной цифрой для каждого персонажа, а `investment` указывается явно. Для новой игры без registry обязательны `name` и локальный `portrait` с корректным путём; если нет controls, сначала реализуй их.
