@@ -31,7 +31,9 @@
 
 - [ ] `npm run validate:data` зелёный.
 - [ ] `npm run test:onboarding` зелёный (вымышленный пример успешно подключается, преднамеренные ошибки отвергаются).
+- [ ] `npm run test:renderer` зелёный: реальные подписи `action.text`, named Intro, repeat атаки, корректный свежий opener и сохранённые preferences проверены на actual renderer DOM.
 - [ ] `npm run typecheck` и `npm run build` зелёные; CI PR прошёл.
+- [ ] GitHub Actions `npm run test:e2e` зелёный: production-build открыт в Chromium на mobile viewport, screenshot/портреты/управление и offline PWA reload проверены; screenshot доступен в `rotation-mobile-smoke` artifact.
 - [ ] На мобильном экране проверены каталог → карточка → `?team=<id>`, варианты, opener/loop, чекбоксы, прогресс, сохранение, назад.
 - [ ] Проверена выбранная схема управления (ПК/PS5/A-H там, где она реально применяется), правильность кнопок и target.
 - [ ] Проверена мобильная верстка, портреты, отсутствие ошибок JS и горизонтальной прокрутки.

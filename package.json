@@ -5,18 +5,23 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run validate:data && npm run validate:portraits && npm run test:onboarding && tsc --noEmit && vite build",
+    "build": "npm run validate:data && npm run validate:portraits && npm run test:onboarding && npm run test:renderer && tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "validate:data": "node scripts/validate-rotations.mjs",
     "test:onboarding": "node scripts/test-onboarding.mjs",
-    "validate:portraits": "node scripts/validate-portraits.mjs"
+    "validate:portraits": "node scripts/validate-portraits.mjs",
+    "test:renderer": "vitest run test/rotation-renderer.test.ts",
+    "test:e2e": "playwright test"
   },
   "devDependencies": {
     "vite": "^7.1.0",
     "typescript": "^5.9.0",
     "vite-plugin-pwa": "^1.0.0",
     "ajv": "^8.17.1",
-    "ajv-formats": "^3.0.1"
+    "ajv-formats": "^3.0.1",
+    "vitest": "^3.2.4",
+    "jsdom": "^26.1.0",
+    "@playwright/test": "^1.56.0"
   }
 }

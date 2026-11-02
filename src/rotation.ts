@@ -63,18 +63,17 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
  function slotKey(personId:string){const slot=slots[personId]??values[0];return currentScheme().slotKeys[slot]||slot}
  function binding(a:Action,person:RotationCharacter):Bound{
   const x=a.text, input=a.input,k=input.kind,scheme=currentScheme();
-  if(k==='intro')return {key:isDescriptive()?'Intro':slotKey(person.id),name:'Intro · смена персонажа'};
+  // The JSON action text owns the gameplay label. The input kind controls only
+  // the keycap; never substitute a name from another character or rotation.
+  if(k==='intro')return {key:isDescriptive()?'Intro':slotKey(person.id),name:x};
   if(k==='outro'||k==='swap')return {key:isDescriptive()?(k==='outro'?'Outro':'Swap'):slotKey(input.target||person.id),name:x};
   let key=scheme.keys[k]||'?',name=x;
   if(k==='basic'&&input.repeat)key=scheme.keys.repeat||key;
   else if(k==='basic'&&input.count&&input.count>1)key+=' ×'+input.count;
+  // Legacy WuWa notation can omit the duplicated E/R button prefix without
+  // replacing the actual skill name. This applies only to matching input kinds.
   if(k==='skill'&&x.startsWith('E · '))name=x.slice(4);
   if(k==='ultimate')name=x==='R'?'Liberation':x.replace(/^R · /,'');
-  if(k==='echo'&&x==='Heron')name='Heron · Echo';
-  if(k==='auto'){name=x+' · после попадания HA';}
-  if(k==='basic'&&x==='Swallow’s Cut')name='Swallow’s Cut · в воздухе';
-  if(k==='basic'&&input.repeat)name='Death Snip FULL · добить удары';
-  if(k==='basic'&&x==='Bloom 1–3')name='Havoc in Bloom 1–3';
   return {key,name,kind:k==='auto'?'auto':undefined};
  }
  const slotsBtn=q<HTMLButtonElement>('#slots-btn');
@@ -93,7 +92,7 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
   slotsExplain.textContent=currentScheme().slotExplain;
   q('#control-summary').textContent=currentScheme().summary;
  }
- let mode=String(get('mode',book.variants[0].id)),opener=Boolean(get('opener',false)),focus=Boolean(get('focus',false));
+ let mode=String(get('mode',book.variants[0].id)),opener=Boolean(get('opener',true)),focus=Boolean(get('focus',false));
  if(!book.variants.some(v=>v.id===mode))mode=book.variants[0].id;
  let at=0,done:boolean[]=[];
  const currentVariant=():RotationVariant=>book.variants.find(v=>v.id===mode)!;

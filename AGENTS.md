@@ -33,7 +33,7 @@
 
 1. Прочитай текущий `main`, создай короткую feature-ветку. Не перезаписывай concurrent changes.
 2. Добавь/обнови `data/rotations/<game>/<team>.json`, `data/catalog.json`, при необходимости `data/controls/<game>.json`, портреты.
-3. Выполни `npm ci` (если нет lockfile, `npm install`), `npm run validate:data`, `npm run test:onboarding`, `npm run build`; проведи ручную проверку UI на телефоне, включая PWA/deep-link.
+3. Выполни `npm ci` (если нет lockfile, `npm install`), `npm run validate:data`, `npm run test:onboarding`, `npm run test:renderer`, `npm run build`; проведи проверку UI на телефоне, включая PWA/deep-link. В PR CI дополнительно запускает Playwright Chromium mobile/offline smoke (`npm run test:e2e`) после production build; наличие зелёных JSON-валидаторов **не заменяет** renderer tests.
 4. Оформи PR с источниками, списком изменённых ротаций, доказательствами, оставшимися неопределённостями, скриншотами при UI-изменениях. Не называй CI-доказательством игровых механик.
 5. Merge только после зелёного CI, ревью и проверки изменений; GitHub Pages разворачивается из `main`. Проверь опубликованную страницу после merge. Если write/CI/deploy недоступны — сообщи точный блокер; не объявляй выпуск.
 6. При существенном изменении архитектуры/канонического locator обнови `maxvfk/Games/SOURCES.md` (`S-021`), но для обычного добавления новой команды не трогай project memory.
