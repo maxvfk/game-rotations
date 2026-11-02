@@ -37,6 +37,7 @@ try{
  spec.title='Hsin / Suoming training fixture';
  spec.gameVersion='Global live 3.7 (fixture snapshot)';
  spec.source='https://github.com/maxvfk/Games/blob/main/guides/wuthering-waves/HSIN_SUOMING_SHOREKEEPER_ROTATIONS.md';
+ spec.verificationNote='Temporary CI fixture. No actual combat validation or recommendation is asserted.';
  spec.evidence.userSelection='Fixture selected only inside an isolated temporary directory';
  put(specPath,spec);
  run(['add','--spec',specPath]);
