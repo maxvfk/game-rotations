@@ -69,5 +69,27 @@ try{
   write('data/rotations/example-game/unlisted.json',{schemaVersion:1});
   validate(false,'orphan rotation JSON not linked from catalog is rejected');
  }
+ {
+  const {book}=baseFixture();
+  const skill=book.stages.alphaOpener.actions[1];
+  skill.input.press='hold';
+  skill.optional=true;skill.condition='Optional only if the mock resource is ready';
+  skill.hint='Release and hold again';
+  book.variants[0].loopCaution='Mock loop is unverified';
+  write('data/rotations/example-game/example-alpha-beta.json',book);
+  validate(true,'optional press/condition/hint and loop warning remain backwards-compatible');
+ }
+ {
+  const {book}=baseFixture();
+  book.stages.alphaOpener.actions[0].input.press='hold';
+  write('data/rotations/example-game/example-alpha-beta.json',book);
+  validate(false,'press modifier on non-skill is rejected');
+ }
+ {
+  const {book}=baseFixture();
+  book.stages.alphaOpener.actions[0].condition='Needs resource';
+  write('data/rotations/example-game/example-alpha-beta.json',book);
+  validate(false,'condition without explicit optional=true is rejected');
+ }
  console.log('All onboarding fixture tests passed (no new game published).');
 }finally{rmSync(work,{recursive:true,force:true})}
