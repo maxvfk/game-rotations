@@ -86,6 +86,10 @@ npm run catalog:check
 - `slotKeys` должен иметь ключ для каждого значения `defaultSlots` (например `"1"`, `"2"`, `"3"`); для `terms` значения могут быть пустыми. ПК/PS5 схемы и бинды — **не универсальны** для всех игр.
 - Если нужен новый тип события (карта, QTE, charge, directional input, ally assist, engine-specific interaction), которого нет в `input.kind`, остановись и спроектируй extension v2 с тестами и обратной совместимостью. **Не подменяй** его `basic` или `auto` без подтверждённого смысла.
 
+### Каталог Endfield
+
+Для Endfield портреты **уже собраны**, см. [ENDFIELD_PORTRAITS.md](ENDFIELD_PORTRAITS.md) и `data/portraits/arknights-endfield.json`. Используй `portraits/arknights-endfield/<id>.png`, без повторного скачивания или перекройки. Endministrator **M/F — разные ID**. Генератор `team:add` разрешает имя/портрет по canonical registry; перед первой Endfield-командой нужна игра с реальными `controls`. Проверка всех 34 PNG входит в `npm run validate:portraits`.
+
 ## 4. Подключи каталог и картинки
 
 **Для WuWa** миниатюры уже собраны и проверены. Открой [PORTRAITS.md](PORTRAITS.md) и выбери персонажа в `data/portraits/wuthering-waves.json`. Вставляй `portrait` без изменений: `portraits/wuthering-waves/<id>.webp`. Не ищи картинки повторно и не пытайся угадать по исходному имени WebP. Выполняй `npm run validate:portraits`.
