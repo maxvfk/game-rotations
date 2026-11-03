@@ -281,7 +281,12 @@ test('Endfield compact mode: smaller mobile chips, preserved FS ×2 / Hold / Sta
  // Stage notes are only for full mode; compact view is the action-only cheat sheet.
  await expect(page.locator('.checks').first()).toBeHidden();
  await expect(page.locator('.extras').first()).toBeHidden();
- await expect(page.locator('.stage-title').first()).toBeVisible();
+ await expect(page.locator('.stage-compact-line').first()).toBeVisible();
+ await expect(page.locator('.stage-title').first()).toBeHidden();
+ await expect(page.locator('.stage-head .portrait').first()).toBeHidden();
+ await expect(page.locator('.stage .complete')).toHaveCount(0);
+ await expect(page.locator('.progress-wrap')).toHaveCount(0);
+ await expect(page.locator('#reset')).toHaveCount(0);
  await page.screenshot({path:testInfo.outputPath('endfield-si-compact-maygi-mobile.png'),fullPage:true,animations:'disabled'});
  await page.locator('#control-pc').click();
  await expect(fs.locator('.keycap')).toHaveText('ЛКМ → FS');
@@ -321,6 +326,9 @@ test('Endfield compact mode: smaller mobile chips, preserved FS ×2 / Hold / Sta
  await page.locator('#layout-full').click();
  await expect(page.locator('#app')).not.toHaveClass(/compact-actions/);
  await expect(page.locator('.action-label').first()).toBeVisible();
+ await expect(page.locator('.stage-title').first()).toBeVisible();
+ await expect(page.locator('.stage-head .portrait').first()).toBeVisible();
+ await expect(page.locator('.stage-compact-line').first()).toBeHidden();
  await expect(page.locator('.checks').first()).toBeVisible();
  await expect(page.locator('.extras').first()).toBeVisible();
  await page.reload();
@@ -328,5 +336,48 @@ test('Endfield compact mode: smaller mobile chips, preserved FS ×2 / Hold / Sta
  await page.goto('?team=yyxl-suisui-chisa');
  await expect(page.locator('#layout-compact')).toHaveCount(0);
  await expect(page.locator('#app')).not.toHaveClass(/compact-actions/);
+ expect(errors).toEqual([]);
+});
+
+
+test('Endfield: compact numbered one-line headings, no progress UI; WuWa retains checklist',async({page},testInfo)=>{
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('?team=si-tangtang-arcane-xaihi');
+ await expect(page.locator('.stage')).toHaveCount(3);
+ await expect(page.locator('.stage .complete')).toHaveCount(0);
+ await expect(page.locator('.progress-wrap')).toHaveCount(0);
+ await expect(page.locator('#reset')).toHaveCount(0);
+ await expect(page.locator('.stage-title').nth(1)).toHaveText('Maygi · 2. Второй пакет');
+ const fullHeight=await page.locator('.stage').nth(1).evaluate(e=>e.getBoundingClientRect().height);
+ await page.locator('#layout-compact').click();
+ await expect(page.locator('.stage-compact-line').nth(1)).toHaveText('02 / 03  ·  Второй пакет');
+ await expect(page.locator('.stage-compact-line').nth(1)).toBeVisible();
+ await expect(page.locator('.stage-head .portrait').nth(1)).toBeHidden();
+ await expect(page.locator('.stage-title').nth(1)).toBeHidden();
+ await expect(page.locator('.stage-sub').nth(1)).toBeHidden();
+ await expect(page.locator('.stage-compact-line').nth(1)).toHaveCSS('white-space','nowrap');
+ const compactHeight=await page.locator('.stage').nth(1).evaluate(e=>e.getBoundingClientRect().height);
+ expect(compactHeight).toBeLessThan(fullHeight-80);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
+ await page.screenshot({path:testInfo.outputPath('endfield-lean-maygi-mobile.png'),fullPage:true,animations:'disabled'});
+ await page.locator('#tabs button').filter({has:page.locator('strong',{hasText:'Prydwen'})}).first().click();
+ await expect(page.locator('.stage-compact-line').first()).toHaveText('01 / 03  ·  Первый Corrosion');
+ await expect(page.locator('.stage-compact-line').nth(2)).toHaveText('03 / 03  ·  Stagger burst');
+ await page.screenshot({path:testInfo.outputPath('endfield-lean-prydwen-mobile.png'),fullPage:true,animations:'disabled'});
+ await page.locator('#layout-full').click();
+ await expect(page.locator('.stage-title').first()).toBeVisible();
+ await expect(page.locator('.stage-head .portrait').first()).toBeVisible();
+ await expect(page.locator('.stage-compact-line').first()).toBeHidden();
+ // Step-by-step navigation remains available, without setting completion.
+ await page.locator('#view').click();
+ await expect(page.locator('.stage')).toHaveCount(1);
+ await page.locator('#next').click();
+ await expect(page.locator('.stage-title').first()).toContainText('2. Второй Corrosion');
+ await expect(page.locator('.stage.completed')).toHaveCount(0);
+ expect(await page.evaluate(()=>localStorage.getItem('game-rotations:v2:si-tangtang-arcane-xaihi:done:prydwen-opener'))).toBeNull();
+ await page.goto('?team=yyxl-suisui-chisa');
+ await expect(page.locator('.stage .complete')).toHaveCount(3);
+ await expect(page.locator('.progress-wrap')).toBeVisible();
+ await expect(page.locator('#reset')).toBeVisible();
  expect(errors).toEqual([]);
 });
