@@ -82,6 +82,7 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
   if(input.press==='hold')key=(isDescriptive()?'Hold ':'удерж. ')+key;
   return {key,name:namePrefix+name,kind:k==='auto'?'auto':undefined};
  }
+ const slotsBtn=q<HTMLButtonElement>('#slots-btn');
  function renderSlots(){
   slotsBtn.textContent='Слоты: '+book.characters.map(c=>slots[c.id]+' '+c.name).join(' · ');
   slotsBtn.setAttribute('aria-expanded',String(slotsOpen));
