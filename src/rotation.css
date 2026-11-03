@@ -53,3 +53,9 @@ h1{font-family:Georgia,"Times New Roman",serif;font-weight:500;letter-spacing:-.
 .action.endfield-action.kind-dodge{--endfield-action-color:#eed782}
 .action.endfield-action.kind-swap{--endfield-action-color:#f1a3d2}
 .action.endfield-action.kind-auto{--endfield-action-color:#a2aec6}
+
+/* Endfield action portraits: 48px source displayed at 24px, resolved by input.actor.
+   Keep the current full label and color system. Compact mode is a separate change. */
+.action.endfield-action .action-primary{display:inline-flex;align-items:center;gap:7px;min-height:24px;max-width:100%}
+.action.endfield-action .action-portrait{display:block;width:24px;height:24px;flex:0 0 24px;object-fit:cover;object-position:center;border-radius:4px;border:1px solid #ffffff30;background:#24293b}
+.action.endfield-action .action-portrait-fallback{display:grid;width:24px;height:24px;flex:0 0 24px;place-items:center;border-radius:4px;background:#ffffff1c;color:var(--endfield-action-color);font-size:13px;font-weight:800}
