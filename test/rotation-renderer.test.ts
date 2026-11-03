@@ -156,6 +156,56 @@ describe('real shared renderer (actual mounted DOM)',()=>{
 
 
 describe('Endfield Si: source-separated rotations and owned semantic actions',()=>{
+ it('switches full/compact Endfield chips, keeps ×2, optional Stagger and saves across variants and remount',()=>{
+  mount('si-tangtang-arcane-xaihi');
+  expect(element('#layout-full').getAttribute('aria-pressed')).toBe('true');
+  expect(element('#layout-compact').getAttribute('aria-pressed')).toBe('false');
+  expect(root().classList.contains('compact-actions')).toBe(false);
+  const fs=[...root().querySelectorAll<HTMLElement>('.action')].find(el=>el.querySelector('.action-label')?.textContent?.includes('×2 · открыть Xaihi Combo'))!;
+  expect(fs.querySelector('.action-compact-modifier')?.textContent).toBe('×2');
+  click('#layout-compact');
+  expect(root().classList.contains('compact-actions')).toBe(true);
+  expect(element('#layout-compact').getAttribute('aria-pressed')).toBe('true');
+  expect(localStorage.getItem('game-rotations:v2:si-tangtang-arcane-xaihi:compact')).toBe('true');
+  const compactFs=[...root().querySelectorAll<HTMLElement>('.action')].find(el=>el.querySelector('.action-label')?.textContent?.includes('×2 · открыть Xaihi Combo'))!;
+  expect(compactFs.querySelector('.action-compact-modifier')?.textContent).toBe('×2');
+  expect(compactFs.getAttribute('aria-label')).toContain('Si');
+  expect(compactFs.getAttribute('aria-label')).toContain('×2');
+  expect(compactFs.getAttribute('title')).toContain('Xaihi Combo');
+  expect(compactFs.querySelector('.action-portrait')).not.toBeNull();
+  expect(compactFs.querySelector('.keycap')?.textContent).toBe('FS');
+  expect(element('.checks').textContent).toContain('FS');
+  // Cosmetic switch must not reset stage completion or chosen control scheme.
+  click('.stage .complete');
+  click('#control-pc');
+  selectTab('Prydwen');
+  expect(root().classList.contains('compact-actions')).toBe(true);
+  expect(element('#control-pc').getAttribute('aria-pressed')).toBe('true');
+  const ultim=[...root().querySelectorAll<HTMLElement>('.action')].find(el=>el.querySelector('.action-label')?.textContent?.includes('Ultimate Si →'))!;
+  expect(ultim.querySelector('.keycap')?.textContent).toBe('удерж. 4');
+  const stagger=[...root().querySelectorAll<HTMLElement>('.action')].find(el=>el.querySelector('.action-label')?.textContent?.includes('Finisher Tangtang'))!;
+  expect(stagger.querySelector('.action-compact-condition')?.textContent).toBe('Stagger');
+  expect(stagger.getAttribute('aria-label')).toContain('Если: Есть Stagger');
+  click('#loop');
+  expect(root().classList.contains('compact-actions')).toBe(true);
+  expect(element('.loop-warning').textContent).toContain('не является универсальным');
+  mount('si-tangtang-arcane-xaihi');
+  expect(root().classList.contains('compact-actions')).toBe(true);
+  expect(element('#layout-compact').getAttribute('aria-pressed')).toBe('true');
+  expect(element('#loop').getAttribute('aria-pressed')).toBe('true');
+  click('#opener');selectTab('Maygi');
+  expect(element('#progress-count').textContent).toContain('1 / 3');
+  click('#layout-full');
+  expect(root().classList.contains('compact-actions')).toBe(false);
+  expect(localStorage.getItem('game-rotations:v2:si-tangtang-arcane-xaihi:compact')).toBe('false');
+ });
+ it('does not show Endfield compact controls or styling for WuWa',()=>{
+  mount('yyxl-suisui-chisa');
+  expect(root().querySelector('#layout-compact')).toBeNull();
+  expect(root().classList.contains('compact-actions')).toBe(false);
+  expect(root().querySelectorAll('.action-compact-modifier')).toHaveLength(0);
+  expect(root().querySelectorAll('.action-portrait')).toHaveLength(0);
+ });
  it('renders 24px mini portrait for each Endfield action based on input.actor, not stage.person',()=>{
   mount('si-tangtang-arcane-xaihi');
   const cells=[...root().querySelectorAll<HTMLElement>('.action.endfield-action')];
