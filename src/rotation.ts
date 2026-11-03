@@ -38,6 +38,9 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
   const invest=node('span','',person.investment);invest.style.color='#8f91a8';
   pill.append(img,document.createTextNode(person.name+' '),invest);team.append(pill);
  }
+ // Endfield rotations are repeatable quick-reference sequences, not checklists.
+ const tracksProgress=book.game!=='arknights-endfield';
+ if(!tracksProgress){root.querySelector('#reset')?.remove();root.querySelector('.progress-wrap')?.remove()}
  const storagePrefix=id==='yyxl-suisui-chisa'?'wuwa-r-v1:':'game-rotations:v2:'+id+':';
  const get=saved(storagePrefix),set=write(storagePrefix);
  const slotIds=Object.keys(book.defaultSlots);
@@ -134,11 +137,11 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
  const progressKey=()=>mode+'-'+(opener?'opener':'loop');
  const stageKeys=()=>opener?currentVariant().opener:currentVariant().loop;
  function readProgress(){
-  const size=stageKeys().length,prev=get('done:'+progressKey(),[]) as boolean[];
-  done=Array.from({length:size},(_,i)=>!!prev?.[i]);
+  const size=stageKeys().length,prev=tracksProgress?get('done:'+progressKey(),[]) as boolean[]:[];
+  done=Array.from({length:size},(_,i)=>tracksProgress&&!!prev?.[i]);
   at=Math.max(0,Math.min(Number(get('at:'+progressKey(),0))||0,size-1));
  }
- function persist(){set('done:'+progressKey(),done);set('at:'+progressKey(),at)}
+ function persist(){if(tracksProgress)set('done:'+progressKey(),done);set('at:'+progressKey(),at)}
  readProgress();
  let timeout=0;function toast(message:string){
   const t=q('#toast');t.textContent=message;t.classList.remove('hidden');window.clearTimeout(timeout);
@@ -163,25 +166,39 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
   loopWarning.textContent=showLoopCaution?'⚠ Повторный цикл: '+v.loopCaution:'';
   q('#opener').setAttribute('aria-pressed',String(opener));q('#loop').setAttribute('aria-pressed',String(!opener));
   q('#view').textContent=focus?'▦ Все этапы':'☷ По шагам';
-  const ids=stageKeys(),pct=Math.round(done.filter(Boolean).length/ids.length*100);
-  q('#progress-count').textContent=done.filter(Boolean).length+' / '+ids.length+' этапов';
-  q<HTMLElement>('#progress-fill').style.width=pct+'%';q('#progress-track').setAttribute('aria-valuenow',String(pct));
+  const ids=stageKeys();
+  if(tracksProgress){
+   const pct=Math.round(done.filter(Boolean).length/ids.length*100);
+   q('#progress-count').textContent=done.filter(Boolean).length+' / '+ids.length+' этапов';
+   q<HTMLElement>('#progress-fill').style.width=pct+'%';q('#progress-track').setAttribute('aria-valuenow',String(pct));
+  }
   const route=q('#route');route.replaceChildren();
   for(const [i,stageId] of ids.entries()){
    if(focus && i!==at)continue;
    const s:RotationStage=book.stages[stageId],person=characterById.get(s.person)!;
-   const card=node('article','stage'+(done[i]?' completed':'')+(i===at?' active':''));
+   const card=node('article','stage'+(tracksProgress&&done[i]?' completed':'')+(i===at?' active':''));
    card.style.setProperty('--accent',person.color);
    const head=node('div','stage-head'),portrait=node('div','portrait');
    const face=document.createElement('img');face.src=base+person.portrait;face.alt='Портрет '+person.name;face.loading='lazy';
    face.onerror=()=>{portrait.replaceChildren(node('span','fallback',person.glyph))};portrait.append(face);
-   const heading=node('div');heading.style.flex='1';
-   heading.append(node('div','stage-num',String(i+1).padStart(2,'0')+' / '+String(ids.length).padStart(2,'0')+' · '+(s.actions.some(a=>a.input.actor&&a.input.actor!==s.person)?'Командная фаза':person.name)),node('div','stage-title',s.title),node('div','stage-sub',s.sub));
-   const check=node('button','complete',done[i]?'✓':'○') as HTMLButtonElement;
-   check.setAttribute('aria-label',done[i]?'Отменить выполнение этапа':'Отметить этап выполненным');
-   check.setAttribute('aria-pressed',String(done[i]));
-   check.onclick=()=>{done[i]=!done[i];persist();render()};
-   head.append(portrait,heading,check);card.append(head);
+   const heading=node('div','stage-heading');heading.style.flex='1';
+   const index=String(i+1).padStart(2,'0')+' / '+String(ids.length).padStart(2,'0');
+   heading.append(node('div','stage-num',index+' · '+(s.actions.some(a=>a.input.actor&&a.input.actor!==s.person)?'Командная фаза':person.name)),node('div','stage-title',s.title),node('div','stage-sub',s.sub));
+   if(!tracksProgress){
+    // Compact titles omit author/step prefixes already represented by the stage number.
+    // Unknown future title formats are kept intact, without a hard-coded TC name.
+    const shortTitle=s.title.replace(/^.*?·\s*\d+[.)]\s*/u,'');
+    heading.append(node('div','stage-compact-line',index+'  ·  '+shortTitle));
+   }
+   head.append(portrait,heading);
+   if(tracksProgress){
+    const check=node('button','complete',done[i]?'✓':'○') as HTMLButtonElement;
+    check.setAttribute('aria-label',done[i]?'Отменить выполнение этапа':'Отметить этап выполненным');
+    check.setAttribute('aria-pressed',String(done[i]));
+    check.onclick=()=>{done[i]=!done[i];persist();render()};
+    head.append(check);
+   }
+   card.append(head);
    const body=node('div','stage-body'),seq=node('div','sequence');
    for(const [j,a] of s.actions.entries()){
     if(j)seq.append(node('span','arr','›'));
@@ -235,16 +252,16 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
   }
   q('#navigation').classList.toggle('hidden',!focus);
   q<HTMLButtonElement>('#prev').disabled=at===ids.length-1&&ids.length===1||at===0;
-  q('#next').textContent=at===ids.length-1?'↺ Новый круг':'Далее →';
+  q('#next').textContent=at===ids.length-1?(tracksProgress?'↺ Новый круг':'↺ К началу'):'Далее →';
  }
  function setOpener(value:boolean){if(opener===value)return;opener=value;set('opener',opener);readProgress();render()}
  q('#opener').addEventListener('click',()=>setOpener(true));
  q('#loop').addEventListener('click',()=>setOpener(false));
  q('#view').addEventListener('click',()=>{focus=!focus;set('focus',focus);render();if(focus)q('#route').scrollIntoView({block:'start',behavior:'smooth'})});
- q('#reset').addEventListener('click',()=>{done=done.map(()=>false);at=0;persist();render();toast('Прогресс сброшен')});
+ if(tracksProgress)q('#reset').addEventListener('click',()=>{done=done.map(()=>false);at=0;persist();render();toast('Прогресс сброшен')});
  q('#prev').addEventListener('click',()=>{at=Math.max(0,at-1);persist();render();q('#route').scrollIntoView({block:'start',behavior:'smooth'})});
- q('#next').addEventListener('click',()=>{if(at>=stageKeys().length-1){at=0;done=done.map(()=>false);toast('Новый круг')}else{done[at]=true;at++}persist();render();q('#route').scrollIntoView({block:'start',behavior:'smooth'})});
- q('#info').addEventListener('click',()=>toast('Тапни ✓ для отметки этапа. Переключай варианты сверху.'));
+ q('#next').addEventListener('click',()=>{if(at>=stageKeys().length-1){at=0;if(tracksProgress)done=done.map(()=>false);toast(tracksProgress?'Новый круг':'К первому этапу')}else{if(tracksProgress)done[at]=true;at++}persist();render();q('#route').scrollIntoView({block:'start',behavior:'smooth'})});
+ q('#info').addEventListener('click',()=>toast(tracksProgress?'Тапни ✓ для отметки этапа. Переключай варианты сверху.':'Выбери вариант ротации сверху; компактный вид — быстрая памятка без отметок выполнения.'));
  render();
  type InstallPrompt=Event&{prompt:()=>Promise<void>;userChoice:Promise<unknown>};
  let installEvent:InstallPrompt|null=null;

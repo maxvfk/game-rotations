@@ -59,6 +59,13 @@
 Для обычной игровой консультации не требуется читать весь этот репозиторий; открывай его только при задаче по сайту.
 
 
+
+## Endfield: лаконичные заголовки и без прогресса (2026-11-03)
+
+Для **всех** `book.game==='arknights-endfield'` используй `tracksProgress=false`: круглых кнопок `.complete`, панели `.progress-wrap`, кнопки `#reset` нет ни в полном, ни в компактном виде. Legacy ключи `done:*` в localStorage не удаляй, но не считывай/не обновляй для Endfield. Пошаговый `#view` и `#prev/#next` — только навигация; `at` может сохранять текущий шаг без статуса «выполнено». В WuWa оставить `tracksProgress=true` и все текущие функции чеклистов без изменений.
+
+В compact Endfield показывай вместо большого stage header короткую строку `NN / NN · <short stage title>`, извлекая краткое название из `stage.title` без захардкоженных имён TC; сохраняй большие портреты/полный title/subtitle в полном режиме. Не скрывай warning непроверенного loop и не меняй действий, частичных статусов и условных маркеров внутри action chips.
+
 ## Compact mode Endfield (2026-11-03)
 
-Для Si-вариантов Maygi и Prydwen в `src/rotation.ts` доступен переключатель `Полный / Компактный`, `localStorage` ключ `game-rotations:v2:<team-id>:compact` (`false` по умолчанию), CSS только под `.game-arknights-endfield.compact-actions`. UI обязан сохранять mini portrait, keycap, `×N` (особенно FS ×2), `hold` из scheme, conditional marker (Stagger), последовательность; stage check/extra остаются в данных, но визуально скрываются в compact и восстанавливаются в полном виде, тогда как `loop-warning` остаётся на экране. Никакие ротации, ID/прогресс/цвета и WuWa не меняются. Полная подпись/condition/hint остаются в title/aria-label. На мобильном от compact режима не должно появляться горизонтального overflow. Следующий этап отдельно — tap-to-expand, если будет нужен.
+Для Si-вариантов Maygi и Prydwen в `src/rotation.ts` доступен переключатель `Полный / Компактный`, `localStorage` ключ `game-rotations:v2:<team-id>:compact` (`false` по умолчанию), CSS только под `.game-arknights-endfield.compact-actions`. UI обязан сохранять mini portrait, keycap, `×N` (особенно FS ×2), `hold` из scheme, conditional marker (Stagger), последовательность; stage check/extra остаются в данных, но визуально скрываются в compact и восстанавливаются в полном виде, тогда как `loop-warning` остаётся на экране. Боевые ротации, ID/цвета и WuWa не меняются; Endfield progress UI намеренно убран отдельным улучшением. Полная подпись/condition/hint остаются в title/aria-label. На мобильном от compact режима не должно появляться горизонтального overflow. Следующий этап отдельно — tap-to-expand, если будет нужен.
