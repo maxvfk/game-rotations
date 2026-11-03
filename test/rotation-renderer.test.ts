@@ -156,6 +156,44 @@ describe('real shared renderer (actual mounted DOM)',()=>{
 
 
 describe('Endfield Si: source-separated rotations and owned semantic actions',()=>{
+ it('omits completion controls, progress and reset only for Endfield; keeps full-mode stage titles',()=>{
+  // Legacy stored checkmarks remain untouched, but cannot affect the Endfield display.
+  const prefix='game-rotations:v2:si-tangtang-arcane-xaihi:';
+  localStorage.setItem(prefix+'done:maygi-opener','[true,false,false]');
+  mount('si-tangtang-arcane-xaihi');
+  expect(root().querySelector('.progress-wrap')).toBeNull();
+  expect(root().querySelector('#reset')).toBeNull();
+  expect(root().querySelectorAll('.stage .complete')).toHaveLength(0);
+  expect(root().querySelectorAll('.stage.completed')).toHaveLength(0);
+  expect(stageNames()).toEqual(['Maygi · 1. Cryo → Corrosion','Maygi · 2. Второй пакет','Maygi · 3. Burst и Stagger']);
+  expect([...root().querySelectorAll('.stage-compact-line')].map(x=>x.textContent)).toEqual([
+   '01 / 03  ·  Cryo → Corrosion','02 / 03  ·  Второй пакет','03 / 03  ·  Burst и Stagger'
+  ]);
+  click('#layout-compact');
+  expect(root().querySelectorAll('.stage-compact-line')).toHaveLength(3);
+  expect(root().querySelectorAll('.stage .complete')).toHaveLength(0);
+  selectTab('Prydwen');
+  expect([...root().querySelectorAll('.stage-compact-line')].map(x=>x.textContent)).toEqual([
+   '01 / 03  ·  Первый Corrosion','02 / 03  ·  Второй Corrosion','03 / 03  ·  Stagger burst'
+  ]);
+  // The optional step-by-step navigation still works, without writing completion state.
+  click('#view');
+  expect(root().querySelectorAll('.stage')).toHaveLength(1);
+  click('#next');
+  expect(root().querySelectorAll('.stage')).toHaveLength(1);
+  expect(root().querySelector('.stage-compact-line')?.textContent).toContain('02 / 03');
+  expect(localStorage.getItem(prefix+'done:maygi-opener')).toBe('[true,false,false]');
+  expect(localStorage.getItem(prefix+'done:prydwen-opener')).toBeNull();
+  expect(root().querySelectorAll('.stage.completed')).toHaveLength(0);
+ });
+ it('keeps all WuWa progress controls working',()=>{
+  mount('yyxl-suisui-chisa');
+  expect(root().querySelector('.progress-wrap')).not.toBeNull();
+  expect(root().querySelector('#reset')).not.toBeNull();
+  expect(root().querySelectorAll('.stage .complete')).toHaveLength(3);
+  click('.stage .complete');
+  expect(element('#progress-count').textContent).toContain('1 / 3');
+ });
  it('switches full/compact Endfield chips, keeps ×2, optional Stagger and saves across variants and remount',()=>{
   mount('si-tangtang-arcane-xaihi');
   expect(element('#layout-full').getAttribute('aria-pressed')).toBe('true');
@@ -175,8 +213,10 @@ describe('Endfield Si: source-separated rotations and owned semantic actions',()
   expect(compactFs.querySelector('.action-portrait')).not.toBeNull();
   expect(compactFs.querySelector('.keycap')?.textContent).toBe('FS');
   expect(element('.checks').textContent).toContain('FS');
-  // Cosmetic switch must not reset stage completion or chosen control scheme.
-  click('.stage .complete');
+  // Cosmetic switch must not change controls or resurrect progress UI.
+  expect(root().querySelector('.stage .complete')).toBeNull();
+  expect(root().querySelector('.progress-wrap')).toBeNull();
+  expect(root().querySelector('#reset')).toBeNull();
   click('#control-pc');
   selectTab('Prydwen');
   expect(root().classList.contains('compact-actions')).toBe(true);
@@ -194,7 +234,8 @@ describe('Endfield Si: source-separated rotations and owned semantic actions',()
   expect(element('#layout-compact').getAttribute('aria-pressed')).toBe('true');
   expect(element('#loop').getAttribute('aria-pressed')).toBe('true');
   click('#opener');selectTab('Maygi');
-  expect(element('#progress-count').textContent).toContain('1 / 3');
+  expect(root().querySelector('#progress-count')).toBeNull();
+  expect(root().querySelector('.stage .complete')).toBeNull();
   click('#layout-full');
   expect(root().classList.contains('compact-actions')).toBe(false);
   expect(localStorage.getItem('game-rotations:v2:si-tangtang-arcane-xaihi:compact')).toBe('false');
