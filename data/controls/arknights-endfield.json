@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "game": "arknights-endfield",
+  "schemes": [
+    {
+      "id": "terms",
+      "label": "Термины",
+      "help": [
+        [
+          "BA",
+          "Basic Attack"
+        ],
+        [
+          "FS",
+          "Final Strike после полной цепочки"
+        ],
+        [
+          "Combo",
+          "Combo Skill: ручная активация при trigger"
+        ],
+        [
+          "Skill",
+          "Battle Skill"
+        ],
+        [
+          "Ult",
+          "Ultimate"
+        ],
+        [
+          "Finisher",
+          "Действие при Stagger"
+        ]
+      ],
+      "keys": {
+        "basic": "BA",
+        "heavy": "—",
+        "skill": "Skill",
+        "ultimate": "Ult",
+        "echo": "—",
+        "dodge": "Dodge",
+        "auto": "Auto",
+        "repeat": "BA · серия",
+        "combo": "Combo",
+        "finalStrike": "FS",
+        "finisher": "Finisher",
+        "dive": "Dive"
+      },
+      "slotKeys": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": ""
+      },
+      "slotExplain": "Без физических кнопок: владелец каждого действия указан на карточке. Combo не означает переключение персонажа.",
+      "summary": "Сокращения Endfield: BA — обычная атака; FS — завершающий удар полной цепочки; Combo — Combo Skill (не срабатывает автоматически); Skill — Battle Skill; Ult — Ultimate; Finisher — отдельный Stagger action."
+    },
+    {
+      "id": "pc",
+      "label": "⌨ ПК",
+      "help": [
+        [
+          "ЛКМ",
+          "Basic Attack / до Final Strike"
+        ],
+        [
+          "1–4",
+          "Battle Skill выбранного оператора по слоту"
+        ],
+        [
+          "удерж. 1–4",
+          "Ultimate оператора"
+        ],
+        [
+          "E",
+          "Combo Skill доступного оператора"
+        ],
+        [
+          "Shift / ПКМ",
+          "Dodge"
+        ]
+      ],
+      "keys": {
+        "basic": "ЛКМ",
+        "heavy": "—",
+        "skill": "1–4",
+        "ultimate": "удерж. 1–4",
+        "echo": "—",
+        "dodge": "Shift / ПКМ",
+        "auto": "Auto",
+        "repeat": "ЛКМ · серия",
+        "combo": "E",
+        "finalStrike": "ЛКМ → FS",
+        "finisher": "Stagger · действие",
+        "dive": "Space → ЛКМ"
+      },
+      "slotKeys": {
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4"
+      },
+      "slotExplain": "Цифры 1–4 — кнопки Battle Skill по позициям группы (Ultimate — удержать ту же клавишу), а не кнопки принудительного переключения. Возможны переназначения управления. Combo вызывается отдельным E при выполнении триггера.",
+      "summary": "Стандартные ПК-кнопки по Destructoid/Endfield combat tutorial (2026): ЛКМ — BA/Final Strike, E — Combo, 1–4 — Battle Skill операторов, удержание 1–4 — Ultimate, Shift/ПКМ — уклонение. Finisher оставлен контекстным до проверки конкретного ввода."
+    }
+  ]
+}

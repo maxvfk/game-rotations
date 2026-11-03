@@ -105,6 +105,22 @@
               "repeat": {
                 "type": "string",
                 "minLength": 1
+              },
+              "combo": {
+                "type": "string",
+                "minLength": 1
+              },
+              "finalStrike": {
+                "type": "string",
+                "minLength": 1
+              },
+              "finisher": {
+                "type": "string",
+                "minLength": 1
+              },
+              "dive": {
+                "type": "string",
+                "minLength": 1
               }
             }
           },
