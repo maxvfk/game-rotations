@@ -63,21 +63,21 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
  function slotKey(personId:string){const slot=slots[personId]??values[0];return currentScheme().slotKeys[slot]||slot}
  function binding(a:Action,person:RotationCharacter):Bound{
   const x=a.text, input=a.input,k=input.kind,scheme=currentScheme();
-  // The JSON action text owns the gameplay label. The input kind controls only
-  // the keycap; never substitute a name from another character or rotation.
-  if(k==='intro')return {key:isDescriptive()?'Intro':slotKey(person.id),name:x};
-  if(k==='outro'||k==='swap')return {key:isDescriptive()?(k==='outro'?'Outro':'Swap'):slotKey(input.target||person.id),name:x};
-  let key=scheme.keys[k]||'?',name=x;
+  const actor=input.actor?characterById.get(input.actor)??person:person;
+  const namePrefix=input.actor?actor.name+' · ':'';
+  // "actor" is the real operator of this action, even in a mixed team phase.
+  // It is NOT a swap: Endfield Combo Skills can be triggered off-field.
+  if(k==='intro')return {key:isDescriptive()?'Intro':slotKey(actor.id),name:namePrefix+x};
+  if(k==='outro'||k==='swap')return {key:isDescriptive()?(k==='outro'?'Outro':'Swap'):slotKey(input.target||actor.id),name:namePrefix+x};
+  const controlKind=k==='final-strike'?'finalStrike':k;
+  let key=scheme.keys[controlKind]||'?',name=x;
   if(k==='basic'&&input.repeat)key=scheme.keys.repeat||key;
   else if(k==='basic'&&input.count&&input.count>1)key+=' ×'+input.count;
-  // Legacy WuWa notation can omit the duplicated E/R button prefix without
-  // replacing the actual skill name. This applies only to matching input kinds.
   if(k==='skill'&&x.startsWith('E · '))name=x.slice(4);
   if(k==='ultimate')name=x==='R'?'Liberation':x.replace(/^R · /,'');
   if(input.press==='hold')key=(isDescriptive()?'Hold ':'удерж. ')+key;
-  return {key,name,kind:k==='auto'?'auto':undefined};
+  return {key,name:namePrefix+name,kind:k==='auto'?'auto':undefined};
  }
- const slotsBtn=q<HTMLButtonElement>('#slots-btn');
  function renderSlots(){
   slotsBtn.textContent='Слоты: '+book.characters.map(c=>slots[c.id]+' '+c.name).join(' · ');
   slotsBtn.setAttribute('aria-expanded',String(slotsOpen));
@@ -141,7 +141,7 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
    const face=document.createElement('img');face.src=base+person.portrait;face.alt='Портрет '+person.name;face.loading='lazy';
    face.onerror=()=>{portrait.replaceChildren(node('span','fallback',person.glyph))};portrait.append(face);
    const heading=node('div');heading.style.flex='1';
-   heading.append(node('div','stage-num',String(i+1).padStart(2,'0')+' / '+String(ids.length).padStart(2,'0')+' · '+person.name),node('div','stage-title',s.title),node('div','stage-sub',s.sub));
+   heading.append(node('div','stage-num',String(i+1).padStart(2,'0')+' / '+String(ids.length).padStart(2,'0')+' · '+(s.actions.some(a=>a.input.actor&&a.input.actor!==s.person)?'Командная фаза':person.name)),node('div','stage-title',s.title),node('div','stage-sub',s.sub));
    const check=node('button','complete',done[i]?'✓':'○') as HTMLButtonElement;
    check.setAttribute('aria-label',done[i]?'Отменить выполнение этапа':'Отметить этап выполненным');
    check.setAttribute('aria-pressed',String(done[i]));
