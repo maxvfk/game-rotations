@@ -1,0 +1,736 @@
+{
+  "schemaVersion": 1,
+  "id": "si-tangtang-arcane-xaihi",
+  "game": "arknights-endfield",
+  "title": "Si / Tangtang / WILL Arcane / Xaihi",
+  "gameVersion": "Global live 1.6 (2026-11-03)",
+  "source": "https://github.com/maxvfk/Games/blob/main/guides/arknights-endfield/SI_TANGTANG_ARCANE_XAIHI_ROTATIONS.md",
+  "verificationNote": "Две отдельные TC-оси: Maygi (16.10.2026) — длинный full-burst с управлением Combo; Prydwen/Gacha Gamer (15.10.2026) — boss/Stagger route. Последовательности сохранены как source-derived PARTIAL, а не verified optimal: время действий, 0-energy start, повторный цикл, второй Si Skill и второй значок Tangtang Ultimate требуют проверки. Командные стадии показывают оператора каждой кнопки отдельно.",
+  "characters": [
+    {
+      "id": "arcane",
+      "name": "Arcane (WILL)",
+      "glyph": "✧",
+      "color": "#acd9b2",
+      "portrait": "portraits/arknights-endfield/arcane.png",
+      "investment": "P1 · сигнатура"
+    },
+    {
+      "id": "tangtang",
+      "name": "Tangtang",
+      "glyph": "❄",
+      "color": "#a0d9f6",
+      "portrait": "portraits/arknights-endfield/tangtang.png",
+      "investment": "Инвестиции не уточнены"
+    },
+    {
+      "id": "xaihi",
+      "name": "Xaihi",
+      "glyph": "✦",
+      "color": "#cbaef6",
+      "portrait": "portraits/arknights-endfield/xaihi.png",
+      "investment": "Инвестиции не уточнены"
+    },
+    {
+      "id": "si",
+      "name": "Si",
+      "glyph": "✺",
+      "color": "#e3c49b",
+      "portrait": "portraits/arknights-endfield/si.png",
+      "investment": "P0S1 · Jade Vessel"
+    }
+  ],
+  "controls": "arknights-endfield",
+  "defaultSlots": {
+    "arcane": "1",
+    "tangtang": "2",
+    "xaihi": "3",
+    "si": "4"
+  },
+  "variants": [
+    {
+      "id": "maygi",
+      "label": "Maygi",
+      "sub": "Полный цикл",
+      "type": "Основной кандидат",
+      "intro": "TC Maygi: удерживать Combo, управлять ресурсами и наносить урон несколькими Combo Si. Это длинная ось, которую можно сокращать в небольших боях, но готовой короткой ротацией она не является. Слот Arcane №1 принят как адаптация.",
+      "verification": "partial",
+      "opener": [
+        "maygiPrep",
+        "maygiRebuild",
+        "maygiBurst"
+      ],
+      "loop": [
+        "recoveryNote"
+      ],
+      "loopCaution": "Maygi не публикует верифицированный endless-loop с пустыми стартовыми ресурсами: раздел «Повтор» — лишь checkpoint восстановления, не команда для бесконечного воспроизведения."
+    },
+    {
+      "id": "prydwen",
+      "label": "Prydwen",
+      "sub": "Boss / Stagger",
+      "type": "Boss route",
+      "intro": "Prydwen/Gacha Gamer: Arcane №1, два Corrosion-пакета, Final Strikes под Xaihi и Stagger burst. Времена Builder условны. Спорный повторный Tangtang Ultimate исключён из нажатий и оставлен в оговорках.",
+      "verification": "partial",
+      "opener": [
+        "prydwenOne",
+        "prydwenTwo",
+        "prydwenBurst"
+      ],
+      "loop": [
+        "recoveryNote"
+      ],
+      "loopCaution": "Boss/Stagger route не является универсальным повторяемым циклом; при другом противнике, старте или без Stagger не воспроизводить как endless loop."
+    }
+  ],
+  "stages": {
+    "maygiPrep": {
+      "person": "si",
+      "title": "Maygi · 1. Cryo → Corrosion",
+      "sub": "Опубликованная подготовка: держим Combo до нужных окон",
+      "actions": [
+        {
+          "text": "Открыть Artful Intent; 1 Cryo",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "si"
+          }
+        },
+        {
+          "text": "Auxiliary Crystal, подготовить два Final Strike",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "xaihi"
+          }
+        },
+        {
+          "text": "Скопировать Cryo через WILL Combo",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "arcane"
+          },
+          "hint": "Срабатывает при Arts Infliction; нужна WILL-форма."
+        },
+        {
+          "text": "Создать Whirlpool",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "tangtang"
+          }
+        },
+        {
+          "text": "Обычные цепочки до активации Xaihi Combo",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "actor": "si",
+            "repeat": true
+          },
+          "hint": "За время Xaihi Skill необходимы два настоящих Final Strike; это не два коротких нажатия."
+        },
+        {
+          "text": "Преобразовать Whirlpool → Waterspout",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "tangtang"
+          }
+        },
+        {
+          "text": "Повторное Combo при готовом trigger/cooldown",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "tangtang"
+          }
+        },
+        {
+          "text": "Использовать удержанное Combo Xaihi",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "xaihi"
+          }
+        },
+        {
+          "text": "Атаки до почти готового Combo Arcane",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "actor": "si",
+            "repeat": true
+          }
+        },
+        {
+          "text": "Поглотить Cryo → Corrosion",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "arcane"
+          }
+        },
+        {
+          "text": "Combo Si от consume Cryo",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "si"
+          },
+          "hint": "Обязательно проверить готовность и число поглощённых stacks."
+        },
+        {
+          "text": "Dodge Cancel анимации Combo",
+          "tone": "sensitive",
+          "input": {
+            "kind": "dodge",
+            "actor": "si"
+          }
+        }
+      ],
+      "check": "До Arcane Battle Skill проверить фактическое число Cryo stacks и готовность Combo Si.",
+      "extra": "Maygi (08:56–10:50). Не тратить Xaihi Combo раньше Tangtang Combo; Arcane Combo после Corrosion не нажимать на нежелательном элементе. Следующая стадия требует реальных SP/CD и не привязана к условным секундам."
+    },
+    "maygiRebuild": {
+      "person": "si",
+      "title": "Maygi · 2. Второй пакет",
+      "sub": "Восстановить ресурс и подготовить следующие Combo",
+      "actions": [
+        {
+          "text": "Обычные атаки / ожидание ресурсов",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "actor": "si",
+            "repeat": true
+          }
+        },
+        {
+          "text": "Повторный Battle Skill по схеме Maygi",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "si"
+          },
+          "hint": "Если Artful Intent ещё активен, повторное нажатие создаст Inksoul, а НЕ новый Cryo; проверить состояние перед вводом."
+        },
+        {
+          "text": "Повторный Auxiliary Crystal, если готово 100 SP",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "xaihi"
+          }
+        },
+        {
+          "text": "Атаки до нужного SP и Combo",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "actor": "si",
+            "repeat": true
+          }
+        },
+        {
+          "text": "Combo Xaihi, если подготовлены два Final Strike",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "xaihi"
+          }
+        },
+        {
+          "text": "Ultimate Tangtang — первая burst-подготовка",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate",
+            "actor": "tangtang"
+          }
+        },
+        {
+          "text": "Следующее поглощение Cryo",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "arcane"
+          }
+        },
+        {
+          "text": "Восстановленный Combo Tangtang",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "tangtang"
+          }
+        },
+        {
+          "text": "Второе Combo Si",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "si"
+          }
+        }
+      ],
+      "check": "Ко второму Arcane Skill проверить расходуемые Cryo, Si Combo CD и состояние Whirlpool.",
+      "extra": "Механический порядок Maygi; точный момент второго Si Skill остаётся pending stage-state verification (Artful Intent/Inksoul). Ultimate Tangtang используется здесь как часть длинного цикла, не короткой волны."
+    },
+    "maygiBurst": {
+      "person": "si",
+      "title": "Maygi · 3. Burst и Stagger",
+      "sub": "Большие Ultimate и третье Combo Si",
+      "actions": [
+        {
+          "text": "Ultimate: Cryo Amp",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate",
+            "actor": "xaihi"
+          }
+        },
+        {
+          "text": "Dodge Cancel после Combo Si",
+          "tone": "sensitive",
+          "input": {
+            "kind": "dodge",
+            "actor": "si"
+          }
+        },
+        {
+          "text": "Dive Attack",
+          "tone": "sensitive",
+          "input": {
+            "kind": "dive",
+            "actor": "tangtang"
+          },
+          "hint": "Связанный с Ultimate Tangtang эффект, не отдельное повторное Ultimate."
+        },
+        {
+          "text": "Ultimate Si: Amp и сокращение Combo CD первого слота",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate",
+            "actor": "si"
+          }
+        },
+        {
+          "text": "Combo Arcane по следующему Cryo; не по Nature",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "arcane"
+          }
+        },
+        {
+          "text": "Ultimate Arcane (стадию У1/У2 проверить)",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate",
+            "actor": "arcane"
+          }
+        },
+        {
+          "text": "Stagger Finisher",
+          "tone": "vital",
+          "input": {
+            "kind": "finisher",
+            "actor": "si"
+          },
+          "optional": true,
+          "condition": "Противник уже перешёл в Stagger; владелец Finisher на видео требует покадрового подтверждения"
+        },
+        {
+          "text": "Поглотить новый Cryo-пакет",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "arcane"
+          }
+        },
+        {
+          "text": "Третье Combo Si при готовом cooldown",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "si"
+          }
+        }
+      ],
+      "check": "Перед заключительным Combo Si должны совпасть ready CD, Cryo consume и усиления. Finisher — только при Stagger.",
+      "extra": "Maygi не доказывает устойчивый повторный loop с пустыми Ultimates. Слот 1 для Maygi здесь принят Arcane как практическая адаптация Prydwen; авторское утверждение о слоте отдельно не подтверждено."
+    },
+    "prydwenOne": {
+      "person": "si",
+      "title": "Prydwen · 1. Первый Corrosion",
+      "sub": "Исходный action order со схемы, не секунды Rotation Builder",
+      "actions": [
+        {
+          "text": "Первый Cryo / Artful Intent",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "si"
+          }
+        },
+        {
+          "text": "WILL Combo Arcane",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "arcane"
+          }
+        },
+        {
+          "text": "Combo Tangtang (соседний блок)",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "tangtang"
+          }
+        },
+        {
+          "text": "Final Strike для SP до Xaihi Skill",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "xaihi"
+          }
+        },
+        {
+          "text": "Первый полный Final Strike",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "arcane"
+          }
+        },
+        {
+          "text": "Второй полный Final Strike",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "arcane"
+          }
+        },
+        {
+          "text": "Auxiliary Crystal",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "xaihi"
+          }
+        },
+        {
+          "text": "Final Strike под Crystal",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "tangtang"
+          }
+        },
+        {
+          "text": "Final Strike под Crystal",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "si"
+          }
+        },
+        {
+          "text": "Combo после двух Final Strikes",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "xaihi"
+          }
+        },
+        {
+          "text": "Второе Combo Arcane по Cryo",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "arcane"
+          }
+        },
+        {
+          "text": "Второе Combo Tangtang (соседний блок)",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "tangtang"
+          }
+        },
+        {
+          "text": "Поглотить Cryo → Corrosion",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "arcane"
+          }
+        },
+        {
+          "text": "Final Strike во время окна",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "si"
+          }
+        },
+        {
+          "text": "Первое Combo Si",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "si"
+          }
+        }
+      ],
+      "check": "Контроль: до Arcane Skill подготовить Cryo; Xaihi Combo — только после двух FS под Crystal; cooldown между повторными Combo реальный.",
+      "extra": "Prydwen/Gacha Gamer; исходная схема содержит условные блоки по 0,5 с, их нельзя читать как секундомер. Некоторые adjacent Combo могут требовать ожидания/hold."
+    },
+    "prydwenTwo": {
+      "person": "si",
+      "title": "Prydwen · 2. Второй Corrosion",
+      "sub": "Полная подготовка нового пакета перед Stagger",
+      "actions": [
+        {
+          "text": "Новая цепочка до Final Strike",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "tangtang"
+          }
+        },
+        {
+          "text": "Final Strike",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "arcane"
+          }
+        },
+        {
+          "text": "Преобразовать Whirlpool → Waterspout",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "tangtang"
+          }
+        },
+        {
+          "text": "Combo Tangtang",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "tangtang"
+          }
+        },
+        {
+          "text": "Следующий Si Battle Skill по схеме",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "si"
+          },
+          "hint": "Проверить, истёк ли Artful Intent: пока действует, второй Si Skill вызывает Inksoul, а не новый Cryo."
+        },
+        {
+          "text": "Final Strike",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "arcane"
+          }
+        },
+        {
+          "text": "Auxiliary Crystal",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "xaihi"
+          }
+        },
+        {
+          "text": "Final Strike под Crystal",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "tangtang"
+          }
+        },
+        {
+          "text": "Final Strike под Crystal",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "si"
+          }
+        },
+        {
+          "text": "Combo Xaihi",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "xaihi"
+          }
+        },
+        {
+          "text": "WILL Combo Arcane",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "arcane"
+          }
+        },
+        {
+          "text": "Combo Tangtang (соседний блок)",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "tangtang"
+          }
+        },
+        {
+          "text": "Cryo → Corrosion",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "arcane"
+          }
+        },
+        {
+          "text": "Второе Combo Si",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "si"
+          }
+        }
+      ],
+      "check": "Проверить минимум CD Si Combo, число Cryo и окно Stagger; действия не могут занять условные 6–7 с.",
+      "extra": "Сохранена порядок блоков исходного скриншота. Возможность двух Corrosion IV не гарантируется без действительного подсчёта Cryo и статусов."
+    },
+    "prydwenBurst": {
+      "person": "si",
+      "title": "Prydwen · 3. Stagger burst",
+      "sub": "Финальный пакет Cryo и большие Ultimate",
+      "actions": [
+        {
+          "text": "Ultimate Xaihi, Cryo Amp",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate",
+            "actor": "xaihi"
+          }
+        },
+        {
+          "text": "Ultimate Si → сокращение Combo CD Arcane (слот №1)",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate",
+            "actor": "si"
+          }
+        },
+        {
+          "text": "Finisher Tangtang",
+          "tone": "vital",
+          "input": {
+            "kind": "finisher",
+            "actor": "tangtang"
+          },
+          "optional": true,
+          "condition": "Есть Stagger и Finisher доступен"
+        },
+        {
+          "text": "Battle Skill Tangtang",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "tangtang"
+          }
+        },
+        {
+          "text": "Combo Arcane после reset от Si Ultimate",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "arcane"
+          }
+        },
+        {
+          "text": "Ultimate Arcane; проверить стадию У1/У2",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate",
+            "actor": "arcane"
+          }
+        },
+        {
+          "text": "Combo Tangtang",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "tangtang"
+          }
+        },
+        {
+          "text": "Один Ultimate Tangtang (OLDEN STARE)",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate",
+            "actor": "tangtang"
+          },
+          "hint": "На скриншоте следом ещё один зелёный блок Ultimate: назначение не доказано. Его НЕ показываем как второй каст; возможный Dive Attack требует подтверждения."
+        },
+        {
+          "text": "Поглотить накопленный Cryo",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "arcane"
+          }
+        },
+        {
+          "text": "Третье Combo Si при cooldown/trigger",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "si"
+          }
+        },
+        {
+          "text": "Final Strike",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "si"
+          }
+        }
+      ],
+      "check": "Целевой Stagger, действующие усиления и Corrosion. Не читать соседние зелёные блоки как двойной Ultimate Tangtang.",
+      "extra": "Оригинал Prydwen показывает Tangtang Ultimate дважды; второй блок из-за неоднозначности оставлен только в пояснении и canonical research guide, не как исполнимая кнопка. Переводить его в Dive Attack без видеопроверки нельзя."
+    },
+    "recoveryNote": {
+      "person": "si",
+      "title": "Повтор не верифицирован",
+      "sub": "Не является готовым steady-state loop",
+      "actions": [
+        {
+          "text": "Продолжать атаки, восстанавливая SP и Ultimate Energy",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "actor": "si",
+            "repeat": true
+          },
+          "hint": "Это ресурсный промежуток, а не нормализованная DPS-ротация. Начальный Corrosion/setup может требовать перестройки."
+        }
+      ],
+      "check": "Прежде чем повторить opener: восстановить необходимый SP, Ultimate Energy, Cryo setup и Combo cooldown.",
+      "extra": "Одинаковая повторная ось для Maygi и Prydwen пока не опубликована как воспроизводимый endless loop при пустых начальных ресурсах."
+    }
+  }
+}
