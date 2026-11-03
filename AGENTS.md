@@ -8,7 +8,7 @@
 
 ## Производные 24px миниатюры Endfield
 
-Для действий команды Si имеется отдельный [каталог mini PNG](data/portraits/arknights-endfield-mini.json), по четырём операторским ID. Смотри [docs/ENDFIELD_MINI_PORTRAITS.md](docs/ENDFIELD_MINI_PORTRAITS.md). Физические файлы 48×48 px должны отображаться как 24×24 CSS px; `scripts/generate-endfield-minis.mjs --check` проверяет SHA и byte parity с исходниками. Не меняй canonical `characters[].portrait` в rotation book и catalog, когда подключаешь эти миниатюры: использовать отдельное отображение по `input.actor` с fallback на основной портрет. Режим компактного отображения — отдельный UI milestone.
+Для действий команды Si имеется отдельный [каталог mini PNG](data/portraits/arknights-endfield-mini.json), по четырём операторским ID. Смотри [docs/ENDFIELD_MINI_PORTRAITS.md](docs/ENDFIELD_MINI_PORTRAITS.md). Физические файлы 48×48 px должны отображаться как 24×24 CSS px; `scripts/generate-endfield-minis.mjs --check` проверяет SHA и byte parity с исходниками. Не меняй canonical `characters[].portrait` в rotation book и catalog, когда подключаешь эти миниатюры: использовать отдельное отображение по `input.actor` с fallback на основной портрет. С этапа 03 миниатюры 24×24 px рендерятся в каждой Endfield-карточке по `input.actor`, fallback — оригинальный портрет, затем glyph. В WuWa рендере миниатюр Endfield быть не должно; отдельно проверять PWA/offline. Режим компактного отображения — следующий отдельный UI milestone.
 
 ## Канонические изображения WuWa
 
