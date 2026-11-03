@@ -178,3 +178,35 @@ test('mobile Endfield Si: two authored variants, actor-owned input chips and res
  await page.screenshot({path:testInfo.outputPath('endfield-si-mobile.png'),fullPage:true,animations:'disabled'});
  expect(errors).toEqual([]);
 });
+
+
+test('Endfield semantic colors remain distinct in both Si variants and never leak to WuWa',async({page})=>{
+ await page.goto('?team=si-tangtang-arcane-xaihi');
+ const kinds=['skill','combo','final-strike','ultimate','finisher','dive','basic','dodge'];
+ const swatches=await page.evaluate(kinds=>kinds.map(kind=>{
+  const chip=document.querySelector<HTMLElement>('.action.endfield-action.kind-'+kind);
+  if(!chip)throw new Error('Missing kind '+kind);
+  const cap=chip.querySelector<HTMLElement>('.keycap');
+  if(!cap)throw new Error('Missing keycap '+kind);
+  return {kind,color:getComputedStyle(cap).color,border:getComputedStyle(chip).borderLeftColor,background:getComputedStyle(chip).backgroundColor};
+ }),kinds);
+ expect(new Set(swatches.map(x=>x.color)).size).toBe(kinds.length);
+ expect(new Set(swatches.map(x=>x.border)).size).toBe(kinds.length);
+ expect(new Set(swatches.map(x=>x.background)).size).toBe(kinds.length);
+ for(const s of swatches)expect(s.color).toBe(s.border);
+ // Same narrative tone=key no longer makes Skill and Combo share a color.
+ const skill=swatches.find(x=>x.kind==='skill')!;
+ const combo=swatches.find(x=>x.kind==='combo')!;
+ expect(skill.color).not.toBe(combo.color);
+ await page.locator('#control-pc').click();
+ expect(await page.locator('.action.endfield-action.kind-skill .keycap').first().evaluate(el=>getComputedStyle(el).color)).toBe(skill.color);
+ await page.locator('#tabs button').filter({has:page.locator('strong',{hasText:'Prydwen'})}).first().click();
+ for(const kind of ['skill','combo','final-strike','ultimate','finisher','dive']){
+  const chip=page.locator('.action.endfield-action.kind-'+kind).first();
+  await expect(chip).toBeVisible();
+  expect(await chip.locator('.keycap').evaluate(el=>getComputedStyle(el).color)).toBe(swatches.find(x=>x.kind===kind)!.color);
+ }
+ await page.goto('?team=yyxl-suisui-chisa');
+ await expect(page.locator('.action.endfield-action')).toHaveCount(0);
+ await expect(page.locator('.action.key')).not.toHaveCount(0);
+});
