@@ -123,7 +123,7 @@
           }
         },
         {
-          "text": "FS ×2 · открыть Xaihi Combo",
+          "text": "×2 · открыть Xaihi Combo",
           "tone": "normal",
           "input": {
             "kind": "final-strike",
@@ -156,7 +156,7 @@
           }
         },
         {
-          "text": "Промежуточные BA до готовности Combo Arcane",
+          "text": "До готовности Combo Arcane",
           "tone": "normal",
           "input": {
             "kind": "basic",
@@ -200,7 +200,7 @@
       "sub": "Восстановить ресурс и подготовить следующие Combo",
       "actions": [
         {
-          "text": "Промежуточные BA · восстановление ресурсов",
+          "text": "Ожидание ресурсов",
           "tone": "normal",
           "input": {
             "kind": "basic",
@@ -227,7 +227,7 @@
           }
         },
         {
-          "text": "FS ×2 · открыть Xaihi Combo и накопить SP",
+          "text": "×2 · Xaihi Combo и SP",
           "tone": "normal",
           "input": {
             "kind": "final-strike",
@@ -393,7 +393,7 @@
           }
         },
         {
-          "text": "FS · SP до Xaihi Skill",
+          "text": "SP перед Xaihi Skill",
           "tone": "flow",
           "input": {
             "kind": "final-strike",
@@ -401,7 +401,7 @@
           }
         },
         {
-          "text": "FS №1 · первая полная цепочка",
+          "text": "1-я полная цепочка",
           "tone": "flow",
           "input": {
             "kind": "final-strike",
@@ -409,7 +409,7 @@
           }
         },
         {
-          "text": "FS №2 · вторая полная цепочка",
+          "text": "2-я полная цепочка",
           "tone": "flow",
           "input": {
             "kind": "final-strike",
@@ -425,7 +425,7 @@
           }
         },
         {
-          "text": "FS · Tangtang под Crystal",
+          "text": "Под Crystal",
           "tone": "flow",
           "input": {
             "kind": "final-strike",
@@ -433,7 +433,7 @@
           }
         },
         {
-          "text": "FS · Si под Crystal",
+          "text": "Под Crystal",
           "tone": "flow",
           "input": {
             "kind": "final-strike",
@@ -473,7 +473,7 @@
           }
         },
         {
-          "text": "FS · перед Combo Si",
+          "text": "Перед Combo Si",
           "tone": "flow",
           "input": {
             "kind": "final-strike",
@@ -498,7 +498,7 @@
       "sub": "Полная подготовка нового пакета перед Stagger",
       "actions": [
         {
-          "text": "FS · Tangtang, новая цепочка",
+          "text": "Новая полная цепочка",
           "tone": "flow",
           "input": {
             "kind": "final-strike",
@@ -506,7 +506,7 @@
           }
         },
         {
-          "text": "FS · Arcane",
+          "text": "Восстановить SP",
           "tone": "flow",
           "input": {
             "kind": "final-strike",
@@ -539,7 +539,7 @@
           "hint": "Проверить, истёк ли Artful Intent: пока действует, второй Si Skill вызывает Inksoul, а не новый Cryo."
         },
         {
-          "text": "FS · Arcane",
+          "text": "Восстановить SP",
           "tone": "flow",
           "input": {
             "kind": "final-strike",
@@ -555,7 +555,7 @@
           }
         },
         {
-          "text": "FS · Tangtang под Crystal",
+          "text": "Под Crystal",
           "tone": "flow",
           "input": {
             "kind": "final-strike",
@@ -563,7 +563,7 @@
           }
         },
         {
-          "text": "FS · Si под Crystal",
+          "text": "Под Crystal",
           "tone": "flow",
           "input": {
             "kind": "final-strike",
@@ -712,7 +712,7 @@
           }
         },
         {
-          "text": "FS · Si после Combo",
+          "text": "После Combo Si",
           "tone": "flow",
           "input": {
             "kind": "final-strike",
@@ -729,7 +729,7 @@
       "sub": "Не является готовым steady-state loop",
       "actions": [
         {
-          "text": "FS по необходимости · восстановить SP",
+          "text": "По необходимости · набрать SP",
           "tone": "normal",
           "input": {
             "kind": "final-strike",
