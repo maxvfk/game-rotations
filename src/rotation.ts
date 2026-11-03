@@ -6,6 +6,14 @@ const BOOKS:Record<string,RotationBook> = {};
 for(const raw of Object.values(import.meta.glob('../data/rotations/**/*.json',{eager:true,import:'default'}))){const book=raw as RotationBook;BOOKS[book.id]=book}
 const SCHEMES:Record<string,ControlMap> = {};
 for(const raw of Object.values(import.meta.glob('../data/controls/*.json',{eager:true,import:'default'}))){const config=raw as ControlMap;SCHEMES[config.game]=config}
+// Derived mini portraits are kept separate from full portraits and keyed by game + actor ID.
+// Assets come from local public/ paths and are precached for offline PWA use.
+type MiniPortraitRegistry={game:string;characters:Array<{id:string;miniPortrait:string}>};
+const MINI_PORTRAITS=new Map<string,Map<string,string>>();
+for(const raw of Object.values(import.meta.glob('../data/portraits/*-mini.json',{eager:true,import:'default'}))){
+ const registry=raw as MiniPortraitRegistry;
+ MINI_PORTRAITS.set(registry.game,new Map(registry.characters.map(item=>[item.id,item.miniPortrait])));
+}
 const SHELL = "<nav class=\"catalog-back\"><a id=\"catalog-link\" href=\"../\">← Каталог игр и команд</a></nav>\n<div class=\"wrap\">\n <div class=\"topline\"><div class=\"sigil\"><div class=\"emblem\" aria-hidden=\"true\">✦</div><div><div class=\"overline\">FIELD NOTES / GAME ROTATIONS</div><div class=\"little\"><span id=\"route-version\"></span></div></div></div><button class=\"iconbtn\" id=\"info\" title=\"Справка\" aria-label=\"Справка\">ⓘ</button></div>\n <header><h1>Боевые <em>ротации</em></h1><p class=\"hero-sub\">Выбранные ротации команды с подсказками по действиям и ресурсам.</p></header>\n <div class=\"team\" id=\"team\" aria-label=\"Состав команды\"></div>\n <p class=\"section-label\">Выбери ротацию</p><div class=\"tabs\" role=\"tablist\" aria-label=\"Вариант ротации\" id=\"tabs\"></div>\n <div class=\"meta\" id=\"meta\" aria-live=\"polite\"></div>\n <div class=\"input-controls\"><span class=\"control-caption\">ОБОЗНАЧЕНИЯ</span><div class=\"seg input-seg\" id=\"control-selector\" role=\"group\" aria-label=\"Схема управления\"></div><button class=\"slots-btn\" id=\"slots-btn\" type=\"button\" aria-expanded=\"false\" aria-controls=\"slots-panel\">Слоты: 1 / 2 / 3 · изменить</button></div><div id=\"keyhelp\" class=\"keyhelp\" aria-live=\"polite\"></div>\n <div class=\"slots-panel hidden\" id=\"slots-panel\"></div>\n <div class=\"controlbar\"><div class=\"seg\" role=\"group\" aria-label=\"Начало или повторный цикл\"><button id=\"opener\" aria-pressed=\"false\">Первый заход</button><button id=\"loop\" aria-pressed=\"true\">Повтор</button></div><div class=\"control-right\"><button class=\"mini\" id=\"view\" aria-label=\"Переключить режим просмотра\">☷ Все этапы</button><button class=\"mini\" id=\"reset\" aria-label=\"Сбросить прогресс\">↺ Сброс</button></div></div>\n <div class=\"progress-wrap\"><div class=\"progress-row\"><strong id=\"progress-label\">ПРОГРЕСС</strong><span id=\"progress-count\"></span></div><div class=\"progress-track\" role=\"progressbar\" aria-label=\"Выполненные этапы\" aria-valuemin=\"0\" aria-valuemax=\"100\" id=\"progress-track\"><div class=\"progress-fill\" id=\"progress-fill\"></div></div></div>\n <main id=\"route\" class=\"route\" aria-live=\"polite\"></main><div id=\"navigation\" class=\"foot-steps hidden\"><button class=\"nav\" id=\"prev\">← Назад</button><button class=\"nav primary\" id=\"next\">Далее →</button></div>\n <footer class=\"bottom\"><p id=\"control-summary\"></p><p><strong style=\"color:#e5e0e4\">Точность:</strong> <span id=\"route-verification\"></span></p><p class=\"control-footnote\">Иллюстрации принадлежат правообладателям соответствующих игр; изображения хранятся локально для офлайн-режима.</p><a id=\"route-source\" target=\"_blank\" rel=\"noopener noreferrer\">Открыть подробный гайд ↗</a></footer>\n</div>\n\n<div class=\"install hidden\" id=\"install\"><p>Установить библиотеку для офлайн-доступа?</p><button id=\"install-btn\">Установить</button><button id=\"install-close\" class=\"dismiss\" aria-label=\"Закрыть\">×</button></div><div class=\"toast hidden\" id=\"toast\" role=\"status\"></div>";
 const node=(tag:string,cls='',value='')=>{const el=document.createElement(tag);if(cls)el.className=cls;if(value)el.textContent=value;return el};
 const saved=(prefix:string)=>(key:string,def:unknown):any=>{try{const value=localStorage.getItem(prefix+key);return value===null?def:JSON.parse(value)}catch{return def}};
@@ -15,7 +23,7 @@ export function hasRotation(id:string){return Object.hasOwn(BOOKS,id)}
 export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:string){
  const book=BOOKS[id], controlMap=SCHEMES[book?.controls];
  if(!book||!controlMap)throw new Error('Unknown rotation or controls: '+id);
- root.classList.add('rotation-app');root.innerHTML=SHELL;
+ root.classList.add('rotation-app','game-'+book.game);root.innerHTML=SHELL;
  const q=<T extends Element = HTMLElement>(selector:string)=>{const el=root.querySelector<T>(selector);if(!el)throw new Error('Missing rotation element: '+selector);return el};
  q<HTMLAnchorElement>('#catalog-link').href=backUrl;
  q('#route-version').textContent=book.gameVersion;
@@ -160,7 +168,24 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
     // Keep the existing WuWa action palette completely unchanged.
     if(book.game==='arknights-endfield')chip.classList.add('endfield-action','kind-'+a.input.kind);
     chip.title=a.text;
-    chip.append(node('strong','keycap',b.key),node('span','action-label',b.name));
+    if(book.game==='arknights-endfield'){
+     // A team stage may contain several operators; the action's actor wins over stage.person.
+     const actor=a.input.actor?characterById.get(a.input.actor)??person:person;
+     const mini=MINI_PORTRAITS.get(book.game)?.get(actor.id);
+     const primary=node('span','action-primary');
+     const img=document.createElement('img');img.className='action-portrait';
+     img.alt='';img.setAttribute('aria-hidden','true');img.width=24;img.height=24;img.loading='lazy';
+     // Missing registry entry uses the canonical full portrait immediately. A missing/broken
+     // mini file retries that same full portrait exactly once; final failure uses a glyph.
+     img.onerror=()=>{
+      if(img.dataset.fallback!=='full'){
+       img.dataset.fallback='full';img.src=base+actor.portrait;
+      }else img.replaceWith(node('span','action-portrait-fallback',actor.glyph));
+     };
+     img.src=base+(mini||actor.portrait);
+     primary.append(img,node('strong','keycap',b.key));
+     chip.append(primary,node('span','action-label',b.name));
+    }else chip.append(node('strong','keycap',b.key),node('span','action-label',b.name));
     if(a.optional)chip.append(node('span','action-optional',a.condition?'УСЛОВНО':'НЕОБЯЗАТЕЛЬНО'));
     if(a.condition)chip.append(node('span','action-condition','Если: '+a.condition));
     if(a.hint)chip.append(node('span','action-hint',a.hint));

@@ -173,7 +173,8 @@ test('mobile Endfield Si: two authored variants, actor-owned input chips and res
  await expect(page.locator('.stage-title').first()).toHaveText('Повтор не верифицирован');
  await expect(page.locator('.loop-warning')).toContainText('не является универсальным');
  await page.locator('#opener').click();
- await expect(page.locator('.stage img')).toHaveCount(3);
+ await expect(page.locator('.stage-head .portrait img')).toHaveCount(3);
+ await expect(page.locator('.action.endfield-action .action-portrait')).toHaveCount(await page.locator('.action').count());
  expect(await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
  await page.screenshot({path:testInfo.outputPath('endfield-si-mobile.png'),fullPage:true,animations:'disabled'});
  expect(errors).toEqual([]);
@@ -209,4 +210,51 @@ test('Endfield semantic colors remain distinct in both Si variants and never lea
  await page.goto('?team=yyxl-suisui-chisa');
  await expect(page.locator('.action.endfield-action')).toHaveCount(0);
  await expect(page.locator('.action.key')).not.toHaveCount(0);
+});
+
+test('Endfield action mini portraits: original 48px sprites at 24 CSS px, actor ownership and offline PWA',async({page,context},testInfo)=>{
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('?team=si-tangtang-arcane-xaihi');
+ await expect(page.locator('.stage')).toHaveCount(3);
+ const counts=await page.evaluate(()=>({
+  actions:document.querySelectorAll('.action').length,
+  minis:document.querySelectorAll('.action.endfield-action img.action-portrait').length
+ }));
+ expect(counts.actions).toBeGreaterThan(25);
+ expect(counts.minis).toBe(counts.actions);
+ const samples=[
+  ['Открыть Artful Intent','si'],
+  ['Скопировать Cryo через WILL Combo','arcane'],
+  ['Создать Whirlpool','tangtang'],
+  ['Auxiliary Crystal','xaihi']
+ ] as const;
+ for(const [label,id] of samples){
+  const chip=page.locator('.action').filter({hasText:label}).first();
+  const img=chip.locator('.action-portrait');
+  await expect(img).toHaveAttribute('src',new RegExp('arknights-endfield-mini/'+id+'\\.png$'));
+  await img.scrollIntoViewIfNeeded();
+  await expect.poll(()=>img.evaluate(node=>(node as HTMLImageElement).naturalWidth)).toBe(48);
+  expect(await img.evaluate(node=>getComputedStyle(node).width)).toBe('24px');
+  expect(await img.evaluate(node=>getComputedStyle(node).height)).toBe('24px');
+ }
+ await page.screenshot({path:testInfo.outputPath('endfield-si-minis-full-mobile.png'),fullPage:true,animations:'disabled'});
+ await page.locator('#tabs button').filter({has:page.locator('strong',{hasText:'Prydwen'})}).first().click();
+ await expect(page.locator('.action-portrait')).toHaveCount(await page.locator('.action').count());
+ const arcaneCombo=page.locator('.action').filter({hasText:'WILL Combo Arcane'}).first();
+ await expect(arcaneCombo.locator('.action-portrait')).toHaveAttribute('src',/arknights-endfield-mini\/arcane\.png$/);
+ await page.screenshot({path:testInfo.outputPath('endfield-si-minis-prydwen-mobile.png'),fullPage:true,animations:'disabled'});
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
+ // The service worker precaches new PNG assets; the same card must load offline.
+ await page.evaluate(async()=>{await navigator.serviceWorker.ready});
+ await page.reload();
+ await page.waitForFunction(()=>navigator.serviceWorker.controller!==null);
+ await context.setOffline(true);
+ await page.reload({waitUntil:'domcontentloaded'});
+ const offline=page.locator('.action').filter({hasText:'WILL Combo Arcane'}).first().locator('.action-portrait');
+ await offline.scrollIntoViewIfNeeded();
+ await expect.poll(()=>offline.evaluate(node=>(node as HTMLImageElement).naturalWidth)).toBe(48);
+ await context.setOffline(false);
+ await page.goto('?team=yyxl-suisui-chisa');
+ await expect(page.locator('.action-portrait')).toHaveCount(0);
+ expect(errors).toEqual([]);
 });
