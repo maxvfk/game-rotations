@@ -57,3 +57,8 @@
 6. При существенном изменении архитектуры/канонического locator обнови `maxvfk/Games/SOURCES.md` (`S-021`), но для обычного добавления новой команды не трогай project memory.
 
 Для обычной игровой консультации не требуется читать весь этот репозиторий; открывай его только при задаче по сайту.
+
+
+## Compact mode Endfield (2026-11-03)
+
+Для Si-вариантов Maygi и Prydwen в `src/rotation.ts` доступен переключатель `Полный / Компактный`, `localStorage` ключ `game-rotations:v2:<team-id>:compact` (`false` по умолчанию), CSS только под `.game-arknights-endfield.compact-actions`. UI обязан сохранять mini portrait, keycap, `×N` (особенно FS ×2), `hold` из scheme, conditional marker (Stagger), последовательность и stage check/extra; никакие ротации, ID/прогресс/цвета и WuWa не меняются. Полная подпись/condition/hint остаются в title/aria-label. На мобильном от compact режима не должно появляться горизонтального overflow. Следующий этап отдельно — tap-to-expand, если будет нужен.
