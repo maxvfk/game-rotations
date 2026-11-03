@@ -24,3 +24,32 @@ h1{font-family:Georgia,"Times New Roman",serif;font-weight:500;letter-spacing:-.
 .action .action-optional{font-size:9px;letter-spacing:.06em;font-weight:850;color:#f1d3a2}
 .action .action-condition,.action .action-hint{font-size:10px;font-weight:500;line-height:1.4;letter-spacing:0;color:#cfcede;overflow-wrap:anywhere}
 .action .action-hint{color:#b3eee5}
+
+
+/* Endfield action semantics: Prydwen-inspired hues, adapted for the dark
+   Game Rotations theme. Scoped to Endfield so WuWa keeps its original tones.
+   Labels remain meaningful without color; the left stripe aids scanning. */
+.action.endfield-action{
+  --endfield-action-color:#b7c5de;
+  color:#f5f6fc;
+  background:color-mix(in srgb,var(--endfield-action-color) 20%,#171b2a);
+  border:1px solid color-mix(in srgb,var(--endfield-action-color) 65%,#222639);
+  border-left:3px solid var(--endfield-action-color);
+  box-shadow:inset 0 1px 0 #ffffff12;
+}
+.action.endfield-action .keycap{color:var(--endfield-action-color)}
+.action.endfield-action .action-label{color:#e5e8f3}
+.action.endfield-action .action-hint{color:#d6d9e8}
+.action.endfield-action.optional-action{border-style:dashed}
+/* Approximate Prydwen: Battle Skill cyan, Combo violet, FS coral,
+   Ultimate green, Finisher orange; remaining actions get distinct hues. */
+.action.endfield-action.kind-skill{--endfield-action-color:#4bd2ff}
+.action.endfield-action.kind-combo{--endfield-action-color:#be96ff}
+.action.endfield-action.kind-final-strike{--endfield-action-color:#ff7895}
+.action.endfield-action.kind-ultimate{--endfield-action-color:#65e5a2}
+.action.endfield-action.kind-finisher{--endfield-action-color:#ffbe66}
+.action.endfield-action.kind-dive{--endfield-action-color:#50dfc9}
+.action.endfield-action.kind-basic{--endfield-action-color:#bbc7dd}
+.action.endfield-action.kind-dodge{--endfield-action-color:#eed782}
+.action.endfield-action.kind-swap{--endfield-action-color:#f1a3d2}
+.action.endfield-action.kind-auto{--endfield-action-color:#a2aec6}
