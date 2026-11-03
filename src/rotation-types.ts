@@ -1,4 +1,4 @@
-export type InputKind = 'intro' | 'outro' | 'swap' | 'basic' | 'heavy' | 'skill' | 'ultimate' | 'echo' | 'dodge' | 'auto' | 'combo' | 'final-strike' | 'finisher';
+export type InputKind = 'intro' | 'outro' | 'swap' | 'basic' | 'heavy' | 'skill' | 'ultimate' | 'echo' | 'dodge' | 'auto' | 'combo' | 'final-strike' | 'finisher' | 'dive';
 export type Action = {text:string;tone:'normal'|'key'|'vital'|'swap'|'flow'|'sensitive';input:{kind:InputKind;count?:number;repeat?:boolean;target?:string;actor?:string;press?:'tap'|'hold'};optional?:boolean;condition?:string;hint?:string};
 export type RotationStage = {person:string;title:string;sub:string;actions:Action[];check:string;extra:string};
 export type RotationCharacter = {id:string;name:string;glyph:string;color:string;portrait:string;investment:string};
