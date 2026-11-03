@@ -1,6 +1,7 @@
 import {readFileSync,existsSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
 const root=process.cwd(),load=p=>JSON.parse(readFileSync(resolve(root,p),'utf8'));
 const errors=[];
 const manifest=load('data/portraits/wuthering-waves.json');
@@ -81,6 +82,12 @@ for(const team of endCatalogGame?.teams||[]){
   if(!canonical)errors.push('Endfield: unknown operator ID '+character.id+' in '+team.id);
   else if(character.portrait!==canonical.portrait)errors.push('Endfield: mismatched portrait '+team.id+'/'+character.id);
  }
+}
+// Additional derived Endfield mini-registry check: exact byte-for-byte regeneration
+// from the 34 SHA-pinned originals, without modifying the working tree.
+if(!errors.length){
+ try{execFileSync(process.execPath,['scripts/generate-endfield-minis.mjs','--check'],{stdio:'inherit'});}
+ catch(error){errors.push('Endfield mini PNG verification failed: '+error.message)}
 }
 if(errors.length){console.error(errors.join('\n'));process.exit(1)}
 console.log('Validated '+endIds.size+' original Endfield icon PNGs, '+endPageIds.size+' operator pages and the canonical character/portrait bindings.');

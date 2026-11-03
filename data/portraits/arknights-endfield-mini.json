@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "game": "arknights-endfield",
+  "sourceManifest": "data/portraits/arknights-endfield.json",
+  "imageSize": 48,
+  "displaySize": 24,
+  "generator": "scripts/generate-endfield-minis.mjs",
+  "characters": [
+    {
+      "id": "si",
+      "sourcePortrait": "portraits/arknights-endfield/si.png",
+      "miniPortrait": "portraits/arknights-endfield-mini/si.png",
+      "crop": {
+        "x": 35,
+        "y": 35,
+        "width": 96,
+        "height": 96
+      },
+      "sha256": "e98032a76e771639b93ca62ebc10e59314d04f3b7103f2a77191dc1c1ffed6cb"
+    },
+    {
+      "id": "arcane",
+      "sourcePortrait": "portraits/arknights-endfield/arcane.png",
+      "miniPortrait": "portraits/arknights-endfield-mini/arcane.png",
+      "crop": {
+        "x": 25,
+        "y": 35,
+        "width": 96,
+        "height": 96
+      },
+      "sha256": "0e25de18c21378debc7ff2a2c36655e39958e7bd340e2a62cbd39faf218b07bb"
+    },
+    {
+      "id": "tangtang",
+      "sourcePortrait": "portraits/arknights-endfield/tangtang.png",
+      "miniPortrait": "portraits/arknights-endfield-mini/tangtang.png",
+      "crop": {
+        "x": 27,
+        "y": 33,
+        "width": 96,
+        "height": 96
+      },
+      "sha256": "3087fe2a260df72b2ec004223bbf0083779418b988cb6f3a72d0ab97472ab1e8"
+    },
+    {
+      "id": "xaihi",
+      "sourcePortrait": "portraits/arknights-endfield/xaihi.png",
+      "miniPortrait": "portraits/arknights-endfield-mini/xaihi.png",
+      "crop": {
+        "x": 25,
+        "y": 36,
+        "width": 96,
+        "height": 96
+      },
+      "sha256": "13061a19936ce905390241469cdc59fa4e4bed38086afa1e92f6b79cfbf39031"
+    }
+  ]
+}
