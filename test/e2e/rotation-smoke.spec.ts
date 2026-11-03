@@ -144,3 +144,25 @@ test('WuWa portrait gallery remains unchanged after adding Endfield',async({page
  await expect(page.locator('.portrait-card')).toHaveCount(2);
  await expect(page.locator('.portrait-id')).toHaveText(['yangyang','yangyang-xuanling']);
 });
+
+test('mobile Endfield Si: two authored variants, actor-owned input chips and resource-only loop',async({page},testInfo)=>{
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('?team=si-tangtang-arcane-xaihi');
+ await expect(page.locator('#opener')).toHaveAttribute('aria-pressed','true');
+ await expect(page.locator('.stage')).toHaveCount(3);
+ await expect(page.locator('.action-label').filter({hasText:'Arcane (WILL) · Скопировать Cryo'})).toHaveCount(1);
+ await page.locator('#control-pc').click();
+ await expect(page.locator('.action').filter({hasText:'Открыть Artful Intent'}).first().locator('.keycap')).toHaveText('4');
+ await expect(page.locator('.action').filter({hasText:'Скопировать Cryo'}).first().locator('.keycap')).toHaveText('E');
+ await page.locator('#tabs button').filter({has:page.locator('strong',{hasText:'Prydwen'})}).first().click();
+ await expect(page.locator('.stage')).toHaveCount(3);
+ await expect(page.locator('.action-label').filter({hasText:'Один Ultimate Tangtang'})).toHaveCount(1);
+ await page.locator('#loop').click();
+ await expect(page.locator('.stage-title').first()).toHaveText('Повтор не верифицирован');
+ await expect(page.locator('.loop-warning')).toContainText('не является универсальным');
+ await page.locator('#opener').click();
+ await expect(page.locator('.stage img')).toHaveCount(3);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
+ await page.screenshot({path:testInfo.outputPath('endfield-si-mobile.png'),fullPage:true,animations:'disabled'});
+ expect(errors).toEqual([]);
+});
