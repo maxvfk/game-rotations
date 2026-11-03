@@ -156,6 +156,23 @@ describe('real shared renderer (actual mounted DOM)',()=>{
 
 
 describe('Endfield Si: source-separated rotations and owned semantic actions',()=>{
+ it('labels full completed chains as FS and reserves BA for cooldown fillers',()=>{
+  mount('si-tangtang-arcane-xaihi');
+  const chips=[...root().querySelectorAll<HTMLElement>('.action')];
+  const firstXaihiFs=chips.find(el=>el.querySelector('.action-label')?.textContent?.includes('×2 · открыть Xaihi Combo'))!;
+  expect(firstXaihiFs.querySelector('.keycap')?.textContent).toBe('FS');
+  expect(firstXaihiFs.querySelector('.action-hint')?.textContent).toContain('две полные BA-цепочки');
+  const filler=chips.find(el=>el.querySelector('.action-label')?.textContent?.includes('До готовности Combo Arcane'))!;
+  expect(filler.querySelector('.keycap')?.textContent).toContain('BA');
+  const secondXaihiFs=chips.find(el=>el.querySelector('.action-label')?.textContent?.includes('×2 · Xaihi Combo и SP'))!;
+  expect(secondXaihiFs.querySelector('.keycap')?.textContent).toBe('FS');
+  selectTab('Prydwen');
+  expect(keycaps().filter(k=>k==='FS')).toHaveLength(12);
+  expect(keycaps().some(k=>k.includes('BA'))).toBe(false);
+  click('#loop');
+  expect(keycaps()).toContain('FS');
+ });
+
  it('renders Maygi cold-start as three team phases with real operator owner labels',()=>{
   mount('si-tangtang-arcane-xaihi');
   expect(element('#opener').getAttribute('aria-pressed')).toBe('true');
@@ -190,7 +207,8 @@ describe('Endfield Si: source-separated rotations and owned semantic actions',()
   expect(sequence[ultimateIdx+1]).toBe('Tangtang · Dive Attack · завершение OLDEN STARE');
   expect(sequence.filter(x=>x.includes('Ultimate Tangtang'))).toHaveLength(1);
   expect(keycaps()[ultimateIdx+1]).toBe('Dive');
-  expect(labels()).toContain('Tangtang · Final Strike под Crystal');
+  expect(labels()).toContain('Tangtang · Под Crystal');
+  expect(keycaps()[labels().indexOf('Tangtang · Под Crystal')]).toBe('FS');
   click('#loop');
   expect(stageNames()).toEqual(['Повтор не верифицирован']);
   expect(element('.loop-warning').textContent).toContain('не является универсальным');
