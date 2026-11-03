@@ -226,7 +226,10 @@
                           "ultimate",
                           "echo",
                           "dodge",
-                          "auto"
+                          "auto",
+                          "combo",
+                          "final-strike",
+                          "finisher"
                         ]
                       },
                       "count": {
@@ -245,6 +248,9 @@
                           "tap",
                           "hold"
                         ]
+                      },
+                      "actor": {
+                        "$ref": "#/$defs/id"
                       }
                     }
                   },
