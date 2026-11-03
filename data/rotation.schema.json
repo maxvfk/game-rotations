@@ -229,7 +229,8 @@
                           "auto",
                           "combo",
                           "final-strike",
-                          "finisher"
+                          "finisher",
+                          "dive"
                         ]
                       },
                       "count": {
