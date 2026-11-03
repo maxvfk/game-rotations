@@ -5,7 +5,7 @@
   "title": "Si / Tangtang / WILL Arcane / Xaihi",
   "gameVersion": "Global live 1.6 (2026-11-03)",
   "source": "https://github.com/maxvfk/Games/blob/main/guides/arknights-endfield/SI_TANGTANG_ARCANE_XAIHI_ROTATIONS.md",
-  "verificationNote": "Две отдельные TC-оси: Maygi (16.10.2026) — длинный full-burst с управлением Combo; Prydwen/Gacha Gamer (15.10.2026) — boss/Stagger route. Последовательности сохранены как source-derived PARTIAL, а не verified optimal: время действий, 0-energy start, повторный цикл, второй Si Skill требует проверки; второй зелёный блок Tangtang теперь подтверждён по видео как Dive Attack после Ultimate. Командные стадии показывают оператора каждой кнопки отдельно.",
+  "verificationNote": "Две отдельные TC-оси: Maygi (16.10.2026) — длинный full-burst с управлением Combo; Prydwen/Gacha Gamer (15.10.2026) — boss/Stagger route. Последовательности сохранены как source-derived PARTIAL, а не verified optimal: время действий, 0-energy start, повторный цикл, второй Si Skill требует проверки; второй зелёный блок Tangtang теперь подтверждён по видео как Dive Attack после Ultimate. Командные стадии показывают оператора каждой кнопки отдельно. Обозначения унифицированы: FS означает полную цепочку BA до завершающего удара; BA оставлено для промежуточных ударов/ожидания. FS активного оператора возвращает SP, в отличие от промежуточных BA.",
   "characters": [
     {
       "id": "arcane",
@@ -123,14 +123,13 @@
           }
         },
         {
-          "text": "Обычные цепочки до активации Xaihi Combo",
+          "text": "×2 · открыть Xaihi Combo",
           "tone": "normal",
           "input": {
-            "kind": "basic",
-            "actor": "si",
-            "repeat": true
+            "kind": "final-strike",
+            "actor": "si"
           },
-          "hint": "За время Xaihi Skill необходимы два настоящих Final Strike; это не два коротких нажатия."
+          "hint": "Доведи две полные BA-цепочки до попадания Final Strike, пока действует Xaihi Battle Skill. Не два обычных удара; нужно управлять оператором, который выполняет FS."
         },
         {
           "text": "Преобразовать Whirlpool → Waterspout",
@@ -157,13 +156,14 @@
           }
         },
         {
-          "text": "Атаки до почти готового Combo Arcane",
+          "text": "До готовности Combo Arcane",
           "tone": "normal",
           "input": {
             "kind": "basic",
             "actor": "si",
             "repeat": true
-          }
+          },
+          "hint": "Здесь цель — дождаться cooldown, а не обязательно получить FS. Если цепочка закончится FS, он дополнительно восстановит SP."
         },
         {
           "text": "Поглотить Cryo → Corrosion",
@@ -191,7 +191,7 @@
           }
         }
       ],
-      "check": "До Arcane Battle Skill проверить фактическое число Cryo stacks и готовность Combo Si.",
+      "check": "Для Xaihi Combo требуются именно два завершённых FS под Auxiliary Crystal, не просто BA. Перед Arcane Battle Skill проверить фактическое число Cryo stacks и готовность Combo Si.",
       "extra": "Maygi (08:56–10:50). Не тратить Xaihi Combo раньше Tangtang Combo; Arcane Combo после Corrosion не нажимать на нежелательном элементе. Следующая стадия требует реальных SP/CD и не привязана к условным секундам."
     },
     "maygiRebuild": {
@@ -200,13 +200,14 @@
       "sub": "Восстановить ресурс и подготовить следующие Combo",
       "actions": [
         {
-          "text": "Обычные атаки / ожидание ресурсов",
+          "text": "Ожидание ресурсов",
           "tone": "normal",
           "input": {
             "kind": "basic",
             "actor": "si",
             "repeat": true
-          }
+          },
+          "hint": "Ожидание SP/cooldowns. Если полностью завершаешь цепочку, её последний удар будет FS; тогда он вернёт SP."
         },
         {
           "text": "Повторный Battle Skill по схеме Maygi",
@@ -226,13 +227,13 @@
           }
         },
         {
-          "text": "Атаки до нужного SP и Combo",
+          "text": "×2 · Xaihi Combo и SP",
           "tone": "normal",
           "input": {
-            "kind": "basic",
-            "actor": "si",
-            "repeat": true
-          }
+            "kind": "final-strike",
+            "actor": "si"
+          },
+          "hint": "После повторного Xaihi Skill провести два полноценных Final Strike активным оператором. При нехватке 100 SP продолжать BA/FS до ресурса; не считать обычные BA отдельными FS."
         },
         {
           "text": "Combo Xaihi, если подготовлены два Final Strike",
@@ -275,7 +276,7 @@
           }
         }
       ],
-      "check": "Ко второму Arcane Skill проверить расходуемые Cryo, Si Combo CD и состояние Whirlpool.",
+      "check": "После повторного Xaihi Skill получить два FS для Combo; до второго Arcane Skill проверить расходуемые Cryo, Si Combo CD и состояние Whirlpool.",
       "extra": "Механический порядок Maygi; точный момент второго Si Skill остаётся pending stage-state verification (Artful Intent/Inksoul). Ultimate Tangtang используется здесь как часть длинного цикла, не короткой волны."
     },
     "maygiBurst": {
@@ -392,7 +393,7 @@
           }
         },
         {
-          "text": "Final Strike для SP до Xaihi Skill",
+          "text": "SP перед Xaihi Skill",
           "tone": "flow",
           "input": {
             "kind": "final-strike",
@@ -400,7 +401,7 @@
           }
         },
         {
-          "text": "Первый полный Final Strike",
+          "text": "1-я полная цепочка",
           "tone": "flow",
           "input": {
             "kind": "final-strike",
@@ -408,7 +409,7 @@
           }
         },
         {
-          "text": "Второй полный Final Strike",
+          "text": "2-я полная цепочка",
           "tone": "flow",
           "input": {
             "kind": "final-strike",
@@ -424,7 +425,7 @@
           }
         },
         {
-          "text": "Final Strike под Crystal",
+          "text": "Под Crystal",
           "tone": "flow",
           "input": {
             "kind": "final-strike",
@@ -432,7 +433,7 @@
           }
         },
         {
-          "text": "Final Strike под Crystal",
+          "text": "Под Crystal",
           "tone": "flow",
           "input": {
             "kind": "final-strike",
@@ -472,7 +473,7 @@
           }
         },
         {
-          "text": "Final Strike во время окна",
+          "text": "Перед Combo Si",
           "tone": "flow",
           "input": {
             "kind": "final-strike",
@@ -497,7 +498,7 @@
       "sub": "Полная подготовка нового пакета перед Stagger",
       "actions": [
         {
-          "text": "Новая цепочка до Final Strike",
+          "text": "Новая полная цепочка",
           "tone": "flow",
           "input": {
             "kind": "final-strike",
@@ -505,7 +506,7 @@
           }
         },
         {
-          "text": "Final Strike",
+          "text": "Восстановить SP",
           "tone": "flow",
           "input": {
             "kind": "final-strike",
@@ -538,7 +539,7 @@
           "hint": "Проверить, истёк ли Artful Intent: пока действует, второй Si Skill вызывает Inksoul, а не новый Cryo."
         },
         {
-          "text": "Final Strike",
+          "text": "Восстановить SP",
           "tone": "flow",
           "input": {
             "kind": "final-strike",
@@ -554,7 +555,7 @@
           }
         },
         {
-          "text": "Final Strike под Crystal",
+          "text": "Под Crystal",
           "tone": "flow",
           "input": {
             "kind": "final-strike",
@@ -562,7 +563,7 @@
           }
         },
         {
-          "text": "Final Strike под Crystal",
+          "text": "Под Crystal",
           "tone": "flow",
           "input": {
             "kind": "final-strike",
@@ -711,7 +712,7 @@
           }
         },
         {
-          "text": "Final Strike",
+          "text": "После Combo Si",
           "tone": "flow",
           "input": {
             "kind": "final-strike",
@@ -728,17 +729,16 @@
       "sub": "Не является готовым steady-state loop",
       "actions": [
         {
-          "text": "Продолжать атаки, восстанавливая SP и Ultimate Energy",
+          "text": "По необходимости · набрать SP",
           "tone": "normal",
           "input": {
-            "kind": "basic",
-            "actor": "si",
-            "repeat": true
+            "kind": "final-strike",
+            "actor": "si"
           },
-          "hint": "Это ресурсный промежуток, а не нормализованная DPS-ротация. Начальный Corrosion/setup может требовать перестройки."
+          "hint": "Это не подтверждённый повторный цикл. Нужно довести цепочки BA до FS управляемым оператором ради SP; Ultimate Energy восстанавливается другими действиями (Battle/Combo Skills), а не самим FS."
         }
       ],
-      "check": "Прежде чем повторить opener: восстановить необходимый SP, Ultimate Energy, Cryo setup и Combo cooldown.",
+      "check": "Перед повторным стартом восстановить SP (в том числе через FS), Ultimate Energy (через Battle/Combo Skills), Cryo setup и Combo cooldown.",
       "extra": "Одинаковая повторная ось для Maygi и Prydwen пока не опубликована как воспроизводимый endless loop при пустых начальных ресурсах."
     }
   }

@@ -120,3 +120,12 @@
 В Endfield controls обязательные v1-кнопки остаются, новые `combo/finalStrike/finisher/dive` разрешены как дополнительные поля. Для PC Battle Skill определяется по позиции `actor` (1–4), Ultimate — удержанием этой клавиши; Combo — E. На данном этапе публикуются `terms` и `pc`. **PS5 mapping не публикуем**, пока не проверено разделение operator Skill/Ultimate/Combo и switch inputs на действующем билде.
 
 Для Si обе выбранные ротации `partial`: пользовательский выбор подтверждён, но 0-SP/0-Energy cold start, steady-loop, real animation durations и второй Si Skill **не прошли независимую валидацию**. Два зелёных блока Prydwen подтверждены пользователем по видео Gacha Gamer как **один Tangtang Ultimate → Dive Attack**; `dive` — отдельный input.kind, а не второй `ultimate`. В `loop` помещена одна карточка ресурсного восстановления с предупреждением, а не ложное повторение opener.
+
+
+### Endfield: BA и Final Strike — единая семантика карточек
+
+Для Endfield `final-strike` обозначает **цель всей цепочки BA до завершающего удара**. Это **не отдельная кнопка после BA** и не дополнительное действие сверх полной цепочки. Кнопка в Terms: `FS`, в PC: `ЛКМ → FS`. При полном завершении цепочки FS активного (controlled) оператора восстанавливает SP, наносит Stagger и может выполнить условия конкретного Combo; FS вне активного управления этого не делает. Источники: [официальный tutorial](https://endfield.games/en/tutorials/battle/), [Prydwen Combat Basics](https://www.prydwen.gg/arknights-endfield/guides/combat-basics).
+
+При описании source rotation не записывай `basic ×N`, если автор ожидает именно Final Strike. Для Xaihi `FS ×2` означает **две завершённые BA-цепочки** активного оператора под соответствующим Battle Skill, а не два удара. `input.kind:"final-strike"` с текстом `×2 · подготовить Xaihi Combo` отображается как **FS | ×2 · ...**; это всё ещё одна UI-карточка с конкретной целью, а не сокрытие двух отдельных BA.
+
+`basic` сохраняется для **промежуточных ударов/заполнения времени** до Combo cooldown, когда завершение цепочки не обязательно. Варианты Maygi/Prydwen для Si теперь применяют одинаковую систему: BA = filler, FS = завершение полной цепочки/условие/ресурс. `finisher` (первый удар по Staggered врагу) и `dive` (удар в прыжке после Ultimate Tangtang) — другие типы.

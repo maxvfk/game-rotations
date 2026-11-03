@@ -151,11 +151,17 @@ test('mobile Endfield Si: two authored variants, actor-owned input chips and res
  await expect(page.locator('#opener')).toHaveAttribute('aria-pressed','true');
  await expect(page.locator('.stage')).toHaveCount(3);
  await expect(page.locator('.action-label').filter({hasText:'Arcane (WILL) · Скопировать Cryo'})).toHaveCount(1);
+ const xaihiFs=page.locator('.action').filter({hasText:'×2 · открыть Xaihi Combo'}).first();
+ await expect(xaihiFs.locator('.keycap')).toHaveText('FS');
+ const fillerBa=page.locator('.action').filter({hasText:'До готовности Combo Arcane'}).first();
+ await expect(fillerBa.locator('.keycap')).toContainText('BA');
+ await expect(page.locator('.action').filter({hasText:'×2 · Xaihi Combo и SP'}).first().locator('.keycap')).toHaveText('FS');
  await page.locator('#control-pc').click();
  await expect(page.locator('.action').filter({hasText:'Открыть Artful Intent'}).first().locator('.keycap')).toHaveText('4');
  await expect(page.locator('.action').filter({hasText:'Скопировать Cryo'}).first().locator('.keycap')).toHaveText('E');
  await page.locator('#tabs button').filter({has:page.locator('strong',{hasText:'Prydwen'})}).first().click();
  await expect(page.locator('.stage')).toHaveCount(3);
+ await expect(page.locator('.action').filter({hasText:'Tangtang · Под Crystal'}).first().locator('.keycap')).toHaveText('ЛКМ → FS');
  const tangtangUlt=page.locator('.action-label').filter({hasText:'Ultimate Tangtang · OLDEN STARE'});
  await expect(tangtangUlt).toHaveCount(1);
  const tangtangDive=page.locator('.action-label').filter({hasText:'Dive Attack · завершение OLDEN STARE'});
