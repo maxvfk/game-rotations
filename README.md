@@ -32,6 +32,12 @@ npm run catalog:sync -- --team my-team --write                   # обнови�
 
 `npm run validate:portraits` проверяет все 34 PNG по полному SHA-256 и соответствие IDs; импортированное изображение хранится локально и кешируется PWA. **Составы и ротации Endfield ещё не опубликованы; нужен отдельный live-kit/controls review.**
 
+## Миниатюры действий Endfield — стартовый набор
+
+В отдельном [реестре миниатюр](data/portraits/arknights-endfield-mini.json) закреплены **4 PNG по 48×48 px** (Si, Arcane, Tangtang, Xaihi), подготовленные из исходных 34 портретов. Для карточек действий будет использован размер **24×24 CSS px**. Исходные portraits, команда, controls и UI не менялись.
+
+[Посмотреть настоящие миниатюры и параметры crop](docs/ENDFIELD_MINI_PORTRAITS.md). Проверка `npm run validate:portraits` включает побайтовую регенерацию этих PNG по pinned original SHA-256. Файлы уже подготовлены, но **миниатюры ещё не подключены к действиям**; Compact mode остаётся следующим отдельным этапом.
+
 ## Каталог миниатюр WuWa
 
 **61 проверенная связка «персонаж → миниатюра»** из сохранённой страницы Prydwen. Открой [документацию портретов](docs/PORTRAITS.md), [JSON-базу](data/portraits/wuthering-waves.json) или визуальный каталог по адресу https://maxvfk.github.io/game-rotations/?portraits=wuthering-waves. Ссылка есть и на главной странице. Не загружай портреты заново при добавлении WuWa-ротаций.
