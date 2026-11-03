@@ -278,7 +278,10 @@ test('Endfield compact mode: smaller mobile chips, preserved FS ×2 / Hold / Sta
  await expect(fs.locator('.action-portrait')).toBeVisible();
  const compactHeight=await fs.evaluate(el=>el.getBoundingClientRect().height);
  expect(compactHeight).toBeLessThan(fullHeight-8);
- await expect(page.locator('.checks').first()).toBeVisible();
+ // Stage notes are only for full mode; compact view is the action-only cheat sheet.
+ await expect(page.locator('.checks').first()).toBeHidden();
+ await expect(page.locator('.extras').first()).toBeHidden();
+ await expect(page.locator('.stage-title').first()).toBeVisible();
  await page.screenshot({path:testInfo.outputPath('endfield-si-compact-maygi-mobile.png'),fullPage:true,animations:'disabled'});
  await page.locator('#control-pc').click();
  await expect(fs.locator('.keycap')).toHaveText('ЛКМ → FS');
@@ -292,6 +295,9 @@ test('Endfield compact mode: smaller mobile chips, preserved FS ×2 / Hold / Sta
  const held=page.locator('.action').filter({hasText:'Ultimate Si →'}).first();
  await expect(held.locator('.keycap')).toHaveText('удерж. 4');
  await expect(page.locator('.stage')).toHaveCount(3);
+ await expect(page.locator('.checks')).toHaveCount(3);
+ await expect(page.locator('.checks').first()).toBeHidden();
+ await expect(page.locator('.extras').first()).toBeHidden();
  await expect(page.locator('.action.endfield-action .action-portrait')).toHaveCount(await page.locator('.action').count());
  expect(await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
  await page.screenshot({path:testInfo.outputPath('endfield-si-compact-prydwen-mobile.png'),fullPage:true,animations:'disabled'});
@@ -315,6 +321,8 @@ test('Endfield compact mode: smaller mobile chips, preserved FS ×2 / Hold / Sta
  await page.locator('#layout-full').click();
  await expect(page.locator('#app')).not.toHaveClass(/compact-actions/);
  await expect(page.locator('.action-label').first()).toBeVisible();
+ await expect(page.locator('.checks').first()).toBeVisible();
+ await expect(page.locator('.extras').first()).toBeVisible();
  await page.reload();
  await expect(page.locator('#layout-full')).toHaveAttribute('aria-pressed','true');
  await page.goto('?team=yyxl-suisui-chisa');
