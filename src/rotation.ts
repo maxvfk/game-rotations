@@ -46,6 +46,8 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
  const initialSlots=get('slots',book.defaultSlots) as Record<string,string>;
  if(initialSlots && slotIds.every(k=>values.includes(initialSlots[k])) && new Set(slotIds.map(k=>initialSlots[k])).size===slotIds.length)slots={...initialSlots};
  let controls=String(get('controls',controlMap.schemes[0]?.id??'terms'));
+ // Full by default; one setting per team, shared by Maygi and Prydwen.
+ let compact=book.game==='arknights-endfield'&&get('compact',false)===true;
  if(!controlMap.schemes.some(s=>s.id===controls))controls=controlMap.schemes[0].id;
  let slotsOpen=false;
  const selector=q('#control-selector');
@@ -54,6 +56,21 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
   btn.setAttribute('aria-pressed',String(controls===scheme.id));
   btn.onclick=()=>{controls=scheme.id;set('controls',controls);render()};
   selector.append(btn);
+ }
+ // Endfield-only density control lives next to Terms/PC and does not affect WuWa.
+ if(book.game==='arknights-endfield'){
+  const density=node('div','density-controls');
+  density.append(node('span','control-caption','ВИД'));
+  const densityButtons=node('div','seg compact-seg');
+  for(const [value,label] of [['full','Полный'],['compact','Компактный']] as const){
+   const button=node('button','',label) as HTMLButtonElement;
+   button.type='button';button.id='layout-'+value;
+   button.setAttribute('aria-pressed',String(compact===(value==='compact')));
+   button.onclick=()=>{compact=value==='compact';set('compact',compact);render()};
+   densityButtons.append(button);
+  }
+  densityButtons.setAttribute('role','group');densityButtons.setAttribute('aria-label','Вид карточек действий');
+  density.append(densityButtons);selector.after(density);
  }
  const panel=q('#slots-panel');const selectByPerson=new Map<string,HTMLSelectElement>();
  for(const person of book.characters){
@@ -128,6 +145,11 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
   timeout=window.setTimeout(()=>t.classList.add('hidden'),2300);
  }
  function render(){
+  root.classList.toggle('compact-actions',compact);
+  if(book.game==='arknights-endfield'){
+   q('#layout-full').setAttribute('aria-pressed',String(!compact));
+   q('#layout-compact').setAttribute('aria-pressed',String(compact));
+  }
   renderControls();renderSlots();
   const tabs=q('#tabs');tabs.replaceChildren();
   for(const v of book.variants){
@@ -184,6 +206,20 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
      };
      img.src=base+(mini||actor.portrait);
      primary.append(img,node('strong','keycap',b.key));
+     // Keep mechanical modifiers when descriptive labels are visually hidden.
+     // Explicit ×N in source text means N whole actions/FS chains, not N BA taps.
+     const repeat=a.text.match(/×\s*(\d+)/u)?.[1];
+     const modifier=repeat?'×'+repeat:(a.input.count&&a.input.count>1?'×'+a.input.count:'');
+     if(modifier&&!b.key.includes(modifier))primary.append(node('span','action-compact-modifier',modifier));
+     if(a.optional||a.condition){
+      const marker=a.condition&&/stagger/i.test(a.condition)?'Stagger':a.condition?'Условно':'Опц.';
+      primary.append(node('span','action-compact-condition',marker));
+     }
+     chip.title=[b.name,a.condition?'Если: '+a.condition:'',a.hint||''].filter(Boolean).join('\n');
+     if(compact){
+      chip.setAttribute('role','group');
+      chip.setAttribute('aria-label',[actor.name,b.key,a.text,a.condition?'Если: '+a.condition:'',a.hint||''].filter(Boolean).join(' · '));
+     }
      chip.append(primary,node('span','action-label',b.name));
     }else chip.append(node('strong','keycap',b.key),node('span','action-label',b.name));
     if(a.optional)chip.append(node('span','action-optional',a.condition?'УСЛОВНО':'НЕОБЯЗАТЕЛЬНО'));
