@@ -156,6 +156,51 @@ describe('real shared renderer (actual mounted DOM)',()=>{
 
 
 describe('Endfield Si: source-separated rotations and owned semantic actions',()=>{
+ it('renders 24px mini portrait for each Endfield action based on input.actor, not stage.person',()=>{
+  mount('si-tangtang-arcane-xaihi');
+  const cells=[...root().querySelectorAll<HTMLElement>('.action.endfield-action')];
+  expect(root().querySelectorAll('.action-portrait')).toHaveLength(cells.length);
+  expect(cells.length).toBeGreaterThan(25);
+  const cases=[
+   ['Открыть Artful Intent','si'],
+   ['Скопировать Cryo через WILL Combo','arcane'],
+   ['Создать Whirlpool','tangtang'],
+   ['Auxiliary Crystal','xaihi']
+  ];
+  for(const [description,id] of cases){
+   const chip=cells.find(el=>el.querySelector('.action-label')?.textContent?.includes(description))!;
+   const img=chip.querySelector<HTMLImageElement>('.action-portrait')!;
+   expect(img.getAttribute('src')).toBe('/game-rotations/portraits/arknights-endfield-mini/'+id+'.png');
+   expect(img.getAttribute('width')).toBe('24');expect(img.getAttribute('height')).toBe('24');
+   expect(img.getAttribute('alt')).toBe('');
+   expect(chip.querySelector('.action-primary .keycap')).not.toBeNull();
+  }
+  const stage=element('.stage');
+  expect(stage.querySelector('.portrait img')?.getAttribute('src')).toContain('/portraits/arknights-endfield/si.png');
+  // The Arcane action resides in Si's stage: action actor is NOT stage owner.
+  const arcane=cells.find(el=>el.querySelector('.action-label')?.textContent?.includes('Скопировать Cryo'))!;
+  expect(arcane.querySelector<HTMLImageElement>('.action-portrait')?.src).toContain('/arcane.png');
+  selectTab('Prydwen');
+  expect(root().querySelectorAll('.action-portrait')).toHaveLength(root().querySelectorAll('.action').length);
+  click('#loop');
+  expect(root().querySelector('.action-portrait')?.getAttribute('src')).toContain('/si.png');
+  mount('yyxl-suisui-chisa');
+  expect(root().querySelectorAll('.action-portrait')).toHaveLength(0);
+  expect(root().querySelectorAll('.action-primary')).toHaveLength(0);
+ });
+ it('falls back once to the original portrait, then to an unobtrusive glyph without broken icon',()=>{
+  mount('si-tangtang-arcane-xaihi');
+  const chip=[...root().querySelectorAll<HTMLElement>('.action')].find(el=>el.querySelector('.action-label')?.textContent?.includes('Скопировать Cryo'))!;
+  const img=chip.querySelector<HTMLImageElement>('.action-portrait')!;
+  expect(img.getAttribute('src')).toContain('/arknights-endfield-mini/arcane.png');
+  img.dispatchEvent(new Event('error'));
+  expect(img.getAttribute('src')).toBe('/game-rotations/portraits/arknights-endfield/arcane.png');
+  expect(img.dataset.fallback).toBe('full');
+  img.dispatchEvent(new Event('error'));
+  expect(chip.querySelector('.action-portrait')).toBeNull();
+  expect(chip.querySelector('.action-portrait-fallback')?.textContent).toBe('✧');
+  expect(chip.querySelector('.keycap')).not.toBeNull();
+ });
  it('assigns colors by Endfield action kind, not by narrative tone, and does not color WuWa',()=>{
   mount('si-tangtang-arcane-xaihi');
   const kinds=['skill','combo','final-strike','ultimate','finisher','dive','basic','dodge'];
