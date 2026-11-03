@@ -125,9 +125,57 @@
       "shortName": "Endfield",
       "mark": "▣",
       "accent": "#a8c0c8",
-      "status": "planned",
-      "subtitle": "Skill и Combo-последовательности",
-      "teams": []
+      "status": "available",
+      "subtitle": "Cryo: Si hyper · Maygi / Prydwen",
+      "teams": [
+        {
+          "id": "si-tangtang-arcane-xaihi",
+          "name": "Si / Tangtang / Arcane / Xaihi",
+          "subtitle": "Maygi · Full-burst | Prydwen · Boss/Stagger",
+          "characters": [
+            {
+              "id": "arcane",
+              "name": "Arcane (WILL)",
+              "investment": "P1 · сигнатура",
+              "portrait": "portraits/arknights-endfield/arcane.png"
+            },
+            {
+              "id": "tangtang",
+              "name": "Tangtang",
+              "investment": "Инвестиции не уточнены",
+              "portrait": "portraits/arknights-endfield/tangtang.png"
+            },
+            {
+              "id": "xaihi",
+              "name": "Xaihi",
+              "investment": "Инвестиции не уточнены",
+              "portrait": "portraits/arknights-endfield/xaihi.png"
+            },
+            {
+              "id": "si",
+              "name": "Si",
+              "investment": "P0S1 · Jade Vessel",
+              "portrait": "portraits/arknights-endfield/si.png"
+            }
+          ],
+          "status": "research-adapted",
+          "statusDescription": "Две опубликованные TC-ротации. SP/CD/UGE, реальное время, повторный цикл и двусмысленные исходные блоки ещё не проверены в бою.",
+          "gameVersion": "Global live 1.6 (2026-11-03)",
+          "source": "https://github.com/maxvfk/Games/blob/main/guides/arknights-endfield/SI_TANGTANG_ARCANE_XAIHI_ROTATIONS.md",
+          "variants": [
+            {
+              "id": "maygi",
+              "name": "Maygi",
+              "verification": "partial"
+            },
+            {
+              "id": "prydwen",
+              "name": "Prydwen",
+              "verification": "partial"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "neverness-to-everness",
