@@ -116,3 +116,34 @@ h1{font-family:Georgia,"Times New Roman",serif;font-weight:500;letter-spacing:-.
  .rotation-app.game-arknights-endfield.compact-actions .action.endfield-action{padding:5px 6px;min-height:36px}
  .rotation-app.game-arknights-endfield.compact-actions .action.endfield-action .keycap{font-size:12px}
 }
+
+
+/* Endfield-only stage headings: concise quick-reference, without progress UI.
+   Full mode retains the original full portrait/title/subtitle. */
+.rotation-app.game-arknights-endfield .stage-compact-line{display:none}
+.rotation-app.game-arknights-endfield.compact-actions .stage-head{
+  padding:12px 16px 4px;
+  gap:0;
+  align-items:center;
+}
+.rotation-app.game-arknights-endfield.compact-actions .stage-head .portrait,
+.rotation-app.game-arknights-endfield.compact-actions .stage-head .stage-num,
+.rotation-app.game-arknights-endfield.compact-actions .stage-head .stage-title,
+.rotation-app.game-arknights-endfield.compact-actions .stage-head .stage-sub{display:none}
+.rotation-app.game-arknights-endfield.compact-actions .stage-compact-line{
+  display:block;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  color:#eae6f2;
+  font-size:13px;
+  line-height:1.45;
+  font-weight:800;
+  letter-spacing:.015em;
+}
+.rotation-app.game-arknights-endfield.compact-actions .stage-body{padding:7px 16px 15px}
+@media(max-width:360px){
+ .rotation-app.game-arknights-endfield.compact-actions .stage-head{padding:10px 12px 3px}
+ .rotation-app.game-arknights-endfield.compact-actions .stage-body{padding:6px 12px 13px}
+ .rotation-app.game-arknights-endfield.compact-actions .stage-compact-line{font-size:12px}
+}
