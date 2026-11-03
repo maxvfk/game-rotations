@@ -42,7 +42,8 @@
         "repeat": "BA · серия",
         "combo": "Combo",
         "finalStrike": "FS",
-        "finisher": "Finisher"
+        "finisher": "Finisher",
+        "dive": "Dive"
       },
       "slotKeys": {
         "1": "",
@@ -89,7 +90,8 @@
         "repeat": "ЛКМ · серия",
         "combo": "E",
         "finalStrike": "ЛКМ → FS",
-        "finisher": "Stagger · действие"
+        "finisher": "Stagger · действие",
+        "dive": "Space → ЛКМ"
       },
       "slotKeys": {
         "1": "1",
