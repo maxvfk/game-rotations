@@ -23,7 +23,7 @@ export function hasRotation(id:string){return Object.hasOwn(BOOKS,id)}
 export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:string){
  const book=BOOKS[id], controlMap=SCHEMES[book?.controls];
  if(!book||!controlMap)throw new Error('Unknown rotation or controls: '+id);
- root.classList.add('rotation-app');root.innerHTML=SHELL;
+ root.classList.add('rotation-app','game-'+book.game);root.innerHTML=SHELL;
  const q=<T extends Element = HTMLElement>(selector:string)=>{const el=root.querySelector<T>(selector);if(!el)throw new Error('Missing rotation element: '+selector);return el};
  q<HTMLAnchorElement>('#catalog-link').href=backUrl;
  q('#route-version').textContent=book.gameVersion;
