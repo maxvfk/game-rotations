@@ -107,7 +107,10 @@ h1{font-family:Georgia,"Times New Roman",serif;font-weight:500;letter-spacing:-.
   white-space:nowrap;
 }
 .rotation-app.game-arknights-endfield.compact-actions .action.endfield-action .keycap{font-size:14px}
-.rotation-app.game-arknights-endfield.compact-actions .sequence{row-gap:5px;column-gap:4px;margin-bottom:9px}
+/* Compact mode is a quick-reference view: hide both stage-wide prose blocks
+   while preserving their source content and full-mode visibility. */
+.rotation-app.game-arknights-endfield.compact-actions .stage-body > :is(.checks,.extras){display:none}
+.rotation-app.game-arknights-endfield.compact-actions .sequence{row-gap:5px;column-gap:4px;margin-bottom:0}
 .rotation-app.game-arknights-endfield.compact-actions .arr{padding:0;font-size:12px}
 @media(max-width:360px){
  .rotation-app.game-arknights-endfield.compact-actions .action.endfield-action{padding:5px 6px;min-height:36px}
