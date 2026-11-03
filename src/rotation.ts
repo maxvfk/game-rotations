@@ -71,6 +71,10 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
   if(k==='outro'||k==='swap')return {key:isDescriptive()?(k==='outro'?'Outro':'Swap'):slotKey(input.target||actor.id),name:namePrefix+x};
   const controlKind=k==='final-strike'?'finalStrike':k;
   let key=scheme.keys[controlKind]||'?',name=x;
+  // Endfield's 1–4 skill buttons are operator-specific. This is not a character swap.
+  if(book.game==='arknights-endfield'&&!isDescriptive()&&(k==='skill'||k==='ultimate')){
+   key=k==='ultimate'?'удерж. '+slotKey(actor.id):slotKey(actor.id);
+  }
   if(k==='basic'&&input.repeat)key=scheme.keys.repeat||key;
   else if(k==='basic'&&input.count&&input.count>1)key+=' ×'+input.count;
   if(k==='skill'&&x.startsWith('E · '))name=x.slice(4);
