@@ -156,7 +156,13 @@ test('mobile Endfield Si: two authored variants, actor-owned input chips and res
  await expect(page.locator('.action').filter({hasText:'Скопировать Cryo'}).first().locator('.keycap')).toHaveText('E');
  await page.locator('#tabs button').filter({has:page.locator('strong',{hasText:'Prydwen'})}).first().click();
  await expect(page.locator('.stage')).toHaveCount(3);
- await expect(page.locator('.action-label').filter({hasText:'Один Ultimate Tangtang'})).toHaveCount(1);
+ const tangtangUlt=page.locator('.action-label').filter({hasText:'Ultimate Tangtang · OLDEN STARE'});
+ await expect(tangtangUlt).toHaveCount(1);
+ const tangtangDive=page.locator('.action-label').filter({hasText:'Dive Attack · завершение OLDEN STARE'});
+ await expect(tangtangDive).toHaveCount(1);
+ const actions=await page.locator('.action-label').allTextContents();
+ const ultimateIdx=actions.indexOf('Tangtang · Ultimate Tangtang · OLDEN STARE');
+ expect(actions[ultimateIdx+1]).toBe('Tangtang · Dive Attack · завершение OLDEN STARE');
  await page.locator('#loop').click();
  await expect(page.locator('.stage-title').first()).toHaveText('Повтор не верифицирован');
  await expect(page.locator('.loop-warning')).toContainText('не является универсальным');

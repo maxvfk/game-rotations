@@ -5,7 +5,7 @@
   "title": "Si / Tangtang / WILL Arcane / Xaihi",
   "gameVersion": "Global live 1.6 (2026-11-03)",
   "source": "https://github.com/maxvfk/Games/blob/main/guides/arknights-endfield/SI_TANGTANG_ARCANE_XAIHI_ROTATIONS.md",
-  "verificationNote": "Две отдельные TC-оси: Maygi (16.10.2026) — длинный full-burst с управлением Combo; Prydwen/Gacha Gamer (15.10.2026) — boss/Stagger route. Последовательности сохранены как source-derived PARTIAL, а не verified optimal: время действий, 0-energy start, повторный цикл, второй Si Skill и второй значок Tangtang Ultimate требуют проверки. Командные стадии показывают оператора каждой кнопки отдельно.",
+  "verificationNote": "Две отдельные TC-оси: Maygi (16.10.2026) — длинный full-burst с управлением Combo; Prydwen/Gacha Gamer (15.10.2026) — boss/Stagger route. Последовательности сохранены как source-derived PARTIAL, а не verified optimal: время действий, 0-energy start, повторный цикл, второй Si Skill требует проверки; второй зелёный блок Tangtang теперь подтверждён по видео как Dive Attack после Ultimate. Командные стадии показывают оператора каждой кнопки отдельно.",
   "characters": [
     {
       "id": "arcane",
@@ -70,7 +70,7 @@
       "label": "Prydwen",
       "sub": "Boss / Stagger",
       "type": "Boss route",
-      "intro": "Prydwen/Gacha Gamer: Arcane №1, два Corrosion-пакета, Final Strikes под Xaihi и Stagger burst. Времена Builder условны. Спорный повторный Tangtang Ultimate исключён из нажатий и оставлен в оговорках.",
+      "intro": "Prydwen/Gacha Gamer: Arcane №1, два Corrosion-пакета, Final Strikes под Xaihi и Stagger burst. Времена Builder условны. Подтверждённая по видео последовательность Tangtang Ultimate → Dive Attack показана отдельными действиями.",
       "verification": "partial",
       "opener": [
         "prydwenOne",
@@ -677,13 +677,22 @@
           }
         },
         {
-          "text": "Один Ultimate Tangtang (OLDEN STARE)",
+          "text": "Ultimate Tangtang · OLDEN STARE",
           "tone": "vital",
           "input": {
             "kind": "ultimate",
             "actor": "tangtang"
           },
-          "hint": "На скриншоте следом ещё один зелёный блок Ultimate: назначение не доказано. Его НЕ показываем как второй каст; возможный Dive Attack требует подтверждения."
+          "hint": "Сразу после одного Ultimate выполнить Dive Attack; подтверждено пользователем по объясняющему видео Gacha Gamer."
+        },
+        {
+          "text": "Dive Attack · завершение OLDEN STARE",
+          "tone": "sensitive",
+          "input": {
+            "kind": "dive",
+            "actor": "tangtang"
+          },
+          "hint": "Именно Dive Attack следует за Ultimate в видео, хотя на схеме Prydwen оба блока выглядят как Ultimate."
         },
         {
           "text": "Поглотить накопленный Cryo",
@@ -710,8 +719,8 @@
           }
         }
       ],
-      "check": "Целевой Stagger, действующие усиления и Corrosion. Не читать соседние зелёные блоки как двойной Ultimate Tangtang.",
-      "extra": "Оригинал Prydwen показывает Tangtang Ultimate дважды; второй блок из-за неоднозначности оставлен только в пояснении и canonical research guide, не как исполнимая кнопка. Переводить его в Dive Attack без видеопроверки нельзя."
+      "check": "Целевой Stagger, действующие усиления и Corrosion. После Ultimate Tangtang сразу Dive Attack; это не второй Ultimate cast.",
+      "extra": "Пользователь сверил видео Gacha Gamer и подтвердил: два соседних зелёных блока Prydwen — Ultimate Tangtang → Dive Attack. Действия не привязаны к реальным секундам Builder, SP/CD и повторяемость не прошли независимую проверку."
     },
     "recoveryNote": {
       "person": "si",

@@ -180,12 +180,16 @@ describe('Endfield Si: source-separated rotations and owned semantic actions',()
   expect(arcaneCombo.querySelector('.keycap')?.textContent).toBe('E');
   expect(labels()).not.toContain('Swap → Arcane');
  });
- it('keeps Prydwen distinct, flags ambiguous second Tangtang Ultimate and avoids a fake loop',()=>{
+ it('keeps Prydwen distinct, uses confirmed Tangtang Ultimate to Dive Attack sequence and avoids a fake loop',()=>{
   mount('si-tangtang-arcane-xaihi');
   selectTab('Prydwen');
   expect(stageNames()).toEqual(['Prydwen · 1. Первый Corrosion','Prydwen · 2. Второй Corrosion','Prydwen · 3. Stagger burst']);
-  expect(labels()).toContain('Tangtang · Один Ultimate Tangtang (OLDEN STARE)');
-  expect(labels().filter(x=>x.includes('Ultimate Tangtang'))).toHaveLength(1);
+  const sequence=labels();
+  const ultimateIdx=sequence.indexOf('Tangtang · Ultimate Tangtang · OLDEN STARE');
+  expect(ultimateIdx).toBeGreaterThan(0);
+  expect(sequence[ultimateIdx+1]).toBe('Tangtang · Dive Attack · завершение OLDEN STARE');
+  expect(sequence.filter(x=>x.includes('Ultimate Tangtang'))).toHaveLength(1);
+  expect(keycaps()[ultimateIdx+1]).toBe('Dive');
   expect(labels()).toContain('Tangtang · Final Strike под Crystal');
   click('#loop');
   expect(stageNames()).toEqual(['Повтор не верифицирован']);
