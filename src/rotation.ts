@@ -156,6 +156,9 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
    for(const [j,a] of s.actions.entries()){
     if(j)seq.append(node('span','arr','›'));
     const b=binding(a,person),chip=node('span','action '+(a.tone==='normal'?'':a.tone)+(b.kind?' '+b.kind:'')+(controls==='ps5'?' ps5':''));
+    // Endfield uses gameplay action-kind colors (not the unrelated narrative tone).
+    // Keep the existing WuWa action palette completely unchanged.
+    if(book.game==='arknights-endfield')chip.classList.add('endfield-action','kind-'+a.input.kind);
     chip.title=a.text;
     chip.append(node('strong','keycap',b.key),node('span','action-label',b.name));
     if(a.optional)chip.append(node('span','action-optional',a.condition?'УСЛОВНО':'НЕОБЯЗАТЕЛЬНО'));
