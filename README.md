@@ -36,7 +36,7 @@ npm run catalog:sync -- --team my-team --write                   # обнови�
 
 В отдельном [реестре миниатюр](data/portraits/arknights-endfield-mini.json) закреплены **4 PNG по 48×48 px** (Si, Arcane, Tangtang, Xaihi), подготовленные из исходных 34 портретов. Для карточек действий будет использован размер **24×24 CSS px**. Исходные portraits, команда, controls и UI не менялись.
 
-[Посмотреть настоящие миниатюры и параметры crop](docs/ENDFIELD_MINI_PORTRAITS.md). Проверка `npm run validate:portraits` включает побайтовую регенерацию этих PNG по pinned original SHA-256. Файлы уже подготовлены, но **миниатюры ещё не подключены к действиям**; Compact mode остаётся следующим отдельным этапом.
+[Посмотреть настоящие миниатюры и параметры crop](docs/ENDFIELD_MINI_PORTRAITS.md). Проверка `npm run validate:portraits` включает побайтовую регенерацию этих PNG по pinned original SHA-256. Миниатюры **подключены к действиям Endfield по `input.actor`** с fallback на полный портрет и далее на glyph. В обоих вариантах Si показываются 24×24 px рядом с кнопкой действия; **Compact mode** остаётся следующим отдельным этапом.
 
 ## Каталог миниатюр WuWa
 
