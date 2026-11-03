@@ -2,7 +2,7 @@
 import {beforeEach,describe,expect,it} from 'vitest';
 import {hasRotation,mountRotation} from '../src/rotation';
 
-type TeamId='hsin-suoming-shorekeeper'|'yyxl-suisui-chisa';
+type TeamId='hsin-suoming-shorekeeper'|'yyxl-suisui-chisa'|'si-tangtang-arcane-xaihi';
 const root=()=>document.querySelector<HTMLDivElement>('#app')!;
 const element=(selector:string)=>{const found=root().querySelector<HTMLElement>(selector);if(!found)throw new Error('Missing '+selector);return found};
 const click=(selector:string)=>element(selector).click();
@@ -152,4 +152,43 @@ describe('real shared renderer (actual mounted DOM)',()=>{
   expect(element('.loop-warning').textContent).toContain('Quickswap');
  });
 
+});
+
+
+describe('Endfield Si: source-separated rotations and owned semantic actions',()=>{
+ it('renders Maygi cold-start as three team phases with real operator owner labels',()=>{
+  mount('si-tangtang-arcane-xaihi');
+  expect(element('#opener').getAttribute('aria-pressed')).toBe('true');
+  expect(stageNames()).toEqual(['Maygi · 1. Cryo → Corrosion','Maygi · 2. Второй пакет','Maygi · 3. Burst и Stagger']);
+  expect(labels()).toContain('Arcane (WILL) · Скопировать Cryo через WILL Combo');
+  expect(keycaps()).toContain('Combo');
+  expect(keycaps()).toContain('Dive');
+  expect(keycaps()).toContain('Finisher');
+  expect(element('#route-source').getAttribute('href')).toContain('SI_TANGTANG_ARCANE_XAIHI_ROTATIONS.md');
+ });
+ it('maps Endfield operator-owned skills and Ultimates to PC position, without simulating a swap',()=>{
+  mount('si-tangtang-arcane-xaihi');
+  click('#control-pc');
+  const cells=[...root().querySelectorAll<HTMLElement>('.action')];
+  const arcaneSkill=cells.find(el=>el.querySelector('.action-label')?.textContent?.includes('Поглотить Cryo → Corrosion'))!;
+  const siSkill=cells.find(el=>el.querySelector('.action-label')?.textContent?.includes('Открыть Artful Intent'))!;
+  const xaihiUlt=cells.find(el=>el.querySelector('.action-label')?.textContent?.includes('Ultimate: Cryo Amp'))!;
+  const arcaneCombo=cells.find(el=>el.querySelector('.action-label')?.textContent?.includes('Скопировать Cryo через WILL Combo'))!;
+  expect(arcaneSkill.querySelector('.keycap')?.textContent).toBe('1');
+  expect(siSkill.querySelector('.keycap')?.textContent).toBe('4');
+  expect(xaihiUlt.querySelector('.keycap')?.textContent).toBe('удерж. 3');
+  expect(arcaneCombo.querySelector('.keycap')?.textContent).toBe('E');
+  expect(labels()).not.toContain('Swap → Arcane');
+ });
+ it('keeps Prydwen distinct, flags ambiguous second Tangtang Ultimate and avoids a fake loop',()=>{
+  mount('si-tangtang-arcane-xaihi');
+  selectTab('Prydwen');
+  expect(stageNames()).toEqual(['Prydwen · 1. Первый Corrosion','Prydwen · 2. Второй Corrosion','Prydwen · 3. Stagger burst']);
+  expect(labels()).toContain('Tangtang · Один Ultimate Tangtang (OLDEN STARE)');
+  expect(labels().filter(x=>x.includes('Ultimate Tangtang'))).toHaveLength(1);
+  expect(labels()).toContain('Tangtang · Final Strike под Crystal');
+  click('#loop');
+  expect(stageNames()).toEqual(['Повтор не верифицирован']);
+  expect(element('.loop-warning').textContent).toContain('не является универсальным');
+ });
 });
