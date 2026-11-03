@@ -173,7 +173,8 @@ test('mobile Endfield Si: two authored variants, actor-owned input chips and res
  await expect(page.locator('.stage-title').first()).toHaveText('Повтор не верифицирован');
  await expect(page.locator('.loop-warning')).toContainText('не является универсальным');
  await page.locator('#opener').click();
- await expect(page.locator('.stage img')).toHaveCount(3);
+ await expect(page.locator('.stage-head .portrait img')).toHaveCount(3);
+ await expect(page.locator('.action.endfield-action .action-portrait')).toHaveCount(await page.locator('.action').count());
  expect(await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
  await page.screenshot({path:testInfo.outputPath('endfield-si-mobile.png'),fullPage:true,animations:'disabled'});
  expect(errors).toEqual([]);
