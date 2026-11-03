@@ -74,6 +74,7 @@ if (catalog.schemaVersion!==1 || !Array.isArray(catalog.games)) {
       if(!chars.has(stage.person))add(path,'stage '+stageId+' uses unknown character '+stage.person);
       for(const [index,a] of stage.actions.entries()){
         const k=a.input.kind,label='stage '+stageId+' action '+index;
+        if(a.input.actor!==undefined && !chars.has(a.input.actor))add(path,label+' unknown action actor '+a.input.actor);
         if(['outro','swap'].includes(k) && !chars.has(a.input.target))add(path,label+' invalid or absent target '+a.input.target);
         if(!['outro','swap'].includes(k) && a.input.target!==undefined)add(path,label+' target only allowed for outro/swap');
         if(a.input.count!==undefined && k!=='basic')add(path,label+' count only allowed for basic');
