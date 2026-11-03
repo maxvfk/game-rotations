@@ -156,6 +156,22 @@ describe('real shared renderer (actual mounted DOM)',()=>{
 
 
 describe('Endfield Si: source-separated rotations and owned semantic actions',()=>{
+ it('assigns colors by Endfield action kind, not by narrative tone, and does not color WuWa',()=>{
+  mount('si-tangtang-arcane-xaihi');
+  const kinds=['skill','combo','final-strike','ultimate','finisher','dive','basic','dodge'];
+  for(const kind of kinds){
+   expect(root().querySelector('.action.endfield-action.kind-'+kind)).not.toBeNull();
+  }
+  // These previously looked alike because both use tone=key; now semantics win.
+  expect(root().querySelector('.action.key.endfield-action.kind-skill')).not.toBeNull();
+  expect(root().querySelector('.action.key.endfield-action.kind-combo')).not.toBeNull();
+  selectTab('Prydwen');
+  for(const kind of ['skill','combo','final-strike','ultimate','finisher','dive']){
+   expect(root().querySelector('.action.endfield-action.kind-'+kind)).not.toBeNull();
+  }
+  mount('yyxl-suisui-chisa');
+  expect(root().querySelectorAll('.endfield-action')).toHaveLength(0);
+ });
  it('labels full completed chains as FS and reserves BA for cooldown fillers',()=>{
   mount('si-tangtang-arcane-xaihi');
   const chips=[...root().querySelectorAll<HTMLElement>('.action')];
