@@ -2,6 +2,7 @@
 // Images are exact, SHA-pinned game sprites from data/arts/arknights-endfield.json.
 // Never infer an Arts state from a combat action sequence or a team name.
 import artsRegistry from '../data/arts/arknights-endfield.json';
+import './arts-indicators.css';
 
 export type ArtsElement=keyof typeof artsRegistry.inflictions;
 export type ArtsReaction=keyof typeof artsRegistry.reactions;
