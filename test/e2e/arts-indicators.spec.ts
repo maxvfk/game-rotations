@@ -34,8 +34,26 @@ test('Endfield Arts preview: original stack ring sprites, mobile sizes, unknowns
  await expect.poll(()=>rx.evaluate(i=>(i as HTMLImageElement).naturalWidth)).toBe(73);
  await expect.poll(()=>rx.evaluate(i=>(i as HTMLImageElement).naturalHeight)).toBe(72);
  await page.screenshot({path:testInfo.outputPath('endfield-arts-preview-32-mobile.png'),fullPage:true,animations:'disabled'});
+ // Explicit visual reference for the Corrosion-only trial. The other three
+ // reaction types keep their original side-by-side level treatment.
+ await page.locator('#arts-reaction').selectOption('corrosion');
+ await page.locator('#arts-level').selectOption('2');
+ const corrosion=selected.locator('.arts-reaction');
+ await expect(corrosion).toHaveClass(/arts-corrosion-level-overlay/);
+ const overlay=corrosion.locator('.arts-reaction-level');
+ await expect(overlay).toHaveText('II');
+ await expect(overlay).toHaveCSS('position','absolute');
+ await expect(overlay).toHaveCSS('color','rgb(195, 227, 84)');
+ await expect(overlay).toHaveCSS('background-color','rgba(0, 0, 0, 0)');
+ const iconRect=await corrosion.locator('img').boundingBox();
+ const levelRect=await overlay.boundingBox();
+ expect(iconRect).not.toBeNull();expect(levelRect).not.toBeNull();
+ expect(levelRect!.x).toBeGreaterThan(iconRect!.x+iconRect!.width*.25);
+ expect(levelRect!.y).toBeGreaterThan(iconRect!.y+iconRect!.height*.35);
+ await page.screenshot({path:testInfo.outputPath('endfield-corrosion-level-overlay-390px.png'),fullPage:true,animations:'disabled'});
  await page.setViewportSize({width:320,height:730});
  expect(await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
+ await expect(overlay).toBeVisible();
  await page.screenshot({path:testInfo.outputPath('endfield-arts-preview-320px.png'),fullPage:true,animations:'disabled'});
  await page.locator('#arts-stacks').selectOption('unknown');
  await page.locator('#arts-level').selectOption('unknown');
