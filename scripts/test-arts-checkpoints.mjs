@@ -68,7 +68,7 @@ failure('zero-source observed',stage=>{
 failure('same-element reaction',stage=>{
  stage.artsCheckpoints[0].status.element='nature';
 },'DIFFERENT preexisting Infliction');
-failure('WuWa forbidden',()=>{},'only for Endfield');
+assert(checkArtsCheckpoints('wuthering-waves','prydwenOne',fixture()).some(x=>x.includes('only for Endfield')));
 const negativeSchema=clone(book);
 negativeSchema.stages.prydwenOne.artsCheckpoints[0].status.stacks=7;
 assert.equal(validate(negativeSchema),false,'schema must reject invalid stack count');
