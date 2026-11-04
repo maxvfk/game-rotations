@@ -1,0 +1,53 @@
+/* Shared status icons, independent of any particular rotation or stage. */
+.arts-indicator{--arts-icon-size:28px;display:inline-flex;align-items:center;vertical-align:middle;gap:3px;white-space:nowrap;min-height:var(--arts-icon-size);max-width:100%}
+.arts-indicator-img{display:block;flex:0 0 var(--arts-icon-size);width:var(--arts-icon-size);height:var(--arts-icon-size);object-fit:contain}
+.arts-empty-mark,.arts-indicator-fallback{display:inline-grid;place-items:center;flex:0 0 var(--arts-icon-size);width:var(--arts-icon-size);height:var(--arts-icon-size);border:1px dashed #7b8298;border-radius:50%;background:#1a2130;color:#b9c1d4;font-size:12px;line-height:1;font-weight:750}
+.arts-reaction-level{display:inline-block;min-width:13px;text-align:center;color:#f4dca9;font-size:12px;font-weight:900;font-variant-numeric:tabular-nums;line-height:1.2;letter-spacing:.01em}
+.arts-level-unknown .arts-reaction-level{color:#b9c1d4}
+.arts-icon-unavailable .arts-indicator-fallback{border-color:#a76372;color:#f6a7b2}
+
+/* Standalone preview route: ?arts=arknights-endfield. Does not affect team cards. */
+.arts-preview-root{max-width:980px;padding:24px clamp(14px,4vw,32px) 64px;margin:0 auto;color:#eff1fa}
+.arts-preview-root .arts-back{display:inline-block;color:#f0d6a5;font-size:13px;margin-bottom:13px}
+.arts-preview-root h1{font:500 clamp(28px,6vw,48px)/1.13 Georgia,serif;letter-spacing:-.04em;margin:0 0 12px}
+.arts-preview-root .arts-lead{font-size:14px;color:#b5bfd1;line-height:1.55;max-width:720px;margin:0 0 22px}
+.arts-preview-root .arts-notice{border-left:3px solid #dab879;border-radius:8px;background:#30291f;color:#ead8ba;padding:10px 13px;font-size:12px;line-height:1.6;margin-bottom:20px}
+.arts-preview-root .arts-panel{border:1px solid #ffffff2a;background:#171d2a;border-radius:18px;padding:18px;margin:0 0 18px;min-width:0}
+.arts-preview-root h2{font-size:17px;margin:0 0 15px;color:#f0ecf7}
+.arts-preview-root .arts-control-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 14px}
+.arts-preview-root .arts-control-label{font-size:12px;color:#afbbce;font-weight:800;letter-spacing:.04em}
+.arts-preview-root .arts-size-options{display:inline-flex;gap:4px;border:1px solid #545b6f;border-radius:10px;padding:4px;background:#111623}
+.arts-preview-root .arts-size-button{font-size:12px;background:transparent;color:#b6c0d4;border:1px solid transparent;border-radius:7px;padding:8px 12px;min-width:55px;font-weight:800}
+.arts-preview-root .arts-size-button[aria-pressed=true]{background:#354251;color:#fce4b3;border-color:#bca477}
+.arts-preview-root .arts-selectors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:16px}
+.arts-preview-root .arts-select-label{display:flex;flex-direction:column;gap:5px;color:#bbc3d2;font-size:12px;font-weight:750;min-width:0}
+.arts-preview-root .arts-select{width:100%;min-width:0;min-height:40px;border:1px solid #626a7f;border-radius:10px;background:#252b3c;color:#f1f2ff;padding:8px;font:inherit;font-size:13px}
+.arts-preview-root .arts-selected{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.arts-preview-root .arts-selected-card{display:flex;align-items:center;gap:10px;min-width:0;border:1px solid #454e61;background:#222938;padding:12px;border-radius:12px}
+.arts-preview-root .arts-selected-icon{display:inline-grid;place-items:center;min-width:40px}
+.arts-preview-root .arts-selected-label{display:flex;flex-direction:column;min-width:0;gap:3px;font-size:12px;color:#cbd2df}
+.arts-preview-root .arts-selected-label strong{font-size:13px;color:#f6e6c3}
+.arts-preview-root .arts-stack-matrix{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.arts-preview-root .arts-matrix-row{border:1px solid #484e62;border-radius:12px;padding:8px 5px 10px;background:#222839;text-align:center;min-width:0}
+.arts-preview-root .arts-matrix-name{font-size:12px;font-weight:800;margin-bottom:9px;color:#e9e7f2}
+.arts-preview-root .arts-matrix-icons{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));justify-items:center;gap:3px}
+.arts-preview-root .arts-matrix-unit{min-width:0;display:flex;align-items:center;flex-direction:column;gap:4px}
+.arts-preview-root .arts-matrix-unit small{font-size:10px;color:#aab6cd}
+.arts-preview-root .arts-reaction-matrix{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.arts-preview-root .arts-reaction-card{display:flex;gap:10px;min-width:0;align-items:center;border:1px solid #474f62;background:#222839;border-radius:12px;padding:10px}
+.arts-preview-root .arts-reaction-name{font-size:12px;font-weight:750;color:#e7ecf9;overflow-wrap:anywhere}
+.arts-preview-root .arts-reaction-meta{font-size:10px;color:#a7b6c8;margin-top:3px}
+.arts-preview-root .arts-smallnote{font-size:12px;color:#aeb9cd;line-height:1.6;margin:12px 0 0}
+.arts-preview-root .arts-footer{font-size:12px;color:#a7b1c7;line-height:1.6;margin-top:15px}
+.arts-preview-root .arts-footer a{color:#f0d6a5;text-decoration:underline}
+@media(max-width:620px){
+ .arts-preview-root .arts-stack-matrix{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .arts-preview-root .arts-panel{padding:13px}
+}
+@media(max-width:370px){
+ .arts-preview-root .arts-selectors{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .arts-preview-root .arts-selected{grid-template-columns:1fr}
+ .arts-preview-root .arts-reaction-matrix{grid-template-columns:1fr}
+ .arts-preview-root .arts-matrix-icons{gap:0}
+ .arts-preview-root .arts-matrix-row{padding:8px 2px}
+}
