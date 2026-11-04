@@ -148,3 +148,11 @@
 
 
 **Исключение Endfield (визуальное, 2026-11-03):** Endfield `book.game==='arknights-endfield'` не использует чеклист выполнения. У него не отображаются `#reset`, `.progress-wrap` и `.complete`, а при навигации по этапам не читаются/записываются `done:*`. Сохраняется только индекс `at:*` для `По шагам` и выбор прочих настроек. Старые legacy done-ключи Endfield сохраняются в localStorage без удаления. WuWa сохраняет полноценное отслеживание прогресса. В компактном режиме Endfield заголовок этапа — одна строка `NN / NN · краткое название` без большого портрета и `stage.sub`; в полном режиме показываются оригинальные `stage.title`, `stage.sub` и stage portrait. Краткое имя получается удалением префикса TC и `N.` из `stage.title` когда он есть; для неизвестного формата сохраняется исходное имя.
+
+## Arts checkpoints: Endfield (этап 03)
+
+Для этапов Endfield необязателен `artsCheckpoints` — массив семантических контрольных точек с полями `id`, `anchor:{actionIndex,relative:'before'|'after'}`, `status:{kind,element|reaction,stacks|level,assessment}`, `evidence:{basis,url,note}` и необязательными `dependsOn`, `condition`, `subject:'primary-target'`. Индекс действия начинается с **0**. Поле не нужно добавлять в WuWa.
+
+`status.assessment`: `target` — цель TC (не наблюдение), `conditional` — только при указанном `condition`, `unknown` — числовое `null`, `observed` — подтверждённое измерение с `evidence.basis:'combat-observation'`, измеренным количеством и encounter/starting-state context. Случай `0` не эквивалентен `null`. Переходы `before`/`after` не являются одновременно активными статусами. Не вычислять автоматически `level` из количества нажиманий; учитывать сохранение более сильного уровня Corrosion при refresh.
+
+Ключи картинок/иконок, UI-оформления или римских цифр в `artsCheckpoints` запрещены строгой JSON Schema. Внешний вид контролирует `src/arts-indicators.ts`. Подробнее: [ENDFIELD_ARTS_CHECKPOINTS.md](ENDFIELD_ARTS_CHECKPOINTS.md). Командный renderer игнорирует metadata до отдельного этапа интеграции.
