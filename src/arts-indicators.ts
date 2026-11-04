@@ -83,9 +83,9 @@ export function createArtsReaction(options:{
  const span=el('span','arts-indicator arts-reaction') as HTMLSpanElement;
  span.dataset.kind='reaction';span.dataset.reaction=reaction;
  span.dataset.level=level===null?'unknown':String(level);
- // Prototype only for Corrosion: keep the source PNG unchanged and overlay its
- // known Roman level in the bottom-right. Other reactions retain existing UI.
- if(reaction==='corrosion'&&level!==null)span.classList.add('arts-corrosion-level-overlay');
+ // All four source-pinned reaction sprites share the approved in-icon level
+ // treatment; unknown levels retain the gallery's explicit unknown state.
+ if(level!==null)span.classList.add('arts-reaction-level-overlay');
  span.setAttribute('role','img');
  span.setAttribute('aria-label',REACTION_NAMES[reaction]+' · уровень '+(level===null?'неизвестен':levelText));
  span.title=REACTION_NAMES[reaction]+' · '+(level===null?'уровень неизвестен':'уровень '+levelText);

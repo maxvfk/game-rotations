@@ -41,7 +41,7 @@ test('Endfield: local Arts outcomes after Arcane Skill, not stage headers',async
  await expect(prydwen.locator('.action-primary > .arts-action-annotations')).toHaveCount(1);
  await expect(prydwen.locator('.arts-action-result .arts-reaction img')).toHaveAttribute('src',/reactions\/corrosion\.png$/);
  await expect(prydwen.locator('.arts-reaction-level')).toHaveText('IV');
- await expect(prydwen.locator('.arts-reaction')).toHaveClass(/arts-corrosion-level-overlay/);
+ await expect(prydwen.locator('.arts-reaction')).toHaveClass(/arts-reaction-level-overlay/);
  await expect(prydwen.locator('.arts-reaction-level')).toHaveCSS('position','absolute');
  await expect(prydwen.locator('.arts-conditional')).toHaveCount(0);
  await expect(prydwen.locator('.arts-action-pre-word')).toHaveCount(0);

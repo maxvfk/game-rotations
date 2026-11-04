@@ -34,29 +34,37 @@ test('Endfield Arts preview: original stack ring sprites, mobile sizes, unknowns
  await expect.poll(()=>rx.evaluate(i=>(i as HTMLImageElement).naturalWidth)).toBe(73);
  await expect.poll(()=>rx.evaluate(i=>(i as HTMLImageElement).naturalHeight)).toBe(72);
  await page.screenshot({path:testInfo.outputPath('endfield-arts-preview-32-mobile.png'),fullPage:true,animations:'disabled'});
- // Explicit visual reference for the Corrosion-only trial. The other three
- // reaction types keep their original side-by-side level treatment.
- await page.locator('#arts-reaction').selectOption('corrosion');
- await page.locator('#arts-level').selectOption('2');
- const corrosion=selected.locator('.arts-reaction');
- await expect(corrosion).toHaveClass(/arts-corrosion-level-overlay/);
- const overlay=corrosion.locator('.arts-reaction-level');
- await expect(overlay).toHaveText('II');
- await expect(overlay).toHaveCSS('position','absolute');
- await expect(overlay).toHaveCSS('color','rgb(195, 227, 84)');
- await expect(overlay).toHaveCSS('background-color','rgba(0, 0, 0, 0)');
- const iconRect=await corrosion.locator('img').boundingBox();
- const levelRect=await overlay.boundingBox();
- expect(iconRect).not.toBeNull();expect(levelRect).not.toBeNull();
- expect(levelRect!.x).toBeGreaterThan(iconRect!.x+iconRect!.width*.25);
- expect(levelRect!.y).toBeGreaterThan(iconRect!.y+iconRect!.height*.35);
- await page.screenshot({path:testInfo.outputPath('endfield-corrosion-level-overlay-390px.png'),fullPage:true,animations:'disabled'});
+ // All four original PNGs use one in-icon layout with their own sampled
+ // original sprite color; save distinct 390px screenshots for visual QA.
+ const colors:Record<string,string>={
+  combustion:'rgb(255, 98, 61)',electrification:'rgb(253, 207, 29)',
+  solidification:'rgb(33, 198, 208)',corrosion:'rgb(195, 227, 84)',
+ };
+ const reaction=selected.locator('.arts-reaction');
+ for(const [name,color] of Object.entries(colors)){
+  await page.locator('#arts-reaction').selectOption(name);
+  await page.locator('#arts-level').selectOption('2');
+  await expect(reaction).toHaveClass(/arts-reaction-level-overlay/);
+  const levelBadge=reaction.locator('.arts-reaction-level');
+  await expect(levelBadge).toHaveText('II');
+  await expect(levelBadge).toHaveCSS('position','absolute');
+  await expect(levelBadge).toHaveCSS('color',color);
+  await expect(levelBadge).toHaveCSS('background-color','rgba(0, 0, 0, 0)');
+  await expect(levelBadge).toHaveCSS('border-top-width','0px');
+  const iconRect=await reaction.locator('img').boundingBox();
+  const levelRect=await levelBadge.boundingBox();
+  expect(iconRect).not.toBeNull();expect(levelRect).not.toBeNull();
+  expect(levelRect!.x).toBeGreaterThan(iconRect!.x+iconRect!.width*.25);
+  expect(levelRect!.y).toBeGreaterThan(iconRect!.y+iconRect!.height*.35);
+  await page.screenshot({path:testInfo.outputPath('endfield-'+name+'-level-overlay-390px.png'),fullPage:true,animations:'disabled'});
+ }
  await page.setViewportSize({width:320,height:730});
  expect(await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
- await expect(overlay).toBeVisible();
+ await expect(reaction.locator('.arts-reaction-level')).toBeVisible();
  await page.screenshot({path:testInfo.outputPath('endfield-arts-preview-320px.png'),fullPage:true,animations:'disabled'});
  await page.locator('#arts-stacks').selectOption('unknown');
  await page.locator('#arts-level').selectOption('unknown');
+ await expect(reaction).not.toHaveClass(/arts-reaction-level-overlay/);
  await expect(selected.locator('.arts-infliction img')).toHaveCount(0);
  await expect(selected.locator('.arts-infliction .arts-empty-mark')).toHaveText('?');
  await expect(selected.locator('.arts-reaction-level')).toHaveText('?');
