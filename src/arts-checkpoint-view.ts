@@ -55,8 +55,11 @@ function outcome(after:ArtsCheckpoint,base:string){
  const wrap=make('span','arts-action-result');
  wrap.dataset.assessment=status.assessment;
  if(status.kind==='reaction'){
-  wrap.append(createArtsReaction({reaction:status.reaction,level:status.level,size:24,base}),
-   make('span','arts-action-result-name',REACTION_NAMES[status.reaction]));
+  const icon=createArtsReaction({reaction:status.reaction,level:status.level,size:24,base});
+  // The gallery can use ? for missing level, but an action-local hint should
+  // never read as an unknown number: show the reaction type only.
+  if(status.level===null)icon.querySelector('.arts-reaction-level')?.remove();
+  wrap.append(icon,make('span','arts-action-result-name',REACTION_NAMES[status.reaction]));
   if(status.assessment==='conditional')wrap.append(make('span','arts-action-qualifier arts-conditional','если'));
   if(status.assessment==='observed')wrap.append(make('span','arts-action-qualifier arts-observed','факт'));
  }else{
