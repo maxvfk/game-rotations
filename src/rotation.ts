@@ -1,7 +1,7 @@
 import './rotation.css';
 
 import type {RotationBook, RotationStage, RotationCharacter, Action, ControlMap, Scheme, RotationVariant} from './rotation-types';
-import {createArtsCheckpointSummary} from './arts-checkpoint-view';
+import {createArtsActionEffect} from './arts-checkpoint-view';
 
 const BOOKS:Record<string,RotationBook> = {};
 for(const raw of Object.values(import.meta.glob('../data/rotations/**/*.json',{eager:true,import:'default'}))){const book=raw as RotationBook;BOOKS[book.id]=book}
@@ -191,10 +191,7 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
     const shortTitle=s.title.replace(/^.*?·\s*\d+[.)]\s*/u,'');
     const compactRow=node('div','stage-compact-row');
     compactRow.append(node('div','stage-compact-line',index+'  ·  '+shortTitle));
-    // Only explicit before/after checkpoints, no inferred stack counts.
-    // Game-icon and Roman-level presentation can be replaced independently.
-    const arts=createArtsCheckpointSummary(s.artsCheckpoints,base);
-    if(arts)compactRow.append(arts);
+    // Compact header is an index/title only: Arts belongs to its action.
     heading.append(compactRow);
    }
    head.append(portrait,heading);
@@ -250,6 +247,17 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
     if(a.condition)chip.append(node('span','action-condition','Если: '+a.condition));
     if(a.hint)chip.append(node('span','action-hint',a.hint));
     if(a.optional)chip.classList.add('optional-action');
+    if(book.game==='arknights-endfield'){
+     // Checkpoints are anchored to this precise stage.actions[j]. No guessed stacks.
+     const arts=createArtsActionEffect(s.artsCheckpoints,j,base);
+     if(arts){
+      chip.classList.add('arts-annotated');
+      chip.append(arts);
+      const explanation=arts.querySelector<HTMLElement>('.arts-action-effect')?.getAttribute('aria-label')||'';
+      chip.title+='\n'+explanation;
+      if(compact)chip.setAttribute('aria-label',(chip.getAttribute('aria-label')||a.text)+' · '+explanation);
+     }
+    }
     seq.append(chip);
    }
    body.append(seq);

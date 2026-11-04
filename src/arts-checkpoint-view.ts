@@ -1,110 +1,112 @@
-// Presentation adapter for Endfield checkpoint metadata.
-// This is deliberately independent of rotation JSON layout and of PNG asset paths:
-// changing the in-game Arts Reaction level design only requires changing
-// createArtsReaction() / its styles, not the source-verified checkpoint records.
+// Endfield Arts checkpoint → action-level visual hint.
+// Sourced data defines conditions and before/after semantics; rendering owns PNG,
+// CSS and Roman level. Future in-game icon changes require no rotation JSON edits.
 import {createArtsInfliction,createArtsReaction,ARTS_NAMES,REACTION_NAMES} from './arts-indicators';
 import type {ArtsCheckpoint,ArtsCheckpointStatus} from './rotation-types';
 import './arts-checkpoint-view.css';
 
 const make=(tag:string,cls='',text='')=>{
- const e=document.createElement(tag);
- e.className=cls;
- if(text)e.textContent=text;
- return e;
+ const node=document.createElement(tag);
+ node.className=cls;
+ if(text)node.textContent=text;
+ return node;
 };
 const roman=['','I','II','III','IV'];
-const ASSESSMENT_LABELS={
- target:'цель',conditional:'если',observed:'факт',unknown:'неизв.',
-} as const;
 
-function describeStatus(status:ArtsCheckpointStatus){
+function statusDescription(status:ArtsCheckpointStatus){
  if(status.kind==='infliction'){
-  const value=status.stacks===null?'неизвестно':String(status.stacks)+' из 4';
-  return ARTS_NAMES[status.element]+' Infliction, стаки '+value+
-   ', '+({target:'цель, не наблюдение',observed:'наблюдалось',unknown:'неизвестно'} as const)[status.assessment];
+  const count=status.stacks===null?'неизвестно':status.stacks+' из 4';
+  return ARTS_NAMES[status.element]+' Infliction, '+count+' стаков'+
+   (status.assessment==='target'?' (цель TC, не наблюдение)':status.assessment==='observed'?' (наблюдалось)':' (неизвестное значение)');
  }
- return REACTION_NAMES[status.reaction]+' Reaction, уровень '+
-  (status.level===null?'неизвестен':roman[status.level])+
-  ', '+({conditional:'условно, при выполнении требований',observed:'наблюдалось',unknown:'неизвестно'} as const)[status.assessment];
+ const level=status.level===null?'неизвестен':roman[status.level];
+ return REACTION_NAMES[status.reaction]+' Reaction, уровень '+level+
+  (status.assessment==='conditional'?' (только при выполнении условий)':status.assessment==='observed'?' (наблюдалось)':' (неизвестный уровень)');
 }
-
-function point(cp:ArtsCheckpoint,base:string){
- const holder=make('span','arts-point arts-point-'+cp.status.kind);
- holder.dataset.checkpoint=cp.id;
- holder.dataset.assessment=cp.status.assessment;
- holder.dataset.relative=cp.anchor.relative;
- holder.dataset.actionIndex=String(cp.anchor.actionIndex);
- holder.append(make('span','arts-point-moment',cp.anchor.relative==='before'?'до':'после'));
- if(cp.status.kind==='infliction'){
-  holder.append(make('span','arts-point-type',ARTS_NAMES[cp.status.element]),
-   createArtsInfliction({element:cp.status.element,stacks:cp.status.stacks,size:24,base}));
+function fullDescription(before:ArtsCheckpoint|undefined,after:ArtsCheckpoint|undefined,index:number){
+ const lines=['Действие '+(index+1)+': ожидаемое изменение состояния основной цели.'];
+ for(const cp of [before,after]){
+  if(!cp)continue;
+  lines.push((cp.anchor.relative==='before'?'Перед действием: ':'После действия: ')+statusDescription(cp.status)+'.');
+  if(cp.condition)lines.push('Условие: '+cp.condition);
+  if(cp.evidence?.note)lines.push('Источник/ограничение: '+cp.evidence.note);
+ }
+ return lines.join(' ');
+}
+function precondition(before:ArtsCheckpoint,base:string){
+ const status=before.status;
+ const label=make('span','arts-action-prerequisite');
+ if(status.kind!=='infliction')return label;
+ label.dataset.assessment=status.assessment;
+ // Unknown counts aren't a fake 0-ring. Show the actual prerequisite element,
+ // rather than a visually noisy Cryo ? → Corrosion ? sequence.
+ if(status.stacks===null){
+  label.append(make('span','arts-action-pre-word','при '+ARTS_NAMES[status.element]));
  }else{
-  holder.append(make('span','arts-point-type',REACTION_NAMES[cp.status.reaction]),
-   createArtsReaction({reaction:cp.status.reaction,level:cp.status.level,size:24,base}));
+  label.append(make('span','arts-action-pre-word',ARTS_NAMES[status.element]));
+  label.append(createArtsInfliction({element:status.element,stacks:status.stacks,size:24,base}));
+  if(status.assessment==='target')label.append(make('span','arts-action-qualifier arts-target','цель'));
+  if(status.assessment==='observed')label.append(make('span','arts-action-qualifier arts-observed','факт'));
  }
- holder.append(make('span','arts-point-assessment arts-point-assessment-'+cp.status.assessment,
-  ASSESSMENT_LABELS[cp.status.assessment]));
- return holder;
+ return label;
 }
-
-function evidenceDescription(cp:ArtsCheckpoint){
- const note=cp.evidence?.note||'';
- const assumptions=cp.condition?' Условие: '+cp.condition:'';
- return describeStatus(cp.status)+'. '+note+assumptions;
+function outcome(after:ArtsCheckpoint,base:string){
+ const status=after.status;
+ const wrap=make('span','arts-action-result');
+ wrap.dataset.assessment=status.assessment;
+ if(status.kind==='reaction'){
+  const icon=createArtsReaction({reaction:status.reaction,level:status.level,size:24,base});
+  // The gallery can use ? for missing level, but an action-local hint should
+  // never read as an unknown number: show the reaction type only.
+  if(status.level===null)icon.querySelector('.arts-reaction-level')?.remove();
+  wrap.append(icon,make('span','arts-action-result-name',REACTION_NAMES[status.reaction]));
+  if(status.assessment==='conditional')wrap.append(make('span','arts-action-qualifier arts-conditional','если'));
+  if(status.assessment==='observed')wrap.append(make('span','arts-action-qualifier arts-observed','факт'));
+ }else{
+  wrap.append(createArtsInfliction({element:status.element,stacks:status.stacks,size:24,base}),
+   make('span','arts-action-result-name',ARTS_NAMES[status.element]));
+  if(status.assessment==='target')wrap.append(make('span','arts-action-qualifier arts-target','цель'));
+ }
+ return wrap;
 }
-
-function flow(before:ArtsCheckpoint,after:ArtsCheckpoint|undefined,base:string){
- const group=make('span','arts-checkpoint-flow');
- group.dataset.actionIndex=String(before.anchor.actionIndex);
- group.dataset.kind=after?'transition':'single';
- group.setAttribute('role','group');
- // The group exposes the entire before/after statement as a single accessible
- // narrative. Do not accidentally announce these as two simultaneous debuffs.
- const actionNumber=String(before.anchor.actionIndex+1);
- const descriptions=[
-  'Действие '+actionNumber+'. '+(before.anchor.relative==='before'?'До':'После')+': '+evidenceDescription(before),
-  after?'После действия '+actionNumber+': '+evidenceDescription(after):'',
- ].filter(Boolean);
- group.setAttribute('aria-label',descriptions.join(' '));
- group.title=descriptions.join('\n');
- const visual=make('span','arts-checkpoint-flow-visual');
+function actionTransition(before:ArtsCheckpoint|undefined,after:ArtsCheckpoint|undefined,index:number,base:string){
+ const box=make('span','arts-action-effect');
+ box.dataset.actionIndex=String(index);
+ box.dataset.kind=before&&after?'transition':'single';
+ box.setAttribute('role','group');
+ const description=fullDescription(before,after,index);
+ box.setAttribute('aria-label',description);
+ box.title=description;
+ const visual=make('span','arts-action-visual');
  visual.setAttribute('aria-hidden','true');
- visual.append(point(before,base));
+ if(before)visual.append(precondition(before,base));
  if(after){
-  // Keep arrow and resulting status together when a mobile line wraps.
-  const afterGroup=make('span','arts-checkpoint-after');
-  afterGroup.append(make('span','arts-checkpoint-arrow','→'),point(after,base));
-  visual.append(afterGroup);
+  if(before)visual.append(make('span','arts-action-arrow','→'));
+  visual.append(outcome(after,base));
  }
- group.append(visual);
- return group;
+ box.append(visual);
+ return box;
 }
 
-/** Render only explicitly authored checkpoints; no inferred stacks or levels. */
-export function createArtsCheckpointSummary(checkpoints:readonly ArtsCheckpoint[]|undefined,base:string){
+/** Return only the checkpoints anchored to this exact action; never infer state. */
+export function createArtsActionEffect(checkpoints:readonly ArtsCheckpoint[]|undefined,actionIndex:number,base:string){
  if(!checkpoints?.length)return null;
- const result=make('span','stage-arts-summary');
- result.setAttribute('aria-label','Контроль Arts до и после действия');
- const byId=new Map(checkpoints.map(cp=>[cp.id,cp]));
- const included=new Set<string>();
- // A linked reaction follows its exact before-action prerequisite; never
- // render before and after as an unordered collection of active statuses.
- for(const cp of checkpoints){
-  if(included.has(cp.id))continue;
-  if(cp.dependsOn){
-   const prior=byId.get(cp.dependsOn);
-   if(prior && !included.has(prior.id))continue; // handled when source appears
-  }
-  const following=checkpoints.find(next=>next.dependsOn===cp.id);
-  result.append(flow(cp,following,base));
-  included.add(cp.id);
-  if(following)included.add(following.id);
+ const relevant=checkpoints.filter(cp=>cp.anchor.actionIndex===actionIndex);
+ if(!relevant.length)return null;
+ const root=make('span','arts-action-annotations');
+ root.dataset.actionIndex=String(actionIndex);
+ const used=new Set<string>();
+ for(const cp of relevant){
+  if(used.has(cp.id)||cp.dependsOn)continue;
+  const next=relevant.find(next=>next.dependsOn===cp.id&&next.anchor.relative==='after');
+  root.append(actionTransition(cp,next,actionIndex,base));
+  used.add(cp.id);
+  if(next)used.add(next.id);
  }
- // Robust fallback for future schema-valid standalone after-states.
- for(const cp of checkpoints){
-  if(included.has(cp.id))continue;
-  result.append(flow(cp,undefined,base));
-  included.add(cp.id);
+ for(const cp of relevant){
+  if(used.has(cp.id))continue;
+  root.append(actionTransition(undefined,cp,actionIndex,base));
+  used.add(cp.id);
  }
- return result;
+ return root.childElementCount?root:null;
 }

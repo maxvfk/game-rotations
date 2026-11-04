@@ -157,8 +157,10 @@
 
 Ключи картинок/иконок, UI-оформления или римских цифр в `artsCheckpoints` запрещены строгой JSON Schema. Внешний вид контролирует `src/arts-indicators.ts`. Подробнее: [ENDFIELD_ARTS_CHECKPOINTS.md](ENDFIELD_ARTS_CHECKPOINTS.md). Командный renderer игнорирует metadata до отдельного этапа интеграции.
 
-### Arts badges в компактных заголовках (этап 04)
+### Endfield: Arts привязаны к конкретным действиям (текущий UI)
 
-При `book.game==='arknights-endfield'` рендер создаёт `.stage-compact-row` с `.stage-compact-line` и, если `stage.artsCheckpoints?.length`, `.stage-arts-summary`. Рендер через `src/arts-checkpoint-view.ts`, только в **компактном виде**, без изменения `stage.actions[]`, input bindings или игровых условий. Связанные checkpoint `before` и `after` показываются как последовательность с `→`, а не одновременно. `target` = «цель», `conditional` = «если», `unknown` = «неизв.» и `?`. Подсказка `title` и доступная подпись `aria-label` сохраняют условия и ограничения. В полном режиме и WuWa бейджей нет; у непроверенного `recoveryNote` метаданных также нет.
+Структура `stage.artsCheckpoints` остаётся прежней. Renderer вызывает `createArtsActionEffect(s.artsCheckpoints, j, base)` внутри соответствующей `.action.endfield-action`, где `j` — индекс текущего действия в этапе. Заголовки этапов **больше не показывают** `stage-arts-summary` или блоки Arts. Индикаторы видны и в full, и в compact режиме.
 
-Сама библиотека `createArtsReaction` отвечает за изображение и положение уровня I–IV. При будущей смене графики менять `artsCheckpoints` / JSON Schema **не нужно**. Тесты: `test/arts-checkpoint-view.test.ts` и `test/e2e/arts-checkpoint-stage.spec.ts`.
+Подтверждённые численные `target` / `observed` показываются как игровая Infliction icon + уровень; `conditional` помечается `если`. У `unknown` с `null` нет чисел: отображается только **условный тип реакции**, например `при Cryo → Corrosion`, если это известно из схемы реакции, а полная оговорка остаётся в `title`/ARIA. Из этого не следует гарантированное наложение в реальном бою. Визуализация не вычисляет количество стаков и не изменяет `stage.actions[]`.
+
+Для замены графики реакции меняется `src/arts-indicators.ts` или CSS, не `artsCheckpoints`. Unit: `test/arts-checkpoint-view.test.ts`. E2E: `test/e2e/arts-checkpoint-stage.spec.ts`.
