@@ -1,53 +1,39 @@
-/* Endfield stage 04: semantic before→after checkpoint badges.
-   The icon design is owned by arts-indicators.css; this file only lays out checkpoints.
-   The complete markup is kept out of the full mode and WuWa. */
-.rotation-app.game-arknights-endfield .stage-compact-row,
-.rotation-app.game-arknights-endfield .stage-arts-summary{display:none}
-.rotation-app.game-arknights-endfield.compact-actions .stage-compact-row{
- display:flex;align-items:center;align-content:center;flex-wrap:wrap;gap:4px 9px;width:100%;min-width:0;
+/* Endfield: action-local Arts changes (stage 05).
+   Only semantic checkpoints tied to a source action are shown. The icon library
+   owns sprite paths and reaction-level artwork, so visuals can be replaced. */
+.rotation-app.game-arknights-endfield .arts-action-annotations{
+ display:flex;flex-direction:column;align-items:flex-start;max-width:100%;min-width:0;
+ padding-top:4px;margin-top:2px;border-top:1px solid #ffffff23;
 }
-.rotation-app.game-arknights-endfield.compact-actions .stage-compact-row .stage-compact-line{
- display:block;flex:0 1 auto;max-width:100%;min-width:0;
- overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+.rotation-app.game-arknights-endfield .arts-action-effect{display:block;min-width:0;max-width:100%}
+.rotation-app.game-arknights-endfield .arts-action-visual{
+ display:flex;align-items:center;flex-wrap:wrap;gap:3px 5px;min-width:0;max-width:100%;
 }
-.rotation-app.game-arknights-endfield.compact-actions .stage-arts-summary{
- display:inline-flex;flex-wrap:wrap;gap:5px;align-items:center;max-width:100%;min-width:0;
+.rotation-app.game-arknights-endfield .arts-action-prerequisite,
+.rotation-app.game-arknights-endfield .arts-action-result{
+ display:inline-flex;align-items:center;gap:3px;min-width:0;max-width:100%;
+ font-size:10px;line-height:1.1;font-weight:750;white-space:nowrap;
 }
-.rotation-app.game-arknights-endfield .stage-compact-row .arts-checkpoint-flow{
- display:inline-flex;flex-wrap:wrap;min-width:0;max-width:100%;
- border:1px solid #7683a945;border-radius:9px;background:#0f18247a;
- padding:2px 5px;
+.rotation-app.game-arknights-endfield .arts-action-pre-word{color:#c6dcea}
+.rotation-app.game-arknights-endfield .arts-action-arrow{color:#c5c4d0;font-size:13px}
+.rotation-app.game-arknights-endfield .arts-action-result-name{color:#dfebd1}
+.rotation-app.game-arknights-endfield .arts-action-qualifier{
+ padding:2px 4px;border-radius:4px;font-size:9px;font-weight:850;white-space:nowrap;
 }
-.rotation-app.game-arknights-endfield .arts-checkpoint-flow-visual{
- display:flex;flex-wrap:wrap;align-items:center;gap:3px 7px;max-width:100%;min-width:0;
+.rotation-app.game-arknights-endfield .arts-target{background:#5d4832;color:#ffe4b2}
+.rotation-app.game-arknights-endfield .arts-conditional{background:#53412e;color:#f5d6a1}
+.rotation-app.game-arknights-endfield .arts-observed{background:#23463e;color:#b2ebd7}
+.rotation-app.game-arknights-endfield .arts-action-annotations .arts-indicator{min-height:24px}
+.rotation-app.game-arknights-endfield .arts-action-result .arts-reaction[data-level="unknown"] .arts-reaction-level{
+ display:none; /* Unknown level is only in the accessible explanation, not a misleading '?'. */
 }
-.rotation-app.game-arknights-endfield .arts-checkpoint-after{
- display:inline-flex;align-items:center;gap:5px;min-width:0;max-width:100%;
+.rotation-app.game-arknights-endfield.compact-actions .action.endfield-action:has(.arts-action-annotations){
+ min-height:0;gap:2px;padding-bottom:6px;
 }
-.rotation-app.game-arknights-endfield .arts-checkpoint-arrow{
- color:#9fa9be;font-weight:800;font-size:13px;line-height:1;
-}
-.rotation-app.game-arknights-endfield .arts-point{
- display:inline-flex;align-items:center;gap:3px;min-width:0;
- color:#dce4ee;font-size:10px;font-weight:700;white-space:nowrap;line-height:1.1;
-}
-.rotation-app.game-arknights-endfield .arts-point-moment{color:#a1adbf;font-size:9px}
-.rotation-app.game-arknights-endfield .arts-point-type{font-size:10px;white-space:nowrap}
-.rotation-app.game-arknights-endfield .arts-point .arts-indicator{
- min-height:24px;--arts-icon-size:24px;
-}
-.rotation-app.game-arknights-endfield .arts-point .arts-reaction-level{font-size:11px}
-.rotation-app.game-arknights-endfield .arts-point-assessment{
- padding:2px 4px;border-radius:4px;background:#33404f;color:#cbd3e1;
- font-size:9px;font-weight:850;white-space:nowrap;
-}
-.rotation-app.game-arknights-endfield .arts-point-assessment-target{color:#ffe3a4;background:#5c4930}
-.rotation-app.game-arknights-endfield .arts-point-assessment-conditional{color:#f4d9a9;background:#514332}
-.rotation-app.game-arknights-endfield .arts-point-assessment-observed{color:#b4eed7;background:#285247}
-.rotation-app.game-arknights-endfield .arts-point-assessment-unknown{color:#bac6d5;background:#364052}
+.rotation-app.game-arknights-endfield.compact-actions .arts-action-annotations{padding-top:3px;margin-top:0}
 @media(max-width:360px){
- .rotation-app.game-arknights-endfield.compact-actions .stage-compact-row{gap:4px}
- .rotation-app.game-arknights-endfield .stage-compact-row .arts-checkpoint-flow{padding:2px 3px}
- .rotation-app.game-arknights-endfield .arts-checkpoint-flow-visual{gap:3px 4px}
- .rotation-app.game-arknights-endfield .arts-point{gap:2px}
+ .rotation-app.game-arknights-endfield .arts-action-visual{gap:3px}
+ .rotation-app.game-arknights-endfield .arts-action-prerequisite,
+ .rotation-app.game-arknights-endfield .arts-action-result{gap:2px;font-size:9px}
+ .rotation-app.game-arknights-endfield .arts-action-qualifier{font-size:8px;padding:2px 3px}
 }
