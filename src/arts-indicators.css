@@ -48,6 +48,7 @@
  .arts-preview-root .arts-reaction-card .arts-matrix-icons{width:100%}
 }
 @media(max-width:370px){
+ .arts-preview-root .arts-stack-matrix{grid-template-columns:1fr}
  .arts-preview-root .arts-selectors{grid-template-columns:repeat(2,minmax(0,1fr))}
  .arts-preview-root .arts-selected{grid-template-columns:1fr}
  .arts-preview-root .arts-reaction-matrix{grid-template-columns:1fr}
