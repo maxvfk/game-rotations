@@ -46,10 +46,12 @@ describe('Endfield Arts status indicator (visual only, source-pinned PNG)',()=>{
     expect(icon.querySelector('img')?.getAttribute('src')).toBe(base+'arts/arknights-endfield/reactions/'+reaction+'.png');
     expect(icon.querySelector('.arts-reaction-level')?.textContent).toBe(roman);
     expect(icon.dataset.level).toBe(String(level));
+    expect(icon.classList.contains('arts-corrosion-level-overlay')).toBe(reaction==='corrosion');
     expect(icon.getAttribute('aria-label')).toContain('уровень '+roman);
    }
   }
   const missing=createArtsReaction({reaction:'corrosion',level:null,base});
+  expect(missing.classList.contains('arts-corrosion-level-overlay')).toBe(false);
   expect(missing.querySelector('.arts-reaction-level')?.textContent).toBe('?');
   expect(missing.getAttribute('aria-label')).toContain('уровень неизвестен');
   expect(()=>createArtsReaction({reaction:'corrosion',level:0 as never,base})).toThrow(RangeError);

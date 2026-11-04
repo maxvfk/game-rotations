@@ -4,6 +4,23 @@
 .arts-empty-mark,.arts-indicator-fallback{display:inline-grid;place-items:center;flex:0 0 var(--arts-icon-size);width:var(--arts-icon-size);height:var(--arts-icon-size);border:1px dashed #7b8298;border-radius:50%;background:#1a2130;color:#b9c1d4;font-size:12px;line-height:1;font-weight:750}
 .arts-reaction-level{display:inline-block;min-width:13px;text-align:center;color:#f4dca9;font-size:12px;font-weight:900;font-variant-numeric:tabular-nums;line-height:1.2;letter-spacing:.01em}
 .arts-level-unknown .arts-reaction-level{color:#b9c1d4}
+
+/* Corrosion-only in-game-style prototype: an overlay, not a replacement PNG.
+   Source sprite's principal lime is #c3e354 (RGB 195 227 84).
+   No timer border, badge rectangle, glow frame or altered game assets. */
+.arts-reaction.arts-corrosion-level-overlay{
+ position:relative;flex:0 0 var(--arts-icon-size);
+ width:var(--arts-icon-size);height:var(--arts-icon-size);max-width:none;
+}
+.arts-reaction.arts-corrosion-level-overlay .arts-reaction-level{
+ position:absolute;z-index:1;right:calc(var(--arts-icon-size) * -.085);
+ bottom:calc(var(--arts-icon-size) * -.09);
+ min-width:0;line-height:.92;font-size:calc(var(--arts-icon-size) * .67);
+ color:#c3e354;font-family:Georgia,"Times New Roman",serif;
+ font-weight:900;letter-spacing:-.09em;font-variant-numeric:normal;
+ background:none;border:0;padding:0;pointer-events:none;
+ text-shadow:0 0 2px #070907,0 0 4px #030503,0 0 7px #000,1px 2px 3px #000;
+}
 .arts-icon-unavailable .arts-indicator-fallback{border-color:#a76372;color:#f6a7b2}
 
 /* Standalone preview route: ?arts=arknights-endfield. Does not affect team cards. */
