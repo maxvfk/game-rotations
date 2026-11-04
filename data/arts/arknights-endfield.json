@@ -1,0 +1,240 @@
+{
+  "schemaVersion": 1,
+  "game": "arknights-endfield",
+  "source": {
+    "repository": "SlowMoSlothy/Arknights-Endfield-Rotation-Tool",
+    "commit": "2eb9b304cdd2dc9e639d38861eaa7987f762db62",
+    "sourceAssetBase": "https://endfield-assets.fffdan.com/vfs/Bundle/file/assets/beyond/dynamicassets/gameplay/ui/sprites/bufficon/",
+    "sourceDocument": "docs/effect-icons.md",
+    "checkedAt": "2026-11-04",
+    "rights": "Game artwork remains property of Arknights: Endfield rights holders; this repository does not claim ownership or a transferable license."
+  },
+  "inflictions": {
+    "heat": {
+      "id": "heat",
+      "kind": "infliction",
+      "maxStacks": 4,
+      "artworks": [
+        {
+          "stacks": 1,
+          "path": "arts/arknights-endfield/inflictions/heat-1.png",
+          "width": 125,
+          "height": 125,
+          "sha256": "5ddc0186f5f5351b4c2a3885d06712e2a1fd9f0c4c783e0593c7f7f4361b9923",
+          "sourcePath": "endfield/assets/ui/debuffs/heat_infliction_1.png",
+          "sourceBlobSha": "9584829398cc73544e0bc7e0e05051f166c58e85"
+        },
+        {
+          "stacks": 2,
+          "path": "arts/arknights-endfield/inflictions/heat-2.png",
+          "width": 125,
+          "height": 125,
+          "sha256": "e6a878009477cc4e230ed56f6e8cbf1bb1433aa01084901bb9e9f13527027018",
+          "sourcePath": "endfield/assets/ui/debuffs/heat_infliction_2.png",
+          "sourceBlobSha": "d90df62ee686c3ba8f5fa21f4b92d9dea29a8289"
+        },
+        {
+          "stacks": 3,
+          "path": "arts/arknights-endfield/inflictions/heat-3.png",
+          "width": 125,
+          "height": 125,
+          "sha256": "1a6b2af6e90e250af496d7f85d08746028c05d65dfd845ce8117183ef22179ab",
+          "sourcePath": "endfield/assets/ui/debuffs/heat_infliction_3.png",
+          "sourceBlobSha": "c1b5e94ad560b49a2bd3ce0ebdd152beb69fa9ca"
+        },
+        {
+          "stacks": 4,
+          "path": "arts/arknights-endfield/inflictions/heat-4.png",
+          "width": 125,
+          "height": 125,
+          "sha256": "372934884de558ab0f8706e0d73b772102bac67be72d977668cc65ef46845ab2",
+          "sourcePath": "endfield/assets/ui/debuffs/heat_infliction_4.png",
+          "sourceBlobSha": "83ebba38fe6a8d8529f6f84bdc8c10884e1ca67f"
+        }
+      ]
+    },
+    "electric": {
+      "id": "electric",
+      "kind": "infliction",
+      "maxStacks": 4,
+      "artworks": [
+        {
+          "stacks": 1,
+          "path": "arts/arknights-endfield/inflictions/electric-1.png",
+          "width": 125,
+          "height": 125,
+          "sha256": "220333f3b2bdb2da8b2c22d14835184a87fe50fbeccaef13ba0b4a86e90a570c",
+          "sourcePath": "endfield/assets/ui/debuffs/electric_infliction_1.png",
+          "sourceBlobSha": "0fc203e67abc3f56133897a892ab2782fcabe804"
+        },
+        {
+          "stacks": 2,
+          "path": "arts/arknights-endfield/inflictions/electric-2.png",
+          "width": 125,
+          "height": 125,
+          "sha256": "3eb97f6fd1408480b22a50325df8bc90af695ed211bac6faffcd993f9f735cf3",
+          "sourcePath": "endfield/assets/ui/debuffs/electric_infliction_2.png",
+          "sourceBlobSha": "d7d7996702e69aff7504bdb532d68454019ffcf2"
+        },
+        {
+          "stacks": 3,
+          "path": "arts/arknights-endfield/inflictions/electric-3.png",
+          "width": 125,
+          "height": 125,
+          "sha256": "7a0e1cda962e1fe0cbc6512811e8981db1cf748c32f92f8806c65a750f4132d3",
+          "sourcePath": "endfield/assets/ui/debuffs/electric_infliction_3.png",
+          "sourceBlobSha": "6c1c26c926d60a44c481611ac798cb496a7e667a"
+        },
+        {
+          "stacks": 4,
+          "path": "arts/arknights-endfield/inflictions/electric-4.png",
+          "width": 125,
+          "height": 125,
+          "sha256": "daf1fe79785179b6798d7f7a6bfde501417dea4ed473871069340fd5487bb9ca",
+          "sourcePath": "endfield/assets/ui/debuffs/electric_infliction_4.png",
+          "sourceBlobSha": "8b817151bb1db75691a0e5e76bf94404d3d358db"
+        }
+      ]
+    },
+    "cryo": {
+      "id": "cryo",
+      "kind": "infliction",
+      "maxStacks": 4,
+      "artworks": [
+        {
+          "stacks": 1,
+          "path": "arts/arknights-endfield/inflictions/cryo-1.png",
+          "width": 125,
+          "height": 125,
+          "sha256": "7956d788e844747224e533b85ee4836d8b513c839d6311230f9096ed174a3ca0",
+          "sourcePath": "endfield/assets/ui/debuffs/cryo_infliction_1.png",
+          "sourceBlobSha": "36a082323fcf225fc1fe2958cb4f0fdfc47ed436"
+        },
+        {
+          "stacks": 2,
+          "path": "arts/arknights-endfield/inflictions/cryo-2.png",
+          "width": 125,
+          "height": 125,
+          "sha256": "aa37f59da682c96c2e3118262f1b87cb2eea434b3c2d91f1145a93dc975216ed",
+          "sourcePath": "endfield/assets/ui/debuffs/cryo_infliction_2.png",
+          "sourceBlobSha": "9363d1cd338e050babf2ca5687b110a123c85f83"
+        },
+        {
+          "stacks": 3,
+          "path": "arts/arknights-endfield/inflictions/cryo-3.png",
+          "width": 125,
+          "height": 125,
+          "sha256": "fff146b6ba97d24efd1c8fe53278905b6ec508738fc04b4a74ede0f6034371e2",
+          "sourcePath": "endfield/assets/ui/debuffs/cryo_infliction_3.png",
+          "sourceBlobSha": "4991ce26a310d93de2646d01f93bdb021f5bc0f1"
+        },
+        {
+          "stacks": 4,
+          "path": "arts/arknights-endfield/inflictions/cryo-4.png",
+          "width": 125,
+          "height": 125,
+          "sha256": "378cdd8fde13a7463184129632f1c6ce5dcf8212c6e7e84e51317eabf51912d6",
+          "sourcePath": "endfield/assets/ui/debuffs/cryo_infliction_4.png",
+          "sourceBlobSha": "24e7ee96b31485643f30a8ff48cc54449513a217"
+        }
+      ]
+    },
+    "nature": {
+      "id": "nature",
+      "kind": "infliction",
+      "maxStacks": 4,
+      "artworks": [
+        {
+          "stacks": 1,
+          "path": "arts/arknights-endfield/inflictions/nature-1.png",
+          "width": 125,
+          "height": 125,
+          "sha256": "bb38dc2dc7516eafdc797c058efc69690d92f9d02b91f5e082e51ddc06ea213f",
+          "sourcePath": "endfield/assets/ui/debuffs/nature_infliction_1.png",
+          "sourceBlobSha": "92a3d0267dd3671a58d4feabc7e472900159f55c"
+        },
+        {
+          "stacks": 2,
+          "path": "arts/arknights-endfield/inflictions/nature-2.png",
+          "width": 125,
+          "height": 125,
+          "sha256": "af92216be8f042578a47c184ca7a4ba5c6f61b3f4dc4b4e0ac989d88f17c5ffd",
+          "sourcePath": "endfield/assets/ui/debuffs/nature_infliction_2.png",
+          "sourceBlobSha": "77789e188f3fa1a2aa1975a6521bca1f3cfb57e1"
+        },
+        {
+          "stacks": 3,
+          "path": "arts/arknights-endfield/inflictions/nature-3.png",
+          "width": 125,
+          "height": 125,
+          "sha256": "135cb601da12f4fd142469f8d9b073268a08d07a94327648ecf9ec7c82be6271",
+          "sourcePath": "endfield/assets/ui/debuffs/nature_infliction_3.png",
+          "sourceBlobSha": "cefc88c2065853c39529fd03859b0b81e037435d"
+        },
+        {
+          "stacks": 4,
+          "path": "arts/arknights-endfield/inflictions/nature-4.png",
+          "width": 125,
+          "height": 125,
+          "sha256": "04c7c8522c5dd14f4792dc585f45c333987a22e47af5c1b955e96006becd8bfb",
+          "sourcePath": "endfield/assets/ui/debuffs/nature_infliction_4.png",
+          "sourceBlobSha": "f40c61a0b4e55996929d423dec81a47247d2f375"
+        }
+      ]
+    }
+  },
+  "reactions": {
+    "combustion": {
+      "id": "combustion",
+      "kind": "reaction",
+      "element": "heat",
+      "icon": {
+        "path": "arts/arknights-endfield/reactions/combustion.png",
+        "width": 72,
+        "height": 72,
+        "sha256": "dee0440ccac70db2cac513c949be7c0cb4c48f44f2d9b83d7b3dd3daf4a9d2d5",
+        "sourcePath": "endfield/assets/ui/debuffs/combustion.png",
+        "sourceBlobSha": "da74cfe0e3874a7361631d0d138c10a44290f85d"
+      }
+    },
+    "electrification": {
+      "id": "electrification",
+      "kind": "reaction",
+      "element": "electric",
+      "icon": {
+        "path": "arts/arknights-endfield/reactions/electrification.png",
+        "width": 72,
+        "height": 72,
+        "sha256": "bff8fd665e1b2d005fedf40db2ab65060397fa3913fe68a7e84c34d9aa75d2b5",
+        "sourcePath": "endfield/assets/ui/debuffs/electrification.png",
+        "sourceBlobSha": "5d36801039e1556e6d9c2abdaed282473523a1c8"
+      }
+    },
+    "solidification": {
+      "id": "solidification",
+      "kind": "reaction",
+      "element": "cryo",
+      "icon": {
+        "path": "arts/arknights-endfield/reactions/solidification.png",
+        "width": 72,
+        "height": 72,
+        "sha256": "e64e11eef0fbc9f5b17df017559fbad5e523adc309ee1e596b34ca7485d35251",
+        "sourcePath": "endfield/assets/ui/debuffs/solidification.png",
+        "sourceBlobSha": "cfa057c4c187b319fdc26d43dcc38b582b202a55"
+      }
+    },
+    "corrosion": {
+      "id": "corrosion",
+      "kind": "reaction",
+      "element": "nature",
+      "icon": {
+        "path": "arts/arknights-endfield/reactions/corrosion.png",
+        "width": 72,
+        "height": 72,
+        "sha256": "464887a301a80c3d61757d4f2d4dc0d0e347af0143540e7e108a6c9a191d637c",
+        "sourcePath": "endfield/assets/ui/debuffs/corrosion.png",
+        "sourceBlobSha": "1f2544b52c6d1939e1a5b08eeeddc3d3e47df75d"
+      }
+    }
+  }
+}
