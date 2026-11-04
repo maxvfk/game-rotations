@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run catalog:check && npm run validate:data && npm run validate:portraits && npm run test:onboarding && npm run test:authoring && npm run test:renderer && tsc --noEmit && vite build",
+    "build": "npm run catalog:check && npm run validate:data && npm run test:arts-checkpoints && npm run validate:portraits && npm run test:onboarding && npm run test:authoring && npm run test:renderer && tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "validate:data": "node scripts/validate-rotations.mjs",
@@ -16,7 +16,8 @@
     "team:add": "node scripts/team-authoring.mjs add",
     "catalog:sync": "node scripts/team-authoring.mjs sync",
     "catalog:check": "node scripts/team-authoring.mjs sync --check",
-    "test:authoring": "node scripts/test-team-authoring.mjs"
+    "test:authoring": "node scripts/test-team-authoring.mjs",
+    "test:arts-checkpoints": "node scripts/test-arts-checkpoints.mjs"
   },
   "devDependencies": {
     "vite": "^7.1.0",
