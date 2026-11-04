@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import {beforeEach,describe,expect,it} from 'vitest';
-import {createArtsCheckpointSummary} from '../src/arts-checkpoint-view';
+import {createArtsActionEffect} from '../src/arts-checkpoint-view';
 import {hasRotation,mountRotation} from '../src/rotation';
 import type {ArtsCheckpoint} from '../src/rotation-types';
 import sourceBook from '../data/rotations/arknights-endfield/si-tangtang-arcane-xaihi.json';
@@ -13,99 +13,93 @@ const selectVariant=(label:string)=>{
  if(!tab)throw Error('Missing variant '+label);
  tab.click();
 };
-const mount=(id:string)=>{expect(hasRotation(id)).toBe(true);mountRotation(root(),id,base,base);};
 beforeEach(()=>{
  document.body.innerHTML='<div id="app"></div>';
  localStorage.clear();
  HTMLElement.prototype.scrollIntoView=()=>{};
 });
 
-describe('Endfield semantic checkpoint presentation adapter',()=>{
- it('renders before/after as a SINGLE linked transition, with source-backed icons',()=>{
+describe('Endfield action-local Arts changes',()=>{
+ it('anchors a numeric target and conditional result to Arcane Skill, never the stage header',()=>{
   const s=sourceBook.stages.prydwenOne;
-  const summary=createArtsCheckpointSummary(s.artsCheckpoints as ArtsCheckpoint[],base)!;
-  expect(summary.querySelectorAll('.arts-checkpoint-flow')).toHaveLength(1);
-  const flow=summary.querySelector<HTMLElement>('.arts-checkpoint-flow')!;
-  expect(flow.dataset.kind).toBe('transition');
-  expect(flow.dataset.actionIndex).toBe('12');
-  expect(flow.getAttribute('aria-label')).toContain('Действие 13');
-  expect(flow.getAttribute('aria-label')).toContain('До: Cryo Infliction');
-  expect(flow.getAttribute('aria-label')).toContain('После действия 13: Corrosion Reaction');
-  expect(flow.getAttribute('aria-label')).toContain('цель, не наблюдение');
-  expect(flow.getAttribute('aria-label')).toContain('условно');
-  expect(flow.getAttribute('aria-label')).toContain('поглощены 4 Cryo');
-  expect(flow.querySelectorAll('.arts-point')).toHaveLength(2);
-  expect(flow.querySelector('.arts-point[data-relative="before"][data-assessment="target"]')).not.toBeNull();
-  expect(flow.querySelector('.arts-point[data-relative="after"][data-assessment="conditional"]')).not.toBeNull();
-  expect(flow.querySelector('.arts-point-assessment-target')?.textContent).toBe('цель');
-  expect(flow.querySelector('.arts-point-assessment-conditional')?.textContent).toBe('если');
-  expect(flow.querySelector('.arts-infliction img')?.getAttribute('src')).toBe(base+'arts/arknights-endfield/inflictions/cryo-4.png');
-  expect(flow.querySelector('.arts-reaction img')?.getAttribute('src')).toBe(base+'arts/arknights-endfield/reactions/corrosion.png');
-  expect(flow.querySelector('.arts-reaction-level')?.textContent).toBe('IV');
-  expect(flow.querySelector('.arts-checkpoint-after .arts-checkpoint-arrow')?.textContent).toBe('→');
-  expect(flow.querySelector('.arts-checkpoint-flow-visual')?.getAttribute('aria-hidden')).toBe('true');
-  expect(flow.getAttribute('title')).toContain('Условие:');
-  expect(flow.textContent).not.toContain('факт');
+  expect(createArtsActionEffect(s.artsCheckpoints as ArtsCheckpoint[],0,base)).toBeNull();
+  const result=createArtsActionEffect(s.artsCheckpoints as ArtsCheckpoint[],12,base)!;
+  expect(result.dataset.actionIndex).toBe('12');
+  expect(result.querySelectorAll('.arts-action-effect')).toHaveLength(1);
+  const effect=result.querySelector<HTMLElement>('.arts-action-effect')!;
+  expect(effect.dataset.kind).toBe('transition');
+  expect(effect.getAttribute('aria-label')).toContain('Действие 13');
+  expect(effect.getAttribute('aria-label')).toContain('Перед действием: Cryo Infliction');
+  expect(effect.getAttribute('aria-label')).toContain('После действия: Corrosion Reaction');
+  expect(effect.getAttribute('aria-label')).toContain('цель TC, не наблюдение');
+  expect(effect.getAttribute('aria-label')).toContain('только при выполнении условий');
+  expect(effect.getAttribute('title')).toContain('поглощены 4 Cryo');
+  expect(effect.querySelector('.arts-infliction img')?.getAttribute('src')).toBe(base+'arts/arknights-endfield/inflictions/cryo-4.png');
+  expect(effect.querySelector('.arts-reaction img')?.getAttribute('src')).toBe(base+'arts/arknights-endfield/reactions/corrosion.png');
+  expect(effect.querySelector('.arts-reaction-level')?.textContent).toBe('IV');
+  expect(effect.querySelector('.arts-target')?.textContent).toBe('цель');
+  expect(effect.querySelector('.arts-conditional')?.textContent).toBe('если');
+  expect(effect.querySelector('.arts-action-arrow')?.textContent).toBe('→');
+  expect(effect.querySelector('.arts-action-visual')?.getAttribute('aria-hidden')).toBe('true');
  });
- it('does not turn unknown into zero or silently invent confirmed values',()=>{
+ it('hides unknown NUMBERS visually but explains the conditional reaction',()=>{
   const s=sourceBook.stages.maygiPrep;
-  const summary=createArtsCheckpointSummary(s.artsCheckpoints as ArtsCheckpoint[],base)!;
-  const flow=summary.querySelector('.arts-checkpoint-flow')!;
-  expect(flow.querySelector('.arts-infliction img')).toBeNull();
-  expect(flow.querySelector('.arts-empty-mark')?.textContent).toBe('?');
-  expect(flow.querySelector('.arts-infliction')?.getAttribute('data-stacks')).toBe('unknown');
-  expect(flow.querySelector('.arts-reaction-level')?.textContent).toBe('?');
-  expect(flow.querySelector('.arts-point-assessment-unknown')?.textContent).toBe('неизв.');
-  expect(flow.getAttribute('aria-label')).toContain('стаки неизвестно');
-  expect(flow.getAttribute('aria-label')).toContain('уровень неизвестен');
-  expect(flow.getAttribute('aria-label')).toContain('Если в момент попадания');
+  const result=createArtsActionEffect(s.artsCheckpoints as ArtsCheckpoint[],9,base)!;
+  const effect=result.querySelector<HTMLElement>('.arts-action-effect')!;
+  expect(effect.textContent).toContain('при Cryo');
+  expect(effect.textContent).toContain('Corrosion');
+  expect(effect.textContent).toContain('если');
+  expect(effect.querySelector('.arts-infliction img')).toBeNull();
+  expect(effect.querySelector('.arts-reaction img')).not.toBeNull();
+  expect(effect.querySelector('.arts-reaction')?.getAttribute('data-level')).toBe('unknown');
+  expect(effect.querySelector('.arts-action-qualifier.arts-target')).toBeNull();
+  expect(effect.getAttribute('title')).toContain('уровень неизвестен');
+  expect(effect.getAttribute('title')).toContain('точный Status Level неизвестен');
+  expect(effect.textContent).not.toContain('?');
  });
- it('keeps other reaction types and future icon presentation interchangeable',()=>{
-  const original=sourceBook.stages.prydwenOne.artsCheckpoints as ArtsCheckpoint[];
-  const custom=structuredClone(original);
-  if(custom[0].status.kind!=='infliction'||custom[1].status.kind!=='reaction')throw Error('test data mismatched');
-  custom[0].status.element='heat';
-  custom[0].status.stacks=2;
-  custom[1].status.reaction='combustion';
-  custom[1].status.level=2;
-  const summary=createArtsCheckpointSummary(custom,base)!;
-  expect(summary.querySelector('.arts-infliction img')?.getAttribute('src')).toContain('/heat-2.png');
-  expect(summary.querySelector('.arts-reaction img')?.getAttribute('src')).toContain('/combustion.png');
-  expect(summary.querySelector('.arts-reaction-level')?.textContent).toBe('II');
-  // Rotation data contains only semantic checkpoints, never a filename or Roman level.
+ it('works with future elements without changing the icon catalog or checkpoints',()=>{
+  const custom=structuredClone(sourceBook.stages.prydwenOne.artsCheckpoints) as ArtsCheckpoint[];
+  if(custom[0].status.kind!=='infliction'||custom[1].status.kind!=='reaction')throw Error('bad fixture');
+  custom[0].status.element='heat';custom[0].status.stacks=2;
+  custom[1].status.reaction='combustion';custom[1].status.level=2;
+  const result=createArtsActionEffect(custom,12,base)!;
+  expect(result.querySelector('.arts-infliction img')?.getAttribute('src')).toContain('/heat-2.png');
+  expect(result.querySelector('.arts-reaction img')?.getAttribute('src')).toContain('/combustion.png');
+  expect(result.querySelector('.arts-reaction-level')?.textContent).toBe('II');
   expect(JSON.stringify(custom)).not.toMatch(/\.(png|svg|webp)|iconPath|romanText/);
-  expect(createArtsCheckpointSummary(undefined,base)).toBeNull();
-  expect(createArtsCheckpointSummary([],base)).toBeNull();
+  expect(createArtsActionEffect([],12,base)).toBeNull();
+  expect(createArtsActionEffect(undefined,12,base)).toBeNull();
  });
 });
-
 describe('Endfield rotation integration',()=>{
- it('adds compact badges to 3 Maygi / 3 Prydwen stages but not unverified recovery',()=>{
-  mount('si-tangtang-arcane-xaihi');
-  expect(root().querySelectorAll('.stage-arts-summary')).toHaveLength(3);
-  expect(root().querySelectorAll('.stage-compact-line')).toHaveLength(3);
+ it('shows annotations only on Arcane Skill in three Maygi and Prydwen stages',()=>{
+  expect(hasRotation('si-tangtang-arcane-xaihi')).toBe(true);
+  mountRotation(root(),'si-tangtang-arcane-xaihi',base,base);
+  expect(root().querySelectorAll('.stage-arts-summary')).toHaveLength(0);
   expect(root().querySelectorAll('.stage-compact-row')).toHaveLength(3);
-  expect(root().querySelectorAll('.stage-arts-summary .arts-checkpoint-flow')).toHaveLength(3);
-  for(const s of root().querySelectorAll('.stage-arts-summary')){
-   expect(s.querySelectorAll('.arts-point')).toHaveLength(2);
+  expect(root().querySelectorAll('.action.arts-annotated')).toHaveLength(3);
+  for(const stage of root().querySelectorAll('.stage')){
+   expect(stage.querySelectorAll('.action.arts-annotated')).toHaveLength(1);
+   expect(stage.querySelector('.arts-action-effect')?.getAttribute('title')).toContain('Действие');
   }
   click('#layout-compact');
   expect(root().classList.contains('compact-actions')).toBe(true);
   expect(root().querySelector('.stage-compact-line')?.textContent).toContain('01 / 03');
-  expect(root().querySelectorAll('.stage .complete')).toHaveLength(0);
   selectVariant('Prydwen');
-  expect(root().querySelectorAll('.stage-arts-summary')).toHaveLength(3);
-  expect(root().querySelector('.stage-arts-summary .arts-infliction img')?.getAttribute('src')).toContain('/cryo-4.png');
-  expect(root().querySelector('.stage-arts-summary .arts-reaction-level')?.textContent).toBe('IV');
+  expect(root().querySelectorAll('.action.arts-annotated')).toHaveLength(3);
+  const first=root().querySelector('.action.arts-annotated')!;
+  expect(first.querySelector('.arts-infliction img')?.getAttribute('src')).toContain('/cryo-4.png');
+  expect(first.querySelector('.arts-reaction-level')?.textContent).toBe('IV');
+  expect(first.getAttribute('title')).toContain('Действие 13');
   click('#loop');
   expect(root().querySelectorAll('.stage')).toHaveLength(1);
-  expect(root().querySelectorAll('.stage-arts-summary')).toHaveLength(0);
+  expect(root().querySelectorAll('.action.arts-annotated')).toHaveLength(0);
   click('#opener');
-  expect(root().querySelectorAll('.stage-arts-summary')).toHaveLength(3);
+  expect(root().querySelectorAll('.action.arts-annotated')).toHaveLength(3);
  });
- it('does not alter WuWa rotation headers, progress or controls',()=>{
-  mount('yyxl-suisui-chisa');
-  expect(root().querySelectorAll('.stage-arts-summary')).toHaveLength(0);
+ it('keeps WuWa and its progress controls unchanged',()=>{
+  mountRotation(root(),'yyxl-suisui-chisa',base,base);
+  expect(root().querySelectorAll('.arts-action-annotations')).toHaveLength(0);
   expect(root().querySelectorAll('.stage-compact-row')).toHaveLength(0);
   expect(root().querySelectorAll('.stage .complete')).toHaveLength(3);
   expect(root().querySelector('.progress-wrap')).not.toBeNull();
