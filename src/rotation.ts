@@ -252,7 +252,8 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
      const arts=createArtsActionEffect(s.artsCheckpoints,j,base);
      if(arts){
       chip.classList.add('arts-annotated');
-      chip.append(arts);
+      // Inline beside portrait/keycap, not a second row or stage header.
+      chip.querySelector<HTMLElement>('.action-primary')!.append(arts);
       const explanation=arts.querySelector<HTMLElement>('.arts-action-effect')?.getAttribute('aria-label')||'';
       chip.title+='\n'+explanation;
       if(compact)chip.setAttribute('aria-label',(chip.getAttribute('aria-label')||a.text)+' · '+explanation);

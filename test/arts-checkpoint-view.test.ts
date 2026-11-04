@@ -37,8 +37,10 @@ describe('Endfield action-local Arts changes',()=>{
   expect(effect.querySelector('.arts-infliction img')?.getAttribute('src')).toBe(base+'arts/arknights-endfield/inflictions/cryo-4.png');
   expect(effect.querySelector('.arts-reaction img')?.getAttribute('src')).toBe(base+'arts/arknights-endfield/reactions/corrosion.png');
   expect(effect.querySelector('.arts-reaction-level')?.textContent).toBe('IV');
-  expect(effect.querySelector('.arts-target')?.textContent).toBe('цель');
-  expect(effect.querySelector('.arts-conditional')?.textContent).toBe('если');
+  expect(effect.querySelector('.arts-target')).toBeNull();
+  expect(effect.querySelector('.arts-conditional')).toBeNull();
+  expect(effect.textContent).not.toContain('цель');
+  expect(effect.textContent).not.toContain('если');
   expect(effect.querySelector('.arts-action-arrow')?.textContent).toBe('→');
   expect(effect.querySelector('.arts-action-visual')?.getAttribute('aria-hidden')).toBe('true');
  });
@@ -46,9 +48,9 @@ describe('Endfield action-local Arts changes',()=>{
   const s=sourceBook.stages.maygiPrep;
   const result=createArtsActionEffect(s.artsCheckpoints as ArtsCheckpoint[],9,base)!;
   const effect=result.querySelector<HTMLElement>('.arts-action-effect')!;
-  expect(effect.textContent).toContain('при Cryo');
-  expect(effect.textContent).toContain('Corrosion');
-  expect(effect.textContent).toContain('если');
+  expect(effect.textContent).toContain('Cryo');
+  expect(effect.querySelector('.arts-action-result .arts-reaction img')).not.toBeNull();
+  expect(effect.textContent).not.toContain('если');
   expect(effect.querySelector('.arts-infliction img')).toBeNull();
   expect(effect.querySelector('.arts-reaction img')).not.toBeNull();
   expect(effect.querySelector('.arts-reaction')?.getAttribute('data-level')).toBe('unknown');
@@ -81,6 +83,8 @@ describe('Endfield rotation integration',()=>{
   for(const stage of root().querySelectorAll('.stage')){
    expect(stage.querySelectorAll('.action.arts-annotated')).toHaveLength(1);
    expect(stage.querySelector('.arts-action-effect')?.getAttribute('title')).toContain('Действие');
+   expect(stage.querySelector('.action.arts-annotated > .arts-action-annotations')).toBeNull();
+   expect(stage.querySelector('.action.arts-annotated .action-primary > .arts-action-annotations')).not.toBeNull();
   }
   click('#layout-compact');
   expect(root().classList.contains('compact-actions')).toBe(true);
@@ -91,6 +95,8 @@ describe('Endfield rotation integration',()=>{
   expect(first.querySelector('.arts-infliction img')?.getAttribute('src')).toContain('/cryo-4.png');
   expect(first.querySelector('.arts-reaction-level')?.textContent).toBe('IV');
   expect(first.getAttribute('title')).toContain('Действие 13');
+  expect(first.querySelector('.arts-action-visual')?.textContent).not.toContain('если');
+  expect(first.querySelector('.arts-action-visual')?.textContent).not.toContain('цель');
   click('#loop');
   expect(root().querySelectorAll('.stage')).toHaveLength(1);
   expect(root().querySelectorAll('.action.arts-annotated')).toHaveLength(0);
