@@ -15,7 +15,7 @@ test('Endfield: local Arts outcomes after Arcane Skill, not stage headers',async
  await page.locator('#layout-compact').click();
  await expect(page.locator('.stage-compact-line').first()).toBeVisible();
  const maygi=page.locator('.action.arts-annotated').first();
- await expect(maygi.locator('.keycap')).toHaveText('E');
+ await expect(maygi.locator('.keycap')).toHaveText('Skill');
  await expect(maygi.locator('.arts-action-effect')).toBeVisible();
  await expect(maygi.locator('.arts-action-pre-word')).toHaveText('при Cryo');
  await expect(maygi.locator('.arts-action-result-name')).toHaveText('Corrosion');
@@ -32,7 +32,7 @@ test('Endfield: local Arts outcomes after Arcane Skill, not stage headers',async
  await page.locator('#tabs button').filter({has:page.locator('strong',{hasText:'Prydwen'})}).first().click();
  await expect(page.locator('.action.arts-annotated')).toHaveCount(3);
  const prydwen=page.locator('.action.arts-annotated').first();
- await expect(prydwen.locator('.keycap')).toHaveText('E');
+ await expect(prydwen.locator('.keycap')).toHaveText('Skill');
  await expect(prydwen.locator('.arts-infliction')).toHaveAttribute('data-stacks','4');
  await expect(prydwen.locator('.arts-infliction img')).toHaveAttribute('src',/inflictions\/cryo-4\.png$/);
  await expect(prydwen.locator('.arts-target')).toHaveText('цель');
@@ -47,6 +47,11 @@ test('Endfield: local Arts outcomes after Arcane Skill, not stage headers',async
  await noOverflow(page);
  await page.screenshot({path:testInfo.outputPath('endfield-arts-action-prydwen-mobile.png'),fullPage:true,animations:'disabled'});
 
+ // Input labels are independent of Arts: in the PC scheme Skill becomes E.
+ await page.locator('#control-pc').click();
+ await expect(page.locator('.action.arts-annotated').first().locator('.keycap')).toHaveText('E');
+ await page.locator('#control-terms').click();
+ await expect(page.locator('.action.arts-annotated').first().locator('.keycap')).toHaveText('Skill');
  await page.setViewportSize({width:320,height:740});
  await noOverflow(page);
  await expect(prydwen.locator('.arts-action-effect')).toBeVisible();
