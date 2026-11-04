@@ -73,3 +73,9 @@
 ## Канонический Arts-каталог Endfield (2026-11-04)
 
 **Не ищи Arts-иконки заново:** `data/arts/arknights-endfield.json`, `docs/ENDFIELD_ARTS_ICONS.md`, `public/arts/arknights-endfield/` — 16 оригинальных PNG инфликций (4 элемента × 1–4 стаков) и 4 PNG реакций. Source Git repository + exact commit, original blob SHA-1 и SHA-256 файлов записаны в каталоге; `scripts/validate-endfield-arts.mjs` входит в `npm run validate:portraits`. Эти иконки имеют **готовое кольцо из четырёх секторов**, поэтому не нужно дорисовывать кольцо без визуального сравнения. Реакции — отдельные иконки; Status Level I–IV пока не представлены в этих PNG и будут отдельной меткой. Исключено автоматическое выведение стаков/уровней из порядка действий. На данном этапе каталог **не подключён** в карточки: не изменяй ротации ради дизайна и не объявляй целевое состояние подтверждённым.
+
+## Arts UI-компоненты и просмотрщик Endfield (этап 02, 2026-11-04)
+
+В `src/arts-indicators.ts` доступны `createArtsInfliction({element,stacks,size,base})` и `createArtsReaction({reaction,level,size,base})`, где `size=24|28|32`, `stacks=0|1|2|3|4|null`, `level=1|2|3|4|null`. Значения `null` означают неизвестность, **не** 0; не рисовать фальшивый 0-stack PNG. Исходные 1–4 готовые кольца и иконки реакций импортированы строго из `data/arts/arknights-endfield.json`; уровень реакции показан отдельно от PNG. Интерфейс доступен по `?arts=arknights-endfield`, проверяется мобильным Playwright и PWA offline. Детали — `docs/ENDFIELD_ARTS_INDICATORS.md`.
+
+**Не считать UI оценкой механики:** этот этап не добавляет `artsCheckpoints` к текущим командам и не меняет их. Любые значения статусов для Maygi/Prydwen потребуют отдельно подтверждённого before/after + статуса целевое/проверено. Не смешивать элементы одного кадра с результатом уже поглощённой реакции.

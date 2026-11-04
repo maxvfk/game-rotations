@@ -25,6 +25,8 @@ function render(){
   const link=node('a','portrait-header-link',label) as HTMLAnchorElement;
   link.href=base+'?portraits='+gameId;portraitLinks.append(link);
  }
+ const artsLink=node('a','portrait-header-link','Arts-иконки Endfield') as HTMLAnchorElement;
+ artsLink.href=base+'?arts=arknights-endfield';portraitLinks.append(artsLink);
  header.append(portraitLinks,meta);
  const hero=node('section','hero',node('div','eyebrow','КОМАНДЫ, КОТОРЫЕ ТЫ ВЫБРАЛ'),node('h1','','Все ротации ','в одном месте'),node('p','','Выбирай игру и команду. Памятки по кнопкам, пошаговые действия и собственные варианты — даже без интернета.'));
  const controls=node('section','searchbar');
@@ -63,15 +65,18 @@ function render(){
  const footer=node('footer','footer',node('p','','Исследования и механики хранятся в maxvfk/Games. Здесь — только выбранные боевые памятки.'),node('a','','Исходные гайды ↗'));(footer.lastChild as HTMLAnchorElement).href='https://github.com/maxvfk/Games/tree/main/guides';(footer.lastChild as HTMLAnchorElement).target='_blank';
  root.append(header,hero,controls,nav,list,footer);
 }
-const requestedPortraits=new URLSearchParams(window.location.search).get('portraits');
-if(requestedPortraits==='wuthering-waves'||requestedPortraits==='arknights-endfield'){
+const requested=new URLSearchParams(window.location.search);
+const requestedArts=requested.get('arts');
+const requestedPortraits=requested.get('portraits');
+const requestedTeam=requested.get('team');
+if(requestedArts==='arknights-endfield'){
+ import('./arts-gallery').then(({mountArtsGallery})=>mountArtsGallery(root,base))
+ .catch((error:unknown)=>{console.error('Could not open Arts icons',error);render();root.prepend(node('p','empty-state','Каталог Arts-иконок недоступен'))});
+}else if(requestedPortraits==='wuthering-waves'||requestedPortraits==='arknights-endfield'){
  import('./portrait-gallery').then(({mountPortraitGallery})=>mountPortraitGallery(root,base,requestedPortraits))
- .catch((e:unknown)=>{console.error(e);render();root.prepend(node('p','empty-state','Каталог портретов недоступен'))});
-}else{
-const requestedTeam=new URLSearchParams(window.location.search).get('team');
-if(requestedTeam){
+ .catch((error:unknown)=>{console.error(error);render();root.prepend(node('p','empty-state','Каталог портретов недоступен'))});
+}else if(requestedTeam){
  import('./rotation').then(({hasRotation,mountRotation})=>{
   if(hasRotation(requestedTeam)){mountRotation(root,requestedTeam,base,base)}else{render();root.prepend(node('p','empty-state','Ротация не найдена. Открой команду из каталога.'))}
  }).catch((error:unknown)=>{console.error('Could not open rotation',error);render();root.prepend(node('p','empty-state','Не удалось открыть ротацию. Проверь соединение и попробуй снова.'))});
 }else render();
-}
