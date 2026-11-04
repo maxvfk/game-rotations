@@ -192,7 +192,49 @@
         }
       ],
       "check": "Для Xaihi Combo требуются именно два завершённых FS под Auxiliary Crystal, не просто BA. Перед Arcane Battle Skill проверить фактическое число Cryo stacks и готовность Combo Si.",
-      "extra": "Maygi (08:56–10:50). Не тратить Xaihi Combo раньше Tangtang Combo; Arcane Combo после Corrosion не нажимать на нежелательном элементе. Следующая стадия требует реальных SP/CD и не привязана к условным секундам."
+      "extra": "Maygi (08:56–10:50). Не тратить Xaihi Combo раньше Tangtang Combo; Arcane Combo после Corrosion не нажимать на нежелательном элементе. Следующая стадия требует реальных SP/CD и не привязана к условным секундам.",
+      "artsCheckpoints": [
+        {
+          "id": "cryo-corrosion-before",
+          "anchor": {
+            "actionIndex": 9,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": null,
+            "assessment": "unknown"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://www.youtube.com/watch?v=aeJeUjNLvuU",
+            "note": "Maygi первый Cryo-пакет перед Arcane Battle Skill; точное число стаков нельзя гарантировать по действиям без проверки попаданий, триггеров и cooldown."
+          }
+        },
+        {
+          "id": "cryo-corrosion-after",
+          "anchor": {
+            "actionIndex": 9,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "reaction",
+            "reaction": "corrosion",
+            "level": null,
+            "assessment": "conditional"
+          },
+          "dependsOn": "cryo-corrosion-before",
+          "condition": "Если в момент попадания Arcane Battle Skill по основной цели ещё есть Cryo Infliction, Nature применит Corrosion; точный Status Level неизвестен, пока не измерено число поглощённых стаков и действующий статус цели.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.games/en/tutorials/battle/",
+            "note": "Live combat tutorial: Nature Infliction на цели с предшествующими non-Nature Inflictions расходует их и создаёт Corrosion; Status Level определяется количеством поглощённых стаков (до 4). Это условное следствие, не доказательство конкретного исполнения."
+          }
+        }
+      ]
     },
     "maygiRebuild": {
       "person": "si",
@@ -277,7 +319,49 @@
         }
       ],
       "check": "После повторного Xaihi Skill получить два FS для Combo; до второго Arcane Skill проверить расходуемые Cryo, Si Combo CD и состояние Whirlpool.",
-      "extra": "Механический порядок Maygi; точный момент второго Si Skill остаётся pending stage-state verification (Artful Intent/Inksoul). Ultimate Tangtang используется здесь как часть длинного цикла, не короткой волны."
+      "extra": "Механический порядок Maygi; точный момент второго Si Skill остаётся pending stage-state verification (Artful Intent/Inksoul). Ultimate Tangtang используется здесь как часть длинного цикла, не короткой волны.",
+      "artsCheckpoints": [
+        {
+          "id": "cryo-corrosion-before",
+          "anchor": {
+            "actionIndex": 6,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": null,
+            "assessment": "unknown"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://www.youtube.com/watch?v=aeJeUjNLvuU",
+            "note": "Maygi второй Cryo-пакет перед Arcane Battle Skill; точное число стаков нельзя гарантировать по действиям без проверки попаданий, триггеров и cooldown."
+          }
+        },
+        {
+          "id": "cryo-corrosion-after",
+          "anchor": {
+            "actionIndex": 6,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "reaction",
+            "reaction": "corrosion",
+            "level": null,
+            "assessment": "conditional"
+          },
+          "dependsOn": "cryo-corrosion-before",
+          "condition": "Если в момент попадания Arcane Battle Skill по основной цели ещё есть Cryo Infliction, Nature применит Corrosion; точный Status Level неизвестен, пока не измерено число поглощённых стаков и действующий статус цели.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.games/en/tutorials/battle/",
+            "note": "Live combat tutorial: Nature Infliction на цели с предшествующими non-Nature Inflictions расходует их и создаёт Corrosion; Status Level определяется количеством поглощённых стаков (до 4). Это условное следствие, не доказательство конкретного исполнения."
+          }
+        }
+      ]
     },
     "maygiBurst": {
       "person": "si",
@@ -361,7 +445,49 @@
         }
       ],
       "check": "Перед заключительным Combo Si должны совпасть ready CD, Cryo consume и усиления. Finisher — только при Stagger.",
-      "extra": "Maygi не доказывает устойчивый повторный loop с пустыми Ultimates. Слот 1 для Maygi здесь принят Arcane как практическая адаптация Prydwen; авторское утверждение о слоте отдельно не подтверждено."
+      "extra": "Maygi не доказывает устойчивый повторный loop с пустыми Ultimates. Слот 1 для Maygi здесь принят Arcane как практическая адаптация Prydwen; авторское утверждение о слоте отдельно не подтверждено.",
+      "artsCheckpoints": [
+        {
+          "id": "cryo-corrosion-before",
+          "anchor": {
+            "actionIndex": 7,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": null,
+            "assessment": "unknown"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://www.youtube.com/watch?v=aeJeUjNLvuU",
+            "note": "Maygi burst Cryo-пакет перед Arcane Battle Skill; точное число стаков нельзя гарантировать по действиям без проверки попаданий, триггеров и cooldown."
+          }
+        },
+        {
+          "id": "cryo-corrosion-after",
+          "anchor": {
+            "actionIndex": 7,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "reaction",
+            "reaction": "corrosion",
+            "level": null,
+            "assessment": "conditional"
+          },
+          "dependsOn": "cryo-corrosion-before",
+          "condition": "Если в момент попадания Arcane Battle Skill по основной цели ещё есть Cryo Infliction, Nature применит Corrosion; точный Status Level неизвестен, пока не измерено число поглощённых стаков и действующий статус цели.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.games/en/tutorials/battle/",
+            "note": "Live combat tutorial: Nature Infliction на цели с предшествующими non-Nature Inflictions расходует их и создаёт Corrosion; Status Level определяется количеством поглощённых стаков (до 4). Это условное следствие, не доказательство конкретного исполнения."
+          }
+        }
+      ]
     },
     "prydwenOne": {
       "person": "si",
@@ -490,7 +616,49 @@
         }
       ],
       "check": "Контроль: до Arcane Skill подготовить Cryo; Xaihi Combo — только после двух FS под Crystal; cooldown между повторными Combo реальный.",
-      "extra": "Prydwen/Gacha Gamer; исходная схема содержит условные блоки по 0,5 с, их нельзя читать как секундомер. Некоторые adjacent Combo могут требовать ожидания/hold."
+      "extra": "Prydwen/Gacha Gamer; исходная схема содержит условные блоки по 0,5 с, их нельзя читать как секундомер. Некоторые adjacent Combo могут требовать ожидания/hold.",
+      "artsCheckpoints": [
+        {
+          "id": "cryo-corrosion-before",
+          "anchor": {
+            "actionIndex": 12,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 4,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://www.youtube.com/watch?v=ZR1oTH2E03Y",
+            "note": "Prydwen/Gacha Gamer: цель первого Cryo-пакета — четыре стака перед Nature Skill Arcane. Четыре стака — план, а не наблюдение в игре."
+          }
+        },
+        {
+          "id": "cryo-corrosion-after",
+          "anchor": {
+            "actionIndex": 12,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "reaction",
+            "reaction": "corrosion",
+            "level": 4,
+            "assessment": "conditional"
+          },
+          "dependsOn": "cryo-corrosion-before",
+          "condition": "Только если в момент попадания Arcane Battle Skill действительно поглощены 4 Cryo stacks на той же цели и нет дополнительных изменений/сохранения более сильной Corrosion; иначе статус и уровень могут отличаться.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.games/en/tutorials/battle/",
+            "note": "Live combat tutorial: Nature Infliction на цели с предшествующими non-Nature Inflictions расходует их и создаёт Corrosion; Status Level определяется количеством поглощённых стаков (до 4). Это условное следствие, не доказательство конкретного исполнения."
+          }
+        }
+      ]
     },
     "prydwenTwo": {
       "person": "si",
@@ -612,7 +780,49 @@
         }
       ],
       "check": "Проверить минимум CD Si Combo, число Cryo и окно Stagger; действия не могут занять условные 6–7 с.",
-      "extra": "Сохранена порядок блоков исходного скриншота. Возможность двух Corrosion IV не гарантируется без действительного подсчёта Cryo и статусов."
+      "extra": "Сохранена порядок блоков исходного скриншота. Возможность двух Corrosion IV не гарантируется без действительного подсчёта Cryo и статусов.",
+      "artsCheckpoints": [
+        {
+          "id": "cryo-corrosion-before",
+          "anchor": {
+            "actionIndex": 12,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": null,
+            "assessment": "unknown"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://www.youtube.com/watch?v=ZR1oTH2E03Y",
+            "note": "Prydwen/Gacha Gamer второй Cryo-пакет перед Arcane Battle Skill; точное число стаков нельзя гарантировать по действиям без проверки попаданий, триггеров и cooldown."
+          }
+        },
+        {
+          "id": "cryo-corrosion-after",
+          "anchor": {
+            "actionIndex": 12,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "reaction",
+            "reaction": "corrosion",
+            "level": null,
+            "assessment": "conditional"
+          },
+          "dependsOn": "cryo-corrosion-before",
+          "condition": "Если в момент попадания Arcane Battle Skill по основной цели ещё есть Cryo Infliction, Nature применит Corrosion; точный Status Level неизвестен, пока не измерено число поглощённых стаков и действующий статус цели.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.games/en/tutorials/battle/",
+            "note": "Live combat tutorial: Nature Infliction на цели с предшествующими non-Nature Inflictions расходует их и создаёт Corrosion; Status Level определяется количеством поглощённых стаков (до 4). Это условное следствие, не доказательство конкретного исполнения."
+          }
+        }
+      ]
     },
     "prydwenBurst": {
       "person": "si",
@@ -721,7 +931,49 @@
         }
       ],
       "check": "Целевой Stagger, действующие усиления и Corrosion. После Ultimate Tangtang сразу Dive Attack; это не второй Ultimate cast.",
-      "extra": "Пользователь сверил видео Gacha Gamer и подтвердил: два соседних зелёных блока Prydwen — Ultimate Tangtang → Dive Attack. Действия не привязаны к реальным секундам Builder, SP/CD и повторяемость не прошли независимую проверку."
+      "extra": "Пользователь сверил видео Gacha Gamer и подтвердил: два соседних зелёных блока Prydwen — Ultimate Tangtang → Dive Attack. Действия не привязаны к реальным секундам Builder, SP/CD и повторяемость не прошли независимую проверку.",
+      "artsCheckpoints": [
+        {
+          "id": "cryo-corrosion-before",
+          "anchor": {
+            "actionIndex": 9,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": null,
+            "assessment": "unknown"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://www.youtube.com/watch?v=ZR1oTH2E03Y",
+            "note": "Prydwen/Gacha Gamer burst Cryo-пакет перед Arcane Battle Skill; точное число стаков нельзя гарантировать по действиям без проверки попаданий, триггеров и cooldown."
+          }
+        },
+        {
+          "id": "cryo-corrosion-after",
+          "anchor": {
+            "actionIndex": 9,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "reaction",
+            "reaction": "corrosion",
+            "level": null,
+            "assessment": "conditional"
+          },
+          "dependsOn": "cryo-corrosion-before",
+          "condition": "Если в момент попадания Arcane Battle Skill по основной цели ещё есть Cryo Infliction, Nature применит Corrosion; точный Status Level неизвестен, пока не измерено число поглощённых стаков и действующий статус цели.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.games/en/tutorials/battle/",
+            "note": "Live combat tutorial: Nature Infliction на цели с предшествующими non-Nature Inflictions расходует их и создаёт Corrosion; Status Level определяется количеством поглощённых стаков (до 4). Это условное следствие, не доказательство конкретного исполнения."
+          }
+        }
+      ]
     },
     "recoveryNote": {
       "person": "si",

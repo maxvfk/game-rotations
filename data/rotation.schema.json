@@ -331,6 +331,13 @@
                   }
                 ]
               }
+            },
+            "artsCheckpoints": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/artsCheckpoint"
+              }
             }
           }
         }
@@ -350,6 +357,163 @@
     "stageId": {
       "type": "string",
       "pattern": "^[A-Za-z][A-Za-z0-9]*$"
+    },
+    "artsStatus": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "element",
+            "stacks",
+            "assessment"
+          ],
+          "properties": {
+            "kind": {
+              "const": "infliction"
+            },
+            "element": {
+              "enum": [
+                "heat",
+                "electric",
+                "cryo",
+                "nature"
+              ]
+            },
+            "stacks": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 4
+            },
+            "assessment": {
+              "enum": [
+                "target",
+                "observed",
+                "unknown"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "reaction",
+            "level",
+            "assessment"
+          ],
+          "properties": {
+            "kind": {
+              "const": "reaction"
+            },
+            "reaction": {
+              "enum": [
+                "combustion",
+                "electrification",
+                "solidification",
+                "corrosion"
+              ]
+            },
+            "level": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1,
+              "maximum": 4
+            },
+            "assessment": {
+              "enum": [
+                "conditional",
+                "observed",
+                "unknown"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "artsCheckpoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "anchor",
+        "status",
+        "evidence"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "anchor": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "actionIndex",
+            "relative"
+          ],
+          "properties": {
+            "actionIndex": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "relative": {
+              "enum": [
+                "before",
+                "after"
+              ]
+            }
+          }
+        },
+        "subject": {
+          "const": "primary-target"
+        },
+        "status": {
+          "$ref": "#/$defs/artsStatus"
+        },
+        "dependsOn": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "condition": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "basis",
+            "url",
+            "note"
+          ],
+          "properties": {
+            "basis": {
+              "enum": [
+                "tc-intent",
+                "live-mechanic",
+                "combat-observation"
+              ]
+            },
+            "url": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^https://"
+            },
+            "note": {
+              "type": "string",
+              "minLength": 15
+            }
+          }
+        }
+      }
     }
   }
 }

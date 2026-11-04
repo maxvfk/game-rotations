@@ -1,6 +1,20 @@
 export type InputKind = 'intro' | 'outro' | 'swap' | 'basic' | 'heavy' | 'skill' | 'ultimate' | 'echo' | 'dodge' | 'auto' | 'combo' | 'final-strike' | 'finisher' | 'dive';
 export type Action = {text:string;tone:'normal'|'key'|'vital'|'swap'|'flow'|'sensitive';input:{kind:InputKind;count?:number;repeat?:boolean;target?:string;actor?:string;press?:'tap'|'hold'};optional?:boolean;condition?:string;hint?:string};
-export type RotationStage = {person:string;title:string;sub:string;actions:Action[];check:string;extra:string};
+// Semantic snapshots only. Presentation (PNG paths, CSS sizes, ring/level rendering)
+// belongs to src/arts-indicators.ts and can be replaced without rewriting rotations.
+export type ArtsCheckpointStatus =
+ | {kind:'infliction';element:'heat'|'electric'|'cryo'|'nature';stacks:0|1|2|3|4|null;assessment:'target'|'observed'|'unknown'}
+ | {kind:'reaction';reaction:'combustion'|'electrification'|'solidification'|'corrosion';level:1|2|3|4|null;assessment:'conditional'|'observed'|'unknown'};
+export type ArtsCheckpoint = {
+ id:string;
+ anchor:{actionIndex:number;relative:'before'|'after'};
+ subject?:'primary-target';
+ status:ArtsCheckpointStatus;
+ dependsOn?:string;
+ condition?:string;
+ evidence:{basis:'tc-intent'|'live-mechanic'|'combat-observation';url:string;note:string};
+};
+export type RotationStage = {person:string;title:string;sub:string;actions:Action[];check:string;extra:string;artsCheckpoints?:ArtsCheckpoint[]};
 export type RotationCharacter = {id:string;name:string;glyph:string;color:string;portrait:string;investment:string};
 export type RotationVariant = {id:string;label:string;sub:string;type:string;intro:string;verification:'adapted'|'partial'|'experimental'|'verified';opener:string[];loop:string[];loopCaution?:string};
 export type RotationBook = {schemaVersion:1;id:string;game:string;title:string;gameVersion:string;source:string;verificationNote:string;characters:RotationCharacter[];controls:string;defaultSlots:Record<string,string>;variants:RotationVariant[];stages:Record<string,RotationStage>};
