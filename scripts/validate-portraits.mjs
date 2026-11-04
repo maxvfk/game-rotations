@@ -89,5 +89,10 @@ if(!errors.length){
  try{execFileSync(process.execPath,['scripts/generate-endfield-minis.mjs','--check'],{stdio:'inherit'});}
  catch(error){errors.push('Endfield mini PNG verification failed: '+error.message)}
 }
+// Stage 01 Arts icon registry: validate all 20 original status sprites offline.
+if(!errors.length){
+ try{execFileSync(process.execPath,['scripts/validate-endfield-arts.mjs'],{stdio:'inherit'});}
+ catch(error){errors.push('Endfield Arts icon validation failed: '+error.message)}
+}
 if(errors.length){console.error(errors.join('\n'));process.exit(1)}
 console.log('Validated '+endIds.size+' original Endfield icon PNGs, '+endPageIds.size+' operator pages and the canonical character/portrait bindings.');
