@@ -1,6 +1,7 @@
 import './rotation.css';
 
 import type {RotationBook, RotationStage, RotationCharacter, Action, ControlMap, Scheme, RotationVariant} from './rotation-types';
+import {createArtsCheckpointSummary} from './arts-checkpoint-view';
 
 const BOOKS:Record<string,RotationBook> = {};
 for(const raw of Object.values(import.meta.glob('../data/rotations/**/*.json',{eager:true,import:'default'}))){const book=raw as RotationBook;BOOKS[book.id]=book}
@@ -188,7 +189,13 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
     // Compact titles omit author/step prefixes already represented by the stage number.
     // Unknown future title formats are kept intact, without a hard-coded TC name.
     const shortTitle=s.title.replace(/^.*?·\s*\d+[.)]\s*/u,'');
-    heading.append(node('div','stage-compact-line',index+'  ·  '+shortTitle));
+    const compactRow=node('div','stage-compact-row');
+    compactRow.append(node('div','stage-compact-line',index+'  ·  '+shortTitle));
+    // Only explicit before/after checkpoints, no inferred stack counts.
+    // Game-icon and Roman-level presentation can be replaced independently.
+    const arts=createArtsCheckpointSummary(s.artsCheckpoints,base);
+    if(arts)compactRow.append(arts);
+    heading.append(compactRow);
    }
    head.append(portrait,heading);
    if(tracksProgress){
