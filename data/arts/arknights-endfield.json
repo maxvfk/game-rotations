@@ -203,7 +203,7 @@
       "element": "electric",
       "icon": {
         "path": "arts/arknights-endfield/reactions/electrification.png",
-        "width": 72,
+        "width": 73,
         "height": 72,
         "sha256": "bff8fd665e1b2d005fedf40db2ab65060397fa3913fe68a7e84c34d9aa75d2b5",
         "sourcePath": "endfield/assets/ui/debuffs/electrification.png",
