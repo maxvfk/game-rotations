@@ -95,6 +95,6 @@
 Условность и данные о механике не меняются от визуального дизайна. Сама библиотеka `src/arts-indicators.ts` владеет PNG и римскими уровнями I–IV; **не сохранять UI-параметры в `artsCheckpoints`**. Последующие реальные per-action инфликции должны быть предварительно подтверждены через проверенную модель применения/ownership и source evidence. Запускать unit, 320px mobile/offline PWA E2E, проверять обе ротации и WuWa.
 
 
-## Проба Corrosion: уровень поверх оригинальной иконки (2026-11-04)
+## Arts Reaction: уровни поверх оригинальных иконок (2026-11-04)
 
-Только `createArtsReaction({reaction:'corrosion',level:1..4})` использует класс `.arts-corrosion-level-overlay`: serif Roman в нижнем правом углу, цвет оригинала `#c3e354`, мягкая тёмная тень, без таймера/рамок. Оригинальные SHA-pinned PNG не редактировать; все прочие реакции, неизвестные уровни и Infliction визуально не менять. Прототип подлежит оценке на телефоне прежде, чем переносить стиль на остальные реакции.
+Согласованный на Corrosion в PR #26 вид обобщён на четыре Arts Reaction. Для `level=1..4` применяется CSS-класс `.arts-reaction-level-overlay`: увеличенный serif Roman в нижнем правом углу исходного PNG, мягкая тёмная тень, **без рамок, плашек или таймера**. Цвета из оригиналов: Combustion `#ff623d`, Electrification `#fdcf1d`, Solidification `#21c6d0`, Corrosion `#c3e354`. Для `level:null` такого класса нет. Никаких новых PNG или изменений в SHA-pinned Arts-каталоге, Infliction, checkpoint JSON и боевых ротациях. Проверять в Arts gallery 24/28/32 px, 320/390 px, offline PWA и на существующем Prydwen IV.
