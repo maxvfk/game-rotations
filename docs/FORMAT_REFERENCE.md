@@ -159,8 +159,8 @@
 
 ### Endfield: Arts привязаны к конкретным действиям (текущий UI)
 
-Структура `stage.artsCheckpoints` остаётся прежней. Renderer вызывает `createArtsActionEffect(s.artsCheckpoints, j, base)` внутри соответствующей `.action.endfield-action`, где `j` — индекс текущего действия в этапе. Заголовки этапов **больше не показывают** `stage-arts-summary` или блоки Arts. Индикаторы видны и в full, и в compact режиме.
+Структура `stage.artsCheckpoints` остаётся прежней. Renderer вызывает `createArtsActionEffect(s.artsCheckpoints, j, base)` внутри `.action-primary` соответствующей `.action.endfield-action` после keycap (одна строка без нижнего блока), где `j` — индекс текущего действия в этапе. Заголовки этапов **больше не показывают** `stage-arts-summary` или блоки Arts. Индикаторы видны и в full, и в compact режиме.
 
-Подтверждённые численные `target` / `observed` показываются как игровая Infliction icon + уровень; `conditional` помечается `если`. У `unknown` с `null` нет чисел: отображается только **условный тип реакции**, например `при Cryo → Corrosion`, если это известно из схемы реакции, а полная оговорка остаётся в `title`/ARIA. Из этого не следует гарантированное наложение в реальном бою. Визуализация не вычисляет количество стаков и не изменяет `stage.actions[]`.
+Подтверждённые численные `target` / `observed` показываются как игровая Infliction icon + уровень; `conditional` и `target` остаются в `title`/ARIA, а не в видимых бейджах. У `unknown` с `null` нет чисел: показывается текстовый элемент Cryo (без выдуманного кольца) → иконка реакции без уровня. Для первого Prydwen-пакета — оригинальный PNG Cryo-4 → PNG Corrosion IV. Из этого не следует гарантированное наложение в реальном бою. Визуализация не вычисляет количество стаков и не изменяет `stage.actions[]`.
 
 Для замены графики реакции меняется `src/arts-indicators.ts` или CSS, не `artsCheckpoints`. Unit: `test/arts-checkpoint-view.test.ts`. E2E: `test/e2e/arts-checkpoint-stage.spec.ts`.

@@ -33,20 +33,21 @@ function fullDescription(before:ArtsCheckpoint|undefined,after:ArtsCheckpoint|un
  }
  return lines.join(' ');
 }
+// Keep the action line as a small graphical change marker. Full provenance,
+// target/conditional semantics and missing numbers stay in title/ARIA.
 function precondition(before:ArtsCheckpoint,base:string){
  const status=before.status;
  const label=make('span','arts-action-prerequisite');
- if(status.kind!=='infliction')return label;
  label.dataset.assessment=status.assessment;
- // Unknown counts aren't a fake 0-ring. Show the actual prerequisite element,
- // rather than a visually noisy Cryo ? → Corrosion ? sequence.
- if(status.stacks===null){
-  label.append(make('span','arts-action-pre-word','при '+ARTS_NAMES[status.element]));
+ if(status.kind==='infliction'){
+  if(status.stacks===null){
+   // Unknown is not a one-stack icon: use the element name only.
+   label.append(make('span','arts-action-pre-word',ARTS_NAMES[status.element]));
+  }else label.append(createArtsInfliction({element:status.element,stacks:status.stacks,size:24,base}));
  }else{
-  label.append(make('span','arts-action-pre-word',ARTS_NAMES[status.element]));
-  label.append(createArtsInfliction({element:status.element,stacks:status.stacks,size:24,base}));
-  if(status.assessment==='target')label.append(make('span','arts-action-qualifier arts-target','цель'));
-  if(status.assessment==='observed')label.append(make('span','arts-action-qualifier arts-observed','факт'));
+  const icon=createArtsReaction({reaction:status.reaction,level:status.level,size:24,base});
+  if(status.level===null)icon.querySelector('.arts-reaction-level')?.remove();
+  label.append(icon);
  }
  return label;
 }
@@ -56,17 +57,11 @@ function outcome(after:ArtsCheckpoint,base:string){
  wrap.dataset.assessment=status.assessment;
  if(status.kind==='reaction'){
   const icon=createArtsReaction({reaction:status.reaction,level:status.level,size:24,base});
-  // The gallery can use ? for missing level, but an action-local hint should
-  // never read as an unknown number: show the reaction type only.
   if(status.level===null)icon.querySelector('.arts-reaction-level')?.remove();
-  wrap.append(icon,make('span','arts-action-result-name',REACTION_NAMES[status.reaction]));
-  if(status.assessment==='conditional')wrap.append(make('span','arts-action-qualifier arts-conditional','если'));
-  if(status.assessment==='observed')wrap.append(make('span','arts-action-qualifier arts-observed','факт'));
- }else{
-  wrap.append(createArtsInfliction({element:status.element,stacks:status.stacks,size:24,base}),
-   make('span','arts-action-result-name',ARTS_NAMES[status.element]));
-  if(status.assessment==='target')wrap.append(make('span','arts-action-qualifier arts-target','цель'));
- }
+  wrap.append(icon);
+ }else if(status.stacks===null){
+  wrap.append(make('span','arts-action-result-name',ARTS_NAMES[status.element]));
+ }else wrap.append(createArtsInfliction({element:status.element,stacks:status.stacks,size:24,base}));
  return wrap;
 }
 function actionTransition(before:ArtsCheckpoint|undefined,after:ArtsCheckpoint|undefined,index:number,base:string){
