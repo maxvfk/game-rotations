@@ -43,6 +43,9 @@
 @media(max-width:620px){
  .arts-preview-root .arts-stack-matrix{grid-template-columns:repeat(2,minmax(0,1fr))}
  .arts-preview-root .arts-panel{padding:13px}
+ .arts-preview-root .arts-reaction-matrix{grid-template-columns:1fr}
+ .arts-preview-root .arts-reaction-card{flex-direction:column;align-items:stretch}
+ .arts-preview-root .arts-reaction-card .arts-matrix-icons{width:100%}
 }
 @media(max-width:370px){
  .arts-preview-root .arts-selectors{grid-template-columns:repeat(2,minmax(0,1fr))}
