@@ -30,7 +30,7 @@
 
 - `data/arts/arknights-endfield.json` — восемь типизированных записей, 20 изображений, происхождение и полные SHA-256.
 - `public/arts/arknights-endfield/inflictions/{heat,electric,cryo,nature}-{1,2,3,4}.png` — 16 оригинальных 125×125 RGBA PNG.
-- `public/arts/arknights-endfield/reactions/{combustion,electrification,solidification,corrosion}.png` — 4 оригинальных 72×72 RGBA PNG.
+- `public/arts/arknights-endfield/reactions/{combustion,electrification,solidification,corrosion}.png` — 4 оригинальных RGBA PNG (три 72×72 и Electrification 73×72).
 - `scripts/validate-endfield-arts.mjs` — проверка точных имён, типов, числа стаков, размеров, SHA-256 и Git blob SHA-1 исходных файлов.
 
 ## Provenance / rights
