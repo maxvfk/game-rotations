@@ -18,11 +18,11 @@ const sha256=buf=>createHash('sha256').update(buf).digest('hex');
 const blobSha1=buf=>createHash('sha1')
   .update(Buffer.from('blob '+buf.length+'\0')).update(buf).digest('hex');
 
-function validateAsset(spec,expectedPath,expectedSource,expectedDim){
+function validateAsset(spec,expectedPath,expectedSource,expectedWidth,expectedHeight=expectedWidth){
  if(!spec||typeof spec!=='object'){errors.push('Missing asset '+expectedPath);return;}
  if(spec.path!==expectedPath||spec.sourcePath!==expectedSource)
   errors.push('Unexpected path/source '+expectedPath);
- if(spec.width!==expectedDim||spec.height!==expectedDim)
+ if(spec.width!==expectedWidth||spec.height!==expectedHeight)
   errors.push('Unexpected manifest dimensions '+expectedPath);
  if(!hex64.test(spec.sha256)||!hex40.test(spec.sourceBlobSha))
   errors.push('Missing or invalid digest '+expectedPath);
@@ -36,7 +36,7 @@ function validateAsset(spec,expectedPath,expectedSource,expectedDim){
  const sig=Buffer.from([137,80,78,71,13,10,26,10]);
  if(bytes.length<500||bytes.length>50000||!bytes.subarray(0,8).equals(sig)||bytes.toString('ascii',12,16)!=='IHDR')
   {errors.push('Invalid PNG '+expectedPath);return;}
- if(bytes.readUInt32BE(16)!==expectedDim||bytes.readUInt32BE(20)!==expectedDim||bytes[24]!==8||bytes[25]!==6||bytes[28]!==0)
+ if(bytes.readUInt32BE(16)!==expectedWidth||bytes.readUInt32BE(20)!==expectedHeight||bytes[24]!==8||bytes[25]!==6||bytes[28]!==0)
   errors.push('Original PNG format changed '+expectedPath);
  if(sha256(bytes)!==spec.sha256)errors.push('SHA256 mismatch '+expectedPath);
  if(blobSha1(bytes)!==spec.sourceBlobSha)errors.push('Original source blob mismatch '+expectedPath);
@@ -67,7 +67,7 @@ for(const [id,element] of Object.entries(reactions)){
  if(item?.id!==id||item?.kind!=='reaction'||item?.element!==element)
   errors.push('Unexpected Reaction record '+id);
  validateAsset(item?.icon,'arts/arknights-endfield/reactions/'+id+'.png',
-  rootSource+id+'.png',id==='electrification'?73:72);
+  rootSource+id+'.png',id==='electrification'?73:72,72);
 }
 if(paths.size!==20||hashes.size!==20)errors.push('Expected 20 distinct original art assets');
 if(errors.length){console.error(errors.join('\n'));process.exit(1);}
