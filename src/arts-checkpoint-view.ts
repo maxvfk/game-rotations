@@ -59,7 +59,6 @@ function outcome(after:ArtsCheckpoint,base:string){
    make('span','arts-action-result-name',REACTION_NAMES[status.reaction]));
   if(status.assessment==='conditional')wrap.append(make('span','arts-action-qualifier arts-conditional','если'));
   if(status.assessment==='observed')wrap.append(make('span','arts-action-qualifier arts-observed','факт'));
-  if(status.assessment==='target'){} // Unreachable under current discriminated schema.
  }else{
   wrap.append(createArtsInfliction({element:status.element,stacks:status.stacks,size:24,base}),
    make('span','arts-action-result-name',ARTS_NAMES[status.element]));
