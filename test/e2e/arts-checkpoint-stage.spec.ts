@@ -47,9 +47,10 @@ test('Endfield: local Arts outcomes after Arcane Skill, not stage headers',async
  await noOverflow(page);
  await page.screenshot({path:testInfo.outputPath('endfield-arts-action-prydwen-mobile.png'),fullPage:true,animations:'disabled'});
 
- // Input labels are independent of Arts: in the PC scheme Skill becomes E.
+ // The PC binding is actor-specific: the Arcane action is mapped to 1 here,
+ // not a universal E key. Switching schemes must not change the Arts annotation.
  await page.locator('#control-pc').click();
- await expect(page.locator('.action.arts-annotated').first().locator('.keycap')).toHaveText('E');
+ await expect(page.locator('.action.arts-annotated').first().locator('.keycap')).toHaveText('1');
  await page.locator('#control-terms').click();
  await expect(page.locator('.action.arts-annotated').first().locator('.keycap')).toHaveText('Skill');
  await page.setViewportSize({width:320,height:740});
