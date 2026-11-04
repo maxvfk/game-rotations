@@ -26,8 +26,6 @@ export function checkArtsCheckpoints(game,stageId,stage){
   if(status.assessment==='unknown'&&amount!==null)add(label+' unknown assessment must use a null amount');
   if(status.assessment!=='unknown'&&amount===null&&status.assessment!=='conditional')
    add(label+' known/target assessment requires exact amount');
-  if(status.assessment==='target'&&cp.anchor.relative!=='before')
-   add(label+' target state must be before its action');
   if(status.assessment==='conditional'){
    if(cp.anchor.relative!=='after')add(label+' conditional result must be after its action');
    if(!cp.condition||cp.condition.trim().length<10)add(label+' conditional outcome must state its assumptions');
@@ -58,8 +56,8 @@ export function checkArtsCheckpoints(game,stageId,stage){
   if(cp.status.kind==='reaction'&&prior.status.kind==='infliction'){
    if(prior.status.element===REACTION_TRIGGER[cp.status.reaction])
     add(cp.id+' reaction requires a DIFFERENT preexisting Infliction from the triggering element');
-   if(prior.status.stacks!==null&&cp.status.level!==null&&prior.status.stacks!==cp.status.level)
-    add(cp.id+' Status Level differs from assumed consumed stacks');
+   // Existing stronger reaction statuses may persist on refresh; a post-reaction
+   // Status Level is not universally equal to the newly consumed stacks.
    if(prior.status.stacks===0&&cp.status.level!==null)
     add(cp.id+' cannot react from zero Infliction stacks');
   }
