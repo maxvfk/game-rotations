@@ -67,7 +67,7 @@ for(const [id,element] of Object.entries(reactions)){
  if(item?.id!==id||item?.kind!=='reaction'||item?.element!==element)
   errors.push('Unexpected Reaction record '+id);
  validateAsset(item?.icon,'arts/arknights-endfield/reactions/'+id+'.png',
-  rootSource+id+'.png',72);
+  rootSource+id+'.png',id==='electrification'?73:72);
 }
 if(paths.size!==20||hashes.size!==20)errors.push('Expected 20 distinct original art assets');
 if(errors.length){console.error(errors.join('\n'));process.exit(1);}
