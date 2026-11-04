@@ -71,7 +71,10 @@ function flow(before:ArtsCheckpoint,after:ArtsCheckpoint|undefined,base:string){
  visual.setAttribute('aria-hidden','true');
  visual.append(point(before,base));
  if(after){
-  visual.append(make('span','arts-checkpoint-arrow','→'),point(after,base));
+  // Keep arrow and resulting status together when a mobile line wraps.
+  const afterGroup=make('span','arts-checkpoint-after');
+  afterGroup.append(make('span','arts-checkpoint-arrow','→'),point(after,base));
+  visual.append(afterGroup);
  }
  group.append(visual);
  return group;
