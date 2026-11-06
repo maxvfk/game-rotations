@@ -1,6 +1,6 @@
 # Как добавить ротацию: инструкция для другого чата / агента
 
-**Сначала** прочитай `AGENTS.md`. Эта инструкция намеренно самодостаточна: если задача ограничена публикацией уже выбранной пользователем команды, достаточно её, [FORMAT_REFERENCE](FORMAT_REFERENCE.md), файлов `examples/` и исходного research guide.
+**Сначала** прочитай `AGENTS.md`. Для Endfield обязательно также [ENDFIELD_ROTATION_AUTHORING.md](ENDFIELD_ROTATION_AUTHORING.md): multi-operator stages, `input.actor`, FS, Combo, Arts, настройки и отсутствие чеклистов отличаются от WuWa. Для остальных игр используй эту инструкцию, [FORMAT_REFERENCE](FORMAT_REFERENCE.md), примеры и исходный research guide.
 
 ## 0. Раздели исследование и публикацию
 
@@ -53,7 +53,7 @@ npm run catalog:check
 
 ## 2. Опиши ротации и переходы
 
-Один `stage` — последовательность **одного активного персонажа**; если персонаж ушёл через обычный Swap и вернулся, это **новый stage**, а не продолжение прежней карточки.
+**WuWa:** один `stage` обычно описывает одного активного персонажа; действительный Swap/возврат может требовать нового stage. **Endfield:** один командный stage может содержать действия разных операторов через `input.actor` без ложного Swap/Intro, а `stage.person` — фокус/портрет этапа. См. [Endfield authoring](ENDFIELD_ROTATION_AUTHORING.md).
 
 - `stages.<stageId>.person`: character id.
 - `title`: короткая цель этапа; `sub`: контекст/индикация.
@@ -88,7 +88,7 @@ npm run catalog:check
 
 ### Каталог Endfield
 
-Для Endfield портреты **уже собраны**, см. [ENDFIELD_PORTRAITS.md](ENDFIELD_PORTRAITS.md) и `data/portraits/arknights-endfield.json`. Используй `portraits/arknights-endfield/<id>.png`, без повторного скачивания или перекройки. Endministrator **M/F — разные ID**. Генератор `team:add` разрешает имя/портрет по canonical registry; перед первой Endfield-командой нужна игра с реальными `controls`. Проверка всех 34 PNG входит в `npm run validate:portraits`.
+Для Endfield портреты **уже собраны**, см. [ENDFIELD_PORTRAITS.md](ENDFIELD_PORTRAITS.md) и `data/portraits/arknights-endfield.json`. Используй `portraits/arknights-endfield/<id>.png`, без повторного скачивания или перекройки. Endministrator **M/F — разные ID**. Генератор `team:add` разрешает имя/портрет по canonical registry; реальные Endfield controls **уже есть** (`data/controls/arknights-endfield.json`, Terms/PC). Проверка всех 34 PNG входит в `npm run validate:portraits`.
 
 ## 4. Подключи каталог и картинки
 
@@ -119,7 +119,7 @@ npm run build
 - `build`: повторяет проверки и собирает PWA для GitHub Pages.
 - `test:e2e` (после `build`; требуется `npx playwright install chromium`): запускает production preview в настоящем Chromium на ширине 390px и проверяет DOM, скриншоты и offline service-worker reload. В GitHub Actions Chromium устанавливается автоматически, и этот тест **обязателен** до деплоя.
 - Вручную открой `http://localhost:5173/game-rotations/?team=<id>` через dev-сервер (для разработки Vite; фактический base см. `vite.config.ts`), затем production `https://maxvfk.github.io/game-rotations/?team=<id>`.
-- Проверь mobile layout, выбор вариантов, первый заход/loop, PC/PS5/A-H (что реально поддерживает игра), Intro vs Swap, stage progress, ссылки на research, изображения, офлайн-повторное открытие и сохранение данных. Не меняй существующие `id`, если не предусмотрена миграция localStorage.
+- Проверь mobile layout, варианты, opener/loop, **реально поддержанные** схемы управления (Endfield Terms/PC), Intro vs Swap, ссылки на research, локальные портреты, offline/PWA и сохранение настроек. **WuWa:** stage progress; **Endfield:** без чеклистов, но Full/Compact и Arts toggle, mini portraits и action-local annotations. Не меняй существующие IDs без согласованной миграции localStorage.
 
 ## 6. Передаваемый результат
 
