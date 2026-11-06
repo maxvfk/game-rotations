@@ -155,7 +155,7 @@
 
 `status.assessment`: `target` — цель TC (не наблюдение), `conditional` — только при указанном `condition`, `unknown` — числовое `null`, `observed` — подтверждённое измерение с `evidence.basis:'combat-observation'`, измеренным количеством и encounter/starting-state context. Случай `0` не эквивалентен `null`. Переходы `before`/`after` не являются одновременно активными статусами. Не вычислять автоматически `level` из количества нажиманий; учитывать сохранение более сильного уровня Corrosion при refresh.
 
-Ключи картинок/иконок, UI-оформления или римских цифр в `artsCheckpoints` запрещены строгой JSON Schema. Внешний вид контролирует `src/arts-indicators.ts`. Подробнее: [ENDFIELD_ARTS_CHECKPOINTS.md](ENDFIELD_ARTS_CHECKPOINTS.md). Командный renderer игнорирует metadata до отдельного этапа интеграции.
+Ключи картинок/иконок, UI-оформления или римских цифр в `artsCheckpoints` запрещены строгой JSON Schema. Внешний вид контролирует `src/arts-indicators.ts`. Подробнее: [ENDFIELD_ARTS_CHECKPOINTS.md](ENDFIELD_ARTS_CHECKPOINTS.md). Командный renderer **уже** отображает Arts у конкретных actions через `createArtsActionEffect`. Это визуализация семантических checkpoints, а не автоматический расчёт стаков.
 
 ### Endfield: Arts привязаны к конкретным действиям (текущий UI)
 
@@ -164,3 +164,7 @@
 Подтверждённые численные `target` / `observed` показываются как игровая Infliction icon + уровень; `conditional` и `target` остаются в `title`/ARIA, а не в видимых бейджах. У `unknown` с `null` нет чисел: показывается текстовый элемент Cryo (без выдуманного кольца) → иконка реакции без уровня. Для первого Prydwen-пакета — оригинальный PNG Cryo-4 → PNG Corrosion IV. Из этого не следует гарантированное наложение в реальном бою. Визуализация не вычисляет количество стаков и не изменяет `stage.actions[]`.
 
 Для замены графики реакции меняется `src/arts-indicators.ts` или CSS, не `artsCheckpoints`. Unit: `test/arts-checkpoint-view.test.ts`. E2E: `test/e2e/arts-checkpoint-stage.spec.ts`.
+
+### Endfield: вид и настройки
+
+`Полный / Компактный` сохраняется для команды в `game-rotations:v2:<team-id>:compact` (`false` по умолчанию). Кнопка `Arts: вкл/выкл` управляет action-local Arts DOM в `...:artsVisible` (`true` по умолчанию). Выключение не меняет `artsCheckpoints` или текст действий. Обе настройки едины для вариантов **одной** команды. В Endfield нет checklist/progress, `По шагам` — только навигация; WuWa сохраняет progress. [Endfield authoring](ENDFIELD_ROTATION_AUTHORING.md).
