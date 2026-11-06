@@ -98,3 +98,8 @@
 ## Arts Reaction: уровни поверх оригинальных иконок (2026-11-04)
 
 Согласованный на Corrosion в PR #26 вид обобщён на четыре Arts Reaction. Для `level=1..4` применяется CSS-класс `.arts-reaction-level-overlay`: увеличенный serif Roman в нижнем правом углу исходного PNG, мягкая тёмная тень, **без рамок, плашек или таймера**. Цвета из оригиналов: Combustion `#ff623d`, Electrification `#fdcf1d`, Solidification `#21c6d0`, Corrosion `#c3e354`. Для `level:null` такого класса нет. Никаких новых PNG или изменений в SHA-pinned Arts-каталоге, Infliction, checkpoint JSON и боевых ротациях. Проверять в Arts gallery 24/28/32 px, 320/390 px, offline PWA и на существующем Prydwen IV.
+
+
+## Endfield: переключатель Arts-индикаторов (2026-11-07)
+
+На каждой Endfield-команде `#arts-visibility-toggle` управляет видимостью action-local Arts отдельно от `Полный / Компактный`. По умолчанию **вкл**; `artsVisible` сохраняется в `game-rotations:v2:<team-id>:` для Maygi и Prydwen совместно. Отключение означает отсутствие Arts DOM и Arts tooltip/ARIA, не CSS-only скрытие; реальные `artsCheckpoints` не трогать. У WuWa и галереи такого переключателя нет. E2E тестирует сохранение, смену варианта/управления/вида, 320 px и PWA offline.

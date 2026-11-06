@@ -52,6 +52,9 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
  let controls=String(get('controls',controlMap.schemes[0]?.id??'terms'));
  // Full by default; one setting per team, shared by Maygi and Prydwen.
  let compact=book.game==='arknights-endfield'&&get('compact',false)===true;
+ // Arts is opt-out and independent of Full/Compact, Maygi/Prydwen and controls.
+ // Persist per team; legacy sessions with no key keep the current visible UI.
+ let showArts=book.game==='arknights-endfield'&&get('artsVisible',true)!==false;
  if(!controlMap.schemes.some(s=>s.id===controls))controls=controlMap.schemes[0].id;
  let slotsOpen=false;
  const selector=q('#control-selector');
@@ -74,7 +77,13 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
    densityButtons.append(button);
   }
   densityButtons.setAttribute('role','group');densityButtons.setAttribute('aria-label','Вид карточек действий');
-  density.append(densityButtons);selector.after(density);
+  density.append(densityButtons);
+   const artsToggle=node('button','arts-visibility-toggle') as HTMLButtonElement;
+   artsToggle.type='button';artsToggle.id='arts-visibility-toggle';
+   artsToggle.setAttribute('aria-label','Показывать Arts-индикаторы');
+   artsToggle.onclick=()=>{showArts=!showArts;set('artsVisible',showArts);render()};
+   density.append(artsToggle);
+   selector.after(density);
  }
  const panel=q('#slots-panel');const selectByPerson=new Map<string,HTMLSelectElement>();
  for(const person of book.characters){
@@ -153,6 +162,10 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
   if(book.game==='arknights-endfield'){
    q('#layout-full').setAttribute('aria-pressed',String(!compact));
    q('#layout-compact').setAttribute('aria-pressed',String(compact));
+    const artsToggle=q<HTMLButtonElement>('#arts-visibility-toggle');
+    artsToggle.setAttribute('aria-pressed',String(showArts));
+    artsToggle.textContent=showArts?'Arts: вкл':'Arts: выкл';
+    artsToggle.title=showArts?'Скрыть Arts-индикаторы':'Показать Arts-индикаторы';
   }
   renderControls();renderSlots();
   const tabs=q('#tabs');tabs.replaceChildren();
@@ -247,8 +260,9 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
     if(a.condition)chip.append(node('span','action-condition','Если: '+a.condition));
     if(a.hint)chip.append(node('span','action-hint',a.hint));
     if(a.optional)chip.classList.add('optional-action');
-    if(book.game==='arknights-endfield'){
-     // Checkpoints are anchored to this precise stage.actions[j]. No guessed stacks.
+    if(book.game==='arknights-endfield'&&showArts){
+     // Only display opted-in checkpoints on this exact action.
+     // Hiding removes annotation nodes, their titles and their ARIA descriptions.
      const arts=createArtsActionEffect(s.artsCheckpoints,j,base);
      if(arts){
       chip.classList.add('arts-annotated');

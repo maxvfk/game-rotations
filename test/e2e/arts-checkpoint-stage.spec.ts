@@ -109,10 +109,68 @@ test('Action-local Arts survive PWA offline, while WuWa stays isolated',async({p
  const reaction=page.locator('.action.arts-annotated .arts-reaction img').first();
  await reaction.scrollIntoViewIfNeeded();
  await expect.poll(()=>reaction.evaluate(e=>(e as HTMLImageElement).naturalWidth)).toBe(72);
+ // The switch must work without network and survive an offline PWA reload.
+ await page.locator('#arts-visibility-toggle').click();
+ await expect(page.locator('.arts-action-annotations')).toHaveCount(0);
+ await page.reload({waitUntil:'domcontentloaded'});
+ await expect(page.locator('#arts-visibility-toggle')).toHaveAttribute('aria-pressed','false');
+ await expect(page.locator('.arts-action-annotations')).toHaveCount(0);
+ await page.locator('#arts-visibility-toggle').click();
+ await expect(page.locator('.arts-action-annotations')).toHaveCount(3);
  await context.setOffline(false);
  await page.goto('?team=yyxl-suisui-chisa');
+ await expect(page.locator('#arts-visibility-toggle')).toHaveCount(0);
  await expect(page.locator('.arts-action-annotations')).toHaveCount(0);
  await expect(page.locator('.progress-wrap')).toBeVisible();
  await expect(page.locator('.stage .complete')).toHaveCount(3);
+ expect(errors).toEqual([]);
+});
+
+test('Endfield: Arts switch hides annotations and persists across variants, layout and reload',async({page},testInfo)=>{
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto(si);
+ const toggle=page.locator('#arts-visibility-toggle');
+ await expect(toggle).toHaveText('Arts: вкл');
+ await expect(toggle).toHaveAttribute('aria-label','Показывать Arts-индикаторы');
+ await expect(toggle).toHaveAttribute('aria-pressed','true');
+ await expect(page.locator('.action.arts-annotated')).toHaveCount(3);
+
+ // Hiding must remove annotation nodes and extended tooltips/ARIA, not just PNG visibility.
+ await toggle.click();
+ await expect(toggle).toHaveText('Arts: выкл');
+ await expect(toggle).toHaveAttribute('aria-pressed','false');
+ await expect(page.locator('.arts-action-annotations,.arts-action-effect,.action.arts-annotated')).toHaveCount(0);
+ await expect(page.locator('.action.endfield-action[title*="ожидаемое изменение состояния"]')).toHaveCount(0);
+ await page.screenshot({path:testInfo.outputPath('endfield-arts-toggle-off-390px.png'),fullPage:true,animations:'disabled'});
+ expect(await page.evaluate(()=>localStorage.getItem('game-rotations:v2:si-tangtang-arcane-xaihi:artsVisible'))).toBe('false');
+
+ await page.locator('#layout-compact').click();
+ await expect(page.locator('.arts-action-annotations')).toHaveCount(0);
+ await page.locator('#tabs button').filter({has:page.locator('strong',{hasText:'Prydwen'})}).first().click();
+ await expect(page.locator('.arts-action-annotations')).toHaveCount(0);
+ await page.locator('#control-pc').click();
+ await expect(page.locator('.arts-action-annotations')).toHaveCount(0);
+ await page.locator('#layout-full').click();
+ await expect(page.locator('.arts-action-annotations')).toHaveCount(0);
+ await page.locator('#layout-compact').click();
+ await page.reload();
+ await expect(toggle).toHaveAttribute('aria-pressed','false');
+ await expect(page.locator('.arts-action-annotations')).toHaveCount(0);
+
+ await toggle.click();
+ await expect(toggle).toHaveText('Arts: вкл');
+ await expect(page.locator('.action.arts-annotated')).toHaveCount(3);
+ await expect(page.locator('.arts-action-annotations')).toHaveCount(3);
+ await expect(page.locator('.arts-reaction-level')).toHaveText(['IV']);
+ await page.screenshot({path:testInfo.outputPath('endfield-arts-toggle-on-390px.png'),fullPage:true,animations:'disabled'});
+ await page.setViewportSize({width:320,height:740});
+ await noOverflow(page);
+ await page.locator('#loop').click();
+ await expect(page.locator('.action.arts-annotated')).toHaveCount(0);
+ await page.locator('#opener').click();
+ await expect(page.locator('.action.arts-annotated')).toHaveCount(3);
+ await page.reload();
+ await expect(toggle).toHaveAttribute('aria-pressed','true');
+ await expect(page.locator('.action.arts-annotated')).toHaveCount(3);
  expect(errors).toEqual([]);
 });

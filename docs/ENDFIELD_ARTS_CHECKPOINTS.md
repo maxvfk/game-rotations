@@ -115,3 +115,10 @@
 Проверки: `test/arts-checkpoint-view.test.ts` (точное действие, достоверность, отсутствие выдуманных чисел, новые элементы, WuWa) и `test/e2e/arts-checkpoint-stage.spec.ts` (Maygi/Prydwen, full/compact, 320px, offline PWA).
 
 **Будущий research-этап:** чтобы показывать прибавку Cryo на каждом действии Si, Tangtang, Arcane Combo и т.д., нужны отдельные source-based события применения с проверенными trigger/ICD/ownership, попаданием в ту же цель и контекстом cooldown/SP. Недостаточно просто прочитать текст ротации.
+
+
+## Переключатель Arts в Endfield (2026-11-07)
+
+На странице Endfield рядом с контролом `Полный / Компактный` находится одна кнопка `Arts: вкл / Arts: выкл` (`#arts-visibility-toggle`, `aria-pressed`, стабильное `aria-label`). Значки **включены по умолчанию** и отключаются независимо от схемы управления и вида карточек. Выбор сохраняется на уровне команды в `localStorage` (`game-rotations:v2:<team-id>:artsVisible`, boolean) и действует для Maygi и Prydwen одновременно.
+
+При отключении `createArtsActionEffect` не вызывается; подписи, `title` и `aria-label` Arts не добавляются в карточки. Данные `artsCheckpoints`, сами действия и источники остаются неизменными; возврат в режим «вкл» восстанавливает все значки. Не включать переключатель в WuWa и не затрагивать каталог Arts-gallery. Тесты: `test/e2e/arts-checkpoint-stage.spec.ts` (Full/Compact, Maygi/Prydwen, 320 px, reload, PWA/offline, WuWa isolation).

@@ -73,6 +73,15 @@ h1{font-family:Georgia,"Times New Roman",serif;font-weight:500;letter-spacing:-.
    Compact mode only changes rendering; it never changes timing or game inputs. */
 .rotation-app.game-arknights-endfield .density-controls{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
 .rotation-app.game-arknights-endfield .compact-seg button{padding:8px 9px;min-width:0}
+/* Optional action-local Arts: one accessible, persistent toggle for all variants. */
+.rotation-app.game-arknights-endfield .arts-visibility-toggle{
+ border:1px solid var(--border);border-radius:10px;background:#ffffff08;
+ color:var(--sub);font-size:12px;font-weight:750;padding:9px 11px;
+ white-space:nowrap;min-height:36px;
+}
+.rotation-app.game-arknights-endfield .arts-visibility-toggle[aria-pressed="true"]{
+ border-color:#82b79a70;background:#28413975;color:#d3eddf;
+}
 .rotation-app.game-arknights-endfield .action .action-compact-modifier,
 .rotation-app.game-arknights-endfield .action .action-compact-condition{display:none}
 .rotation-app.game-arknights-endfield.compact-actions .action.endfield-action{
