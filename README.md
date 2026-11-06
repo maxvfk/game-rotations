@@ -19,7 +19,7 @@ npm run catalog:sync -- --team my-team --write                   # обнови�
 
 ## Добавление ротаций — с чего начать
 
-**Новый чат/агент:** открой [AGENTS.md](AGENTS.md) → [пошаговую инструкцию](docs/ADDING_ROTATIONS.md) → [справочник JSON](docs/FORMAT_REFERENCE.md). Для ревью используй [чеклист приёмки](docs/REVIEW_CHECKLIST.md).
+**Новый чат/агент:** открой [AGENTS.md](AGENTS.md) → [ADDING_ROTATIONS.md](docs/ADDING_ROTATIONS.md) → [FORMAT_REFERENCE.md](docs/FORMAT_REFERENCE.md). **Для Endfield:** обязательно [ENDFIELD_ROTATION_AUTHORING.md](docs/ENDFIELD_ROTATION_AUTHORING.md) и [учебный dry-run spec](examples/endfield-team.authoring.json). Для ревью: [REVIEW_CHECKLIST.md](docs/REVIEW_CHECKLIST.md).
 
 - **Вымышленный, целиком согласованный пример:** [examples/](examples/) — rotation JSON + controls JSON + запись каталога; не публикуется на сайте.
 - **Рабочие команды:** `data/rotations/wuthering-waves/yyxl-suisui-chisa.json` и `data/rotations/wuthering-waves/hsin-suoming-shorekeeper.json`; общий `data/controls/wuthering-waves.json` и каталог `data/catalog.json`.
@@ -30,13 +30,13 @@ npm run catalog:sync -- --team my-team --write                   # обнови�
 
 **34 оригинальных компактных PNG** из сохранённой англоязычной страницы EndfieldTools.DEV — без ручного кадрирования или перерисовки. [Открыть просмотрщик](https://maxvfk.github.io/game-rotations/?portraits=arknights-endfield) · [JSON-реестр](data/portraits/arknights-endfield.json) · [инструкция и provenance](docs/ENDFIELD_PORTRAITS.md). Отдельные портреты Endministrator F/M, без автоматического выбора пола.
 
-`npm run validate:portraits` проверяет все 34 PNG по полному SHA-256 и соответствие IDs; импортированное изображение хранится локально и кешируется PWA. **Составы и ротации Endfield ещё не опубликованы; нужен отдельный live-kit/controls review.**
+`npm run validate:portraits` проверяет все 34 PNG по полному SHA-256 и соответствие IDs; импортированное изображение хранится локально и кешируется PWA. **Endfield Si уже опубликован:** обе TC-адаптации Maygi/Prydwen, контролы Terms/PC; для следующей команды всё равно требуется собственный live-kit/TC review.
 
 ## Миниатюры действий Endfield — стартовый набор
 
-В отдельном [реестре миниатюр](data/portraits/arknights-endfield-mini.json) закреплены **4 PNG по 48×48 px** (Si, Arcane, Tangtang, Xaihi), подготовленные из исходных 34 портретов. Для карточек действий будет использован размер **24×24 CSS px**. Исходные portraits, команда, controls и UI не менялись.
+В отдельном [реестре миниатюр](data/portraits/arknights-endfield-mini.json) закреплены **4 PNG по 48×48 px** (Si, Arcane, Tangtang, Xaihi), подготовленные из исходных 34 портретов. В карточках Endfield уже используются миниатюры **24×24 CSS px**, без изменения канонических полных портретов.
 
-[Посмотреть настоящие миниатюры и параметры crop](docs/ENDFIELD_MINI_PORTRAITS.md). Проверка `npm run validate:portraits` включает побайтовую регенерацию этих PNG по pinned original SHA-256. Миниатюры **подключены к действиям Endfield по `input.actor`** с fallback на полный портрет и далее на glyph. В обоих вариантах Si показываются 24×24 px рядом с кнопкой действия; **Compact mode** остаётся следующим отдельным этапом.
+[Посмотреть настоящие миниатюры и параметры crop](docs/ENDFIELD_MINI_PORTRAITS.md). Проверка `npm run validate:portraits` включает побайтовую регенерацию этих PNG по pinned original SHA-256. Миниатюры **подключены к действиям Endfield по `input.actor`** с fallback на полный портрет и далее на glyph. В обоих вариантах Si показываются 24×24 px рядом с кнопкой действия; **Compact mode** уже реализован, вместе с Full доступен для Si.
 
 ## Каталог миниатюр WuWa
 
@@ -68,11 +68,9 @@ npm run catalog:sync -- --team my-team --write                   # обнови�
 
 ### Как добавлять команду
 
-1. Добавить запись `teams[]` в нужную игру `data/catalog.json`.
-2. Создать файл `data/rotations/<game>/<team>.json` с `id`, `game`, `characters`, `stages`, `variants` и источниками. Каждый stage хранит персонажа, действия, условие проверки и пояснения; каждый variant ссылается на stage IDs отдельно для `opener` и `loop`.
-3. У действия есть `text`, `tone` и `input: {kind,count?,repeat?,target?}`. `kind` — семантическое действие: `intro/outro/swap/basic/heavy/skill/ultimate/echo/dodge/auto`. `target` обязательно проверяется для передач хода.
-4. Для новой игры создать один `data/controls/<game>.json`: доступные схемы кнопок, словарь `keys`, отображение слотов, пояснения. Копировать HTML или менять `src/rotation.ts` **не требуется**.
-5. Положить портреты в `public/portraits/`, проверить `npm run validate:data` и собрать сайт.
+**Новая команда:** [AUTHORING_CLI.md](docs/AUTHORING_CLI.md) → `team:add -- --spec ...` (dry-run) → review → `--write` → `catalog:check`. Скрипт обновляет book/catalog согласованно. **Новый вариант существующей команды:** обнови book, затем `catalog:sync -- --team <id> --write`. Для multi-operator stages, Arts и UI Endfield см. [ENDFIELD_ROTATION_AUTHORING.md](docs/ENDFIELD_ROTATION_AUTHORING.md).
+
+Полная проверка: `npm run build && npm run test:e2e`, реальные скриншоты новой команды, PR/review и Pages deployment. Green CI **не** равен подтверждению боевой ротации.
 
 ## Разработка
 
@@ -127,14 +125,14 @@ CI проверяет JSON, связность каталога и учебны�
 
 Подготовлен [каталог Arts Infliction / Arts Reaction](data/arts/arknights-endfield.json): 4 Infliction × 4 оригинальных варианта стаков и 4 реакции (**20 PNG**; реакция Electrification имеет оригинальную ширину 73 px). Исходные 1–4 стаковые спрайты **уже содержат игровое четырёхсекторное кольцо** — его не требуется рисовать с нуля. Визуальная таблица и источники: [ENDFIELD_ARTS_ICONS.md](docs/ENDFIELD_ARTS_ICONS.md). `npm run validate:portraits` проверяет SHA-256 файлов, размеры и Git blob hash оригиналов.
 
-Пока это **только каталог**. В `src/rotation.ts`, Maygi/Prydwen и остальных командах иконки не используются. Следующие этапы — визуальный компонент (1–4 стака, уровень реакции I–IV) и `artsCheckpoints` с проверенными данными, без автоматического выведения эффекта из списка кнопок.
+Каталог уже используется компонентами `src/arts-indicators.ts` и action-local `artsCheckpoints` в Si. Римский уровень I–IV размещён поверх оригинального PNG реакции. Числа не выводятся из последовательности кнопок.
 
 
-**Этап 02 Arts UI Endfield:** доступен [интерактивный просмотрщик](https://maxvfk.github.io/game-rotations/?arts=arknights-endfield) с оригинальными четырёхсекторными кольцами (стак 1–4), уровнями реакций I–IV, размерами 24/28/32 px и проверкой на телефоне/PWA offline. Компоненты `src/arts-indicators.ts` берут иконки из каталога с SHA-256 и не выводят игровые состояния из действий. [API и критерии](docs/ENDFIELD_ARTS_INDICATORS.md). Ротации Maygi/Prydwen пока остаются без Arts-индикаторов — для их подключения требуется отдельная проверка контрольных точек.
+**Этап 02 Arts UI Endfield:** доступен [интерактивный просмотрщик](https://maxvfk.github.io/game-rotations/?arts=arknights-endfield) с оригинальными четырёхсекторными кольцами (стак 1–4), уровнями реакций I–IV, размерами 24/28/32 px и проверкой на телефоне/PWA offline. Компоненты `src/arts-indicators.ts` берут иконки из каталога с SHA-256 и не выводят игровые состояния из действий. [API и критерии](docs/ENDFIELD_ARTS_INDICATORS.md). Maygi/Prydwen уже отображают Arts на соответствующих Arcane Skill, с сохранением неизвестности и условности в данных.
 
 ## Arts checkpoints Endfield — этап 03
 
-Для Maygi и Prydwen добавлены [семантические контрольные точки](docs/ENDFIELD_ARTS_CHECKPOINTS.md) на шести действиях Arcane Battle Skill: **до** применения — Cryo, **после** — условная Corrosion. Только первый пакет Prydwen имеет числовую **цель 4 → IV** (не фактически измеренную); остальные точные значения пока `null` / unknown. Это *данные, не UI*: никакой icon path, PNG/CSS, размера или текста Roman Level в ротации нет. В дальнейшем иконки и оформление уровней можно изменить независимо от игровых данных. CI проверяет структуру, provenance и отсутствие выдуманного `observed`.
+Для Maygi и Prydwen добавлены [семантические контрольные точки](docs/ENDFIELD_ARTS_CHECKPOINTS.md) на шести действиях Arcane Battle Skill: **до** применения — Cryo, **после** — условная Corrosion. Только первый пакет Prydwen имеет числовую **цель 4 → IV** (не фактически измеренную); остальные точные значения пока `null` / unknown. Данные по-прежнему отделены от UI: никакой icon path, CSS, размера или Roman Level в book нет; renderer визуализирует checkpoints у нужного action. В дальнейшем иконки и оформление уровней можно изменить независимо от игровых данных. CI проверяет структуру, provenance и отсутствие выдуманного `observed`.
 
 ## Arts после конкретных действий Endfield — новый вариант
 
@@ -143,3 +141,5 @@ CI проверяет JSON, связность каталога и учебны�
 Индикатор появляется и в **полном**, и в **компактном** режиме в той же строке, что портрет оператора и кнопка действия (без отдельного второго ряда). Никаких изменений последовательностей, статусов `partial` и WuWa. Эти данные пока не показывают приращение Cryo на каждой промежуточной атаке — оно потребует отдельных проверенных trigger/stack checkpoints. Источники и модель — [ENDFIELD_ARTS_CHECKPOINTS.md](docs/ENDFIELD_ARTS_CHECKPOINTS.md).
 
 Положение уровня реакции и PNG остаются функцией `src/arts-indicators.ts`; их можно менять без переписывания `artsCheckpoints`.
+
+**Endfield Arts toggle (2026-11-07):** `Arts: вкл / выкл` независимо от `Полный / Компактный`; настройка сохраняется для команды и не изменяет `artsCheckpoints`. Инструкция: [Endfield authoring](docs/ENDFIELD_ROTATION_AUTHORING.md).

@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "game": "arknights-endfield",
+  "id": "training-endfield-multi-operator",
+  "title": "TEST: учебный multi-operator Endfield book",
+  "subtitle": "TEST: пример формата — не игровая рекомендация",
+  "status": "experimental",
+  "statusDescription": "TEST: структура, не боевая ротация",
+  "gameVersion": "TEST: example only — не обозначает live patch",
+  "source": "https://github.com/maxvfk/Games/blob/main/guides/arknights-endfield/SI_TANGTANG_ARCANE_XAIHI_ROTATIONS.md",
+  "verificationNote": "TEST: учебные действия не проверены в бою и запрещены к публикации",
+  "evidence": {
+    "author": "TEST: источник/автор проверенной TC для реальной команды",
+    "liveKit": "TEST: в реальном варианте проверить live kit и server/patch",
+    "resources": "TEST: в реальном варианте проверить SP/UGE generation and spend",
+    "triggers": "TEST: проверить Combo triggers/cooldown/ICD и ownership",
+    "swaps": "TEST: off-field Combo не означает обычный swap",
+    "buffWindows": "TEST: проверить duration, snapshot и refresh buff/debuff",
+    "userSelection": "TEST: пользователь не выбирал учебную команду для публикации",
+    "limitations": "TEST: пример не демонстрирует боевую выполнимость",
+    "codeTesting": "TEST: проверка структуры CLI без подтверждения механики",
+    "uiTesting": "TEST: проверить Full/Compact Terms/PC на реальной команде",
+    "offlineTesting": "TEST: отдельно проверить offline/PWA и mobile UI",
+    "combatTesting": "TEST: боевой тест не проводился, verified запрещён"
+  },
+  "characters": [
+    {
+      "id": "si",
+      "investment": "TEST P0S1",
+      "slot": "1"
+    },
+    {
+      "id": "arcane",
+      "investment": "TEST P1R1",
+      "slot": "2"
+    },
+    {
+      "id": "tangtang",
+      "investment": "TEST P0R0",
+      "slot": "3"
+    },
+    {
+      "id": "xaihi",
+      "investment": "TEST P0R0",
+      "slot": "4"
+    }
+  ],
+  "variants": [
+    {
+      "id": "demo",
+      "label": "Учебный пример",
+      "sub": "TEST — multi-operator + Arts",
+      "type": "Учебный",
+      "intro": "TEST: данные только для изучения схемы; не использовать в игре",
+      "verification": "experimental",
+      "opener": [
+        "teamExample"
+      ],
+      "loop": [
+        "recoveryExample"
+      ],
+      "loopCaution": "TEST: repeat-loop не проверен, recovery не является боевой инструкцией"
+    }
+  ],
+  "stages": {
+    "teamExample": {
+      "person": "si",
+      "title": "TEST: командный stage",
+      "sub": "TEST: person — фокус, actor — исполнитель",
+      "actions": [
+        {
+          "text": "TEST: полная BA-цепочка до FS",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "tangtang"
+          }
+        },
+        {
+          "text": "TEST: off-field Combo Arcane",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "arcane"
+          }
+        },
+        {
+          "text": "TEST: Battle Skill Si",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "si"
+          }
+        },
+        {
+          "text": "TEST: отдельный Ultimate Tangtang",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate",
+            "actor": "tangtang"
+          }
+        },
+        {
+          "text": "TEST: Skill Arcane c условным Arts результатом",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "arcane"
+          }
+        },
+        {
+          "text": "TEST: Dive Attack отдельно от Ultimate",
+          "tone": "flow",
+          "input": {
+            "kind": "dive",
+            "actor": "tangtang"
+          }
+        },
+        {
+          "text": "TEST: Finisher при Stagger",
+          "tone": "vital",
+          "input": {
+            "kind": "finisher",
+            "actor": "si"
+          },
+          "optional": true,
+          "condition": "TEST: при действительно подтверждённом Stagger"
+        }
+      ],
+      "artsCheckpoints": [
+        {
+          "id": "example-before",
+          "anchor": {
+            "actionIndex": 4,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": null,
+            "assessment": "unknown"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://github.com/maxvfk/Games/blob/main/guides/arknights-endfield/SI_TANGTANG_ARCANE_XAIHI_ROTATIONS.md",
+            "note": "TEST: неизвестное исходное Cryo, не подтверждённый факт"
+          }
+        },
+        {
+          "id": "example-after",
+          "anchor": {
+            "actionIndex": 4,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "reaction",
+            "reaction": "corrosion",
+            "level": null,
+            "assessment": "conditional"
+          },
+          "dependsOn": "example-before",
+          "condition": "TEST: только при наличии реального Cryo и Nature на одной цели",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.games/en/tutorials/battle/",
+            "note": "TEST: условный переход, уровень в игре не измерен"
+          }
+        }
+      ],
+      "check": "TEST: не считать это подтверждённой ротацией",
+      "extra": "TEST: starting resources, duration и cooldown неизвестны"
+    },
+    "recoveryExample": {
+      "person": "si",
+      "title": "TEST: неподтверждённый repeat",
+      "sub": "TEST: recovery placeholder",
+      "actions": [
+        {
+          "text": "TEST: условное восстановление SP",
+          "tone": "normal",
+          "input": {
+            "kind": "basic",
+            "actor": "si",
+            "repeat": true
+          }
+        }
+      ],
+      "check": "TEST: нельзя считать repeat устойчивым",
+      "extra": "TEST: нужен отдельный reset-state и practical testing"
+    }
+  }
+}

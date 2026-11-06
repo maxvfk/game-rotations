@@ -6,7 +6,7 @@
 
 1. Начни с `AGENTS.md` → `docs/ADDING_ROTATIONS.md`. **Live-kit first** и исходный guide в `maxvfk/Games`; убедись, что пользователь действительно выбрал эту ротацию.
 2. Скопируй **вымышленный** пример `examples/new-team.authoring.json` в рабочий файл (например `drafts/my-team.authoring.json` в feature-ветке или вне репозитория). Замени ВСЁ с префиксом `TEST`, заполни `evidence` и реальные actions. Не коммить незавершённый файл как готовую ротацию.
-3. Проверь, что нужная игра уже есть в `data/catalog.json`, а схема кнопок — в `data/controls/<game>.json`. Для WuWa персонажи выбираются по `data/portraits/wuthering-waves.json`: не ищи и не подбирай изображения заново.
+3. Проверь, что нужная игра уже есть в `data/catalog.json`, а схема кнопок — в `data/controls/<game>.json`. Для WuWa и Endfield используй соответствующий canonical `data/portraits/<game>.json`; не ищи изображения повторно. Для Endfield следуй [ENDFIELD_ROTATION_AUTHORING.md](ENDFIELD_ROTATION_AUTHORING.md).
 4. Запусти **сначала без записи**:
 
 ```bash
@@ -41,7 +41,7 @@ npm run test:e2e
 
 ### Подключённый каталог Endfield
 
-Каталог Endfield уже подготовлен: `data/portraits/arknights-endfield.json`, 34 PNG `public/portraits/arknights-endfield/`, просмотр `?portraits=arknights-endfield`. `team:add` автоматически найдёт операторов по точному slug (Arcane = `arcane`, Zhuang Fangyi = `zhuang-fangyi`); Endministrator `endministrator-f` и `endministrator-m` обязательно выбирать раздельно. **Перед первой Endfield-командой всё ещё требуется `data/controls/arknights-endfield.json` и live-kit/TC research.** Инструкция: [ENDFIELD_PORTRAITS.md](ENDFIELD_PORTRAITS.md).
+Каталог Endfield уже подготовлен: `data/portraits/arknights-endfield.json`, 34 PNG `public/portraits/arknights-endfield/`, просмотр `?portraits=arknights-endfield`. `team:add` автоматически найдёт операторов по точному slug (Arcane = `arcane`, Zhuang Fangyi = `zhuang-fangyi`); Endministrator `endministrator-f` и `endministrator-m` обязательно выбирать раздельно. **Endfield controls уже реализованы** (`data/controls/arknights-endfield.json`, Terms/PC), а Si-команда опубликована. Для каждой новой ротации всё ещё необходима собственная проверка live-kit и TC-evidence. Инструкция: [ENDFIELD_PORTRAITS.md](ENDFIELD_PORTRAITS.md).
 
 ### Портреты и контроль identity
 
@@ -78,3 +78,13 @@ npm run catalog:check
 `npm run build` включает `catalog:check`, `validate:data`, `validate:portraits`, `test:onboarding`, `test:authoring`, `test:renderer`, TypeScript, Vite. GitHub Actions затем отдельно запускает мобильный Playwright + offline PWA тесты. Эти проверки **не** устанавливают фактический DPS или надёжность ротации в бою.
 
 Это закрывает пункты D3/D4 ревью [PR #6](https://github.com/maxvfk/game-rotations/pull/6), не требуя новой backend-архитектуры.
+
+### Учебный Endfield dry-run
+
+[examples/endfield-team.authoring.json](../examples/endfield-team.authoring.json) — **непубликуемый TEST-пример** с четырьмя реальными operator IDs, многооператорным stage, FS/Combo/Skill/Ultimate/Dive, условным before/after Arts и непроверенным loop. Он демонстрирует **формат**, не реальную боевую последовательность. Проверка:
+
+```bash
+npm run team:add -- --spec examples/endfield-team.authoring.json
+```
+
+В `npm run test:authoring` пример проверяется в изолированном temporary checkout: dry-run должен пройти без модификации данных, `--write` должен отказать из-за оставшихся `TEST`, оригинальная Si-книга должна остаться неизменной. Для реальной команды скопируй spec в отдельный файл и замени все данные фактическими, а не удаляй слово TEST механически.

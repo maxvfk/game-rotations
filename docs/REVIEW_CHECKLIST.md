@@ -47,7 +47,7 @@
 - [ ] ID операторов взяты из `data/portraits/arknights-endfield.json`, без попытки угадать по `icon_chr_*.`
 - [ ] Endministrator F/M не перепутаны; оригинальные PNG не перекроены и доступны офлайн.
 - [ ] `npm run validate:portraits` проверил все 34 PNG и full SHA-256.
-- [ ] Публикация самой ротации (в отличие от каталога картинок) не начата без live-kit и `data/controls/arknights-endfield.json`.
+- [ ] Переиспользованы существующие Endfield Terms/PC controls (`data/controls/arknights-endfield.json`), а live-kit/TC evidence проверены для **новой** ротации.
 
 ## C. Автоматическая и пользовательская проверка
 
@@ -56,7 +56,7 @@
 - [ ] `npm run test:renderer` зелёный: реальные подписи `action.text`, named Intro, repeat атаки, корректный свежий opener и сохранённые preferences проверены на actual renderer DOM.
 - [ ] `npm run typecheck` и `npm run build` зелёные; CI PR прошёл.
 - [ ] GitHub Actions `npm run test:e2e` зелёный: production-build открыт в Chromium на mobile viewport, screenshot/портреты/управление и offline PWA reload проверены; screenshot доступен в `rotation-mobile-smoke` artifact.
-- [ ] На мобильном экране проверены каталог → карточка → `?team=<id>`, варианты, opener/loop, чекбоксы, прогресс, сохранение, назад.
+- [ ] На мобильном экране проверены каталог → карточка → `?team=<id>`, варианты, opener/loop, сохранение и возврат. Чекбоксы/progress относятся **только к WuWa**; Endfield не имеет progress.
 - [ ] Проверена выбранная схема управления (ПК/PS5/A-H там, где она реально применяется), правильность кнопок и target.
 - [ ] Проверена мобильная верстка, портреты, отсутствие ошибок JS и горизонтальной прокрутки.
 - [ ] После merge проверены Pages deployment и первый/повторный **офлайн** запуск PWA.
@@ -67,3 +67,15 @@
 - [ ] Указаны commit/PR и CI, что было реально проверено, какие проверки недоступны.
 - [ ] Не обещано `optimal` без расчётов и practical testing.
 - [ ] Изменения project memory в `maxvfk/Games` вносятся только если меняется архитектура, canonical locator или долговечный research; не при обычном добавлении карточки.
+
+## Отдельная приёмка Endfield
+
+- [ ] `stage.person` — фокус, `actions[].input.actor` — корректный исполнитель; off-field Combo не выдан за Swap/Intro.
+- [ ] `FS ×2` = две **полные** BA-цепочки; `combo`, `final-strike`, `ultimate`, `dive`, `finisher` имеют реальные triggers и не смешаны.
+- [ ] Канонические portraits и Terms/PC используются повторно, mini либо full portrait/glyph fallback.
+- [ ] **Новая** ссылка `?team=<id>` проверена в Full/Compact, Arts on/off, Terms/PC, opener/loop, 320/390px без overflow и PWA offline; WuWa не изменён.
+- [ ] Для новых `artsCheckpoints` перепроверены все 0-based `actionIndex` после изменения действий, `before/after`, `dependsOn`, `null != 0` и evidence; `observed` только с combat-observation.
+- [ ] Непроверенные SP/UGE, cooldown/ICD, ownership, Stagger/encounter и repeat не выданы за optimal/verified; `loopCaution` заполнен при необходимости.
+- [ ] Зелёные smoke-тесты **существующей** Si-команды не заменяют QA новой команды.
+
+[Единый Endfield-runbook](ENDFIELD_ROTATION_AUTHORING.md).
