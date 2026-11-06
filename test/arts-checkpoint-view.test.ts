@@ -35,7 +35,7 @@ describe('Endfield action-local Arts changes',()=>{
   expect(effect.getAttribute('aria-label')).toContain('После действия: Corrosion Reaction');
   expect(effect.getAttribute('aria-label')).toContain('цель TC, не наблюдение');
   expect(effect.getAttribute('aria-label')).toContain('только при выполнении условий');
-  expect(effect.getAttribute('title')).toContain('поглощены 4 Cryo');
+  expect(effect.getAttribute('title')).toContain('Cryo IV');
   expect(effect.querySelector('.arts-infliction img')?.getAttribute('src')).toBe(base+'arts/arknights-endfield/inflictions/cryo-4.png');
   expect(effect.querySelector('.arts-reaction img')?.getAttribute('src')).toBe(base+'arts/arknights-endfield/reactions/corrosion.png');
   expect(effect.querySelector('.arts-reaction-level')?.textContent).toBe('IV');
