@@ -5,7 +5,7 @@
   "title": "Si / Tangtang / WILL Arcane / Xaihi",
   "gameVersion": "Global live 1.6 (2026-11-03)",
   "source": "https://github.com/maxvfk/Games/blob/main/guides/arknights-endfield/SI_TANGTANG_ARCANE_XAIHI_ROTATIONS.md",
-  "verificationNote": "Две отдельные TC-оси: Maygi (16.10.2026) — длинный full-burst с управлением Combo; Prydwen/Gacha Gamer (15.10.2026) — boss/Stagger route. Последовательности сохранены как source-derived PARTIAL, а не verified optimal: время действий, 0-energy start, повторный цикл, второй Si Skill требует проверки; второй зелёный блок Tangtang теперь подтверждён по видео как Dive Attack после Ultimate. Командные стадии показывают оператора каждой кнопки отдельно. Обозначения унифицированы: FS означает полную цепочку BA до завершающего удара; BA оставлено для промежуточных ударов/ожидания. FS активного оператора возвращает SP, в отличие от промежуточных BA.",
+  "verificationNote": "Две отдельные TC-оси: Maygi (16.10.2026) — длинный full-burst с управлением Combo; Prydwen/Gacha Gamer (15.10.2026) — boss/Stagger route. Последовательности сохранены как source-derived PARTIAL, а не verified optimal: время действий, 0-energy start, повторный цикл, второй Si Skill требует проверки; второй зелёный блок Tangtang теперь подтверждён по видео как Dive Attack после Ultimate. Командные стадии показывают оператора каждой кнопки отдельно. Обозначения унифицированы: FS означает полную цепочку BA до завершающего удара; BA оставлено для промежуточных ударов/ожидания. FS активного оператора возвращает SP, в отличие от промежуточных BA. Prydwen: добавлены 15 пооперационных Arts-переходов (0→1→2→3→4→Corrosion IV в каждой из трёх фаз). Цифры — условные target states при попаданиях, достаточном CD и fresh Si Skill; это НЕ observed battle trace. Реальное появление стаков может быть отложено до попадания анимации, Corrosion может сохранять сильный RES debuff при refresh.",
   "characters": [
     {
       "id": "arcane",
@@ -615,11 +615,171 @@
           }
         }
       ],
-      "check": "Контроль: до Arcane Skill подготовить Cryo; Xaihi Combo — только после двух FS под Crystal; cooldown между повторными Combo реальный.",
-      "extra": "Prydwen/Gacha Gamer; исходная схема содержит условные блоки по 0,5 с, их нельзя читать как секундомер. Некоторые adjacent Combo могут требовать ожидания/hold.",
+      "check": "Контроль: до Arcane Skill подготовить Cryo; Xaihi Combo — только после двух FS под Crystal; cooldown между повторными Combo реальный. Arts-маршрут (целевой, не наблюдение): #1 Cryo 0→1; #2 Cryo 1→2; #10 Cryo 2→3; #11 Cryo 3→4; #13 Cryo IV→Corrosion IV. При пропуске/отложенном попадании/истечении Cryo точный счёт пересчитать.",
+      "extra": "Prydwen/Gacha Gamer; исходная схема содержит условные блоки по 0,5 с, их нельзя читать как секундомер. Некоторые adjacent Combo могут требовать ожидания/hold. У всех числовых Arts-переходов рядом с действием показан план TC при выполнении условия, НЕ доказанный state. Наведи/открой подсказку для конкретного действия.",
       "artsCheckpoints": [
         {
-          "id": "cryo-corrosion-before",
+          "id": "prydwen-one-0-before",
+          "anchor": {
+            "actionIndex": 0,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 0,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/si",
+            "note": "Целевое предыдущее состояние Prydwen для шага 1; не зафиксировано измерением в игре. Si Brushwork Realm накладывает один Cryo Infliction. Если на цели уже есть Cryo или в слоте 1 Heat, траектория 0→1 неприменима."
+          }
+        },
+        {
+          "id": "prydwen-one-0-after",
+          "anchor": {
+            "actionIndex": 0,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "dependsOn": "prydwen-one-0-before",
+          "condition": "Чистая основная цель, попадание первого Brushwork Realm; в Position 01 находится Arcane, не Heat.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://akendfield.tools/codex/operator/si",
+            "note": "Результат по live-kit ПРИ выполнении условий: Si Brushwork Realm накладывает один Cryo Infliction. Если на цели уже есть Cryo или в слоте 1 Heat, траектория 0→1 неприменима. Переход не является зафиксированным наблюдением."
+          }
+        },
+        {
+          "id": "prydwen-one-1-before",
+          "anchor": {
+            "actionIndex": 1,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/si",
+            "note": "Целевое предыдущее состояние Prydwen для шага 2; не зафиксировано измерением в игре. WILL Arcane Combo копирует тип уже применённого Arts Infliction, не создаёт независимый произвольный Cryo."
+          }
+        },
+        {
+          "id": "prydwen-one-1-after",
+          "anchor": {
+            "actionIndex": 1,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 2,
+            "assessment": "target"
+          },
+          "dependsOn": "prydwen-one-1-before",
+          "condition": "WILL > INT; Combo Arcane триггерится от Si Cryo и попадает по той же цели до истечения Cryo.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
+            "note": "Результат по live-kit ПРИ выполнении условий: WILL Arcane Combo копирует тип уже применённого Arts Infliction, не создаёт независимый произвольный Cryo. Переход не является зафиксированным наблюдением."
+          }
+        },
+        {
+          "id": "prydwen-one-9-before",
+          "anchor": {
+            "actionIndex": 9,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 2,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/si",
+            "note": "Целевое предыдущее состояние Prydwen для шага 10; не зафиксировано измерением в игре. Xaihi Combo даёт +1 Cryo только после расходования двух зарядов Auxiliary Crystal."
+          }
+        },
+        {
+          "id": "prydwen-one-9-after",
+          "anchor": {
+            "actionIndex": 9,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 3,
+            "assessment": "target"
+          },
+          "dependsOn": "prydwen-one-9-before",
+          "condition": "Оба Final Strike активного оператора завершены под Xaihi Skill; Combo Xaihi попадает по основной цели до истечения Cryo I–II.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/xaihi",
+            "note": "Результат по live-kit ПРИ выполнении условий: Xaihi Combo даёт +1 Cryo только после расходования двух зарядов Auxiliary Crystal. Переход не является зафиксированным наблюдением."
+          }
+        },
+        {
+          "id": "prydwen-one-10-before",
+          "anchor": {
+            "actionIndex": 10,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 3,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/si",
+            "note": "Целевое предыдущее состояние Prydwen для шага 11; не зафиксировано измерением в игре. Копирование Cryo III → IV — целевой сценарий Prydwen; повторный Combo Arcane требует реального cooldown."
+          }
+        },
+        {
+          "id": "prydwen-one-10-after",
+          "anchor": {
+            "actionIndex": 10,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 4,
+            "assessment": "target"
+          },
+          "dependsOn": "prydwen-one-10-before",
+          "condition": "Второе WILL Combo действительно готово по cooldown и вызвано новым Cryo, не другим элементом; та же цель.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
+            "note": "Результат по live-kit ПРИ выполнении условий: Копирование Cryo III → IV — целевой сценарий Prydwen; повторный Combo Arcane требует реального cooldown. Переход не является зафиксированным наблюдением."
+          }
+        },
+        {
+          "id": "prydwen-one-12-before",
           "anchor": {
             "actionIndex": 12,
             "relative": "before"
@@ -633,12 +793,12 @@
           },
           "evidence": {
             "basis": "tc-intent",
-            "url": "https://www.youtube.com/watch?v=ZR1oTH2E03Y",
-            "note": "Prydwen/Gacha Gamer: цель первого Cryo-пакета — четыре стака перед Nature Skill Arcane. Четыре стака — план, а не наблюдение в игре."
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/si",
+            "note": "Целевое предыдущее состояние Prydwen для шага 13; не зафиксировано измерением в игре. Nature поглощает Cryo IV → Corrosion IV. Реакция принадлежит Arcane; при потере стаков уровень может быть ниже."
           }
         },
         {
-          "id": "cryo-corrosion-after",
+          "id": "prydwen-one-12-after",
           "anchor": {
             "actionIndex": 12,
             "relative": "after"
@@ -650,12 +810,12 @@
             "level": 4,
             "assessment": "conditional"
           },
-          "dependsOn": "cryo-corrosion-before",
-          "condition": "Только если в момент попадания Arcane Battle Skill действительно поглощены 4 Cryo stacks на той же цели и нет дополнительных изменений/сохранения более сильной Corrosion; иначе статус и уровень могут отличаться.",
+          "dependsOn": "prydwen-one-12-before",
+          "condition": "К моменту попадания Arcane Battle Skill на той же цели сохранились все 4 Cryo; Arcane применяет Nature, не другой оператор.",
           "evidence": {
             "basis": "live-mechanic",
-            "url": "https://endfield.games/en/tutorials/battle/",
-            "note": "Live combat tutorial: Nature Infliction на цели с предшествующими non-Nature Inflictions расходует их и создаёт Corrosion; Status Level определяется количеством поглощённых стаков (до 4). Это условное следствие, не доказательство конкретного исполнения."
+            "url": "https://endfield.wiki.gg/wiki/Corrosion",
+            "note": "Результат по live-kit ПРИ выполнении условий: Nature поглощает Cryo IV → Corrosion IV. Реакция принадлежит Arcane; при потере стаков уровень может быть ниже. Переход не является зафиксированным наблюдением."
           }
         }
       ]
@@ -704,7 +864,7 @@
             "kind": "skill",
             "actor": "si"
           },
-          "hint": "Проверить, истёк ли Artful Intent: пока действует, второй Si Skill вызывает Inksoul, а не новый Cryo."
+          "hint": "Проверить, истёк ли Artful Intent: пока действует, второй Si Skill вызывает Inksoul, а не новый Cryo. Arts: Cryo I→II только если прошлое Artful Intent закончилось. Во время Artful Intent повторный Skill = Initial Stroke/Inksoul, без Cryo."
         },
         {
           "text": "Восстановить SP",
@@ -779,11 +939,171 @@
           }
         }
       ],
-      "check": "Проверить минимум CD Si Combo, число Cryo и окно Stagger; действия не могут занять условные 6–7 с.",
-      "extra": "Сохранена порядок блоков исходного скриншота. Возможность двух Corrosion IV не гарантируется без действительного подсчёта Cryo и статусов.",
+      "check": "Проверить минимум CD Si Combo, число Cryo и окно Stagger; действия не могут занять условные 6–7 с. Arts-маршрут (целевой, не наблюдение): #3 Cryo 0→1; #5 Cryo 1→2; #10 Cryo 2→3; #11 Cryo 3→4; #13 Cryo IV→Corrosion IV. При пропуске/отложенном попадании/истечении Cryo точный счёт пересчитать.",
+      "extra": "Сохранена порядок блоков исходного скриншота. Возможность двух Corrosion IV не гарантируется без действительного подсчёта Cryo и статусов. У всех числовых Arts-переходов рядом с действием показан план TC при выполнении условия, НЕ доказанный state. Наведи/открой подсказку для конкретного действия.",
       "artsCheckpoints": [
         {
-          "id": "cryo-corrosion-before",
+          "id": "prydwen-two-2-before",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 0,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/si",
+            "note": "Целевое предыдущее состояние Prydwen для шага 3; не зафиксировано измерением в игре. Tangtang Skill создаёт минимум один Waterspout; даже 2–3 Waterspouts от одного cast дают максимум +1 Cryo."
+          }
+        },
+        {
+          "id": "prydwen-two-2-after",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "dependsOn": "prydwen-two-2-before",
+          "condition": "После предыдущей реакции Cryo уже поглощён; Waterspout от Tangtang Battle Skill попадает по основной цели.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/tangtang",
+            "note": "Результат по live-kit ПРИ выполнении условий: Tangtang Skill создаёт минимум один Waterspout; даже 2–3 Waterspouts от одного cast дают максимум +1 Cryo. Переход не является зафиксированным наблюдением."
+          }
+        },
+        {
+          "id": "prydwen-two-4-before",
+          "anchor": {
+            "actionIndex": 4,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/si",
+            "note": "Целевое предыдущее состояние Prydwen для шага 5; не зафиксировано измерением в игре. Критический condition: второе нажатие Si Skill во время Artful Intent не накладывает новый Cryo, а создаёт Inksoul за 15 SP. Тогда 1→2 неверно."
+          }
+        },
+        {
+          "id": "prydwen-two-4-after",
+          "anchor": {
+            "actionIndex": 4,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 2,
+            "assessment": "target"
+          },
+          "dependsOn": "prydwen-two-4-before",
+          "condition": "Предыдущее Artful Intent закончилось; это новый Brushwork Realm, а НЕ Initial Stroke/Inksoul во время прежней метки.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://akendfield.tools/codex/operator/si",
+            "note": "Результат по live-kit ПРИ выполнении условий: Критический condition: второе нажатие Si Skill во время Artful Intent не накладывает новый Cryo, а создаёт Inksoul за 15 SP. Тогда 1→2 неверно. Переход не является зафиксированным наблюдением."
+          }
+        },
+        {
+          "id": "prydwen-two-9-before",
+          "anchor": {
+            "actionIndex": 9,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 2,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/si",
+            "note": "Целевое предыдущее состояние Prydwen для шага 10; не зафиксировано измерением в игре. Cryo II → III ожидается только при новом Cryo от Si и успешном Xaihi Combo."
+          }
+        },
+        {
+          "id": "prydwen-two-9-after",
+          "anchor": {
+            "actionIndex": 9,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 3,
+            "assessment": "target"
+          },
+          "dependsOn": "prydwen-two-9-before",
+          "condition": "Вторая пара Final Strikes действительно израсходовала Auxiliary Crystal; Xaihi Combo попало по той же цели.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/xaihi",
+            "note": "Результат по live-kit ПРИ выполнении условий: Cryo II → III ожидается только при новом Cryo от Si и успешном Xaihi Combo. Переход не является зафиксированным наблюдением."
+          }
+        },
+        {
+          "id": "prydwen-two-10-before",
+          "anchor": {
+            "actionIndex": 10,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 3,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/si",
+            "note": "Целевое предыдущее состояние Prydwen для шага 11; не зафиксировано измерением в игре. Второе накопление к Cryo IV — целевой сценарий, не наблюдённый боевой лог."
+          }
+        },
+        {
+          "id": "prydwen-two-10-after",
+          "anchor": {
+            "actionIndex": 10,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 4,
+            "assessment": "target"
+          },
+          "dependsOn": "prydwen-two-10-before",
+          "condition": "WILL Arcane Combo готово по cooldown и копирует именно Cryo после Xaihi Combo; Cryo II–III ещё действует.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
+            "note": "Результат по live-kit ПРИ выполнении условий: Второе накопление к Cryo IV — целевой сценарий, не наблюдённый боевой лог. Переход не является зафиксированным наблюдением."
+          }
+        },
+        {
+          "id": "prydwen-two-12-before",
           "anchor": {
             "actionIndex": 12,
             "relative": "before"
@@ -792,17 +1112,17 @@
           "status": {
             "kind": "infliction",
             "element": "cryo",
-            "stacks": null,
-            "assessment": "unknown"
+            "stacks": 4,
+            "assessment": "target"
           },
           "evidence": {
             "basis": "tc-intent",
-            "url": "https://www.youtube.com/watch?v=ZR1oTH2E03Y",
-            "note": "Prydwen/Gacha Gamer второй Cryo-пакет перед Arcane Battle Skill; точное число стаков нельзя гарантировать по действиям без проверки попаданий, триггеров и cooldown."
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/si",
+            "note": "Целевое предыдущее состояние Prydwen для шага 13; не зафиксировано измерением в игре. При 4 поглощённых Cryo новый Corrosion IV. Обновление уже действующего Corrosion сохраняет ранее достигнутое более сильное сопротивление/RES reduction; level нельзя восстановить только по картинке."
           }
         },
         {
-          "id": "cryo-corrosion-after",
+          "id": "prydwen-two-12-after",
           "anchor": {
             "actionIndex": 12,
             "relative": "after"
@@ -811,15 +1131,15 @@
           "status": {
             "kind": "reaction",
             "reaction": "corrosion",
-            "level": null,
+            "level": 4,
             "assessment": "conditional"
           },
-          "dependsOn": "cryo-corrosion-before",
-          "condition": "Если в момент попадания Arcane Battle Skill по основной цели ещё есть Cryo Infliction, Nature применит Corrosion; точный Status Level неизвестен, пока не измерено число поглощённых стаков и действующий статус цели.",
+          "dependsOn": "prydwen-two-12-before",
+          "condition": "До попадания Arcane Battle Skill на цели четыре действующих Cryo; Nature принадлежит Arcane.",
           "evidence": {
             "basis": "live-mechanic",
-            "url": "https://endfield.games/en/tutorials/battle/",
-            "note": "Live combat tutorial: Nature Infliction на цели с предшествующими non-Nature Inflictions расходует их и создаёт Corrosion; Status Level определяется количеством поглощённых стаков (до 4). Это условное следствие, не доказательство конкретного исполнения."
+            "url": "https://endfield.wiki.gg/wiki/Corrosion",
+            "note": "Результат по live-kit ПРИ выполнении условий: При 4 поглощённых Cryo новый Corrosion IV. Обновление уже действующего Corrosion сохраняет ранее достигнутое более сильное сопротивление/RES reduction; level нельзя восстановить только по картинке. Переход не является зафиксированным наблюдением."
           }
         }
       ]
@@ -930,11 +1250,171 @@
           }
         }
       ],
-      "check": "Целевой Stagger, действующие усиления и Corrosion. После Ultimate Tangtang сразу Dive Attack; это не второй Ultimate cast.",
-      "extra": "Пользователь сверил видео Gacha Gamer и подтвердил: два соседних зелёных блока Prydwen — Ultimate Tangtang → Dive Attack. Действия не привязаны к реальным секундам Builder, SP/CD и повторяемость не прошли независимую проверку.",
+      "check": "Целевой Stagger, действующие усиления и Corrosion. После Ultimate Tangtang сразу Dive Attack; это не второй Ultimate cast. Arts-маршрут (целевой, не наблюдение): #4 Cryo 0→1; #5 Cryo 1→2; #6 Cryo 2→3; #9 Cryo 3→4; #10 Cryo IV→Corrosion IV. При пропуске/отложенном попадании/истечении Cryo точный счёт пересчитать.",
+      "extra": "Пользователь сверил видео Gacha Gamer и подтвердил: два соседних зелёных блока Prydwen — Ultimate Tangtang → Dive Attack. Действия не привязаны к реальным секундам Builder, SP/CD и повторяемость не прошли независимую проверку. У всех числовых Arts-переходов рядом с действием показан план TC при выполнении условия, НЕ доказанный state. Наведи/открой подсказку для конкретного действия.",
       "artsCheckpoints": [
         {
-          "id": "cryo-corrosion-before",
+          "id": "prydwen-burst-3-before",
+          "anchor": {
+            "actionIndex": 3,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 0,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/si",
+            "note": "Целевое предыдущее состояние Prydwen для шага 4; не зафиксировано измерением в игре. Xaihi Ultimate, Si Ultimate и Finisher не накладывают Cryo. Новый пакет начинает Tangtang Battle Skill (до +1 за cast)."
+          }
+        },
+        {
+          "id": "prydwen-burst-3-after",
+          "anchor": {
+            "actionIndex": 3,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "dependsOn": "prydwen-burst-3-before",
+          "condition": "Cryo после второго Arcane Skill уже поглощён; Battle Skill Tangtang попал Waterspout по этой же цели.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/tangtang",
+            "note": "Результат по live-kit ПРИ выполнении условий: Xaihi Ultimate, Si Ultimate и Finisher не накладывают Cryo. Новый пакет начинает Tangtang Battle Skill (до +1 за cast). Переход не является зафиксированным наблюдением."
+          }
+        },
+        {
+          "id": "prydwen-burst-4-before",
+          "anchor": {
+            "actionIndex": 4,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/si",
+            "note": "Целевое предыдущее состояние Prydwen для шага 5; не зафиксировано измерением в игре. WILL Arcane Combo копирует только существующее Cryo; сокращение CD само по себе не накладывает Arts."
+          }
+        },
+        {
+          "id": "prydwen-burst-4-after",
+          "anchor": {
+            "actionIndex": 4,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 2,
+            "assessment": "target"
+          },
+          "dependsOn": "prydwen-burst-4-before",
+          "condition": "Arcane стоит в первом слоте, Si Ultimate сократило её Combo CD; Combo вызвано Cryo от Tangtang и попало по цели.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
+            "note": "Результат по live-kit ПРИ выполнении условий: WILL Arcane Combo копирует только существующее Cryo; сокращение CD само по себе не накладывает Arts. Переход не является зафиксированным наблюдением."
+          }
+        },
+        {
+          "id": "prydwen-burst-5-before",
+          "anchor": {
+            "actionIndex": 5,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 2,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/si",
+            "note": "Целевое предыдущее состояние Prydwen для шага 6; не зафиксировано измерением в игре. WILL Arcane Ultimate 1 на создании массива дублирует существующий Arts Infliction; Ultimate 2 сама здесь не показана."
+          }
+        },
+        {
+          "id": "prydwen-burst-5-after",
+          "anchor": {
+            "actionIndex": 5,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 3,
+            "assessment": "target"
+          },
+          "dependsOn": "prydwen-burst-5-before",
+          "condition": "Это первая стадия WILL Arcane Ultimate (Gloompurger Array), которая попала по той же цели с уже имеющимся Cryo.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
+            "note": "Результат по live-kit ПРИ выполнении условий: WILL Arcane Ultimate 1 на создании массива дублирует существующий Arts Infliction; Ultimate 2 сама здесь не показана. Переход не является зафиксированным наблюдением."
+          }
+        },
+        {
+          "id": "prydwen-burst-8-before",
+          "anchor": {
+            "actionIndex": 8,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 3,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/si",
+            "note": "Целевое предыдущее состояние Prydwen для шага 9; не зафиксировано измерением в игре. При таланте Riot Bringer ранний Dive Attack создаёт Waterspout и может преобразовать Whirlpools. Все Waterspouts одного события дают не более одного Cryo."
+          }
+        },
+        {
+          "id": "prydwen-burst-8-after",
+          "anchor": {
+            "actionIndex": 8,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 4,
+            "assessment": "target"
+          },
+          "dependsOn": "prydwen-burst-8-before",
+          "condition": "OLDEN STARE от Tangtang Ultimate активно; Dive Attack выпускает Waterspout по той же цели; Cryo III ещё не истёк.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/tangtang",
+            "note": "Результат по live-kit ПРИ выполнении условий: При таланте Riot Bringer ранний Dive Attack создаёт Waterspout и может преобразовать Whirlpools. Все Waterspouts одного события дают не более одного Cryo. Переход не является зафиксированным наблюдением."
+          }
+        },
+        {
+          "id": "prydwen-burst-9-before",
           "anchor": {
             "actionIndex": 9,
             "relative": "before"
@@ -943,17 +1423,17 @@
           "status": {
             "kind": "infliction",
             "element": "cryo",
-            "stacks": null,
-            "assessment": "unknown"
+            "stacks": 4,
+            "assessment": "target"
           },
           "evidence": {
             "basis": "tc-intent",
-            "url": "https://www.youtube.com/watch?v=ZR1oTH2E03Y",
-            "note": "Prydwen/Gacha Gamer burst Cryo-пакет перед Arcane Battle Skill; точное число стаков нельзя гарантировать по действиям без проверки попаданий, триггеров и cooldown."
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/si",
+            "note": "Целевое предыдущее состояние Prydwen для шага 10; не зафиксировано измерением в игре. Cryo IV → Corrosion IV на заключительном Arcane Skill; Stagger/иммунитет и длительность предыдущего Corrosion могут менять реальный сценарий."
           }
         },
         {
-          "id": "cryo-corrosion-after",
+          "id": "prydwen-burst-9-after",
           "anchor": {
             "actionIndex": 9,
             "relative": "after"
@@ -962,15 +1442,15 @@
           "status": {
             "kind": "reaction",
             "reaction": "corrosion",
-            "level": null,
+            "level": 4,
             "assessment": "conditional"
           },
-          "dependsOn": "cryo-corrosion-before",
-          "condition": "Если в момент попадания Arcane Battle Skill по основной цели ещё есть Cryo Infliction, Nature применит Corrosion; точный Status Level неизвестен, пока не измерено число поглощённых стаков и действующий статус цели.",
+          "dependsOn": "prydwen-burst-9-before",
+          "condition": "Третий пакет Cryo IV действительно присутствует при попадании Arcane Battle Skill; это Nature от Arcane, а не обычный Cryo hit.",
           "evidence": {
             "basis": "live-mechanic",
-            "url": "https://endfield.games/en/tutorials/battle/",
-            "note": "Live combat tutorial: Nature Infliction на цели с предшествующими non-Nature Inflictions расходует их и создаёт Corrosion; Status Level определяется количеством поглощённых стаков (до 4). Это условное следствие, не доказательство конкретного исполнения."
+            "url": "https://endfield.wiki.gg/wiki/Corrosion",
+            "note": "Результат по live-kit ПРИ выполнении условий: Cryo IV → Corrosion IV на заключительном Arcane Skill; Stagger/иммунитет и длительность предыдущего Corrosion могут менять реальный сценарий. Переход не является зафиксированным наблюдением."
           }
         }
       ]
