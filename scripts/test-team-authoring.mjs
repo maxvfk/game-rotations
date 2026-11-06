@@ -92,5 +92,18 @@ try{
   const p='data/rotations/wuthering-waves/'+id+'.json';
   if(digest(p)!==createHash('sha256').update(readFileSync(resolve(root,p))).digest('hex'))throw Error('Touched original '+id);
  }
+ // Tutorial fixture proves new Endfield agents can follow CLI dry-run safely.
+ const endfieldSpec='examples/endfield-team.authoring.json';
+ writeFileSync(join(temp,endfieldSpec),readFileSync(resolve(root,endfieldSpec),'utf8'));
+ const endfieldTeam='data/rotations/arknights-endfield/training-endfield-multi-operator.json';
+ const endfieldBefore=digest(catPath);
+ const siBefore=digest('data/rotations/arknights-endfield/si-tangtang-arcane-xaihi.json');
+ const output=run(['add','--spec',endfieldSpec]);
+ if(!output.includes('DRY RUN'))throw Error('Endfield training fixture did not dry-run');
+ if(digest(catPath)!==endfieldBefore||existsSync(join(temp,endfieldTeam)))throw Error('Endfield preview modified data');
+ run(['add','--spec',endfieldSpec,'--write'],false);
+ if(digest(catPath)!==endfieldBefore||existsSync(join(temp,endfieldTeam)))throw Error('TEST Endfield fixture was published');
+ if(digest('data/rotations/arknights-endfield/si-tangtang-arcane-xaihi.json')!==siBefore)throw Error('Canonical Si changed');
+ console.log('✓ Endfield multi-operator + Arts tutorial: dry-run valid, --write refused, existing Si unchanged');
  console.log('All '+successes+' authoring CLI checks passed; nothing was written to the real checkout.');
 }finally{rmSync(temp,{recursive:true,force:true})}
