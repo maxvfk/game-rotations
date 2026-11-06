@@ -32,8 +32,13 @@ test('Endfield: local Arts outcomes after Arcane Skill, not stage headers',async
  await page.screenshot({path:testInfo.outputPath('endfield-arts-action-maygi-mobile.png'),fullPage:true,animations:'disabled'});
 
  await page.locator('#tabs button').filter({has:page.locator('strong',{hasText:'Prydwen'})}).first().click();
- await expect(page.locator('.action.arts-annotated')).toHaveCount(3);
- const prydwen=page.locator('.action.arts-annotated').first();
+ await expect(page.locator('.action.arts-annotated')).toHaveCount(15);
+ const opener=page.locator('.action.arts-annotated').first();
+ await expect(opener.locator('.arts-action-result .arts-infliction')).toHaveAttribute('data-stacks','1');
+ const firstCopy=page.locator('.action.arts-annotated').nth(1);
+ await expect(firstCopy.locator('.arts-action-prerequisite .arts-infliction')).toHaveAttribute('data-stacks','1');
+ await expect(firstCopy.locator('.arts-action-result .arts-infliction')).toHaveAttribute('data-stacks','2');
+ const prydwen=page.locator('.action.arts-annotated').nth(4);
  await expect(prydwen.locator('.keycap')).toHaveText('Skill');
  await expect(prydwen.locator('.arts-infliction')).toHaveAttribute('data-stacks','4');
  await expect(prydwen.locator('.arts-infliction img')).toHaveAttribute('src',/inflictions\/cryo-4\.png$/);
@@ -62,7 +67,8 @@ test('Endfield: local Arts outcomes after Arcane Skill, not stage headers',async
  // The PC binding is actor-specific: the Arcane action is mapped to 1 here,
  // not a universal E key. Switching schemes must not change the Arts annotation.
  await page.locator('#control-pc').click();
- await expect(page.locator('.action.arts-annotated').first().locator('.keycap')).toHaveText('1');
+ await expect(page.locator('.action.arts-annotated').first().locator('.keycap')).toHaveText('4');
+ await expect(page.locator('.action.arts-annotated').nth(4).locator('.keycap')).toHaveText('1');
  await page.locator('#control-terms').click();
  await expect(page.locator('.action.arts-annotated').first().locator('.keycap')).toHaveText('Skill');
  await page.setViewportSize({width:320,height:740});
@@ -85,7 +91,7 @@ test('Endfield: local Arts outcomes after Arcane Skill, not stage headers',async
  await expect(page.locator('.stage')).toHaveCount(1);
  await expect(page.locator('.action.arts-annotated')).toHaveCount(0);
  await page.locator('#opener').click();
- await expect(page.locator('.action.arts-annotated')).toHaveCount(3);
+ await expect(page.locator('.action.arts-annotated')).toHaveCount(15);
  expect(errors).toEqual([]);
 });
 
@@ -102,7 +108,7 @@ test('Action-local Arts survive PWA offline, while WuWa stays isolated',async({p
  await page.waitForFunction(()=>navigator.serviceWorker.controller!==null);
  await context.setOffline(true);
  await page.reload({waitUntil:'domcontentloaded'});
- await expect(page.locator('.action.arts-annotated')).toHaveCount(3);
+ await expect(page.locator('.action.arts-annotated')).toHaveCount(15);
  const offline=page.locator('.action.arts-annotated .arts-infliction img').first();
  await offline.scrollIntoViewIfNeeded();
  await expect.poll(()=>offline.evaluate(e=>(e as HTMLImageElement).naturalWidth)).toBe(125);
@@ -116,7 +122,7 @@ test('Action-local Arts survive PWA offline, while WuWa stays isolated',async({p
  await expect(page.locator('#arts-visibility-toggle')).toHaveAttribute('aria-pressed','false');
  await expect(page.locator('.arts-action-annotations')).toHaveCount(0);
  await page.locator('#arts-visibility-toggle').click();
- await expect(page.locator('.arts-action-annotations')).toHaveCount(3);
+ await expect(page.locator('.arts-action-annotations')).toHaveCount(15);
  await context.setOffline(false);
  await page.goto('?team=yyxl-suisui-chisa');
  await expect(page.locator('#arts-visibility-toggle')).toHaveCount(0);
@@ -133,7 +139,7 @@ test('Endfield: Arts switch hides annotations and persists across variants, layo
  await expect(toggle).toHaveText('Arts: вкл');
  await expect(toggle).toHaveAttribute('aria-label','Показывать Arts-индикаторы');
  await expect(toggle).toHaveAttribute('aria-pressed','true');
- await expect(page.locator('.action.arts-annotated')).toHaveCount(3);
+ await expect(page.locator('.action.arts-annotated')).toHaveCount(15);
 
  // Hiding must remove annotation nodes and extended tooltips/ARIA, not just PNG visibility.
  await toggle.click();
@@ -159,18 +165,18 @@ test('Endfield: Arts switch hides annotations and persists across variants, layo
 
  await toggle.click();
  await expect(toggle).toHaveText('Arts: вкл');
- await expect(page.locator('.action.arts-annotated')).toHaveCount(3);
- await expect(page.locator('.arts-action-annotations')).toHaveCount(3);
- await expect(page.locator('.arts-reaction-level')).toHaveText(['IV']);
+ await expect(page.locator('.action.arts-annotated')).toHaveCount(15);
+ await expect(page.locator('.arts-action-annotations')).toHaveCount(15);
+ await expect(page.locator('.arts-reaction-level')).toHaveText(['IV','IV','IV']);
  await page.screenshot({path:testInfo.outputPath('endfield-arts-toggle-on-390px.png'),fullPage:true,animations:'disabled'});
  await page.setViewportSize({width:320,height:740});
  await noOverflow(page);
  await page.locator('#loop').click();
  await expect(page.locator('.action.arts-annotated')).toHaveCount(0);
  await page.locator('#opener').click();
- await expect(page.locator('.action.arts-annotated')).toHaveCount(3);
+ await expect(page.locator('.action.arts-annotated')).toHaveCount(15);
  await page.reload();
  await expect(toggle).toHaveAttribute('aria-pressed','true');
- await expect(page.locator('.action.arts-annotated')).toHaveCount(3);
+ await expect(page.locator('.action.arts-annotated')).toHaveCount(15);
  expect(errors).toEqual([]);
 });
