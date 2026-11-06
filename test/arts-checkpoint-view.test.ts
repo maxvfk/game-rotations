@@ -22,7 +22,9 @@ beforeEach(()=>{
 describe('Endfield action-local Arts changes',()=>{
  it('anchors a numeric target and conditional result to Arcane Skill, never the stage header',()=>{
   const s=sourceBook.stages.prydwenOne;
-  expect(createArtsActionEffect(s.artsCheckpoints as ArtsCheckpoint[],0,base)).toBeNull();
+  const opening=createArtsActionEffect(s.artsCheckpoints as ArtsCheckpoint[],0,base)!;
+  expect(opening.querySelector('.arts-action-result .arts-infliction img')?.getAttribute('src')).toContain('/cryo-1.png');
+  expect(opening.getAttribute('aria-label')||opening.querySelector('.arts-action-effect')?.getAttribute('aria-label')).toContain('0 из 4');
   const result=createArtsActionEffect(s.artsCheckpoints as ArtsCheckpoint[],12,base)!;
   expect(result.dataset.actionIndex).toBe('12');
   expect(result.querySelectorAll('.arts-action-effect')).toHaveLength(1);
@@ -60,7 +62,7 @@ describe('Endfield action-local Arts changes',()=>{
   expect(effect.textContent).not.toContain('?');
  });
  it('works with future elements without changing the icon catalog or checkpoints',()=>{
-  const custom=structuredClone(sourceBook.stages.prydwenOne.artsCheckpoints) as ArtsCheckpoint[];
+  const custom=structuredClone(sourceBook.stages.prydwenOne.artsCheckpoints.filter(cp=>cp.anchor.actionIndex===12)) as ArtsCheckpoint[];
   if(custom[0].status.kind!=='infliction'||custom[1].status.kind!=='reaction')throw Error('bad fixture');
   custom[0].status.element='heat';custom[0].status.stacks=2;
   custom[1].status.reaction='combustion';custom[1].status.level=2;
@@ -74,7 +76,7 @@ describe('Endfield action-local Arts changes',()=>{
  });
 });
 describe('Endfield rotation integration',()=>{
- it('shows annotations only on Arcane Skill in three Maygi and Prydwen stages',()=>{
+ it('keeps Maygi three Arcane reactions and Prydwen fifteen action-level transitions',()=>{
   expect(hasRotation('si-tangtang-arcane-xaihi')).toBe(true);
   mountRotation(root(),'si-tangtang-arcane-xaihi',base,base);
   expect(root().querySelectorAll('.stage-arts-summary')).toHaveLength(0);
@@ -90,18 +92,24 @@ describe('Endfield rotation integration',()=>{
   expect(root().classList.contains('compact-actions')).toBe(true);
   expect(root().querySelector('.stage-compact-line')?.textContent).toContain('01 / 03');
   selectVariant('Prydwen');
-  expect(root().querySelectorAll('.action.arts-annotated')).toHaveLength(3);
+  expect(root().querySelectorAll('.action.arts-annotated')).toHaveLength(15);
+  expect([...root().querySelectorAll('.stage')].map(x=>x.querySelectorAll('.action.arts-annotated').length)).toEqual([5,5,5]);
   const first=root().querySelector('.action.arts-annotated')!;
-  expect(first.querySelector('.arts-infliction img')?.getAttribute('src')).toContain('/cryo-4.png');
-  expect(first.querySelector('.arts-reaction-level')?.textContent).toBe('IV');
-  expect(first.getAttribute('title')).toContain('Действие 13');
+  expect(first.querySelector('.arts-action-result .arts-infliction img')?.getAttribute('src')).toContain('/cryo-1.png');
+  expect(first.getAttribute('title')).toContain('Действие 1');
+  const second=root().querySelectorAll('.action.arts-annotated')[1]!;
+  expect(second.querySelector('.arts-action-prerequisite .arts-infliction')?.getAttribute('data-stacks')).toBe('1');
+  expect(second.querySelector('.arts-action-result .arts-infliction')?.getAttribute('data-stacks')).toBe('2');
+  const fifth=root().querySelectorAll('.action.arts-annotated')[4]!;
+  expect(fifth.querySelector('.arts-reaction-level')?.textContent).toBe('IV');
+  expect(fifth.getAttribute('title')).toContain('Действие 13');
   expect(first.querySelector('.arts-action-visual')?.textContent).not.toContain('если');
   expect(first.querySelector('.arts-action-visual')?.textContent).not.toContain('цель');
   click('#loop');
   expect(root().querySelectorAll('.stage')).toHaveLength(1);
   expect(root().querySelectorAll('.action.arts-annotated')).toHaveLength(0);
   click('#opener');
-  expect(root().querySelectorAll('.action.arts-annotated')).toHaveLength(3);
+  expect(root().querySelectorAll('.action.arts-annotated')).toHaveLength(15);
  });
  it('keeps WuWa and its progress controls unchanged',()=>{
   mountRotation(root(),'yyxl-suisui-chisa',base,base);
