@@ -27,6 +27,8 @@ function render(){
  }
  const artsLink=node('a','portrait-header-link','Arts-иконки Endfield') as HTMLAnchorElement;
  artsLink.href=base+'?arts=arknights-endfield';portraitLinks.append(artsLink);
+ const physicalLink=node('a','portrait-header-link','Физические статусы Endfield') as HTMLAnchorElement;
+ physicalLink.href=base+'?physical=arknights-endfield';portraitLinks.append(physicalLink);
  header.append(portraitLinks,meta);
  const hero=node('section','hero',node('div','eyebrow','КОМАНДЫ, КОТОРЫЕ ТЫ ВЫБРАЛ'),node('h1','','Все ротации ','в одном месте'),node('p','','Выбирай игру и команду. Памятки по кнопкам, пошаговые действия и собственные варианты — даже без интернета.'));
  const controls=node('section','searchbar');
@@ -67,9 +69,13 @@ function render(){
 }
 const requested=new URLSearchParams(window.location.search);
 const requestedArts=requested.get('arts');
+const requestedPhysical=requested.get('physical');
 const requestedPortraits=requested.get('portraits');
 const requestedTeam=requested.get('team');
-if(requestedArts==='arknights-endfield'){
+if(requestedPhysical==='arknights-endfield'){
+ import('./physical-gallery').then(({mountPhysicalGallery})=>mountPhysicalGallery(root,base))
+ .catch((error:unknown)=>{console.error('Could not open Physical icons',error);render();root.prepend(node('p','empty-state','Каталог физических значков недоступен'))});
+}else if(requestedArts==='arknights-endfield'){
  import('./arts-gallery').then(({mountArtsGallery})=>mountArtsGallery(root,base))
  .catch((error:unknown)=>{console.error('Could not open Arts icons',error);render();root.prepend(node('p','empty-state','Каталог Arts-иконок недоступен'))});
 }else if(requestedPortraits==='wuthering-waves'||requestedPortraits==='arknights-endfield'){
