@@ -61,10 +61,10 @@ for(const icon of endfield.characters||[]){
   if(icon.width!==112||icon.height!==112)errors.push('Endfield: Argent Flow source PNG dimensions differ');
  }else{
   if(icon.sourcePage!=='https://endfieldtools.dev/characters/'+expectedPageId+'/')errors.push('Endfield: wrong operator source page '+icon.id);
-   if(icon.width!==150||icon.height<200||icon.height>210)errors.push('Endfield: unexpected MHT PNG dimensions '+icon.id);
+   if(!/^https:\/\/endfieldtools\.dev\/assets\/images\/endfield\/charicon\/icon_chr_[a-zA-Z0-9_]+\.png$/.test(icon.sourceImage))errors.push('Endfield: unexpected original MHT source '+icon.id);
+  if(icon.width!==150||icon.height<200||icon.height>210)errors.push('Endfield: unexpected MHT PNG dimensions '+icon.id);
  }
  endPageIds.add(expectedPageId);
- if(!/^https:\/\/endfieldtools\.dev\/assets\/images\/endfield\/charicon\/icon_chr_[a-zA-Z0-9_]+\.png$/.test(icon.sourceImage))errors.push('Endfield: unexpected charicon source '+icon.id);
  if(!/^[a-f0-9]{64}$/.test(icon.sha256))errors.push('Endfield: incomplete SHA-256 '+icon.id);
  const file=resolve(root,'public',icon.portrait);
  if(!existsSync(file)){errors.push('Endfield: missing PNG '+file);continue}
