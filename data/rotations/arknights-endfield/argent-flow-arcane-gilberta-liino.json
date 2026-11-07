@@ -270,25 +270,6 @@
           }
         },
         {
-          "id": "bolt-cold-before",
-          "anchor": {
-            "actionIndex": 5,
-            "relative": "before"
-          },
-          "subject": "primary-target",
-          "status": {
-            "kind": "infliction",
-            "element": "electric",
-            "stacks": 2,
-            "assessment": "target"
-          },
-          "evidence": {
-            "basis": "live-mechanic",
-            "url": "https://endfield.wiki.gg/wiki/Minghe",
-            "note": "Целевые два Electric перед усиленным Bolt Rush; не гарантировано."
-          }
-        },
-        {
           "id": "bolt-cold-after",
           "anchor": {
             "actionIndex": 5,
@@ -301,16 +282,15 @@
             "level": 3,
             "assessment": "conditional"
           },
-          "dependsOn": "bolt-cold-before",
           "condition": "Только если Bolt Rush действительно поглотил ровно 2 Electric stacks одной и той же цели и не произошло перехвата другим эффектом.",
           "evidence": {
             "basis": "live-mechanic",
             "url": "https://endfield.wiki.gg/wiki/Minghe",
-            "note": "Bolt Rush consumes two Electric and applies Electrification III; +3 Sunderization отдельно текстом, поскольку отдельной иконки пока нет."
+            "note": "Bolt Rush consumes two Electric and applies Electrification III; +3 Sunderization отдельно текстом, поскольку отдельной иконки пока нет. Forced Electrification от Argent Flow Bolt Rush — не обычная Arts Reaction с другим preexisting element; перед действием Electric II проверяется по условию, не изображается как обычное поглощение для Corrosion."
           }
         }
       ],
-      "check": "Перед началом: 0 Ultimate Energy; достаточный SP, Combo доступны; Arcane WILL>INT. Контрольное состояние при двух Electric: Electrification III, +3 Sunderization. Иконки — условный target, не наблюдение. Для первых трёх Battle Skills нужно в сумме 225 SP (Liino 25 + Argent 100 + Bolt Rush 100): при старте с 200 необходим natural regeneration/FS или иной источник SP до Bolt Rush.",
+      "check": "Перед началом: 0 Ultimate Energy; достаточный SP, Combo доступны; Arcane WILL>INT. Контрольное состояние при двух Electric: Electrification III, +3 Sunderization. Иконки — условный target, не наблюдение. Для первых трёх Battle Skills нужно в сумме 225 SP (Liino 25 + Argent 100 + Bolt Rush 100): при старте с 200 необходим natural regeneration/FS или иной источник SP до Bolt Rush. Иконка Electrification III после Bolt Rush — отдельное условное событие, а не стандартная Nature→Corrosion before/after пара.",
       "extra": "Liino Skill добавлен как собственная адаптация для sustain. Cake Buster в кратком cold-start описании начинает сразу с Argent Skill. Gilberta/Liino Combo только по настоящим triggers."
     },
     "buildupRepeat": {
