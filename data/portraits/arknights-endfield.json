@@ -3,7 +3,7 @@
   "game": "arknights-endfield",
   "sourcePage": "https://endfieldtools.dev/characters/",
   "snapshot": "User-provided English EndfieldTools.DEV MHT (2026-11-02)",
-  "source": "EndfieldTools.DEV compact charicon PNGs (original bytes, no recropping)",
+  "source": "34 originals from EndfieldTools.DEV MHT (2026-11-02); supplemental original Argent Flow in-game avatar from Dr-hydra/Better-Endfield (2026-11-08), SHA-256 pinned",
   "display": {
     "aspectRatio": "1:1",
     "fit": "cover",
@@ -50,6 +50,17 @@
       "width": 150,
       "height": 210,
       "sha256": "1a9203007d0714c0b0ef6314959b53af8572985ad10639f14fb6c4bd50cfc27a"
+    },
+    {
+      "id": "argent-flow",
+      "name": "Argent Flow",
+      "portrait": "portraits/arknights-endfield/argent-flow.png",
+      "sourcePage": "https://github.com/Dr-hydra/Better-Endfield/blob/main/native/modules/combat_stats/assets/avatars/chr_0037_minghe.png",
+      "sourceImage": "https://raw.githubusercontent.com/Dr-hydra/Better-Endfield/main/native/modules/combat_stats/assets/avatars/chr_0037_minghe.png",
+      "width": 112,
+      "height": 112,
+      "sha256": "e25577d849a75a4deab794abe9ec5e306ae86c76db5e4d246a76e7f54583bb36",
+      "sourceBlobSha1": "0ba7af3d6daf5ace05e080ed2566714323fb67f4"
     },
     {
       "id": "arclight",

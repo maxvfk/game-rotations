@@ -46,7 +46,7 @@ console.log('Validated '+ids.size+' named WuWa portraits, '+new Set(manifest.cha
    Validate *all* 34 pinned icon ID/image bindings by file hash and dimensions. */
 const endfield=load('data/portraits/arknights-endfield.json');
 const endfieldGame='arknights-endfield';
-if(endfield.schemaVersion!==1||endfield.game!==endfieldGame||endfield.characters?.length!==34)errors.push('Endfield: expected exact 34-icon snapshot');
+if(endfield.schemaVersion!==1||endfield.game!==endfieldGame||endfield.characters?.length!==35)errors.push('Endfield: expected 34 MHT icons plus one SHA-pinned Argent Flow source icon');
 const endNames=new Set(),endIds=new Set(),endPaths=new Set(),endPageIds=new Set();
 const endMap=new Map();
 for(const icon of endfield.characters||[]){
@@ -55,11 +55,17 @@ for(const icon of endfield.characters||[]){
  endIds.add(icon.id);endPaths.add(icon.portrait);endNames.add(icon.name);endMap.set(icon.id,icon);
  if(icon.portrait!=='portraits/arknights-endfield/'+icon.id+'.png')errors.push('Endfield: portrait filename mismatches operator '+icon.id);
  const expectedPageId=icon.id.startsWith('endministrator-')?'endministrator':icon.id;
- if(icon.sourcePage!=='https://endfieldtools.dev/characters/'+expectedPageId+'/')errors.push('Endfield: wrong operator source page '+icon.id);
+ if(icon.id==='argent-flow'){
+  if(icon.sourcePage!=="https://github.com/Dr-hydra/Better-Endfield/blob/main/native/modules/combat_stats/assets/avatars/chr_0037_minghe.png"||icon.sourceImage!=="https://raw.githubusercontent.com/Dr-hydra/Better-Endfield/main/native/modules/combat_stats/assets/avatars/chr_0037_minghe.png")errors.push('Endfield: Argent Flow source mismatch');
+  if(icon.sourceBlobSha1!=='0ba7af3d6daf5ace05e080ed2566714323fb67f4'||icon.sha256!=="e25577d849a75a4deab794abe9ec5e306ae86c76db5e4d246a76e7f54583bb36")errors.push('Endfield: Argent Flow source SHA mismatch');
+  if(icon.width!==112||icon.height!==112)errors.push('Endfield: Argent Flow source PNG dimensions differ');
+ }else{
+  if(icon.sourcePage!=='https://endfieldtools.dev/characters/'+expectedPageId+'/')errors.push('Endfield: wrong operator source page '+icon.id);
+   if(!/^https:\/\/endfieldtools\.dev\/assets\/images\/endfield\/charicon\/icon_chr_[a-zA-Z0-9_]+\.png$/.test(icon.sourceImage))errors.push('Endfield: unexpected original MHT source '+icon.id);
+  if(icon.width!==150||icon.height<200||icon.height>210)errors.push('Endfield: unexpected MHT PNG dimensions '+icon.id);
+ }
  endPageIds.add(expectedPageId);
- if(!/^https:\/\/endfieldtools\.dev\/assets\/images\/endfield\/charicon\/icon_chr_[a-zA-Z0-9_]+\.png$/.test(icon.sourceImage))errors.push('Endfield: unexpected charicon source '+icon.id);
  if(!/^[a-f0-9]{64}$/.test(icon.sha256))errors.push('Endfield: incomplete SHA-256 '+icon.id);
- if(icon.width!==150||icon.height<200||icon.height>210)errors.push('Endfield: unexpected PNG dimensions '+icon.id);
  const file=resolve(root,'public',icon.portrait);
  if(!existsSync(file)){errors.push('Endfield: missing PNG '+file);continue}
  const bytes=readFileSync(file),actual=createHash('sha256').update(bytes).digest('hex');
@@ -67,7 +73,7 @@ for(const icon of endfield.characters||[]){
  else if(bytes.readUInt32BE(16)!==icon.width||bytes.readUInt32BE(20)!==icon.height)errors.push('Endfield: dimensions changed '+icon.id);
  if(actual!==icon.sha256)errors.push('Endfield: SHA-256 mismatch for '+icon.id+' — image differs from MHT');
 }
-if(endIds.size!==34||endPageIds.size!==33)errors.push('Endfield: missing or duplicated operator variants');
+if(endIds.size!==35||endPageIds.size!==34)errors.push('Endfield: missing or duplicated operator variants');
 for(const [alias,target] of Object.entries(endfield.aliases||{})){
  if(!endMap.has(target))errors.push('Endfield: invalid alias '+alias+' -> '+target);
  if(alias==='endministrator')errors.push('Endfield: ambiguous Endministrator gender must not silently resolve');
@@ -84,7 +90,7 @@ for(const team of endCatalogGame?.teams||[]){
  }
 }
 // Additional derived Endfield mini-registry check: exact byte-for-byte regeneration
-// from the 34 SHA-pinned originals, without modifying the working tree.
+// from the SHA-pinned original source PNGs, without modifying the working tree.
 if(!errors.length){
  try{execFileSync(process.execPath,['scripts/generate-endfield-minis.mjs','--check'],{stdio:'inherit'});}
  catch(error){errors.push('Endfield mini PNG verification failed: '+error.message)}

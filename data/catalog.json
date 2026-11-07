@@ -126,7 +126,7 @@
       "mark": "▣",
       "accent": "#a8c0c8",
       "status": "available",
-      "subtitle": "Cryo: Si hyper · Maygi / Prydwen",
+      "subtitle": "Cryo: Si hyper · Electric: Argent Flow",
       "teams": [
         {
           "id": "si-tangtang-arcane-xaihi",
@@ -171,6 +171,58 @@
             {
               "id": "prydwen",
               "name": "Prydwen",
+              "verification": "partial"
+            }
+          ]
+        },
+        {
+          "id": "argent-flow-arcane-gilberta-liino",
+          "name": "Argent Flow / WILL Arcane / Gilberta / Liino",
+          "subtitle": "Buildup · Prepared burst · Cake Buster (provisional)",
+          "characters": [
+            {
+              "id": "argent-flow",
+              "name": "Argent Flow",
+              "investment": "P0S1 · Lunar Calling",
+              "portrait": "portraits/arknights-endfield/argent-flow.png"
+            },
+            {
+              "id": "arcane",
+              "name": "Arcane (WILL)",
+              "investment": "P1 · сигнатура; WILL > INT проверить",
+              "portrait": "portraits/arknights-endfield/arcane.png"
+            },
+            {
+              "id": "gilberta",
+              "name": "Gilberta",
+              "investment": "Инвестиции не уточнены",
+              "portrait": "portraits/arknights-endfield/gilberta.png"
+            },
+            {
+              "id": "liino",
+              "name": "Liino",
+              "investment": "P0R1 · сигнатура",
+              "portrait": "portraits/arknights-endfield/liino.png"
+            }
+          ],
+          "status": "research-adapted",
+          "statusDescription": "Три выбранных preliminary routes, SP/CD/trigger validation и реальное время не проверены; hot start сохранён по Cake Buster.",
+          "gameVersion": "Global live 1.6 (2026-11-08)",
+          "source": "https://github.com/maxvfk/Games/blob/main/guides/arknights-endfield/ARGENT_FLOW_ARCANE_GILBERTA_LIINO_ROTATIONS.md",
+          "variants": [
+            {
+              "id": "buildup",
+              "name": "Накопление",
+              "verification": "experimental"
+            },
+            {
+              "id": "prepared",
+              "name": "Burst после накопления",
+              "verification": "experimental"
+            },
+            {
+              "id": "cake",
+              "name": "Cake Buster",
               "verification": "partial"
             }
           ]

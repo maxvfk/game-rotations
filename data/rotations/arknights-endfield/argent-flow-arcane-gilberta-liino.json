@@ -1,0 +1,548 @@
+{
+  "schemaVersion": 1,
+  "id": "argent-flow-arcane-gilberta-liino",
+  "game": "arknights-endfield",
+  "title": "Argent Flow / WILL Arcane / Gilberta / Liino",
+  "gameVersion": "Global live 1.6 (2026-11-08)",
+  "source": "https://github.com/maxvfk/Games/blob/main/guides/arknights-endfield/ARGENT_FLOW_ARCANE_GILBERTA_LIINO_ROTATIONS.md",
+  "verificationNote": "ВЫБРАНО ПОЛЬЗОВАТЕЛЕМ. Три отдельных варианта: накопление — собственная conditional adaptation (вдохновлена Cake Buster); burst после накопления — own adaptation; hot-start Cake Buster — порядок из описания ролика от 06.11.2026. Ни один не объявлен verified; нет полного SP/CD/UGE trace и независимого подтверждения stagger/buff timing. Arts targets — условные выводы из live-kit, не combat observations. Времена Prydwen builder не используются. Источники с таймкодами: GitHub Games guide.",
+  "controls": "arknights-endfield",
+  "characters": [
+    {
+      "id": "argent-flow",
+      "name": "Argent Flow",
+      "glyph": "⚡",
+      "color": "#dcbf71",
+      "portrait": "portraits/arknights-endfield/argent-flow.png",
+      "investment": "P0S1 · Lunar Calling"
+    },
+    {
+      "id": "arcane",
+      "name": "Arcane (WILL)",
+      "glyph": "✧",
+      "color": "#acd9b2",
+      "portrait": "portraits/arknights-endfield/arcane.png",
+      "investment": "P1 · сигнатура; WILL > INT проверить"
+    },
+    {
+      "id": "gilberta",
+      "name": "Gilberta",
+      "glyph": "✿",
+      "color": "#baafe4",
+      "portrait": "portraits/arknights-endfield/gilberta.png",
+      "investment": "Инвестиции не уточнены"
+    },
+    {
+      "id": "liino",
+      "name": "Liino",
+      "glyph": "✦",
+      "color": "#8fd2f3",
+      "portrait": "portraits/arknights-endfield/liino.png",
+      "investment": "P0R1 · сигнатура"
+    }
+  ],
+  "defaultSlots": {
+    "argent-flow": "1",
+    "arcane": "2",
+    "gilberta": "3",
+    "liino": "4"
+  },
+  "variants": [
+    {
+      "id": "buildup",
+      "label": "Накопление",
+      "sub": "Cold start + условный повтор",
+      "type": "Buildup",
+      "intro": "Повторяемый по событиям блок Electric → Bolt Rush → Sunderization; Liino Skill добавлен как own adaptation. ВНИМАНИЕ: это не фиксированная бесконечная ротация по секундам.",
+      "verification": "experimental",
+      "opener": [
+        "coldBuildup"
+      ],
+      "loop": [
+        "buildupRepeat"
+      ],
+      "loopCaution": "Условный повтор! Argent/Arcane Combo требуют действительного trigger и cooldown, SP и обычного/усиленного Skill. Числа 3→6→9→12 — сценарные, а не гарантированные."
+    },
+    {
+      "id": "prepared",
+      "label": "Burst после накопления",
+      "sub": "Liino → Gilberta → Argent",
+      "type": "Prepared burst",
+      "intro": "Собственная короткая адаптация: Sunderization уже есть на живой цели и Ultimate готовы. Liino delayed Electrification перед Bolt Rush, Gilberta buff на финальный Crush.",
+      "verification": "experimental",
+      "opener": [
+        "preparedBurst"
+      ],
+      "loop": [
+        "recoveryNote"
+      ],
+      "loopCaution": "Это разовый burst после накопления, не repeatable loop. Для повторного использования собрать новый Sunderization и Ultimates."
+    },
+    {
+      "id": "cake",
+      "label": "Cake Buster",
+      "sub": "Hot start · исходный маршрут",
+      "type": "Source hot start",
+      "intro": "Точное базовое упорядочивание из описания Cake Buster 06.11.2026. Hot-start: нужны готовые Ultimate, Combo и Arts Reaction; без pre-state не является cold start.",
+      "verification": "partial",
+      "opener": [
+        "cakeHot"
+      ],
+      "loop": [
+        "recoveryNote"
+      ],
+      "loopCaution": "Cake Buster публикует отдельный hot start; после него не существует подтверждённого instant repeat. Вернуться к накоплению и проверить ресурсы."
+    }
+  ],
+  "stages": {
+    "coldBuildup": {
+      "person": "argent-flow",
+      "title": "Накопление · старт",
+      "sub": "Cold start: первый Electric-пакет и первые Sunderization",
+      "actions": [
+        {
+          "text": "Vocalist Stance: лечение и командный ATK buff",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "liino"
+          },
+          "hint": "25 SP; собственная адаптация: в коротком cold start Cake Buster этот шаг не указан."
+        },
+        {
+          "text": "Darkness Cowed: Vulnerability → открыть Stars Shifted",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "argent-flow"
+          },
+          "hint": "Только обычный Battle Skill; требуется достаточный SP и попадание по цели."
+        },
+        {
+          "text": "Stars Shifted: Electric Infliction I",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "argent-flow"
+          },
+          "hint": "Триггер — полученная целью Vulnerability; Combo должно быть вне cooldown."
+        },
+        {
+          "text": "WILL Combo: скопировать Electric → II",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "arcane"
+          },
+          "hint": "WILL > INT; Electric должен сохраниться на той же цели. Не копировать Nature."
+        },
+        {
+          "text": "FS Arcane · восстановить SP перед Bolt Rush",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "arcane"
+          },
+          "optional": true,
+          "condition": "Если после Liino Н (25 SP) и обычного Argent Н (100 SP) осталось менее 100 SP для Bolt Rush; дождись регенерации или заверши полную BA-цепочку.",
+          "hint": "Вне боя SP естественно стабилизируется около 200; для первых трёх Battle Skills суммарно требуется 225 SP. FS не мгновенный и может сдвинуть timing; если SP уже ≥100 — пропусти."
+        },
+        {
+          "text": "Bolt Rush: Electrification III → +3 Sunderization",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "argent-flow"
+          },
+          "hint": "Усиленный Battle Skill после Stars Shifted. Только если два Electric stacks реально были поглощены; 100 SP."
+        },
+        {
+          "text": "Lift и Vulnerability для следующего пакета",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "gilberta"
+          },
+          "optional": true,
+          "condition": "Только после фактической Arts Reaction и при доступном Combo.",
+          "hint": "Нельзя гарантировать нажатие Gilberta К сразу после Bolt Rush без соблюдённого trigger."
+        },
+        {
+          "text": "Combo Liino: поддержка Ultimate Energy",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "liino"
+          },
+          "optional": true,
+          "condition": "Только если Arts Reaction открыло Combo и Liino ещё в Vocalist Stance.",
+          "hint": "В Cosmovoice Stance после Liino Ultimate её Combo не работает."
+        },
+        {
+          "text": "FS · завершить BA-цепочку, вернуть SP",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "argent-flow"
+          },
+          "hint": "Final Strike — последняя атака полной Basic Attack chain, а не отдельная мгновенная кнопка. Время игровое, не условные секунды Builder."
+        }
+      ],
+      "artsCheckpoints": [
+        {
+          "id": "arg-cold-k-before",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 0,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "План чистой цели до первого Electric на основании live-kit; не измерено."
+          }
+        },
+        {
+          "id": "arg-cold-k-after",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "dependsOn": "arg-cold-k-before",
+          "condition": "Только если Combo доступно, попадание Stars Shifted в ту же цель, нет иных Electric/Nature эффектов.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "Stars Shifted при попадании применяет 1 Electric Infliction; численное целевое состояние, не видеоизмерение. Числовая цель при выполненном условии, не guaranteed и не observed."
+          }
+        },
+        {
+          "id": "arc-cold-k-before",
+          "anchor": {
+            "actionIndex": 3,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "Целевой Electric I перед WILL Arcane, по live-kit."
+          }
+        },
+        {
+          "id": "arc-cold-k-after",
+          "anchor": {
+            "actionIndex": 3,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 2,
+            "assessment": "target"
+          },
+          "dependsOn": "arc-cold-k-before",
+          "condition": "Только WILL>INT, до истечения предыдущего Electric I и без стороннего Nature.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "WILL Arcane копирует Electric при валидном trigger. Не observed. Числовая цель при выполненном условии, не guaranteed и не observed."
+          }
+        },
+        {
+          "id": "bolt-cold-after",
+          "anchor": {
+            "actionIndex": 5,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "reaction",
+            "reaction": "electrification",
+            "level": 3,
+            "assessment": "conditional"
+          },
+          "condition": "Только если Bolt Rush действительно поглотил ровно 2 Electric stacks одной и той же цели и не произошло перехвата другим эффектом.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "Bolt Rush consumes two Electric and applies Electrification III; +3 Sunderization отдельно текстом, поскольку отдельной иконки пока нет. Forced Electrification от Argent Flow Bolt Rush — не обычная Arts Reaction с другим preexisting element; перед действием Electric II проверяется по условию, не изображается как обычное поглощение для Corrosion."
+          }
+        }
+      ],
+      "check": "Перед началом: 0 Ultimate Energy; достаточный SP, Combo доступны; Arcane WILL>INT. Контрольное состояние при двух Electric: Electrification III, +3 Sunderization. Иконки — условный target, не наблюдение. Для первых трёх Battle Skills нужно в сумме 225 SP (Liino 25 + Argent 100 + Bolt Rush 100): при старте с 200 необходим natural regeneration/FS или иной источник SP до Bolt Rush. Иконка Electrification III после Bolt Rush — отдельное условное событие, а не стандартная Nature→Corrosion before/after пара.",
+      "extra": "Liino Skill добавлен как собственная адаптация для sustain. Cake Buster в кратком cold-start описании начинает сразу с Argent Skill. Gilberta/Liino Combo только по настоящим triggers."
+    },
+    "buildupRepeat": {
+      "person": "argent-flow",
+      "title": "Накопление · следующий пакет",
+      "sub": "Только при восстановленных cooldown, SP и новой Vulnerability",
+      "actions": [
+        {
+          "text": "FS для SP и Stagger",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "argent-flow"
+          },
+          "hint": "Под контролем Argent Flow завершить BA-цепочку, а не ждать только условные 0,5 секунды."
+        },
+        {
+          "text": "Создать новую Vulnerability обычным Skill",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "argent-flow"
+          },
+          "optional": true,
+          "condition": "Только если Battle Skill снова обычный Darkness Cowed, есть 100 SP и нет альтернативного источника Vulnerability.",
+          "hint": "Если ещё доступен Bolt Rush, обычное нажатие Skill не создаст тот же старт. Возможны другие источники Vulnerability."
+        },
+        {
+          "text": "Lift → Vulnerability как альтернативный trigger",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "gilberta"
+          },
+          "optional": true,
+          "condition": "Только если Combo Gilberta действительно открылось от Arts Reaction, попало в эту же цель и нужно как источник Vulnerability."
+        },
+        {
+          "text": "Stars Shifted → Electric I",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "argent-flow"
+          },
+          "hint": "Ждать фактической Vulnerability и cooldown Combo Argent Flow: 19 s / 18 s при rank 12."
+        },
+        {
+          "text": "WILL Arcane → Electric II",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "arcane"
+          },
+          "optional": true,
+          "condition": "Если Combo Arcane готово и ещё есть Electric I. Без неё пакет будет слабее."
+        },
+        {
+          "text": "Bolt Rush → Electrification и Sunderization",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "argent-flow"
+          },
+          "hint": "При двух Electric +3 Sunderization; при одном +2; считать фактические стаки на цели, не прогноз по циклу."
+        }
+      ],
+      "check": "Повторять лишь при реальных trigger/cooldown. Sunderization сохраняется на конкретной живой цели максимум 60 s и до следующего Crush; накопление 3→6→9→12 — целевая модель, не точный таймлайн.",
+      "extra": "Skill Argent Flow после Combo превращается в Bolt Rush на 20 s; обычный Darkness Cowed не всегда доступен. Дополнительные Arts-иконки не выставлены из-за неизвестного starting state."
+    },
+    "preparedBurst": {
+      "person": "argent-flow",
+      "title": "Burst · после накопления",
+      "sub": "Own adaptation: уже есть Sunderization и готовы Ultimate",
+      "actions": [
+        {
+          "text": "Cosmovoice: Amp и принудительная Electrification",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate",
+            "actor": "liino"
+          },
+          "hint": "160 Ultimate Energy. Дождаться реального попадания отложенной Electrification до следующего важного Bolt Rush."
+        },
+        {
+          "text": "Новый Electric-пакет перед burst",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "argent-flow"
+          },
+          "optional": true,
+          "condition": "Только если Combo открыто новой Vulnerability, готово по cooldown и дополнительный пакет ещё нужен."
+        },
+        {
+          "text": "WILL Arcane: дополнительный Electric stack",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "arcane"
+          },
+          "optional": true,
+          "condition": "Только когда на цели уже Electric Infliction и Combo Arcane готово."
+        },
+        {
+          "text": "Bolt Rush: увеличить Sunderization",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "argent-flow"
+          },
+          "optional": true,
+          "condition": "Если усиленный Battle Skill доступен, есть SP, и новый пакет окупается до окончания коротких buff windows."
+        },
+        {
+          "text": "Arts Susceptibility: открыть финальное окно",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate",
+            "actor": "gilberta"
+          },
+          "hint": "Целиться в попадание финального удара Argent Flow Ultimate внутри короткого баффа (~5 с), не в момент первого нажатия."
+        },
+        {
+          "text": "Heavens Sundered: Crush → Detonation",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate",
+            "actor": "argent-flow"
+          },
+          "hint": "Нужна Vulnerability на цели и накопленные Sunderization stacks; именно Crush взрывает их."
+        },
+        {
+          "text": "Ultimate Arcane: следующий цикл / дополнительный урон",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate",
+            "actor": "arcane"
+          },
+          "optional": true,
+          "condition": "Если Ultimate готова и нужна после взрыва. Оптимальный порядок и две стадии Ultimate Arcane ещё не проверены."
+        }
+      ],
+      "check": "Для этого варианта заранее накопить Sunderization; полный cold start находится во вкладке «Накопление». Liino delayed Electrification должна разрешиться до важного Bolt Rush. Gilberta Ultimate дать непосредственно под финальный Crush.",
+      "extra": "Наш предварительный вариант, не дословный Cake Buster и не validated DPS-optimal. Из-за short window не вставлять дополнительные длинные действия после Gilberta Ultimate."
+    },
+    "cakeHot": {
+      "person": "argent-flow",
+      "title": "Cake Buster · hot start",
+      "sub": "Source-provided последовательность из описания P0-showcase",
+      "actions": [
+        {
+          "text": "Cosmovoice: команда получает Amp",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate",
+            "actor": "liino"
+          },
+          "hint": "Источник: Cake Buster hot start. Предполагается готовый Ultimate и корректное разрешение delayed Electrification."
+        },
+        {
+          "text": "Gilberta К после Arts Reaction",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "gilberta"
+          },
+          "hint": "Нужен заранее выполненный trigger от Arts Reaction; источник не описывает весь pre-state."
+        },
+        {
+          "text": "Stars Shifted: Electric I",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "argent-flow"
+          },
+          "hint": "Нужен уже доступный trigger Vulnerability и Combo вне CD; не исполняется из пустого состояния."
+        },
+        {
+          "text": "WILL Combo: Electric II",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "arcane"
+          },
+          "hint": "Только если Electric stack от Argent ещё активен и WILL>INT."
+        },
+        {
+          "text": "Bolt Rush: конвертировать Electric",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "argent-flow"
+          },
+          "hint": "Результат Electrification зависит от фактических stacks; не приписывать гарантированные III/IV для hot start."
+        },
+        {
+          "text": "Arts Susceptibility перед финальным ударом",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate",
+            "actor": "gilberta"
+          },
+          "hint": "Короткое окно: контролировать попадание последнего удара Argent Flow, а не только начало его Ultimate."
+        },
+        {
+          "text": "Nature Infliction / возможная Corrosion",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "arcane"
+          },
+          "hint": "Кто и когда создаёт Nature/Electric — проверять в combat footage; нельзя заранее назначить Corrosion IV."
+        },
+        {
+          "text": "Crush → Sunderization Detonation",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate",
+            "actor": "argent-flow"
+          },
+          "hint": "Подготовленные на этой цели Sunderization; в источнике это ключевой взрыв."
+        },
+        {
+          "text": "Ultimate Arcane после burst",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate",
+            "actor": "arcane"
+          },
+          "hint": "Это порядок из описания Cake Buster. Вторая стадия Ultimate Arcane не восстанавливается автоматически из одной записи."
+        }
+      ],
+      "check": "Hot start требует уже готовых Ultimate, Combo triggers и ресурса. Ни Gilbertа K, ни Argent K не открываются нажатием сами по себе. Конкретный pre-state из описания видео не восстановлен.",
+      "extra": "Источник 06.11.2026: https://www.youtube.com/watch?v=8NhMS6V2Cbc. Последовательность сохранена как опубликовано; не выдавать за executable zero-energy opener или verified optimal."
+    },
+    "recoveryNote": {
+      "person": "argent-flow",
+      "title": "Повтор burst не верифицирован",
+      "sub": "Ресурсное восстановление после разового взрыва",
+      "actions": [
+        {
+          "text": "FS для SP, заново подготовить Vulnerability и Electric",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "argent-flow"
+          },
+          "hint": "Это восстановление ресурса, НЕ гарантированная следующая ротация после взрыва."
+        }
+      ],
+      "check": "Возвращаться к блоку «Накопление» только после проверки cooldown, SP, Ultimate Energy и нового enemy state.",
+      "extra": "Переключатель «Повтор» не означает, что финальный burst можно немедленно запустить снова."
+    }
+  }
+}
