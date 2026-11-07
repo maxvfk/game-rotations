@@ -8,7 +8,7 @@
 
 Каждый checkpoint содержит `id`, `anchor:{actionIndex,relative}`, `status`, `evidence`, необязательные `dependsOn`, `condition` и `subject:primary-target`. `actionIndex` отсчитывается с **нуля** в `stage.actions[]`; это *логическая привязка к действию*, не точное время попадания или появления эффекта на сервере.
 
-Структура `status`: `kind:infliction`, `element:heat|electric|cryo|nature`, `stacks:0..4|null` **либо** `kind:reaction`, `reaction:combustion|electrification|solidification|corrosion`, `level:1..4|null`. Нулевой стак — это подтверждённое отсутствие, `null` — неизвестность.
+Структура `status`: `kind:infliction`, `element:heat|electric|cryo|nature`, `stacks:0..4|null` **либо** `kind:reaction`, `reaction:combustion|electrification|solidification|corrosion`, `level:1..4|null`. Число `0` означает отсутствие стаков **в рамках указанного `assessment`** (например, целевой clean start при `target`), а `null` — неизвестное число. `target: 0` само по себе не доказывает, что цель в реальном бою была чистой.
 
 ### Достоверность
 
