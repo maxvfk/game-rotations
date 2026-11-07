@@ -3,6 +3,7 @@ import {resolve, join} from 'node:path';
 import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
 import {checkArtsCheckpoints} from './arts-checkpoint-validation.mjs';
+import {checkPhysicalCheckpoints} from './physical-checkpoint-validation.mjs';
 
 const root = process.cwd();
 const read = file => JSON.parse(readFileSync(resolve(root, file), 'utf8'));
@@ -72,6 +73,7 @@ if (catalog.schemaVersion!==1 || !Array.isArray(catalog.games)) {
     if(!equalSets(variants,new Set(catalogVariants.keys())))add(path,'catalog variant set mismatch');
     for(const [stageId,stage] of Object.entries(book.stages)){
       for(const error of checkArtsCheckpoints(book.game,stageId,stage))add(path,error);
+      for(const error of checkPhysicalCheckpoints(book.game,stageId,stage))add(path,error);
       if(!used.has(stageId))add(path,'unreferenced stage '+stageId);
       if(!chars.has(stage.person))add(path,'stage '+stageId+' uses unknown character '+stage.person);
       for(const [index,a] of stage.actions.entries()){

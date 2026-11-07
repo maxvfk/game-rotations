@@ -14,7 +14,16 @@ export type ArtsCheckpoint = {
  condition?:string;
  evidence:{basis:'tc-intent'|'live-mechanic'|'combat-observation';url:string;note:string};
 };
-export type RotationStage = {person:string;title:string;sub:string;actions:Action[];check:string;extra:string;artsCheckpoints?:ArtsCheckpoint[]};
+// Separate durable enemy Vulnerability snapshot from discrete physical event.
+export type PhysicalCheckpointStatus =
+ | {kind:'vulnerability';stacks:0|1|2|3|4|null;assessment:'target'|'conditional'|'observed'|'unknown'}
+ | {kind:'effect';effect:'lift'|'knock-down'|'crush'|'breach';assessment:'conditional'|'observed'};
+export type PhysicalCheckpoint = {
+ id:string;anchor:{actionIndex:number;relative:'before'|'after'};subject:'primary-target';
+ status:PhysicalCheckpointStatus;dependsOn?:string;condition?:string;
+ evidence:{basis:'tc-intent'|'live-mechanic'|'combat-observation';url:string;note:string};
+};
+export type RotationStage = {person:string;title:string;sub:string;actions:Action[];check:string;extra:string;artsCheckpoints?:ArtsCheckpoint[];physicalCheckpoints?:PhysicalCheckpoint[]};
 export type RotationCharacter = {id:string;name:string;glyph:string;color:string;portrait:string;investment:string};
 export type RotationVariant = {id:string;label:string;sub:string;type:string;intro:string;verification:'adapted'|'partial'|'experimental'|'verified';opener:string[];loop:string[];loopCaution?:string};
 export type RotationBook = {schemaVersion:1;id:string;game:string;title:string;gameVersion:string;source:string;verificationNote:string;characters:RotationCharacter[];controls:string;defaultSlots:Record<string,string>;variants:RotationVariant[];stages:Record<string,RotationStage>};
