@@ -10,24 +10,33 @@ test('Endfield: local Arts outcomes after Arcane Skill, not stage headers',async
  await page.goto(si);
  await expect(page.locator('.stage')).toHaveCount(3);
  await expect(page.locator('.stage-arts-summary')).toHaveCount(0);
- await expect(page.locator('.action.arts-annotated')).toHaveCount(3);
+ await expect(page.locator('.action.arts-annotated')).toHaveCount(12);
+ await expect(page.locator('.stage').nth(0).locator('.action.arts-annotated')).toHaveCount(5);
+ await expect(page.locator('.stage').nth(1).locator('.action.arts-annotated')).toHaveCount(3);
+ await expect(page.locator('.stage').nth(2).locator('.action.arts-annotated')).toHaveCount(4);
  await expect(page.locator('.stage-title').first()).toBeVisible();
  await page.locator('#layout-compact').click();
  await expect(page.locator('.stage-compact-line').first()).toBeVisible();
  const maygi=page.locator('.action.arts-annotated').first();
  await expect(maygi.locator('.keycap')).toHaveText('Skill');
  await expect(maygi.locator('.arts-action-effect')).toBeVisible();
- await expect(maygi.locator('.arts-action-pre-word')).toHaveText('Cryo');
- await expect(maygi.locator('.arts-action-result .arts-reaction img')).toHaveCount(1);
- await expect(maygi.locator('.arts-conditional')).toHaveCount(0);
+ await expect(maygi.locator('.arts-action-result .arts-infliction')).toHaveAttribute('data-stacks','1');
+ await expect(maygi.locator('.arts-action-prerequisite .arts-infliction')).toHaveAttribute('data-stacks','0');
  await expect(maygi.locator('.action-primary > .arts-action-annotations')).toHaveCount(1);
  await expect(maygi.locator(':scope > .arts-action-annotations')).toHaveCount(0);
- await expect(maygi.locator('.arts-action-result .arts-reaction')).toHaveAttribute('data-level','unknown');
- await expect(maygi.locator('.arts-action-result .arts-reaction-level')).toBeHidden();
- await expect(maygi.locator('.arts-infliction')).toHaveCount(0);
- await expect(maygi.locator('.arts-action-effect')).toHaveAttribute('aria-label',/уровень неизвестен/);
- await expect(maygi).toHaveAttribute('title',/ожидаемое изменение состояния основной цели/);
- await expect(maygi).toHaveAttribute('title',/точный Status Level неизвестен/);
+ const maygiCopy=page.locator('.action.arts-annotated').nth(1);
+ await expect(maygiCopy.locator('.arts-action-prerequisite .arts-infliction')).toHaveAttribute('data-stacks','1');
+ await expect(maygiCopy.locator('.arts-action-result .arts-infliction')).toHaveAttribute('data-stacks','2');
+ const maygiCorrosion=page.locator('.action.arts-annotated').nth(4);
+ await expect(maygiCorrosion.locator('.keycap')).toHaveText('Skill');
+ await expect(maygiCorrosion.locator('.arts-infliction')).toHaveAttribute('data-stacks','4');
+ await expect(maygiCorrosion.locator('.arts-reaction')).toHaveAttribute('data-level','4');
+ await expect(maygiCorrosion.locator('.arts-action-effect')).toHaveAttribute('aria-label',/только при выполнении условий/);
+ const maygiSecondCorrosion=page.locator('.stage').nth(1).locator('.action.arts-annotated').last();
+ await expect(maygiSecondCorrosion.locator('.arts-infliction')).toHaveAttribute('data-stacks','2');
+ await expect(maygiSecondCorrosion.locator('.arts-reaction')).toHaveAttribute('data-level','unknown');
+ await expect(maygiSecondCorrosion.locator('.arts-reaction-level')).toBeHidden();
+ await expect(maygiSecondCorrosion.locator('.arts-action-effect')).toHaveAttribute('aria-label',/уровень неизвестен/);
  await noOverflow(page);
  await page.screenshot({path:testInfo.outputPath('endfield-arts-action-maygi-mobile.png'),fullPage:true,animations:'disabled'});
 
@@ -139,7 +148,7 @@ test('Endfield: Arts switch hides annotations and persists across variants, layo
  await expect(toggle).toHaveText('Arts: вкл');
  await expect(toggle).toHaveAttribute('aria-label','Показывать Arts-индикаторы');
  await expect(toggle).toHaveAttribute('aria-pressed','true');
- await expect(page.locator('.action.arts-annotated')).toHaveCount(3); // Maygi remains unchanged
+ await expect(page.locator('.action.arts-annotated')).toHaveCount(12); // Maygi action-local effects
 
  // Hiding must remove annotation nodes and extended tooltips/ARIA, not just PNG visibility.
  await toggle.click();
