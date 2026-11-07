@@ -137,6 +137,17 @@
           "hint": "WILL > INT; Electric должен сохраниться на той же цели. Не копировать Nature."
         },
         {
+          "text": "FS Arcane · восстановить SP перед Bolt Rush",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "arcane"
+          },
+          "optional": true,
+          "condition": "Если после Liino Н (25 SP) и обычного Argent Н (100 SP) осталось менее 100 SP для Bolt Rush; дождись регенерации или заверши полную BA-цепочку.",
+          "hint": "Вне боя SP естественно стабилизируется около 200; для первых трёх Battle Skills суммарно требуется 225 SP. FS не мгновенный и может сдвинуть timing; если SP уже ≥100 — пропусти."
+        },
+        {
           "text": "Bolt Rush: Electrification III → +3 Sunderization",
           "tone": "key",
           "input": {
@@ -261,7 +272,7 @@
         {
           "id": "bolt-cold-before",
           "anchor": {
-            "actionIndex": 4,
+            "actionIndex": 5,
             "relative": "before"
           },
           "subject": "primary-target",
@@ -280,7 +291,7 @@
         {
           "id": "bolt-cold-after",
           "anchor": {
-            "actionIndex": 4,
+            "actionIndex": 5,
             "relative": "after"
           },
           "subject": "primary-target",
@@ -299,7 +310,7 @@
           }
         }
       ],
-      "check": "Перед началом: 0 Ultimate Energy; достаточный SP, Combo доступны; Arcane WILL>INT. Контрольное состояние при двух Electric: Electrification III, +3 Sunderization. Иконки — условный target, не наблюдение.",
+      "check": "Перед началом: 0 Ultimate Energy; достаточный SP, Combo доступны; Arcane WILL>INT. Контрольное состояние при двух Electric: Electrification III, +3 Sunderization. Иконки — условный target, не наблюдение. Для первых трёх Battle Skills нужно в сумме 225 SP (Liino 25 + Argent 100 + Bolt Rush 100): при старте с 200 необходим natural regeneration/FS или иной источник SP до Bolt Rush.",
       "extra": "Liino Skill добавлен как собственная адаптация для sustain. Cake Buster в кратком cold-start описании начинает сразу с Argent Skill. Gilberta/Liino Combo только по настоящим triggers."
     },
     "buildupRepeat": {
