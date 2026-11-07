@@ -139,7 +139,7 @@ test('Endfield: Arts switch hides annotations and persists across variants, layo
  await expect(toggle).toHaveText('Arts: вкл');
  await expect(toggle).toHaveAttribute('aria-label','Показывать Arts-индикаторы');
  await expect(toggle).toHaveAttribute('aria-pressed','true');
- await expect(page.locator('.action.arts-annotated')).toHaveCount(15);
+ await expect(page.locator('.action.arts-annotated')).toHaveCount(3); // Maygi remains unchanged
 
  // Hiding must remove annotation nodes and extended tooltips/ARIA, not just PNG visibility.
  await toggle.click();
