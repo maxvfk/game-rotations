@@ -50,7 +50,7 @@ describe('Endfield action-local Arts changes',()=>{
   const s=sourceBook.stages.maygiRebuild;
   const result=createArtsActionEffect(s.artsCheckpoints as ArtsCheckpoint[],6,base)!;
   const effect=result.querySelector<HTMLElement>('.arts-action-effect')!;
-  expect(effect.textContent).toContain('Cryo');
+  expect(effect.getAttribute('aria-label')).toContain('Cryo Infliction');
   expect(effect.querySelector('.arts-action-result .arts-reaction img')).not.toBeNull();
   expect(effect.textContent).not.toContain('если');
   expect(effect.querySelector('.arts-infliction')?.getAttribute('data-stacks')).toBe('2');
