@@ -16,62 +16,59 @@ const expected=['maygiPrep','maygiRebuild','maygiBurst','prydwenOne','prydwenTwo
 assert.deepEqual(annotated.map(x=>x[0]),expected);
 assert.equal(validate(book),true,ajv.errorsText(validate.errors));
 
-const expectedPrydwen={
- prydwenOne: [[0,0,1],[1,1,2],[9,2,3],[10,3,4],[12,4,'corrosion']],
- prydwenTwo: [[2,0,1],[4,1,2],[9,2,3],[10,3,4],[12,4,'corrosion']],
- prydwenBurst:[[3,0,1],[4,1,2],[5,2,3],[8,3,4],[9,4,'corrosion']]
+const expectedStages={
+ maygiPrep:[[0,0,1,'si','skill'],[2,1,2,'arcane','combo'],[5,2,3,'tangtang','skill'],[7,3,4,'xaihi','combo'],[9,4,'corrosion','arcane','skill']],
+ maygiRebuild:[[1,0,1,'si','skill'],[4,1,2,'xaihi','combo'],[6,2,'corrosion','arcane','skill']],
+ maygiBurst:[[2,0,1,'tangtang','dive'],[4,1,2,'arcane','combo'],[5,2,3,'arcane','ultimate'],[7,3,'corrosion','arcane','skill']],
+ prydwenOne:[[0,0,1,'si','skill'],[1,1,2,'arcane','combo'],[9,2,3,'xaihi','combo'],[10,3,4,'arcane','combo'],[12,4,'corrosion','arcane','skill']],
+ prydwenTwo:[[2,0,1,'tangtang','skill'],[4,1,2,'si','skill'],[9,2,3,'xaihi','combo'],[10,3,4,'arcane','combo'],[12,4,'corrosion','arcane','skill']],
+ prydwenBurst:[[3,0,1,'tangtang','skill'],[4,1,2,'arcane','combo'],[5,2,3,'arcane','ultimate'],[8,3,4,'tangtang','dive'],[9,4,'corrosion','arcane','skill']]
 };
 let transitions=0;
 for(const [id,stage] of annotated){
  assert.deepEqual(checkArtsCheckpoints(book.game,id,stage),[],id);
+ const targets=expectedStages[id];
+ assert(targets, 'Stage must have a declared Arts flow: '+id);
  const entries=stage.artsCheckpoints;
- const targets=id in expectedPrydwen?expectedPrydwen[id]:null;
- assert.equal(entries.length,targets?10:2,id+' checkpoint length');
- if(!targets){
-  const [b,a]=entries;
-  assert.equal(b.anchor.relative,'before');assert.equal(a.anchor.relative,'after');
-  assert.equal(b.anchor.actionIndex,a.anchor.actionIndex);
-  assert.equal(a.dependsOn,b.id);
-  assert.equal(stage.actions[b.anchor.actionIndex].input.actor,'arcane');
-  assert.equal(b.status.element,'cryo');assert.equal(a.status.reaction,'corrosion');
-  assert.equal(a.status.assessment,'conditional');
-  transitions++;
- }else{
-  for(const [ix,pre,post] of targets){
-   const pair=entries.filter(cp=>cp.anchor.actionIndex===ix);
-   assert.equal(pair.length,2,id+' action '+ix);
-   const [before,after]=pair;
-   assert.equal(before.anchor.relative,'before');assert.equal(after.anchor.relative,'after');
-   assert.equal(after.dependsOn,before.id);
-   assert.equal(before.status.kind,'infliction');
-   assert.equal(before.status.element,'cryo');
-   assert.equal(before.status.stacks,pre);
-   assert.equal(before.status.assessment,'target');
-   const actual=stage.actions[ix];
-   if(post==='corrosion'){
-    assert.equal(actual.input.kind,'skill');assert.equal(actual.input.actor,'arcane');
-    assert.equal(after.status.kind,'reaction');assert.equal(after.status.reaction,'corrosion');
-    assert.equal(after.status.level,4);assert.equal(after.status.assessment,'conditional');
-   }else{
-    assert.equal(after.status.kind,'infliction');assert.equal(after.status.element,'cryo');
-    assert.equal(after.status.stacks,post);assert.equal(after.status.assessment,'target');
-    const expectedActor={prydwenOne:['si','arcane','xaihi','arcane'],prydwenTwo:['tangtang','si','xaihi','arcane'],prydwenBurst:['tangtang','arcane','arcane','tangtang']}[id][targets.findIndex(t=>t[0]===ix)];
-    assert.equal(actual.input.actor,expectedActor);
-   }
-   assert(after.condition?.length>15,'Every target outcome explains hit/cooldown/state conditions');
-   assert(after.evidence?.basis==='live-mechanic','Every after-effect is backed by a live mechanic');
-   assert(before.evidence?.basis==='tc-intent','Before-state remains an unobserved TC target');
-   transitions++;
+ assert.equal(entries.length,targets.length*2,id+' checkpoints');
+ for(const [index,pre,post,actor,kind] of targets){
+  const pair=entries.filter(x=>x.anchor.actionIndex===index);
+  assert.equal(pair.length,2,id+' at action '+index);
+  const [before,after]=pair;
+  assert.equal(before.anchor.relative,'before');
+  assert.equal(after.anchor.relative,'after');
+  assert.equal(after.dependsOn,before.id);
+  assert.equal(before.status.kind,'infliction');
+  assert.equal(before.status.element,'cryo');
+  assert.equal(before.status.stacks,pre);
+  assert.equal(before.status.assessment,'target');
+  assert.equal(before.evidence?.basis,'tc-intent');
+  assert.equal(stage.actions[index].input.actor,actor);
+  assert.equal(stage.actions[index].input.kind,kind);
+  if(post==='corrosion'){
+   assert.equal(after.status.kind,'reaction');
+   assert.equal(after.status.reaction,'corrosion');
+   assert.equal(after.status.assessment,'conditional');
+   assert.equal(after.status.level,id.startsWith('maygi')?(id==='maygiPrep'?4:null):4);
+  }else{
+   assert.equal(after.status.kind,'infliction');
+   assert.equal(after.status.element,'cryo');
+   assert.equal(after.status.stacks,post);
+   assert.equal(after.status.assessment,'target');
   }
+  assert(after.condition?.length>15,id+' must document state, hits and cooldown');
+  assert.equal(after.evidence?.basis,'live-mechanic');
+  transitions++;
  }
- assert(!JSON.stringify(entries).match(/(?:\.png|\.svg|\.webp|iconPath|iconSize|romanText)/i),
-  'No PNG path or rendering data in game-status checkpoints');
+ assert.equal(new Set(entries.map(x=>x.id)).size,entries.length,'no duplicate checkpoint IDs');
+ assert(!JSON.stringify(entries).match(/(?:\\.png|\\.svg|\\.webp|iconPath|iconSize|romanText)/i),
+  'No renderer details in source data');
 }
-assert.equal(transitions,18,'Three Maygi Corrosion changes and fifteen Prydwen Arts-changing actions');
-const stages=['prydwenOne','prydwenTwo','prydwenBurst'];
-for(const id of stages){
- assert.equal(new Set(book.stages[id].artsCheckpoints.map(x=>x.id)).size,10,id+' duplicate ids');
-}
+assert.equal(transitions,27,'12 Maygi and 15 Prydwen action-level changes');
+assert(book.stages.maygiRebuild.artsCheckpoints.some(x=>x.condition?.includes('Inksoul')),
+ 'Maygi second Si Skill must remain conditional on Artful Intent');
+assert(book.stages.maygiBurst.artsCheckpoints.some(x=>x.condition?.includes('Gloompurger Array')),
+ 'Maygi WILL Arcane Ultimate 1, not Ultimate 2, generates Cryo');
 const fixture=()=>clone(book.stages.prydwenOne);
 function failure(label,alter,expected){
  const stage=fixture();alter(stage);
@@ -101,4 +98,4 @@ iconLeak.stages.prydwenOne.artsCheckpoints[0].iconPath='arts/arknights-endfield/
 assert.equal(validate(iconLeak),false,'schema must reject icon paths in game data');
 assert.equal(book.variants.find(v=>v.id==='maygi').verification,'partial');
 assert.equal(book.variants.find(v=>v.id==='prydwen').verification,'partial');
-console.log('Validated '+transitions+' Endfield Arts transitions (36 checkpoints); source/action ordering, uncertainty and schema negative tests passed.');
+console.log('Validated '+transitions+' Endfield Arts transitions (54 checkpoints); source/action ordering, uncertainty and schema negative tests passed.');
