@@ -219,14 +219,14 @@
             "kind": "infliction",
             "element": "electric",
             "stacks": 1,
-            "assessment": "conditional"
+            "assessment": "target"
           },
           "dependsOn": "arg-cold-k-before",
           "condition": "Только если Combo доступно, попадание Stars Shifted в ту же цель, нет иных Electric/Nature эффектов.",
           "evidence": {
             "basis": "live-mechanic",
             "url": "https://endfield.wiki.gg/wiki/Minghe",
-            "note": "Stars Shifted при попадании применяет 1 Electric Infliction; численное целевое состояние, не видеоизмерение."
+            "note": "Stars Shifted при попадании применяет 1 Electric Infliction; численное целевое состояние, не видеоизмерение. Числовая цель при выполненном условии, не guaranteed и не observed."
           }
         },
         {
@@ -259,14 +259,14 @@
             "kind": "infliction",
             "element": "electric",
             "stacks": 2,
-            "assessment": "conditional"
+            "assessment": "target"
           },
           "dependsOn": "arc-cold-k-before",
           "condition": "Только WILL>INT, до истечения предыдущего Electric I и без стороннего Nature.",
           "evidence": {
             "basis": "live-mechanic",
             "url": "https://endfield.wiki.gg/wiki/Minghe",
-            "note": "WILL Arcane копирует Electric при валидном trigger. Не observed."
+            "note": "WILL Arcane копирует Electric при валидном trigger. Не observed. Числовая цель при выполненном условии, не guaranteed и не observed."
           }
         },
         {
