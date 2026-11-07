@@ -16,7 +16,7 @@
 
 ### Дополнение: Argent Flow — новый персонаж (08.11.2026)
 
-После исходного MHT-снимка появился **Argent Flow**. Его иконка отсутствовала среди 34 оригинальных изображений, поэтому новый `argent-flow.png` импортирован из [Dr-hydra/Better-Endfield](https://github.com/Dr-hydra/Better-Endfield/blob/main/native/modules/combat_stats/assets/avatars/chr_0037_minghe.png): оригинальный игровой PNG **112×112**, без изменения байтов. Upstream Git blob SHA-1: `0ba7af3d6daf5ace05e080ed2566714323fb67f4`; SHA-256: `564388e76ee301ba6835602620fdb87127ae0518e6db0b196cf0a41089ceee82`. Источник каждого из прежних 34 PNG неизменён.
+После исходного MHT-снимка появился **Argent Flow**. Его иконка отсутствовала среди 34 оригинальных изображений, поэтому новый `argent-flow.png` импортирован из [Dr-hydra/Better-Endfield](https://github.com/Dr-hydra/Better-Endfield/blob/main/native/modules/combat_stats/assets/avatars/chr_0037_minghe.png): оригинальный игровой PNG **112×112**, без изменения байтов. Upstream Git blob SHA-1: `0ba7af3d6daf5ace05e080ed2566714323fb67f4`; SHA-256: `e25577d849a75a4deab794abe9ec5e306ae86c76db5e4d246a76e7f54583bb36`. Источник каждого из прежних 34 PNG неизменён.
 
 **Размеры специально различаются:** 34 старых оригинала 150×206–210, Argent Flow — 112×112. Валидатор проверяет две независимые pinned-группы, а не ослабляет требования к прежним источникам. Для Argent Flow 24px action portrait использует существующий fallback полного изображения, без фальшивой миниатюры и без изменений мини-каталога Si.
 

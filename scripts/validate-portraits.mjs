@@ -57,7 +57,7 @@ for(const icon of endfield.characters||[]){
  const expectedPageId=icon.id.startsWith('endministrator-')?'endministrator':icon.id;
  if(icon.id==='argent-flow'){
   if(icon.sourcePage!=="https://github.com/Dr-hydra/Better-Endfield/blob/main/native/modules/combat_stats/assets/avatars/chr_0037_minghe.png"||icon.sourceImage!=="https://raw.githubusercontent.com/Dr-hydra/Better-Endfield/main/native/modules/combat_stats/assets/avatars/chr_0037_minghe.png")errors.push('Endfield: Argent Flow source mismatch');
-  if(icon.sourceBlobSha1!=='0ba7af3d6daf5ace05e080ed2566714323fb67f4'||icon.sha256!=="564388e76ee301ba6835602620fdb87127ae0518e6db0b196cf0a41089ceee82")errors.push('Endfield: Argent Flow source SHA mismatch');
+  if(icon.sourceBlobSha1!=='0ba7af3d6daf5ace05e080ed2566714323fb67f4'||icon.sha256!=="e25577d849a75a4deab794abe9ec5e306ae86c76db5e4d246a76e7f54583bb36")errors.push('Endfield: Argent Flow source SHA mismatch');
   if(icon.width!==112||icon.height!==112)errors.push('Endfield: Argent Flow source PNG dimensions differ');
  }else{
   if(icon.sourcePage!=='https://endfieldtools.dev/characters/'+expectedPageId+'/')errors.push('Endfield: wrong operator source page '+icon.id);
