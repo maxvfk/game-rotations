@@ -1,6 +1,6 @@
 # Endfield — Arts checkpoints (этап 03)
 
-**Статус: 2026-11-04, семантические данные + action-local inline UI.** Ротации Maygi/Prydwen всё ещё имеют `verification: partial`; действия, тайминги, UI и изображения не меняются.
+**Статус: 2026-11-07, семантические данные + action-local inline UI; PR #30 добавил пооперационные изменения для Prydwen.** Ротации Maygi/Prydwen всё ещё имеют `verification: partial`; действия и их порядок, UI-компоненты и изображения не изменены (расширены только Arts-данные и проверки).
 
 ## Архитектура: смысл отдельно от иконок
 
@@ -72,18 +72,26 @@
 
 **Cryo ×4 → Corrosion IV здесь означает условный план, а не измеренный эффект.**
 
-## Размеченные контрольные точки
+## Размеченные контрольные точки (текущий main)
 
-| Вариант | Stage | Action index (Arcane Battle Skill) | Перед применением | После применения |
-| --- | --- | ---: | --- | --- |
-| Maygi | `maygiPrep` | 9 | Cryo: ? | Corrosion: ? (условно) |
-| Maygi | `maygiRebuild` | 6 | Cryo: ? | Corrosion: ? (условно) |
-| Maygi | `maygiBurst` | 7 | Cryo: ? | Corrosion: ? (условно) |
-| Prydwen | `prydwenOne` | 12 | Cryo: **цель 4** | Corrosion **IV при выполнении условия** |
-| Prydwen | `prydwenTwo` | 12 | Cryo: ? | Corrosion: ? (условно) |
-| Prydwen | `prydwenBurst` | 9 | Cryo: ? | Corrosion: ? (условно) |
+**Всего 18 пар before→after = 36 checkpoint-записей:** у Maygi 3 пары (только Arcane Skill → Corrosion), у Prydwen 15 пар — по 5 на каждую фазу. Во всех случаях `anchor.actionIndex` **0-based**; номера действий в человекочитаемых гайдах **1-based**. У Prydwen числа являются **целями исполнения TC** при выполнении условий, не замерами.
 
-Для `recoveryNote` ничего не выводим: повторный цикл не верифицирован. **Все шесть событий содержат две точки before/after, всего 12 checkpoint-записей.** Мы не вычисляем численные уровни из количества показанных на Prydwen Builder блоков.
+| Вариант | Stage | Arts-changing action indices (0-based) | Целевые transitions |
+| --- | --- | --- | --- |
+| Maygi | `maygiPrep` | 9 | Cryo ? → Corrosion ? (условно) |
+| Maygi | `maygiRebuild` | 6 | Cryo ? → Corrosion ? (условно) |
+| Maygi | `maygiBurst` | 7 | Cryo ? → Corrosion ? (условно) |
+| Prydwen | `prydwenOne` | **0, 1, 9, 10, 12** | Cryo 0→I→II→III→IV→Corrosion IV |
+| Prydwen | `prydwenTwo` | **2, 4, 9, 10, 12** | Cryo 0→I→II→III→IV→Corrosion IV **при новом Si Brushwork Realm** |
+| Prydwen | `prydwenBurst` | **3, 4, 5, 8, 9** | Cryo 0→I→II→III→IV→Corrosion IV **при корректных Ultimate 1 и Dive** |
+
+**Список меняющих Arts действий Prydwen:** в первой фазе Si Skill, WILL Arcane Combo, Xaihi Combo, WILL Arcane Combo, Arcane Battle Skill; во второй Tangtang Battle Skill, Si Skill, Xaihi Combo, WILL Arcane Combo, Arcane Battle Skill; в третьей Tangtang Battle Skill, WILL Arcane Combo, Arcane Ultimate 1, Tangtang Dive Attack, Arcane Battle Skill.
+
+Не показывать изменения стаков на обычных BA/Final Strikes, Tangtang Combo (он создаёт Whirlpool), усилениях Xaihi/Si или Finisher **без отдельного доказанного Arts-эффекта**. Не путать Cryo damage с Cryo Infliction.
+
+**Второе применение Si Skill — существенный риск:** если Artful Intent предыдущего Brushwork Realm ещё активно, нажатие становится Initial Stroke/Inksoul, **не** новой Cryo application. Числа второго пакета тогда перестают соответствовать целевой схеме. Равным образом обнуление Cryo после Corrosion, попадание по одной цели, длительность стаков, Combo cooldown, SP/Ultimate и refresh уже действующего Corrosion влияют на переходы. Эти ограничения должны оставаться в `condition`/`evidence.note`, а не превращаться в `observed`.
+
+Для `recoveryNote` Arts не выводим: повторный цикл не верифицирован. Источник пооперационного разбора — [Games: Si rotations](https://github.com/maxvfk/Games/blob/main/guides/arknights-endfield/SI_TANGTANG_ARCANE_XAIHI_ROTATIONS.md). Реализация и тесты — [PR #30](https://github.com/maxvfk/game-rotations/pull/30).
 
 ## Источники и границы проверки
 
@@ -100,22 +108,18 @@
 
 Исторический этап 04a показывал Arts в compact-заголовках; 04b привязал Arts к action chip, а 04c сделал подсказку однострочной рядом с кнопкой. Публичный UI должен различать `target`, `conditional`, `unknown`, никогда не показывать before и after как одновременно действующие, а для рендера передавать в библиотеку иконок только `kind`/`element`/`stacks` либо `reaction`/`level`. Внешний вид уровня реакции (текст справа, текст поверх PNG, другой игровой asset) можно заменить независимо.
 
-## Текущий UI — ожидаемое изменение возле действия (2026-11-04)
+## Текущий UI — ожидаемое изменение возле действия (2026-11-07)
 
-Сначала статусные пары показывались в заголовках этапов (первый вариант этапа 04). После визуальной проверки они оказались неинформативными без связи с реальным моментом применения. Текущий вариант показывает `artsCheckpoints` **в карточке именно того действия, для которого задан `anchor.actionIndex`**, то есть в Si-команде на Arcane Battle Skill. Заголовки этапов освобождены от Arts-иконок.
+После нескольких итераций (исторические 04a–04c) Arts привязаны к **самому действию** через `anchor.actionIndex`; заголовок этапа не несёт этих статусов. `src/arts-checkpoint-view.ts` создаёт `before → after` рядом с keycap внутри `.action-primary`; `src/arts-indicators.ts` отвечает за точные игровые PNG, кольца стаков и римские цифры. Модификация изображения не требует менять source data.
 
-Разметка по-прежнему содержит три пары для Maygi и три — для Prydwen, а отрисовка не симулирует накопление между ними. Все шесть результатов условны; отсутствие чисел в пяти пакетах не маскируется под нулевые стаки или уровень I.
+- **Maygi:** 3 action-local перехода Cryo (число неизвестно) → Corrosion (level неизвестен). Не показывать ложную цифру или кольцо.
+- **Prydwen:** 15 action-local переходов, по пять на этап. Показывать рост Cryo I→IV и поглощение в Corrosion IV **как условный целевой маршрут**, не как гарантированный результат.
+- **Достоверность:** `target` и `conditional` доступны через tooltip/`title`/ARIA и `condition`; в видимом inline UI **нет отдельной плашки** достоверности. Поэтому нельзя интерпретировать нарисованную цифру как измеренный результат. Если в дальнейшем потребуются постоянные видимые признаки неопределённости — это отдельное UX-решение, а не повод подменять assessment.
+- **Full/Compact, PC/Terms и offline PWA** используют те же данные и локальные иконки. При `Arts: выкл` annotation nodes отсутствуют, сами действия и данные не изменяются. WuWa не получает Arts-checkpoints.
 
-- Первый пакет Prydwen: `Skill [Cryo 4-секторный PNG] → [Corrosion PNG] IV` (визуально только иконки/уровень; `target`/`conditional` в title/ARIA). Пояснение сообщает, что цель TC не подтверждена измерением и реакция зависит от фактического поглощения.
-- Остальные пять: `Skill Cryo → [Corrosion PNG]` (Cryo без фальшивого кольца, уровень неизвестен и не отображается; условность в title/ARIA). **Нет фальшивого значка Cryo с числом, нет непонятного `? → ?`**. Tooltip/ARIA сохраняют исходный контекст, неизвестный уровень и условие.
-- В **полном** и **компактном** режимах метка находится внутри `.action-primary` непосредственно после keycap в одной горизонтальной строке; второго нижнего блока и плашек достоверности нет. Неаннотированные действия, loop/recovery и WuWa не меняются.
+**Обязательные проверки после правки actions или Arts:** сверить все 0-based `actionIndex` с исполнителями и `input.kind`; у каждой пары `before` и `after` одинаковый индекс, `dependsOn` связывает ту же пару; корректно применены `target/conditional/unknown/observed`; источники, условие попадания, owner и статус цели указаны; затем `npm run test:arts-checkpoints`, `npm run test:renderer`, `npm run test:e2e`. Зелёный CI проверяет структуру и отображение, **не боевую исполнимость**.
 
-`src/arts-checkpoint-view.ts` — независимый presentation adapter из семантических checkpoints в DOM. PNG и способ показа Roman Level находятся только в `src/arts-indicators.ts`, поэтому будущий игровой дизайн Arts Reaction не требует правок JSON Schema или источников.
-
-Проверки: `test/arts-checkpoint-view.test.ts` (точное действие, достоверность, отсутствие выдуманных чисел, новые элементы, WuWa) и `test/e2e/arts-checkpoint-stage.spec.ts` (Maygi/Prydwen, full/compact, 320px, offline PWA).
-
-**Будущий research-этап:** чтобы показывать прибавку Cryo на каждом действии Si, Tangtang, Arcane Combo и т.д., нужны отдельные source-based события применения с проверенными trigger/ICD/ownership, попаданием в ту же цель и контекстом cooldown/SP. Недостаточно просто прочитать текст ротации.
-
+**Будущая работа:** практическая проверка cooldown, animation timings, SP/UGE и реальных стаков/Corrosion на конкретном противнике. Не переносить `target` в `observed` без логов/видео с установленными исходными условиями.
 
 ## Переключатель Arts в Endfield (2026-11-07)
 
