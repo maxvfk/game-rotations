@@ -72,30 +72,30 @@
 
 **Cryo ×4 → Corrosion IV здесь означает условный план, а не измеренный эффект.**
 
-## Размеченные контрольные точки (текущий main)
+## Размеченные контрольные точки (07.11.2026; Maygi и Prydwen)
 
-**Всего 18 пар before→after = 36 checkpoint-записей:** у Maygi 3 пары (только Arcane Skill → Corrosion), у Prydwen 15 пар — по 5 на каждую фазу. Во всех случаях `anchor.actionIndex` **0-based**; номера действий в человекочитаемых гайдах **1-based**. У Prydwen числа являются **целями исполнения TC** при выполнении условий, не замерами.
+**Всего 27 пар before→after = 54 checkpoint-записи:** Maygi — **12 пар** в трёх фазах, Prydwen — **15 пар** в трёх фазах. `actionIndex` всегда **0-based**; шаги в гайде — 1-based. Визуальные числа — условная реконструкция из исходных действий и live-kit, **не боевой лог и не опубликованные Maygi числовые измерения**.
 
-| Вариант | Stage | Arts-changing action indices (0-based) | Целевые transitions |
+| Вариант | Stage | Arts-changing action indices (0-based) | План при выполнении всех условий |
 | --- | --- | --- | --- |
-| Maygi | `maygiPrep` | 9 | Cryo ? → Corrosion ? (условно) |
-| Maygi | `maygiRebuild` | 6 | Cryo ? → Corrosion ? (условно) |
-| Maygi | `maygiBurst` | 7 | Cryo ? → Corrosion ? (условно) |
+| Maygi | `maygiPrep` | **0, 2, 5, 7, 9** | Cryo 0→I→II→III→IV→Corrosion IV |
+| Maygi | `maygiRebuild` | **1, 4, 6** | Cryo 0→I→II→Corrosion ? |
+| Maygi | `maygiBurst` | **2, 4, 5, 7** | Cryo 0→I→II→III→Corrosion ? |
 | Prydwen | `prydwenOne` | **0, 1, 9, 10, 12** | Cryo 0→I→II→III→IV→Corrosion IV |
-| Prydwen | `prydwenTwo` | **2, 4, 9, 10, 12** | Cryo 0→I→II→III→IV→Corrosion IV **при новом Si Brushwork Realm** |
-| Prydwen | `prydwenBurst` | **3, 4, 5, 8, 9** | Cryo 0→I→II→III→IV→Corrosion IV **при корректных Ultimate 1 и Dive** |
+| Prydwen | `prydwenTwo` | **2, 4, 9, 10, 12** | Cryo 0→I→II→III→IV→Corrosion IV |
+| Prydwen | `prydwenBurst` | **3, 4, 5, 8, 9** | Cryo 0→I→II→III→IV→Corrosion IV |
 
-**Список меняющих Arts действий Prydwen:** в первой фазе Si Skill, WILL Arcane Combo, Xaihi Combo, WILL Arcane Combo, Arcane Battle Skill; во второй Tangtang Battle Skill, Si Skill, Xaihi Combo, WILL Arcane Combo, Arcane Battle Skill; в третьей Tangtang Battle Skill, WILL Arcane Combo, Arcane Ultimate 1, Tangtang Dive Attack, Arcane Battle Skill.
+**Maygi actions:** в первой фазе Si Skill, WILL Arcane Combo, Tangtang Skill, Xaihi Combo, Arcane Skill; во второй — Si Skill, Xaihi Combo, Arcane Skill; в третьей — Tangtang Dive Attack (Riot Bringer), WILL Arcane Combo, WILL Arcane Ultimate **первая стадия**, Arcane Skill. Другие BA/FS, Tangtang Combo (только Whirlpool), баффы и Finisher не получают придуманные изменения Arts. Cryo DMG ≠ Cryo Infliction.
 
-Не показывать изменения стаков на обычных BA/Final Strikes, Tangtang Combo (он создаёт Whirlpool), усилениях Xaihi/Si или Finisher **без отдельного доказанного Arts-эффекта**. Не путать Cryo damage с Cryo Infliction.
+**Почему Corrosion ? во второй и третьей фазах:** по этой ветке до второго Arcane Skill ожидаются два, а до третьего — три Cryo. Однако более сильный ранее действовавший Corrosion может сохранять прежнее RES reduction при refresh. Уровень текущего статуса и силу снижения сопротивления не всегда можно восстановить из стаков перед последним Skill. Поэтому реакция имеет `level:null` и `assessment:"conditional"`; цель Cryo II / Cryo III перед ней всё равно показана.
 
-**Второе применение Si Skill — существенный риск:** если Artful Intent предыдущего Brushwork Realm ещё активно, нажатие становится Initial Stroke/Inksoul, **не** новой Cryo application. Числа второго пакета тогда перестают соответствовать целевой схеме. Равным образом обнуление Cryo после Corrosion, попадание по одной цели, длительность стаков, Combo cooldown, SP/Ultimate и refresh уже действующего Corrosion влияют на переходы. Эти ограничения должны оставаться в `condition`/`evidence.note`, а не превращаться в `observed`.
+**Особый риск Maygi:** второй Si Skill только при завершившемся Artful Intent начинает новый Brushwork Realm и даёт Cryo. Иначе это 15-SP Initial Stroke/Inksoul **без нового Cryo**. В третьей фазе только досрочное завершение OLDEN STARE через Dive Attack с Riot Bringer даёт новый Waterspout; а WILL Arcane Ultimate добавляет Cryo **только на первой стадии Gloompurger Array**, если цель уже имеет Cryo.
 
-Для `recoveryNote` Arts не выводим: повторный цикл не верифицирован. Источник пооперационного разбора — [Games: Si rotations](https://github.com/maxvfk/Games/blob/main/guides/arknights-endfield/SI_TANGTANG_ARCANE_XAIHI_ROTATIONS.md). Реализация и тесты — [PR #30](https://github.com/maxvfk/game-rotations/pull/30).
+Для `recoveryNote` Arts не выводим: повторный цикл не верифицирован. Подробная механическая атрибуция: [Games — Si rotations](https://github.com/maxvfk/Games/blob/main/guides/arknights-endfield/SI_TANGTANG_ARCANE_XAIHI_ROTATIONS.md), [Maygi original](https://www.youtube.com/watch?v=aeJeUjNLvuU&t=536s), [Prydwen action work PR #30](https://github.com/maxvfk/game-rotations/pull/30).
 
 ## Источники и границы проверки
 
-- [Maygi — Complete Si Guide](https://www.youtube.com/watch?v=aeJeUjNLvuU), 08:56–10:50 — full-cycle TC и управление Combo. Точные stacks без практического просмотра пока неизвестны.
+- [Maygi — Complete Si Guide](https://www.youtube.com/watch?v=aeJeUjNLvuU), 08:56–10:50 — полная source sequence и управление Combo. Числа Cryo I–IV/II/III в новой разметке — **собственный вывод по source actions + live-kit**, не утверждение, что Maygi проговорила эти точные числа.
 - [Prydwen/Gacha Gamer](https://www.youtube.com/watch?v=ZR1oTH2E03Y) — целевой первый Cryo-пакет, два Corrosion setup, Stagger. Времена Builder условные.
 - [Si live kit](https://akendfield.tools/codex/operator/si): Combo на consumed/absorbed Cryo/Heat.
 - [Arcane live kit](https://akendfield.tools/codex/operator/arcane): Nature на Battle Skill.

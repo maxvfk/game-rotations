@@ -5,7 +5,7 @@
   "title": "Si / Tangtang / WILL Arcane / Xaihi",
   "gameVersion": "Global live 1.6 (2026-11-03)",
   "source": "https://github.com/maxvfk/Games/blob/main/guides/arknights-endfield/SI_TANGTANG_ARCANE_XAIHI_ROTATIONS.md",
-  "verificationNote": "Две отдельные TC-оси: Maygi (16.10.2026) — длинный full-burst с управлением Combo; Prydwen/Gacha Gamer (15.10.2026) — boss/Stagger route. Последовательности сохранены как source-derived PARTIAL, а не verified optimal: время действий, 0-energy start, повторный цикл, второй Si Skill требует проверки; второй зелёный блок Tangtang теперь подтверждён по видео как Dive Attack после Ultimate. Командные стадии показывают оператора каждой кнопки отдельно. Обозначения унифицированы: FS означает полную цепочку BA до завершающего удара; BA оставлено для промежуточных ударов/ожидания. FS активного оператора возвращает SP, в отличие от промежуточных BA. Prydwen: добавлены 15 пооперационных Arts-переходов (0→1→2→3→4→Corrosion IV в каждой из трёх фаз). Цифры — условные target states при попаданиях, достаточном CD и fresh Si Skill; это НЕ observed battle trace. Реальное появление стаков может быть отложено до попадания анимации, Corrosion может сохранять сильный RES debuff при refresh.",
+  "verificationNote": "Две отдельные TC-оси: Maygi (16.10.2026) — длинный full-burst с управлением Combo; Prydwen/Gacha Gamer (15.10.2026) — boss/Stagger route. Последовательности сохранены как source-derived PARTIAL, а не verified optimal: время действий, 0-energy start, повторный цикл, второй Si Skill требует проверки; второй зелёный блок Tangtang теперь подтверждён по видео как Dive Attack после Ultimate. Командные стадии показывают оператора каждой кнопки отдельно. Обозначения унифицированы: FS означает полную цепочку BA до завершающего удара; BA оставлено для промежуточных ударов/ожидания. FS активного оператора возвращает SP, в отличие от промежуточных BA. Prydwen: добавлены 15 пооперационных Arts-переходов (0→1→2→3→4→Corrosion IV в каждой из трёх фаз). Цифры — условные target states при попаданиях, достаточном CD и fresh Si Skill; это НЕ observed battle trace. Реальное появление стаков может быть отложено до попадания анимации, Corrosion может сохранять сильный RES debuff при refresh. Maygi: добавлены 12 пооперационных Cryo/Corrosion before→after пар (24 checkpoints) на трёх стадиях; это собственная УСЛОВНАЯ реконструкция из Maygi 08:56–10:50 и live-kit, НЕ опубликованные Maygi точные числа или observed combat trace. При повторном Si Skill во время Artful Intent нет Cryo, а low-stack Corrosion refresh может удержать сильный RES debuff.",
   "characters": [
     {
       "id": "arcane",
@@ -191,11 +191,171 @@
           }
         }
       ],
-      "check": "Для Xaihi Combo требуются именно два завершённых FS под Auxiliary Crystal, не просто BA. Перед Arcane Battle Skill проверить фактическое число Cryo stacks и готовность Combo Si.",
+      "check": "Для Xaihi Combo требуются именно два завершённых FS под Auxiliary Crystal, не просто BA. Перед Arcane Battle Skill проверить фактическое число Cryo stacks и готовность Combo Si. Arts: показаны только ожидаемые изменения у соответствующих действий; числа рассчитаны из порядка Maygi и live-kit, не приведены Maygi как измерения. Реальные stacks зависят от попаданий, длительности, cooldown и состояния Si Skill.",
       "extra": "Maygi (08:56–10:50). Не тратить Xaihi Combo раньше Tangtang Combo; Arcane Combo после Corrosion не нажимать на нежелательном элементе. Следующая стадия требует реальных SP/CD и не привязана к условным секундам.",
       "artsCheckpoints": [
         {
-          "id": "cryo-corrosion-before",
+          "id": "maygi-prep-0-before",
+          "anchor": {
+            "actionIndex": 0,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 0,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://www.youtube.com/watch?v=aeJeUjNLvuU",
+            "note": "Authored action order from Maygi; numeric before-state independently inferred, NOT verbally asserted by Maygi. Si применяет Cryo Infliction I. Начальный Cryo 0 — планируемое условие, не измеренное отсутствие."
+          }
+        },
+        {
+          "id": "maygi-prep-0-after",
+          "anchor": {
+            "actionIndex": 0,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "dependsOn": "maygi-prep-0-before",
+          "condition": "Cold start: цель без Cryo и в первом слоте не Heat-оператор; попадание Brushwork Realm в ту же цель.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://akendfield.tools/codex/operator/si",
+            "note": "Live-kit-based conditional inference (NOT measured, NOT Maygi's published numerical count): Si применяет Cryo Infliction I. Начальный Cryo 0 — планируемое условие, не измеренное отсутствие."
+          }
+        },
+        {
+          "id": "maygi-prep-2-before",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://www.youtube.com/watch?v=aeJeUjNLvuU",
+            "note": "Authored action order from Maygi; numeric before-state independently inferred, NOT verbally asserted by Maygi. WILL Arcane копирует элемент, вызвавший Combo, при попадании; только Cryo→Cryo II."
+          }
+        },
+        {
+          "id": "maygi-prep-2-after",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 2,
+            "assessment": "target"
+          },
+          "dependsOn": "maygi-prep-2-before",
+          "condition": "Arcane в WILL-форме (WILL > INT); Combo сработало от Cryo Si и попало по той же цели до истечения Cryo.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
+            "note": "Live-kit-based conditional inference (NOT measured, NOT Maygi's published numerical count): WILL Arcane копирует элемент, вызвавший Combo, при попадании; только Cryo→Cryo II."
+          }
+        },
+        {
+          "id": "maygi-prep-5-before",
+          "anchor": {
+            "actionIndex": 5,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 2,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://www.youtube.com/watch?v=aeJeUjNLvuU",
+            "note": "Authored action order from Maygi; numeric before-state independently inferred, NOT verbally asserted by Maygi. Даже несколько Waterspouts от одного Tangtang Skill наносят максимум один новый Cryo."
+          }
+        },
+        {
+          "id": "maygi-prep-5-after",
+          "anchor": {
+            "actionIndex": 5,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 3,
+            "assessment": "target"
+          },
+          "dependsOn": "maygi-prep-5-before",
+          "condition": "Есть Whirlpool после Combo Tangtang; Battle Skill создаёт Waterspout и попадает по цели с двумя неистёкшими Cryo.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/tangtang",
+            "note": "Live-kit-based conditional inference (NOT measured, NOT Maygi's published numerical count): Даже несколько Waterspouts от одного Tangtang Skill наносят максимум один новый Cryo."
+          }
+        },
+        {
+          "id": "maygi-prep-7-before",
+          "anchor": {
+            "actionIndex": 7,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 3,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://www.youtube.com/watch?v=aeJeUjNLvuU",
+            "note": "Authored action order from Maygi; numeric before-state independently inferred, NOT verbally asserted by Maygi. Xaihi Combo применяет 1 Cryo Infliction только после двух зарядов Auxiliary Crystal."
+          }
+        },
+        {
+          "id": "maygi-prep-7-after",
+          "anchor": {
+            "actionIndex": 7,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 4,
+            "assessment": "target"
+          },
+          "dependsOn": "maygi-prep-7-before",
+          "condition": "Xaihi Skill был активен на двух завершённых Final Strike; её Combo доступно, попало по цели, три прежних Cryo ещё существуют.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/xaihi",
+            "note": "Live-kit-based conditional inference (NOT measured, NOT Maygi's published numerical count): Xaihi Combo применяет 1 Cryo Infliction только после двух зарядов Auxiliary Crystal."
+          }
+        },
+        {
+          "id": "maygi-prep-9-before",
           "anchor": {
             "actionIndex": 9,
             "relative": "before"
@@ -204,17 +364,17 @@
           "status": {
             "kind": "infliction",
             "element": "cryo",
-            "stacks": null,
-            "assessment": "unknown"
+            "stacks": 4,
+            "assessment": "target"
           },
           "evidence": {
             "basis": "tc-intent",
             "url": "https://www.youtube.com/watch?v=aeJeUjNLvuU",
-            "note": "Maygi первый Cryo-пакет перед Arcane Battle Skill; точное число стаков нельзя гарантировать по действиям без проверки попаданий, триггеров и cooldown."
+            "note": "Authored action order from Maygi; numeric before-state independently inferred, NOT verbally asserted by Maygi. Четыре поглощённых Cryo дают новый Corrosion IV; реакция принадлежит Arcane. Не исходит из секунд видео."
           }
         },
         {
-          "id": "cryo-corrosion-after",
+          "id": "maygi-prep-9-after",
           "anchor": {
             "actionIndex": 9,
             "relative": "after"
@@ -223,15 +383,15 @@
           "status": {
             "kind": "reaction",
             "reaction": "corrosion",
-            "level": null,
+            "level": 4,
             "assessment": "conditional"
           },
-          "dependsOn": "cryo-corrosion-before",
-          "condition": "Если в момент попадания Arcane Battle Skill по основной цели ещё есть Cryo Infliction, Nature применит Corrosion; точный Status Level неизвестен, пока не измерено число поглощённых стаков и действующий статус цели.",
+          "dependsOn": "maygi-prep-9-before",
+          "condition": "Все четыре Cryo реально сохранились до Nature-попадания Arcane Battle Skill в ту же цель; Corrosion ещё не более высокой силы.",
           "evidence": {
             "basis": "live-mechanic",
-            "url": "https://endfield.games/en/tutorials/battle/",
-            "note": "Live combat tutorial: Nature Infliction на цели с предшествующими non-Nature Inflictions расходует их и создаёт Corrosion; Status Level определяется количеством поглощённых стаков (до 4). Это условное следствие, не доказательство конкретного исполнения."
+            "url": "https://endfield.wiki.gg/wiki/Corrosion",
+            "note": "Live-kit-based conditional inference (NOT measured, NOT Maygi's published numerical count): Четыре поглощённых Cryo дают новый Corrosion IV; реакция принадлежит Arcane. Не исходит из секунд видео."
           }
         }
       ]
@@ -318,11 +478,91 @@
           }
         }
       ],
-      "check": "После повторного Xaihi Skill получить два FS для Combo; до второго Arcane Skill проверить расходуемые Cryo, Si Combo CD и состояние Whirlpool.",
+      "check": "После повторного Xaihi Skill получить два FS для Combo; до второго Arcane Skill проверить расходуемые Cryo, Si Combo CD и состояние Whirlpool. Arts: показаны только ожидаемые изменения у соответствующих действий; числа рассчитаны из порядка Maygi и live-kit, не приведены Maygi как измерения. Реальные stacks зависят от попаданий, длительности, cooldown и состояния Si Skill.",
       "extra": "Механический порядок Maygi; точный момент второго Si Skill остаётся pending stage-state verification (Artful Intent/Inksoul). Ultimate Tangtang используется здесь как часть длинного цикла, не короткой волны.",
       "artsCheckpoints": [
         {
-          "id": "cryo-corrosion-before",
+          "id": "maygi-rebuild-1-before",
+          "anchor": {
+            "actionIndex": 1,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 0,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://www.youtube.com/watch?v=aeJeUjNLvuU",
+            "note": "Authored action order from Maygi; numeric before-state independently inferred, NOT verbally asserted by Maygi. Если метка ещё действует, Si Skill превращается в Inksoul без Cryo, и последующее 1→2 неверно."
+          }
+        },
+        {
+          "id": "maygi-rebuild-1-after",
+          "anchor": {
+            "actionIndex": 1,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "dependsOn": "maygi-rebuild-1-before",
+          "condition": "Cryo был поглощён первым Arcane Skill. Artful Intent прежней Si Skill уже закончилось, это новый Brushwork Realm, а НЕ 15-SP Initial Stroke/Inksoul.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://akendfield.tools/codex/operator/si",
+            "note": "Live-kit-based conditional inference (NOT measured, NOT Maygi's published numerical count): Если метка ещё действует, Si Skill превращается в Inksoul без Cryo, и последующее 1→2 неверно."
+          }
+        },
+        {
+          "id": "maygi-rebuild-4-before",
+          "anchor": {
+            "actionIndex": 4,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://www.youtube.com/watch?v=aeJeUjNLvuU",
+            "note": "Authored action order from Maygi; numeric before-state independently inferred, NOT verbally asserted by Maygi. Cryo I→II возможно только при новом Si Brushwork Realm. Xaihi Combo добавляет один Cryo."
+          }
+        },
+        {
+          "id": "maygi-rebuild-4-after",
+          "anchor": {
+            "actionIndex": 4,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 2,
+            "assessment": "target"
+          },
+          "dependsOn": "maygi-rebuild-4-before",
+          "condition": "Свежий Cryo от Si действительно есть; после второго Xaihi Skill выполнены две полные Final Strike цепочки, Xaihi Combo попало по той же цели.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/xaihi",
+            "note": "Live-kit-based conditional inference (NOT measured, NOT Maygi's published numerical count): Cryo I→II возможно только при новом Si Brushwork Realm. Xaihi Combo добавляет один Cryo."
+          }
+        },
+        {
+          "id": "maygi-rebuild-6-before",
           "anchor": {
             "actionIndex": 6,
             "relative": "before"
@@ -331,17 +571,17 @@
           "status": {
             "kind": "infliction",
             "element": "cryo",
-            "stacks": null,
-            "assessment": "unknown"
+            "stacks": 2,
+            "assessment": "target"
           },
           "evidence": {
             "basis": "tc-intent",
             "url": "https://www.youtube.com/watch?v=aeJeUjNLvuU",
-            "note": "Maygi второй Cryo-пакет перед Arcane Battle Skill; точное число стаков нельзя гарантировать по действиям без проверки попаданий, триггеров и cooldown."
+            "note": "Authored action order from Maygi; numeric before-state independently inferred, NOT verbally asserted by Maygi. Свежий trigger расходует до двух Cryo, но уровень уже действующего Corrosion/сохранившегося RES reduction нельзя определить по одной паре чисел. Если Si Skill был Inksoul, стаков меньше."
           }
         },
         {
-          "id": "cryo-corrosion-after",
+          "id": "maygi-rebuild-6-after",
           "anchor": {
             "actionIndex": 6,
             "relative": "after"
@@ -353,12 +593,12 @@
             "level": null,
             "assessment": "conditional"
           },
-          "dependsOn": "cryo-corrosion-before",
-          "condition": "Если в момент попадания Arcane Battle Skill по основной цели ещё есть Cryo Infliction, Nature применит Corrosion; точный Status Level неизвестен, пока не измерено число поглощённых стаков и действующий статус цели.",
+          "dependsOn": "maygi-rebuild-6-before",
+          "condition": "Оба Cryo сохранились при Nature-попадании Arcane Battle Skill, Ultimate Tangtang только создала OLDEN STARE, Dive Attack ещё не выполнялся; учитывать существующий Corrosion.",
           "evidence": {
             "basis": "live-mechanic",
-            "url": "https://endfield.games/en/tutorials/battle/",
-            "note": "Live combat tutorial: Nature Infliction на цели с предшествующими non-Nature Inflictions расходует их и создаёт Corrosion; Status Level определяется количеством поглощённых стаков (до 4). Это условное следствие, не доказательство конкретного исполнения."
+            "url": "https://endfield.wiki.gg/wiki/Corrosion",
+            "note": "Live-kit-based conditional inference (NOT measured, NOT Maygi's published numerical count): Свежий trigger расходует до двух Cryo, но уровень уже действующего Corrosion/сохранившегося RES reduction нельзя определить по одной паре чисел. Если Si Skill был Inksoul, стаков меньше."
           }
         }
       ]
@@ -444,11 +684,131 @@
           }
         }
       ],
-      "check": "Перед заключительным Combo Si должны совпасть ready CD, Cryo consume и усиления. Finisher — только при Stagger.",
+      "check": "Перед заключительным Combo Si должны совпасть ready CD, Cryo consume и усиления. Finisher — только при Stagger. Arts: показаны только ожидаемые изменения у соответствующих действий; числа рассчитаны из порядка Maygi и live-kit, не приведены Maygi как измерения. Реальные stacks зависят от попаданий, длительности, cooldown и состояния Si Skill.",
       "extra": "Maygi не доказывает устойчивый повторный loop с пустыми Ultimates. Слот 1 для Maygi здесь принят Arcane как практическая адаптация Prydwen; авторское утверждение о слоте отдельно не подтверждено.",
       "artsCheckpoints": [
         {
-          "id": "cryo-corrosion-before",
+          "id": "maygi-burst-2-before",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 0,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://www.youtube.com/watch?v=aeJeUjNLvuU",
+            "note": "Authored action order from Maygi; numeric before-state independently inferred, NOT verbally asserted by Maygi. Обычный Dive Attack сам по себе не гарантирует Cryo; нужен OLDEN STARE и талант Riot Bringer. Максимум один Cryo за событие Waterspout."
+          }
+        },
+        {
+          "id": "maygi-burst-2-after",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "dependsOn": "maygi-burst-2-before",
+          "condition": "Ultimate Tangtang в предыдущей фазе активировала OLDEN STARE; Dive Attack завершает его досрочно, талант Riot Bringer создаёт Waterspout, попадающий по той же цели после второго Corrosion.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/tangtang",
+            "note": "Live-kit-based conditional inference (NOT measured, NOT Maygi's published numerical count): Обычный Dive Attack сам по себе не гарантирует Cryo; нужен OLDEN STARE и талант Riot Bringer. Максимум один Cryo за событие Waterspout."
+          }
+        },
+        {
+          "id": "maygi-burst-4-before",
+          "anchor": {
+            "actionIndex": 4,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://www.youtube.com/watch?v=aeJeUjNLvuU",
+            "note": "Authored action order from Maygi; numeric before-state independently inferred, NOT verbally asserted by Maygi. Не нажимать при trigger Nature после Arcane Skill; копировать Cryo от Riot Bringer, а не Nature."
+          }
+        },
+        {
+          "id": "maygi-burst-4-after",
+          "anchor": {
+            "actionIndex": 4,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 2,
+            "assessment": "target"
+          },
+          "dependsOn": "maygi-burst-4-before",
+          "condition": "Combo Arcane удержано до нового Cryo от Dive Attack, в WILL-форме доступно по CD, попало по этой же цели до истечения Cryo.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
+            "note": "Live-kit-based conditional inference (NOT measured, NOT Maygi's published numerical count): Не нажимать при trigger Nature после Arcane Skill; копировать Cryo от Riot Bringer, а не Nature."
+          }
+        },
+        {
+          "id": "maygi-burst-5-before",
+          "anchor": {
+            "actionIndex": 5,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 2,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://www.youtube.com/watch?v=aeJeUjNLvuU",
+            "note": "Authored action order from Maygi; numeric before-state independently inferred, NOT verbally asserted by Maygi. WILL Ultimate 1 на создании Gloompurger Array копирует существующую Arts Infliction. Вторая Ultimate (Gloompurge Arcana) такого эффекта не имеет."
+          }
+        },
+        {
+          "id": "maygi-burst-5-after",
+          "anchor": {
+            "actionIndex": 5,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "cryo",
+            "stacks": 3,
+            "assessment": "target"
+          },
+          "dependsOn": "maygi-burst-5-before",
+          "condition": "Используется именно первое Ultimate Arcane Gloompurger Array в WILL-форме; при создании массива цель находится в AOE с двумя Cryo.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
+            "note": "Live-kit-based conditional inference (NOT measured, NOT Maygi's published numerical count): WILL Ultimate 1 на создании Gloompurger Array копирует существующую Arts Infliction. Вторая Ultimate (Gloompurge Arcana) такого эффекта не имеет."
+          }
+        },
+        {
+          "id": "maygi-burst-7-before",
           "anchor": {
             "actionIndex": 7,
             "relative": "before"
@@ -457,17 +817,17 @@
           "status": {
             "kind": "infliction",
             "element": "cryo",
-            "stacks": null,
-            "assessment": "unknown"
+            "stacks": 3,
+            "assessment": "target"
           },
           "evidence": {
             "basis": "tc-intent",
             "url": "https://www.youtube.com/watch?v=aeJeUjNLvuU",
-            "note": "Maygi burst Cryo-пакет перед Arcane Battle Skill; точное число стаков нельзя гарантировать по действиям без проверки попаданий, триггеров и cooldown."
+            "note": "Authored action order from Maygi; numeric before-state independently inferred, NOT verbally asserted by Maygi. В этой условной ветке поглощаются три Cryo, но результат не обязательно визуально Corrosion III из-за сохранённого более сильного Corrosion."
           }
         },
         {
-          "id": "cryo-corrosion-after",
+          "id": "maygi-burst-7-after",
           "anchor": {
             "actionIndex": 7,
             "relative": "after"
@@ -479,12 +839,12 @@
             "level": null,
             "assessment": "conditional"
           },
-          "dependsOn": "cryo-corrosion-before",
-          "condition": "Если в момент попадания Arcane Battle Skill по основной цели ещё есть Cryo Infliction, Nature применит Corrosion; точный Status Level неизвестен, пока не измерено число поглощённых стаков и действующий статус цели.",
+          "dependsOn": "maygi-burst-7-before",
+          "condition": "Все три Cryo сохранились на той же цели и Nature Skill Arcane попало. Учитывать предыдущий Corrosion и его refresh: новый уровень реакции/сохранённое RES reduction не гарантируются.",
           "evidence": {
             "basis": "live-mechanic",
-            "url": "https://endfield.games/en/tutorials/battle/",
-            "note": "Live combat tutorial: Nature Infliction на цели с предшествующими non-Nature Inflictions расходует их и создаёт Corrosion; Status Level определяется количеством поглощённых стаков (до 4). Это условное следствие, не доказательство конкретного исполнения."
+            "url": "https://endfield.wiki.gg/wiki/Corrosion",
+            "note": "Live-kit-based conditional inference (NOT measured, NOT Maygi's published numerical count): В этой условной ветке поглощаются три Cryo, но результат не обязательно визуально Corrosion III из-за сохранённого более сильного Corrosion."
           }
         }
       ]
