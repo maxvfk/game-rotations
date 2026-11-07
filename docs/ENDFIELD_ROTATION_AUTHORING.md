@@ -48,7 +48,7 @@ npm run catalog:check
 - Источник `evidence:{basis,url,note}` обязателен. Нельзя выводить уровень Corrosion из числа видимых блоков без проверки refresh/prior status.
 - UI пути, PNG, CSS, римские цифры и размеры **не хранятся в checkpoints**. Их визуализация в `src/arts-checkpoint-view.ts` / `src/arts-indicators.ts`. Переключатель `Arts: выкл` удаляет annotation nodes, **не меняя данные**.
 
-Текущие 12 Si-checkpoints преимущественно имеют неизвестные или условные значения. Для Arts после каждой BA/Combo нужны отдельные проверенные trigger/ICD/ownership, а не догадка по rotation.
+Текущие **36 Si-checkpoints**: Maygi содержит 3 before→after пары около Arcane Skill; Prydwen — 15 before→after пар (30 записей) на каждом потенциально изменяющем Arts действии, с целевой цепочкой **Cryo 0→I→II→III→IV→Corrosion IV** в трёх фазах. Числа `assessment:"target"` — **план источника при всех указанных условиях**, не combat observation; финальные Corrosion — `conditional`. Если Si Skill на втором проходе ещё находится в стадии Artful Intent, он создаёт Inksoul **без нового Cryo**, поэтому опубликованное 1→2 зависит от реального state. После обычных BA/Final Strike и Tangtang Combo иконка Arts не добавляется без Infliction/reaction. Source-derived action anchor нельзя считать frame-accurate временем попадания.
 
 ## 5. Review / CI / публикация
 
