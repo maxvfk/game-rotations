@@ -1,0 +1,17 @@
+/* The Physical action is attached to the real Endfield action, never stage header.
+   Reuse only the Arts visual spacing classes, not its data or toggling selector. */
+.rotation-app.game-arknights-endfield .physical-action-annotations{
+ display:inline-flex;align-items:center;flex:0 0 auto;min-width:0;max-width:100%;
+}
+.rotation-app.game-arknights-endfield .physical-action-effect{
+ display:inline-flex;align-items:center;min-width:0;max-width:100%;
+}
+.rotation-app.game-arknights-endfield .physical-action-visual{gap:3px}
+.rotation-app.game-arknights-endfield .physical-action-event-separator{
+ color:#c6c8cf;font-size:13px;font-weight:800;line-height:1;
+}
+/* If a future action has both Arts and Physical annotations, wrap inside the
+   same action card rather than forcing horizontal overflow on a 320px phone. */
+.rotation-app.game-arknights-endfield .action.arts-annotated.physical-annotated .action-primary{
+ flex-wrap:wrap;row-gap:3px;
+}
