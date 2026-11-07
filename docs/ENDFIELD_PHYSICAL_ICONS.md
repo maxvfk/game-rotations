@@ -1,6 +1,6 @@
 # Arknights: Endfield — Physical Status и оригинальные значки
 
-**Состояние (2026-11-07):** источник игровых иконок, их reusable компоненты и отдельная галерея. Это **не** автоматическая боевая симуляция и пока не новая разметка действий ротации.
+**Состояние (2026-11-07):** source-pinned игровые иконки, reusable компоненты, галерея и строгий контракт optional [Physical checkpoints](ENDFIELD_PHYSICAL_CHECKPOINTS.md). **Реальные Si-ротации физически не аннотированы** без подтверждённых данных; автоматической симуляции нет.
 
 ## Live-модель и источники
 
@@ -39,6 +39,6 @@
 - Для 0 и `null` **нет** настоящих кольцевых PNG; отображается «—» или «?», а не ложный 1 стек.
 - Unit, Playwright mobile (320/390 px), offline PWA и отсутствие регрессий Arts/WuWa — обязательны.
 
-## Что ещё не реализовано
+## Следующий этап — физические данные реальной команды
 
-`physicalCheckpoints` в book **пока нет**. Это следующий этап с отдельной строгой схемой и проверкой боевых данных: явные `before/after`, 0-based `actionIndex`, `dependsOn`, состояние **одной** цели, source evidence, различие между `target / conditional / observed / unknown` и forced-исключения. **Не** записывать физические стаки в `artsCheckpoints`, не автоматически выводить их из кнопок и не объявлять боевые эффекты наблюдёнными без combat evidence.
+Schema и action-local renderer для `physicalCheckpoints` **уже доступны**: [подробный контракт](ENDFIELD_PHYSICAL_CHECKPOINTS.md). В нём отдельно представлены снимки Vulnerability и события четырёх Physical Status. На галерее есть **TEST-only** примеры; реальных Physical checkpoints для Si пока нет. Чтобы аннотировать новую боевую ротацию, нужны live-kit, точные эффекты на одну цель и evidence. Shatter и Physical Susceptibility намеренно вне основной модели и требуют отдельной работы.

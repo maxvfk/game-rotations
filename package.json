@@ -5,20 +5,21 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run catalog:check && npm run validate:data && npm run test:arts-checkpoints && npm run validate:physical && npm run validate:portraits && npm run test:onboarding && npm run test:authoring && npm run test:renderer && tsc --noEmit && vite build",
+    "build": "npm run catalog:check && npm run validate:data && npm run test:arts-checkpoints && npm run test:physical-checkpoints && npm run validate:physical && npm run validate:portraits && npm run test:onboarding && npm run test:authoring && npm run test:renderer && tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "validate:data": "node scripts/validate-rotations.mjs",
     "test:onboarding": "node scripts/test-onboarding.mjs",
     "validate:portraits": "node scripts/validate-portraits.mjs",
-    "test:renderer": "vitest run test/rotation-renderer.test.ts test/arts-indicators.test.ts test/arts-checkpoint-view.test.ts test/physical-indicators.test.ts",
+    "test:renderer": "vitest run test/rotation-renderer.test.ts test/arts-indicators.test.ts test/arts-checkpoint-view.test.ts test/physical-indicators.test.ts test/physical-checkpoint-view.test.ts",
     "test:e2e": "playwright test",
     "team:add": "node scripts/team-authoring.mjs add",
     "catalog:sync": "node scripts/team-authoring.mjs sync",
     "catalog:check": "node scripts/team-authoring.mjs sync --check",
     "test:authoring": "node scripts/test-team-authoring.mjs",
     "test:arts-checkpoints": "node scripts/test-arts-checkpoints.mjs",
-    "validate:physical": "node scripts/validate-endfield-physical.mjs"
+    "validate:physical": "node scripts/validate-endfield-physical.mjs",
+    "test:physical-checkpoints": "node scripts/test-physical-checkpoints.mjs"
   },
   "devDependencies": {
     "vite": "^7.1.0",

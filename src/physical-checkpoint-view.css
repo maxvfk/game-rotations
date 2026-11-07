@@ -1,0 +1,36 @@
+/* The Physical action is attached to the real Endfield action, never stage header.
+   Reuse only the Arts visual spacing classes, not its data or toggling selector. */
+.rotation-app.game-arknights-endfield .physical-action-annotations{
+ display:inline-flex;align-items:center;flex:0 0 auto;min-width:0;max-width:100%;
+}
+.rotation-app.game-arknights-endfield .physical-action-effect{
+ display:inline-flex;align-items:center;min-width:0;max-width:100%;
+}
+.rotation-app.game-arknights-endfield .physical-action-visual{gap:3px}
+.rotation-app.game-arknights-endfield .physical-action-event-separator{
+ color:#c6c8cf;font-size:13px;font-weight:800;line-height:1;
+}
+/* If a future action has both Arts and Physical annotations, wrap inside the
+   same action card rather than forcing horizontal overflow on a 320px phone. */
+.rotation-app.game-arknights-endfield .action.arts-annotated.physical-annotated .action-primary{
+ flex-wrap:wrap;row-gap:3px;
+}
+
+/* TEST-only demo shows the exact reusable action checkpoint component. */
+.physical-preview-root .physical-demo-row{
+ display:flex;gap:12px;flex-wrap:wrap;align-items:center;min-width:0;
+ padding:10px 8px;margin-top:10px;border:1px solid #454e61;border-radius:10px;background:#222938;
+}
+.physical-preview-root .physical-demo-name{color:#f0e0c3;font-size:12px;font-weight:750;min-width:0}
+.physical-preview-root .physical-action-annotations,.physical-preview-root .physical-action-effect{
+ display:inline-flex;align-items:center;min-width:0;max-width:100%;
+}
+.physical-preview-root .arts-action-visual{
+ display:inline-flex;gap:4px;align-items:center;flex-wrap:nowrap;
+}
+.physical-preview-root .arts-action-prerequisite,.physical-preview-root .arts-action-result{
+ display:inline-flex;align-items:center;flex:0 0 auto;
+}
+.physical-preview-root .arts-action-arrow,.physical-preview-root .physical-action-event-separator{
+ color:#c9ccd7;font-size:14px;line-height:1;
+}

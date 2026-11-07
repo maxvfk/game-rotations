@@ -1,6 +1,8 @@
 // Read-only demonstration of Physical Status icon assets (not a combat simulator).
 import {createPhysicalVulnerability,createPhysicalEffect,PHYSICAL_EFFECTS,PHYSICAL_EFFECT_NAMES,PHYSICAL_EFFECT_BEHAVIORS,PHYSICAL_ICON_SIZES,
  type PhysicalEffect,type PhysicalStacks,type PhysicalIconSize} from './physical-indicators';
+import {createPhysicalActionEffect} from './physical-checkpoint-view';
+import type {PhysicalCheckpoint} from './rotation-types';
 const el=(tag:string,cls='',value='')=>{const n=document.createElement(tag);n.className=cls;if(value)n.textContent=value;return n;};
 function select(label:string,id:string,options:{value:string;label:string}[],selected:string){
  const wrap=el('label','arts-select-label',label),input=document.createElement('select');
@@ -43,6 +45,31 @@ export function mountPhysicalGallery(root:HTMLElement,base:string){
  const effectPanel=el('section','arts-panel'),effectMatrix=el('div','physical-effect-matrix');
  effectPanel.append(el('h2','','Physical Status — четыре игровых glyphs'),effectMatrix,
   el('p','arts-smallnote','Это оригинальные значки боевых эффектов (damage-text glyphs), не самостоятельные persistent debuff PNG. У Lift/Knock Down нет уровня I–IV; Crush/Breach расходуют имеющиеся Vulnerability stacks.'));
+
+ // TEST-only: concrete action layout for the new checkpoint API. These are
+ // illustrative values, not a supported Si/Maygi/Prydwen combat timeline.
+ const demo=el('section','arts-panel physical-demo');
+ demo.append(el('h2','','Привязка к действию — TEST-примеры'),
+  el('p','arts-smallnote','Только иллюстрация JSON/renderer: условные 2→3 и 3→0, не данные какой-либо ротации или combat observation.'));
+ const physicalCps=(from:number,to:number,effect:PhysicalEffect):PhysicalCheckpoint[]=>[
+  {id:'demo-before',anchor:{actionIndex:0,relative:'before'},subject:'primary-target',
+   status:{kind:'vulnerability',stacks:from as 0|1|2|3|4,assessment:'target'},
+   evidence:{basis:'tc-intent',url:'https://endfield.wiki.gg/wiki/Physical_Status',note:'TEST synthetic precondition, not measured'}},
+  {id:'demo-after',anchor:{actionIndex:0,relative:'after'},subject:'primary-target',dependsOn:'demo-before',
+   status:{kind:'vulnerability',stacks:to as 0|1|2|3|4,assessment:'conditional'},
+   condition:'TEST only if the same target is hit and the status actually triggers',
+   evidence:{basis:'live-mechanic',url:'https://endfield.wiki.gg/wiki/Physical_Status',note:'TEST synthetic outcome, not measured'}},
+  {id:'demo-effect',anchor:{actionIndex:0,relative:'after'},subject:'primary-target',
+   status:{kind:'effect',effect,assessment:'conditional'},
+   condition:'TEST only if the physical event procs on the same target',
+   evidence:{basis:'live-mechanic',url:'https://endfield.wiki.gg/wiki/Physical_Status',note:'TEST glyph represents event, not a persistent debuff'}},
+ ];
+ for(const [label,from,to,effect] of [['Lift (builder)',2,3,'lift'],['Breach (consumer)',3,0,'breach']] as const){
+  const row=el('div','physical-demo-row');
+  row.append(el('span','physical-demo-name','TEST · '+label),
+   createPhysicalActionEffect(physicalCps(from,to,effect),0,base)!);
+  demo.append(row);
+ }
  const details=el('section','arts-panel');
  details.append(el('h2','','Как работает физическая система'),
   el('p','physical-details','На цели без Vulnerability обычный Physical Status сначала даёт 1 стек. При наличии Vulnerability Lift / Knock Down добавляют по 1 (до 4) и вызывают Stagger / возможный контроль; Crush / Breach расходуют стаки, причём Breach дополнительно повышает получаемый Physical DMG. Отдельные навыки могут принудительно накладывать Lift или Knock Down. Для фактических значений конкретной ротации нужна проверка live-kit, trigger и попадания в одну цель.'),
@@ -51,7 +78,7 @@ export function mountPhysicalGallery(root:HTMLElement,base:string){
  const link=el('a','','PHYSICAL_ICONS.md') as HTMLAnchorElement;
  link.href='https://github.com/maxvfk/game-rotations/blob/main/docs/ENDFIELD_PHYSICAL_ICONS.md';
  link.target='_blank';link.rel='noopener noreferrer';footer.append(link);
- root.append(intro,notice,control,stackPanel,effectPanel,details,footer);
+ root.append(intro,notice,control,stackPanel,effectPanel,demo,details,footer);
  function render(){
   const value=s.input.value,stacks:PhysicalStacks=value==='unknown'?null:Number(value) as PhysicalStacks;
   const effect=t.input.value as PhysicalEffect;

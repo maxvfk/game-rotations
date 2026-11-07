@@ -7,6 +7,12 @@ test('Physical gallery: original 1–4 Vulnerability stacks and four source-nati
  await expect(page.locator('.physical-stack-matrix .physical-vulnerability')).toHaveCount(4);
  await expect(page.locator('.physical-effect-matrix .physical-effect')).toHaveCount(4);
  await expect(page.locator('.arts-notice')).toContainText('не вычисляются из действий');
+ await expect(page.locator('.physical-demo-row')).toHaveCount(2);
+ const consumer=page.locator('.physical-demo-row').nth(1);
+ await expect(consumer.locator('.physical-action-before .physical-vulnerability')).toHaveAttribute('data-stacks','3');
+ await expect(consumer.locator('.physical-action-after .physical-vulnerability')).toHaveAttribute('data-stacks','0');
+ await expect(consumer.locator('.physical-action-event .physical-effect')).toHaveAttribute('data-effect','breach');
+ await expect(consumer.locator('.physical-action-effect')).toHaveAttribute('aria-label',/TEST/);
  const first=page.locator('.physical-stack-matrix img').first();
  await first.scrollIntoViewIfNeeded();await expect.poll(()=>first.evaluate(i=>(i as HTMLImageElement).naturalWidth)).toBe(125);
  const lift=page.locator('.physical-effect-matrix img').first();
