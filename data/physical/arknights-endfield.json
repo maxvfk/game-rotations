@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "game": "arknights-endfield",
+  "source": {
+    "repository": "SlowMoSlothy/Arknights-Endfield-Rotation-Tool",
+    "commit": "2eb9b304cdd2dc9e639d38861eaa7987f762db62",
+    "sourceDocument": "docs/effect-icons.md",
+    "checkedAt": "2026-11-07",
+    "rights": "Original Arknights: Endfield game art is owned by its rights holders. This repository does not claim an independent license.",
+    "scope": "Vulnerability icons are original 1–4 stack sprites; physical effect icons are native game damage-text glyphs, not persistent debuff icons."
+  },
+  "vulnerability": {
+    "id": "vulnerability",
+    "maxStacks": 4,
+    "artworks": [
+      {
+        "stacks": 1,
+        "path": "physical/arknights-endfield/vulnerability/vulnerable-1.png",
+        "width": 125,
+        "height": 125,
+        "sha256": "524875c74b4141ec8da67341d2fc174ef6f025a0b9d77bf6ef8af37fb3c1aeff",
+        "sourcePath": "endfield/assets/ui/debuffs/vulnerable_1.png",
+        "sourceBlobSha": "3a5d907115331f489f46760e77c5e1763c0a41a5"
+      },
+      {
+        "stacks": 2,
+        "path": "physical/arknights-endfield/vulnerability/vulnerable-2.png",
+        "width": 125,
+        "height": 125,
+        "sha256": "dfc14ba61d838c5c4a6ce19b1a40c14c24c521d979ea9267dc5800ce709efa59",
+        "sourcePath": "endfield/assets/ui/debuffs/vulnerable_2.png",
+        "sourceBlobSha": "d312f0f768487a2b058253953b37ce49eb52e0b6"
+      },
+      {
+        "stacks": 3,
+        "path": "physical/arknights-endfield/vulnerability/vulnerable-3.png",
+        "width": 125,
+        "height": 125,
+        "sha256": "1239436e0971e456e8693d23792c0494b387cf860c0029dd9d9edf89ee866963",
+        "sourcePath": "endfield/assets/ui/debuffs/vulnerable_3.png",
+        "sourceBlobSha": "75906d6aaf690db0047f1e9cb3c1058a59025169"
+      },
+      {
+        "stacks": 4,
+        "path": "physical/arknights-endfield/vulnerability/vulnerable-4.png",
+        "width": 125,
+        "height": 125,
+        "sha256": "d723c7fc7f9c36b2ef46bacdb496195d88c83ed6f7d0dc4bd77d22769ea34ba1",
+        "sourcePath": "endfield/assets/ui/debuffs/vulnerable_4.png",
+        "sourceBlobSha": "524dba01d16f8f998da0d69ad35c3d138b84e257"
+      }
+    ]
+  },
+  "effects": {
+    "lift": {
+      "id": "lift",
+      "kind": "physical-effect",
+      "behavior": "builder",
+      "icon": {
+        "path": "physical/arknights-endfield/effects/lift.webp",
+        "format": "image/webp",
+        "width": 44,
+        "height": 44,
+        "sha256": "9d955babf6da9a3e23822f0bb65351a8a473627c536053bdca2e6cb6d42f5f50",
+        "sourcePath": "endfield/assets/ui/effects/icon_damagetxt_airborne.png",
+        "sourceBlobSha": "cad9a22e244b90760272c8b7932dba1899a3af75"
+      }
+    },
+    "knock-down": {
+      "id": "knock-down",
+      "kind": "physical-effect",
+      "behavior": "builder",
+      "icon": {
+        "path": "physical/arknights-endfield/effects/knock-down.webp",
+        "format": "image/webp",
+        "width": 44,
+        "height": 44,
+        "sha256": "b29be4d835bd6b7ef61c415252bc3bd6d58436be5980914377f7ba69e1cf793e",
+        "sourcePath": "endfield/assets/ui/effects/icon_damagetxt_knockdown.png",
+        "sourceBlobSha": "99ba343e26795bf56724717c5f91ffa5f992075b"
+      }
+    },
+    "crush": {
+      "id": "crush",
+      "kind": "physical-effect",
+      "behavior": "consumer",
+      "icon": {
+        "path": "physical/arknights-endfield/effects/crush.webp",
+        "format": "image/webp",
+        "width": 36,
+        "height": 40,
+        "sha256": "68756a75fdf606a02842248b5806394d721361021c09136b812b3b2817f614d1",
+        "sourcePath": "endfield/assets/ui/effects/icon_damagetxt_crush.png",
+        "sourceBlobSha": "91eb7d1ff98165e0cbd633948cc5226ea2a02c8c"
+      }
+    },
+    "breach": {
+      "id": "breach",
+      "kind": "physical-effect",
+      "behavior": "consumer",
+      "icon": {
+        "path": "physical/arknights-endfield/effects/breach.webp",
+        "format": "image/webp",
+        "width": 36,
+        "height": 48,
+        "sha256": "f9b2ab58ff3a2cc44e26429f70741ea867e45ec4547f1a7763a1cfa95062dcb9",
+        "sourcePath": "endfield/assets/ui/effects/icon_damagetxt_fracture.png",
+        "sourceBlobSha": "1ba10a2d54e4ec768e54fe20dc2967848728eac3"
+      }
+    }
+  }
+}
