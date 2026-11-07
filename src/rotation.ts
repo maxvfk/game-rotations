@@ -2,6 +2,7 @@ import './rotation.css';
 
 import type {RotationBook, RotationStage, RotationCharacter, Action, ControlMap, Scheme, RotationVariant} from './rotation-types';
 import {createArtsActionEffect} from './arts-checkpoint-view';
+import {createPhysicalActionEffect} from './physical-checkpoint-view';
 
 const BOOKS:Record<string,RotationBook> = {};
 for(const raw of Object.values(import.meta.glob('../data/rotations/**/*.json',{eager:true,import:'default'}))){const book=raw as RotationBook;BOOKS[book.id]=book}
@@ -55,6 +56,9 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
  // Arts is opt-out and independent of Full/Compact, Maygi/Prydwen and controls.
  // Persist per team; legacy sessions with no key keep the current visible UI.
  let showArts=book.game==='arknights-endfield'&&get('artsVisible',true)!==false;
+ // Physical checks are optional. Never add an inert toggle to unannotated books.
+ const hasPhysical=book.game==='arknights-endfield'&&Object.values(book.stages).some(s=>!!s.physicalCheckpoints?.length);
+ let showPhysical=hasPhysical&&get('physicalVisible',true)!==false;
  if(!controlMap.schemes.some(s=>s.id===controls))controls=controlMap.schemes[0].id;
  let slotsOpen=false;
  const selector=q('#control-selector');
@@ -83,6 +87,13 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
    artsToggle.setAttribute('aria-label','Показывать Arts-индикаторы');
    artsToggle.onclick=()=>{showArts=!showArts;set('artsVisible',showArts);render()};
    density.append(artsToggle);
+   if(hasPhysical){
+    const physicalToggle=node('button','arts-visibility-toggle physical-visibility-toggle') as HTMLButtonElement;
+    physicalToggle.type='button';physicalToggle.id='physical-visibility-toggle';
+    physicalToggle.setAttribute('aria-label','Показывать Physical-индикаторы');
+    physicalToggle.onclick=()=>{showPhysical=!showPhysical;set('physicalVisible',showPhysical);render()};
+    density.append(physicalToggle);
+   }
    selector.after(density);
  }
  const panel=q('#slots-panel');const selectByPerson=new Map<string,HTMLSelectElement>();
@@ -166,6 +177,12 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
     artsToggle.setAttribute('aria-pressed',String(showArts));
     artsToggle.textContent=showArts?'Arts: вкл':'Arts: выкл';
     artsToggle.title=showArts?'Скрыть Arts-индикаторы':'Показать Arts-индикаторы';
+    if(hasPhysical){
+     const physical=q<HTMLButtonElement>('#physical-visibility-toggle');
+     physical.setAttribute('aria-pressed',String(showPhysical));
+     physical.textContent=showPhysical?'Physical: вкл':'Physical: выкл';
+     physical.title=showPhysical?'Скрыть Physical-индикаторы':'Показать Physical-индикаторы';
+    }
   }
   renderControls();renderSlots();
   const tabs=q('#tabs');tabs.replaceChildren();
@@ -269,6 +286,16 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
       // Inline beside portrait/keycap, not a second row or stage header.
       chip.querySelector<HTMLElement>('.action-primary')!.append(arts);
       const explanation=arts.querySelector<HTMLElement>('.arts-action-effect')?.getAttribute('aria-label')||'';
+      chip.title+='\n'+explanation;
+      if(compact)chip.setAttribute('aria-label',(chip.getAttribute('aria-label')||a.text)+' · '+explanation);
+     }
+    }
+    if(book.game==='arknights-endfield'&&showPhysical){
+     const physical=createPhysicalActionEffect(s.physicalCheckpoints,j,base);
+     if(physical){
+      chip.classList.add('physical-annotated');
+      chip.querySelector<HTMLElement>('.action-primary')!.append(physical);
+      const explanation=physical.querySelector<HTMLElement>('.physical-action-effect')?.getAttribute('aria-label')||'';
       chip.title+='\n'+explanation;
       if(compact)chip.setAttribute('aria-label',(chip.getAttribute('aria-label')||a.text)+' · '+explanation);
      }
