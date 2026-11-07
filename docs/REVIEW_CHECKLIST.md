@@ -75,6 +75,7 @@
 - [ ] Канонические portraits и Terms/PC используются повторно, mini либо full portrait/glyph fallback.
 - [ ] **Новая** ссылка `?team=<id>` проверена в Full/Compact, Arts on/off, Terms/PC, opener/loop, 320/390px без overflow и PWA offline; WuWa не изменён.
 - [ ] Для новых `artsCheckpoints` перепроверены все 0-based `actionIndex` после изменения действий, `before/after`, `dependsOn`, `null != 0` и evidence; `observed` только с combat-observation.
+- [ ] Для `physicalCheckpoints`: Vulnerability snapshot и Physical event отделены друг от друга; 0-based actionIndex, одна цель, before→after и зависит только от авторских evidence, `conditional`/`observed` корректны, Shatter/forced не выдуманы. [Physical runbook](ENDFIELD_PHYSICAL_CHECKPOINTS.md). Если physical присутствует, проверен отдельный toggle, compact и 320px без overflow.
 - [ ] Непроверенные SP/UGE, cooldown/ICD, ownership, Stagger/encounter и repeat не выданы за optimal/verified; `loopCaution` заполнен при необходимости.
 - [ ] Зелёные smoke-тесты **существующей** Si-команды не заменяют QA новой команды.
 

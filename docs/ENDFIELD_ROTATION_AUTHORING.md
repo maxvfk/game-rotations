@@ -50,12 +50,18 @@ npm run catalog:check
 
 Текущие **54 Si-checkpoints**: Maygi — 12 пар before→after на Arts-changing действиях (5/3/4 по фазам); Prydwen — 15 пар (5/5/5). Все числа Cryo получены из исходного порядка действий и live-kit, но **не являются опубликованными Maygi точными измерениями**. `assessment:"target"` обозначает ожидаемую ветку при явно указанных условиях, `observed` не используется; Corrosion во второй/третьей фазе Maygi имеет `level:null` из-за возможного сохранения более сильного RES reduction при обновлении. Второе Si Skill может быть Initial Stroke/Inksoul вместо Brushwork Realm, без нового Cryo; стадия Arcane Ultimate должна быть **WILL У1**, а Dive Tangtang — с активным OLDEN STARE. После обычных BA/Final Strike и Tangtang Combo иконка Arts не добавляется. Source-derived `actionIndex` не доказывает точный тайминг попадания.
 
-## 5. Review / CI / публикация
+## 5. Physical checkpoints (отдельно от Arts)
+
+Для физической команды можно добавить `stages.<id>.physicalCheckpoints[]` с числом **Vulnerability** (0–4 или `null`) до/после конкретного действия и, отдельно, событием **Lift / Knock Down / Crush / Breach** после него. `status.kind:"effect"` означает **событие**, а не постоянно действующий debuff. **Не** вписывать Physical в `artsCheckpoints` и не назначать `observed` без combat evidence. `Shatter` связан с Solidification и не подменяется одним из четырёх физических эффектов. Перед публикацией перепроверь `trigger`, `forced` исключения, целевую единицу, CC/ICD и consumption; никаких автоматических вычислений из `input.kind`. Подробная схема, примеры и тесты: [ENDFIELD_PHYSICAL_CHECKPOINTS.md](ENDFIELD_PHYSICAL_CHECKPOINTS.md). При отсутствии физических данных отдельный Physical-переключатель в интерфейсе не появляется.
+
+## 6. Review / CI / публикация
 
 ```bash
 npm run catalog:check
 npm run validate:data
 npm run test:arts-checkpoints
+npm run test:physical-checkpoints
+npm run validate:physical
 npm run validate:portraits
 npm run test:authoring
 npm run test:renderer
@@ -63,4 +69,4 @@ npm run build
 npm run test:e2e
 ```
 
-Проверь **саму новую команду**, а не только существующую Si: deep link `?team=<id>`, Terms/PC, Maygi-подобные variants и opener/loop, Full/Compact, Arts on/off, mini/fallback, 320 и 390 px без overflow, PWA offline, титулы и ARIA. В Endfield нет чеклистов; у WuWa должны остаться прежние. При UI-изменениях приложи скриншоты. PR содержит автора/TC, server/patch, отличия/адаптации, проверки и оставшиеся неопределённости. Feature branch → PR → зелёный CI/ревью → merge `main` → проверить Pages deploy.
+Проверь **саму новую команду**, а не только существующую Si: deep link `?team=<id>`, Terms/PC, Maygi-подобные variants и opener/loop, Full/Compact, Arts on/off, Physical on/off **если есть данные**, mini/fallback, 320 и 390 px без overflow, PWA offline, титулы и ARIA. В Endfield нет чеклистов; у WuWa должны остаться прежние. При UI-изменениях приложи скриншоты. PR содержит автора/TC, server/patch, отличия/адаптации, проверки и оставшиеся неопределённости. Feature branch → PR → зелёный CI/ревью → merge `main` → проверить Pages deploy.

@@ -168,3 +168,10 @@
 ### Endfield: вид и настройки
 
 `Полный / Компактный` сохраняется для команды в `game-rotations:v2:<team-id>:compact` (`false` по умолчанию). Кнопка `Arts: вкл/выкл` управляет action-local Arts DOM в `...:artsVisible` (`true` по умолчанию). Выключение не меняет `artsCheckpoints` или текст действий. Обе настройки едины для вариантов **одной** команды. В Endfield нет checklist/progress, `По шагам` — только навигация; WuWa сохраняет progress. [Endfield authoring](ENDFIELD_ROTATION_AUTHORING.md).
+
+
+### Physical checkpoints Endfield (optional)
+
+`stage.physicalCheckpoints[]` — **самостоятельное** поле, не расширение `artsCheckpoints`. `status.kind:"vulnerability"` содержит `stacks:0..4|null` и `assessment:"target"|"conditional"|"observed"|"unknown"`. `status.kind:"effect"` — единичное событие `lift|knock-down|crush|breach` **после** action с `assessment:"conditional"|"observed"`; это не persistent buff и **без придуманного уровня I–IV**. `subject:"primary-target"` обязателен.
+
+Связь `before/after` одной Vulnerability — `dependsOn` внутри того же `actionIndex` (zero-based). Event не использует `dependsOn`. `null` ≠ 0; `conditional` требует `condition`, `observed` требует `combat-observation` и encounter/starting-state. Нет inference по порядку кнопок, forced-событиям или Shatter. Значки возникают в `.action-primary` через `createPhysicalActionEffect`, рядом с Arts, когда оба домена имеют source-backed данные. Отдельный `Physical: вкл/выкл` показывается **только** при наличии physicalCheckpoints, persist key `game-rotations:v2:<team-id>:physicalVisible`; Arts по-прежнему независим. Подробнее и JSON TEST-example: [ENDFIELD_PHYSICAL_CHECKPOINTS.md](ENDFIELD_PHYSICAL_CHECKPOINTS.md).

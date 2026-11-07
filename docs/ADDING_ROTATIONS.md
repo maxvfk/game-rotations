@@ -119,7 +119,7 @@ npm run build
 - `build`: повторяет проверки и собирает PWA для GitHub Pages.
 - `test:e2e` (после `build`; требуется `npx playwright install chromium`): запускает production preview в настоящем Chromium на ширине 390px и проверяет DOM, скриншоты и offline service-worker reload. В GitHub Actions Chromium устанавливается автоматически, и этот тест **обязателен** до деплоя.
 - Вручную открой `http://localhost:5173/game-rotations/?team=<id>` через dev-сервер (для разработки Vite; фактический base см. `vite.config.ts`), затем production `https://maxvfk.github.io/game-rotations/?team=<id>`.
-- Проверь mobile layout, варианты, opener/loop, **реально поддержанные** схемы управления (Endfield Terms/PC), Intro vs Swap, ссылки на research, локальные портреты, offline/PWA и сохранение настроек. **WuWa:** stage progress; **Endfield:** без чеклистов, но Full/Compact и Arts toggle, mini portraits и action-local annotations. Не меняй существующие IDs без согласованной миграции localStorage.
+- Проверь mobile layout, варианты, opener/loop, **реально поддержанные** схемы управления (Endfield Terms/PC), Intro vs Swap, ссылки на research, локальные портреты, offline/PWA и сохранение настроек. **WuWa:** stage progress; **Endfield:** без чеклистов, но Full/Compact, Arts toggle и **опциональный** Physical toggle (только при checkpoints), mini portraits и action-local annotations. Не меняй существующие IDs без согласованной миграции localStorage.
 
 ## 6. Передаваемый результат
 

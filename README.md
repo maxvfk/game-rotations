@@ -123,7 +123,7 @@ CI проверяет JSON, связность каталога и учебны�
 
 ## Физические статусы Endfield — оригинальные значки
 
-Vulnerability (1–4 игровых кольца) и четыре Physical Status glyphs: **Lift, Knock Down, Crush, Breach**. [Каталог, механики и provenance](docs/ENDFIELD_PHYSICAL_ICONS.md) · [галерея Physical](https://maxvfk.github.io/game-rotations/?physical=arknights-endfield) · `npm run validate:physical`. Это пока визуальный каталог; физические стаки не выводятся из существующих ротаций автоматически.
+Vulnerability (1–4 игровых кольца) и четыре Physical Status glyphs: **Lift, Knock Down, Crush, Breach**. [Каталог, механики и provenance](docs/ENDFIELD_PHYSICAL_ICONS.md) · [галерея Physical](https://maxvfk.github.io/game-rotations/?physical=arknights-endfield) · `npm run validate:physical`. Дополнительно реализован [формат Physical checkpoints](docs/ENDFIELD_PHYSICAL_CHECKPOINTS.md): состояния Vulnerability до/после конкретного действия и отдельные игровые события Lift/Knock Down/Crush/Breach. Renderer и переключатель Physical включаются только для книг с соответствующими данными; в существующих Si-ротациях их пока нет.
 
 ## Игровые Arts-иконки Endfield (этап 01)
 
