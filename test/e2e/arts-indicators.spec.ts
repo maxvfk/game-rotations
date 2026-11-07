@@ -101,6 +101,6 @@ test('Endfield Arts gallery works offline via PWA; all 20 sprites cached, other 
  await expect(page.locator('.stage')).toHaveCount(3);
  await expect(page.locator('.arts-preview-root')).toHaveCount(0);
  await page.goto('?portraits=arknights-endfield');
- await expect(page.locator('.portrait-card')).toHaveCount(34);
+ await expect(page.locator('.portrait-card')).toHaveCount(35);
  expect(errors).toEqual([]);
 });

@@ -16,7 +16,7 @@ test('Argent Flow Arts: three separate provisional variants and action ownership
  await expect.poll(()=>portrait.evaluate(node=>(node as HTMLImageElement).naturalWidth)).toBe(112);
  await page.locator('#control-pc').click();
  await expect(page.locator('.action').filter({hasText:'Stars Shifted: Electric Infliction I'}).locator('.keycap')).toHaveText('E');
- await expect(page.locator('.action').filter({hasText:'Vocalist Stance'}).locator('.keycap')).toHaveText('4');
+ await expect(page.locator('.action').filter({hasText:'Vocalist Stance: лечение'}).locator('.keycap')).toHaveText('4');
  await page.locator('#loop').click();
  await expect(page.locator('.loop-warning')).toContainText('Условный повтор');
  await expect(page.locator('.stage')).toHaveCount(1);
