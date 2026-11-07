@@ -46,19 +46,20 @@ describe('Endfield action-local Arts changes',()=>{
   expect(effect.querySelector('.arts-action-arrow')?.textContent).toBe('→');
   expect(effect.querySelector('.arts-action-visual')?.getAttribute('aria-hidden')).toBe('true');
  });
- it('hides unknown NUMBERS visually but explains the conditional reaction',()=>{
-  const s=sourceBook.stages.maygiPrep;
-  const result=createArtsActionEffect(s.artsCheckpoints as ArtsCheckpoint[],9,base)!;
+ it('shows known target Cryo II but does not invent a persisted Corrosion level in Maygi rebuild',()=>{
+  const s=sourceBook.stages.maygiRebuild;
+  const result=createArtsActionEffect(s.artsCheckpoints as ArtsCheckpoint[],6,base)!;
   const effect=result.querySelector<HTMLElement>('.arts-action-effect')!;
   expect(effect.textContent).toContain('Cryo');
   expect(effect.querySelector('.arts-action-result .arts-reaction img')).not.toBeNull();
   expect(effect.textContent).not.toContain('если');
-  expect(effect.querySelector('.arts-infliction img')).toBeNull();
+  expect(effect.querySelector('.arts-infliction')?.getAttribute('data-stacks')).toBe('2');
+  expect(effect.querySelector('.arts-infliction img')?.getAttribute('src')).toContain('/cryo-2.png');
   expect(effect.querySelector('.arts-reaction img')).not.toBeNull();
   expect(effect.querySelector('.arts-reaction')?.getAttribute('data-level')).toBe('unknown');
   expect(effect.querySelector('.arts-action-qualifier.arts-target')).toBeNull();
   expect(effect.getAttribute('title')).toContain('уровень неизвестен');
-  expect(effect.getAttribute('title')).toContain('точный Status Level неизвестен');
+  expect(effect.getAttribute('title')).toContain('существующий Corrosion');
   expect(effect.textContent).not.toContain('?');
  });
  it('works with future elements without changing the icon catalog or checkpoints',()=>{
@@ -76,14 +77,15 @@ describe('Endfield action-local Arts changes',()=>{
  });
 });
 describe('Endfield rotation integration',()=>{
- it('keeps Maygi three Arcane reactions and Prydwen fifteen action-level transitions',()=>{
+ it('keeps Maygi twelve sourced conditional changes and Prydwen fifteen action-level transitions',()=>{
   expect(hasRotation('si-tangtang-arcane-xaihi')).toBe(true);
   mountRotation(root(),'si-tangtang-arcane-xaihi',base,base);
   expect(root().querySelectorAll('.stage-arts-summary')).toHaveLength(0);
   expect(root().querySelectorAll('.stage-compact-row')).toHaveLength(3);
-  expect(root().querySelectorAll('.action.arts-annotated')).toHaveLength(3);
+  expect(root().querySelectorAll('.action.arts-annotated')).toHaveLength(12);
+  expect([...root().querySelectorAll('.stage')].map(x=>x.querySelectorAll('.action.arts-annotated').length)).toEqual([5,3,4]);
   for(const stage of root().querySelectorAll('.stage')){
-   expect(stage.querySelectorAll('.action.arts-annotated')).toHaveLength(1);
+   expect(stage.querySelectorAll('.action.arts-annotated').length).toBeGreaterThan(1);
    expect(stage.querySelector('.arts-action-effect')?.getAttribute('title')).toContain('Действие');
    expect(stage.querySelector('.action.arts-annotated > .arts-action-annotations')).toBeNull();
    expect(stage.querySelector('.action.arts-annotated .action-primary > .arts-action-annotations')).not.toBeNull();
