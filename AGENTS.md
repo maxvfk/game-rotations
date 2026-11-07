@@ -105,3 +105,7 @@
 ## Endfield: переключатель Arts-индикаторов (2026-11-07)
 
 На каждой Endfield-команде `#arts-visibility-toggle` управляет видимостью action-local Arts отдельно от `Полный / Компактный`. По умолчанию **вкл**; `artsVisible` сохраняется в `game-rotations:v2:<team-id>:` для Maygi и Prydwen совместно. Отключение означает отсутствие Arts DOM и Arts tooltip/ARIA, не CSS-only скрытие; реальные `artsCheckpoints` не трогать. У WuWa и галереи такого переключателя нет. E2E тестирует сохранение, смену варианта/управления/вида, 320 px и PWA offline.
+
+## Physical Status Endfield
+
+Для Vulnerability и физической системы читай [ENDFIELD_PHYSICAL_ICONS.md](docs/ENDFIELD_PHYSICAL_ICONS.md), а не только Arts. Реестр `data/physical/arknights-endfield.json`: 4 исходных PNG для Vulnerability 1–4 и 4 оригинальных game-native **effect glyphs** для Lift, Knock Down, Crush, Breach. Вторые — не persistent debuff icons и не stack levels. `null` != 0, исключения forced проверять по live-kit. Shatter — особая реакция с Solidification; Physical Susceptibility — отдельное состояние. UI: `?physical=arknights-endfield`, `npm run validate:physical`. Новые `physicalCheckpoints` для ротаций **пока не добавлены** и не должны выдумываться из последовательности действий.
