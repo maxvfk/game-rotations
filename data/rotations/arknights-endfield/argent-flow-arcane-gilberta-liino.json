@@ -5,7 +5,7 @@
   "title": "Argent Flow / WILL Arcane / Gilberta / Liino",
   "gameVersion": "Global live 1.6 (2026-11-08)",
   "source": "https://github.com/maxvfk/Games/blob/main/guides/arknights-endfield/ARGENT_FLOW_ARCANE_GILBERTA_LIINO_ROTATIONS.md",
-  "verificationNote": "ВЫБРАНО ПОЛЬЗОВАТЕЛЕМ. Три отдельных варианта: накопление — собственная conditional adaptation (вдохновлена Cake Buster); burst после накопления — own adaptation; hot-start Cake Buster — порядок из описания ролика от 06.11.2026. Ни один не объявлен verified; нет полного SP/CD/UGE trace и независимого подтверждения stagger/buff timing. Arts targets — условные выводы из live-kit, не combat observations. Времена Prydwen builder не используются. Источники с таймкодами: GitHub Games guide.",
+  "verificationNote": "Выбраны ДВА самостоятельных UI-варианта: (1) Накопление + Burst — единый experimental route из coldBuildup → 0–3 условных повторов buildupRepeat → preparedBurst, с восстановлением SP/CD/UGE, а не гарантированным endless-loop; (2) Cake Buster — исходный source hot start из описания ролика 06.11.2026, partial. Обе последовательности не validated optimal; нет полного SP/CD/UGE trace и независимого подтверждения реального timing. Arts target/reaction — условные результаты live-kit, не measured combat observations. Все источники/таймкоды — в Games guide.",
   "controls": "arknights-endfield",
   "characters": [
     {
@@ -50,33 +50,20 @@
   "variants": [
     {
       "id": "buildup",
-      "label": "Накопление",
-      "sub": "Cold start + условный повтор",
-      "type": "Buildup",
-      "intro": "Повторяемый по событиям блок Electric → Bolt Rush → Sunderization; Liino Skill добавлен как own adaptation. ВНИМАНИЕ: это не фиксированная бесконечная ротация по секундам.",
+      "label": "Накопление + Burst",
+      "sub": "Cold start → пакеты по необходимости → финальный Crush",
+      "type": "Полная ротация · экспериментальная",
+      "intro": "Единая учебная ротация: первый Electric-пакет → при необходимости повторить этап накопления Sunderization на той же цели (0–3 раза, только по реальным Combo triggers, SP и cooldown) → подготовленный burst Liino / Gilberta / Argent Flow. Это наш experimental вариант; не зафиксированный endless-loop.",
       "verification": "experimental",
       "opener": [
-        "coldBuildup"
-      ],
-      "loop": [
-        "buildupRepeat"
-      ],
-      "loopCaution": "Условный повтор! Argent/Arcane Combo требуют действительного trigger и cooldown, SP и обычного/усиленного Skill. Числа 3→6→9→12 — сценарные, а не гарантированные."
-    },
-    {
-      "id": "prepared",
-      "label": "Burst после накопления",
-      "sub": "Liino → Gilberta → Argent",
-      "type": "Prepared burst",
-      "intro": "Собственная короткая адаптация: Sunderization уже есть на живой цели и Ultimate готовы. Liino delayed Electrification перед Bolt Rush, Gilberta buff на финальный Crush.",
-      "verification": "experimental",
-      "opener": [
+        "coldBuildup",
+        "buildupRepeat",
         "preparedBurst"
       ],
       "loop": [
         "recoveryNote"
       ],
-      "loopCaution": "Это разовый burst после накопления, не repeatable loop. Для повторного использования собрать новый Sunderization и Ultimates."
+      "loopCaution": "После финального Crush прежние Sunderization израсходованы: «Повтор» показывает только ресурсный checkpoint, а не ещё один готовый burst. Для нового цикла заново пройти накопление с реальным SP/UGE/CD."
     },
     {
       "id": "cake",
@@ -97,8 +84,8 @@
   "stages": {
     "coldBuildup": {
       "person": "argent-flow",
-      "title": "Накопление · старт",
-      "sub": "Cold start: первый Electric-пакет и первые Sunderization",
+      "title": "1. Накопление · первый пакет",
+      "sub": "Cold start: Electric I → II → Electrification III, первые Sunderization",
       "actions": [
         {
           "text": "Vocalist Stance: лечение и командный ATK buff",
@@ -295,8 +282,8 @@
     },
     "buildupRepeat": {
       "person": "argent-flow",
-      "title": "Накопление · следующий пакет",
-      "sub": "Только при восстановленных cooldown, SP и новой Vulnerability",
+      "title": "2. Накопление · по необходимости",
+      "sub": "Повторить этот этап 0–3 раза при восстановленных SP/CD и новой Vulnerability, затем перейти к Burst",
       "actions": [
         {
           "text": "FS для SP и Stagger",
@@ -357,13 +344,13 @@
           "hint": "При двух Electric +3 Sunderization; при одном +2; считать фактические стаки на цели, не прогноз по циклу."
         }
       ],
-      "check": "Повторять лишь при реальных trigger/cooldown. Sunderization сохраняется на конкретной живой цели максимум 60 s и до следующего Crush; накопление 3→6→9→12 — целевая модель, не точный таймлайн.",
-      "extra": "Skill Argent Flow после Combo превращается в Bolt Rush на 20 s; обычный Darkness Cowed не всегда доступен. Дополнительные Arts-иконки не выставлены из-за неизвестного starting state."
+      "check": "Не обязательный фиксированный второй пакет: повторить данный этап нужное число раз лишь при реальных trigger/cooldown, 100 SP для Bolt Rush и новых Electric. Если Sunderization уже хватает, пропустить этот этап и перейти к Burst. Sunderization хранится на той же живой цели до 60 s, до Crush; 3→6→9→12 — сценарий, а не тайминг.",
+      "extra": "Структура сайта линейная: этот этап нельзя исполнить N раз автоматически. Вернуться к началу этапа вручную после фактического восстановления Combo и создания Vulnerability; отдельной кнопки ожидания нет. Argent Skill может оставаться усиленным Bolt Rush 20 s, поэтому обычное Darkness Cowed не гарантировано. Arts-переходы не назначены при неизвестном starting state."
     },
     "preparedBurst": {
       "person": "argent-flow",
-      "title": "Burst · после накопления",
-      "sub": "Own adaptation: уже есть Sunderization и готовы Ultimate",
+      "title": "3. Burst · завершение ротации",
+      "sub": "Завершить после нужного числа пакетов; уже накоплены Sunderization и готовы Ultimate",
       "actions": [
         {
           "text": "Cosmovoice: Amp и принудительная Electrification",
@@ -433,8 +420,8 @@
           "condition": "Если Ultimate готова и нужна после взрыва. Оптимальный порядок и две стадии Ultimate Arcane ещё не проверены."
         }
       ],
-      "check": "Для этого варианта заранее накопить Sunderization; полный cold start находится во вкладке «Накопление». Liino delayed Electrification должна разрешиться до важного Bolt Rush. Gilberta Ultimate дать непосредственно под финальный Crush.",
-      "extra": "Наш предварительный вариант, не дословный Cake Buster и не validated DPS-optimal. Из-за short window не вставлять дополнительные длинные действия после Gilberta Ultimate."
+      "check": "Продолжение предыдущих этапов, а не независимый cold start. Переходить к burst при достаточном для цели Sunderization (не обязательно 12) и готовности Ultimate. Liino delayed Electrification должна разрешиться до дополнительного Bolt Rush, если тот вообще нужен; Gilberta Ultimate непосредственно под финальный Crush.",
+      "extra": "Последний условный Electric-пакет в burst — необязателен, если стаки уже набраны. Не затягивать короткое окно Gilberta Ultimate. Это собственная адаптация, не дословный Cake Buster и не validated DPS-optimal."
     },
     "cakeHot": {
       "person": "argent-flow",
@@ -541,7 +528,7 @@
           "hint": "Это восстановление ресурса, НЕ гарантированная следующая ротация после взрыва."
         }
       ],
-      "check": "Возвращаться к блоку «Накопление» только после проверки cooldown, SP, Ultimate Energy и нового enemy state.",
+      "check": "Для новой полной ротации начинать с первого этапа накопления, учитывая реальную готовность cooldown, SP, Ultimate Energy и нового enemy state.",
       "extra": "Переключатель «Повтор» не означает, что финальный burst можно немедленно запустить снова."
     }
   }

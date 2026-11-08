@@ -3,11 +3,15 @@ import {test,expect} from '@playwright/test';
 const team='?team=argent-flow-arcane-gilberta-liino';
 const tab=(page:import('@playwright/test').Page,name:string)=>page.locator('#tabs button').filter({has:page.locator('strong',{hasText:name})}).first();
 
-test('Argent Flow Arts: three separate provisional variants and action ownership',async({page},testInfo)=>{
+test('Argent Flow Arts: unified cold buildup to burst and separate Cake Buster hot start',async({page},testInfo)=>{
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto(team);
  await expect(page.locator('#opener')).toHaveAttribute('aria-pressed','true');
- await expect(page.locator('.stage')).toHaveCount(1);
+ await expect(page.locator('#tabs button')).toHaveCount(2);
+ await expect(page.locator('.stage')).toHaveCount(3);
+ await expect(page.locator('.stage-title').first()).toContainText('Накопление');
+ await expect(page.locator('.stage-title').nth(1)).toContainText('по необходимости');
+ await expect(page.locator('.stage-title').nth(2)).toContainText('Burst');
  await expect(page.locator('.action.arts-annotated')).toHaveCount(3);
  await expect(page.locator('.action-label').filter({hasText:'Bolt Rush: Electrification III'})).toHaveCount(1);
  const portrait=page.locator('.action').filter({hasText:'Bolt Rush: Electrification III'}).locator('.action-portrait');
@@ -17,15 +21,17 @@ test('Argent Flow Arts: three separate provisional variants and action ownership
  await page.locator('#control-pc').click();
  await expect(page.locator('.action').filter({hasText:'Stars Shifted: Electric Infliction I'}).locator('.keycap')).toHaveText('E');
  await expect(page.locator('.action').filter({hasText:'Vocalist Stance: лечение'}).locator('.keycap')).toHaveText('4');
- await page.locator('#loop').click();
- await expect(page.locator('.loop-warning')).toContainText('Условный повтор');
- await expect(page.locator('.stage')).toHaveCount(1);
  await expect(page.locator('.action').filter({hasText:'Создать новую Vulnerability'}).first().locator('.action-optional')).toHaveText('УСЛОВНО');
+ await expect(page.locator('.stage').nth(1)).toContainText('Если Sunderization уже хватает');
+ await page.locator('#loop').click();
+ await expect(page.locator('.loop-warning')).toContainText('После финального Crush');
+ await expect(page.locator('.stage')).toHaveCount(1);
+ await expect(page.locator('.stage-title')).toContainText('Повтор burst не верифицирован');
  await page.locator('#opener').click();
- await tab(page,'Burst после накопления').click();
  await expect(page.locator('.action-label').filter({hasText:'Heavens Sundered'})).toHaveCount(1);
  await expect(page.locator('.action').filter({hasText:'Новый Electric-пакет'}).locator('.action-optional')).toHaveText('УСЛОВНО');
  await tab(page,'Cake Buster').click();
+ await expect(page.locator('#tabs button')).toHaveCount(2);
  await expect(page.locator('.action')).toHaveCount(9);
  await expect(page.locator('.action-label').filter({hasText:'Nature Infliction'})).toHaveCount(1);
  await page.locator('#layout-compact').click();
@@ -40,6 +46,7 @@ test('Argent Flow: Arts toggle persists, local portraits work in offline PWA',as
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto(team);
  await expect(page.locator('#arts-visibility-toggle')).toHaveAttribute('aria-pressed','true');
+ await expect(page.locator('.stage')).toHaveCount(3);
  await expect(page.locator('.action.arts-annotated')).toHaveCount(3);
  await page.locator('#arts-visibility-toggle').click();
  await expect(page.locator('.arts-action-annotations')).toHaveCount(0);
@@ -51,6 +58,7 @@ test('Argent Flow: Arts toggle persists, local portraits work in offline PWA',as
  await context.setOffline(true);
  await page.reload({waitUntil:'domcontentloaded'});
  await expect(page.locator('.action.arts-annotated')).toHaveCount(3);
+ await expect(page.locator('.stage')).toHaveCount(3);
  const icon=page.locator('.action-portrait[src$="argent-flow.png"]').first();
  await icon.scrollIntoViewIfNeeded();
  await expect.poll(()=>icon.evaluate(el=>(el as HTMLImageElement).naturalWidth)).toBe(112);
