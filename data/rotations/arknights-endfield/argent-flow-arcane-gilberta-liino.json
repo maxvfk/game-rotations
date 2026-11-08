@@ -5,7 +5,7 @@
   "title": "Argent Flow / WILL Arcane / Gilberta / Liino",
   "gameVersion": "Global live 1.6 (2026-11-08)",
   "source": "https://github.com/maxvfk/Games/blob/main/guides/arknights-endfield/ARGENT_FLOW_ARCANE_GILBERTA_LIINO_ROTATIONS.md",
-  "verificationNote": "Выбраны ДВА самостоятельных UI-варианта: (1) Накопление + Burst — единый experimental route из coldBuildup → 0–3 условных повторов buildupRepeat → preparedBurst, с восстановлением SP/CD/UGE, а не гарантированным endless-loop; (2) Cake Buster — исходный source hot start из описания ролика 06.11.2026, partial. Обе последовательности не validated optimal; нет полного SP/CD/UGE trace и независимого подтверждения реального timing. Arts target/reaction — условные результаты live-kit, не measured combat observations. Все источники/таймкоды — в Games guide.",
+  "verificationNote": "Выбраны ДВА самостоятельных UI-варианта: (1) Накопление + Burst — единый experimental route из coldBuildup → 0–3 условных повторов buildupRepeat → preparedBurst, с восстановлением SP/CD/UGE, а не гарантированным endless-loop; (2) Cake Buster — исходный source hot start из описания ролика 06.11.2026, partial. Обе последовательности не validated optimal; нет полного SP/CD/UGE trace и независимого подтверждения реального timing. Arts target/reaction — условные результаты live-kit, не measured combat observations. Все источники/таймкоды — в Games guide. Arts расширены на повторный пакет, подготовленный burst и Cake Buster: numeric checkpoints относятся к локальным событиям с условиями, а не к непрерывно измеренной сумме Sunderization. Liino Ultimate delayed trigger и Gilberta Ultimate Nature/Corrosion branching имеют неопределённые уровни. Пропускаемые действия разнесены по смыслу: 1 optional gate для доп. пакета, его 2 дочерних шага обязательны только если gate выбран; WILL Arcane Combo в полном 2-Electric repeat — обязательный шаг. Другие optional (SP FS, Liino/Gilberta Combo, альтернативы Vulnerability, Arcane U после burst) реально можно пропустить. Gameplay status не повышен.",
   "controls": "arknights-endfield",
   "characters": [
     {
@@ -331,21 +331,122 @@
             "kind": "combo",
             "actor": "arcane"
           },
-          "optional": true,
-          "condition": "Если Combo Arcane готово и ещё есть Electric I. Без неё пакет будет слабее."
+          "hint": "Требуется для этого пакета: Если Combo Arcane готово и ещё есть Electric I. Без неё пакет будет слабее. В полной двухстаковой ветке этот Combo — обязательный. Если он недоступен, это другой, ослабленный пакет, а не та же двухстаковая ротация."
         },
         {
-          "text": "Bolt Rush → Electrification и Sunderization",
+          "text": "Bolt Rush → при Electric II: Electrification III / +3 Sunderization",
           "tone": "key",
           "input": {
             "kind": "skill",
             "actor": "argent-flow"
           },
-          "hint": "При двух Electric +3 Sunderization; при одном +2; считать фактические стаки на цели, не прогноз по циклу."
+          "hint": "Для базового 2×Electric-пакета — ожидаемое +3 Sunderization на той же цели. При Electric I вместо II получится Electrification II и +2. Суммарные накопленные стаки нельзя гарантировать: следить за реальным временем жизни 60 c, текущим target, SP и cooldown."
         }
       ],
-      "check": "Не обязательный фиксированный второй пакет: повторить данный этап нужное число раз лишь при реальных trigger/cooldown, 100 SP для Bolt Rush и новых Electric. Если Sunderization уже хватает, пропустить этот этап и перейти к Burst. Sunderization хранится на той же живой цели до 60 s, до Crush; 3→6→9→12 — сценарий, а не тайминг.",
-      "extra": "Структура сайта линейная: этот этап нельзя исполнить N раз автоматически. Вернуться к началу этапа вручную после фактического восстановления Combo и создания Vulnerability; отдельной кнопки ожидания нет. Argent Skill может оставаться усиленным Bolt Rush 20 s, поэтому обычное Darkness Cowed не гарантировано. Arts-переходы не назначены при неизвестном starting state."
+      "check": "Не обязательный фиксированный второй пакет: повторить данный этап нужное число раз лишь при реальных trigger/cooldown, 100 SP для Bolt Rush и новых Electric. Если Sunderization уже хватает, пропустить этот этап и перейти к Burst. Sunderization хранится на той же живой цели до 60 s, до Crush; 3→6→9→12 — сценарий, а не тайминг. Полный пакет этого этапа использует WILL Arcane Combo между Stars Shifted и Bolt Rush; если он недоступен, не считать это тем же 2-stack пакетом.",
+      "extra": "Структура сайта линейная: этот этап нельзя исполнить N раз автоматически. Вернуться к началу этапа вручную после фактического восстановления Combo и создания Vulnerability; отдельной кнопки ожидания нет. Argent Skill может оставаться усиленным Bolt Rush 20 s, поэтому обычное Darkness Cowed не гарантировано. Arts-переходы не назначены при неизвестном starting state.",
+      "artsCheckpoints": [
+        {
+          "id": "repeat-argent-before",
+          "anchor": {
+            "actionIndex": 3,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 0,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "Stars Shifted накладывает один Electric после нового Vulnerability; здесь показано начало очередного пакета при отсутствии Electric после предыдущего Bolt Rush. До действия. Число — цель при выполнении условий, не измерение combat footage."
+          }
+        },
+        {
+          "id": "repeat-argent-after",
+          "anchor": {
+            "actionIndex": 3,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 1,
+            "assessment": "conditional"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "Stars Shifted накладывает один Electric после нового Vulnerability; здесь показано начало очередного пакета при отсутствии Electric после предыдущего Bolt Rush. После попадания. Число — цель при выполнении условий, не измерение combat footage."
+          },
+          "condition": "Только если новая Vulnerability появилась после восстановления Combo, прошлый Bolt Rush поглотил Electric, и нет чужих инфликций на цели.",
+          "dependsOn": "repeat-argent-before"
+        },
+        {
+          "id": "repeat-arcane-before",
+          "anchor": {
+            "actionIndex": 4,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
+            "note": "WILL Arcane Combo копирует Electric I на том же противнике для двухстакового пакета. До действия. Число — цель при выполнении условий, не измерение combat footage."
+          }
+        },
+        {
+          "id": "repeat-arcane-after",
+          "anchor": {
+            "actionIndex": 4,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 2,
+            "assessment": "conditional"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
+            "note": "WILL Arcane Combo копирует Electric I на том же противнике для двухстакового пакета. После попадания. Число — цель при выполнении условий, не измерение combat footage."
+          },
+          "condition": "Только когда Arcane находится в WILL form (WILL>INT), Combo готово и предыдущее Electric I ещё активно.",
+          "dependsOn": "repeat-arcane-before"
+        },
+        {
+          "id": "repeat-bolt-after",
+          "anchor": {
+            "actionIndex": 5,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "reaction",
+            "reaction": "electrification",
+            "level": 3,
+            "assessment": "conditional"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "Bolt Rush принудительно применяет Electrification III при поглощении двух Electric; +3 Sunderization от Argent при попадании. Это прирост пакета, не итоговые накопления. Число — цель при выполнении условий, не измерение combat footage."
+          },
+          "condition": "Только если Bolt Rush действительно потребил два Electric одной цели и применил свою Electrification; более сильные предыдущие реакции могут изменить фактический эффект."
+        }
+      ]
     },
     "preparedBurst": {
       "person": "argent-flow",
@@ -362,34 +463,33 @@
           "hint": "160 Ultimate Energy. Дождаться реального попадания отложенной Electrification до следующего важного Bolt Rush."
         },
         {
-          "text": "Новый Electric-пакет перед burst",
+          "text": "ДОП. ПАКЕТ (необязателен): Argent Combo → Electric I",
           "tone": "key",
           "input": {
             "kind": "combo",
             "actor": "argent-flow"
           },
           "optional": true,
-          "condition": "Только если Combo открыто новой Vulnerability, готово по cooldown и дополнительный пакет ещё нужен."
+          "condition": "Только если Combo открыто новой Vulnerability, готово по cooldown и дополнительный пакет ещё нужен.",
+          "hint": "Можно пропустить весь дополнительный пакет (этот Combo, следующие Arcane Combo и Bolt Rush), если Sunderization уже достаточно. Нужна новая Vulnerability и готовность Stars Shifted."
         },
         {
-          "text": "WILL Arcane: дополнительный Electric stack",
+          "text": "Если доп. пакет выбран: WILL Arcane → Electric II",
           "tone": "key",
           "input": {
             "kind": "combo",
             "actor": "arcane"
           },
-          "optional": true,
-          "condition": "Только когда на цели уже Electric Infliction и Combo Arcane готово."
+          "hint": "Требуется для этого пакета: Только когда на цели уже Electric Infliction и Combo Arcane готово. Исполнять лишь при выборе дополнительного Electric-пакета из предыдущего действия; если пакет пропущен, пропустить и этот шаг."
         },
         {
-          "text": "Bolt Rush: увеличить Sunderization",
+          "text": "Если доп. пакет выбран: Bolt Rush → Electrification III / +3 Sunderization",
           "tone": "key",
           "input": {
             "kind": "skill",
             "actor": "argent-flow"
           },
-          "optional": true,
-          "condition": "Если усиленный Battle Skill доступен, есть SP, и новый пакет окупается до окончания коротких buff windows."
+          "hint": "Требуется для этого пакета: Если усиленный Battle Skill доступен, есть SP, и новый пакет окупается до окончания коротких buff windows. Исполнять лишь если выбран дополнительный Electric-пакет. При отказе от пакета пропустить оба последующих шага."
         },
         {
           "text": "Arts Susceptibility: открыть финальное окно",
@@ -420,8 +520,170 @@
           "condition": "Если Ultimate готова и нужна после взрыва. Оптимальный порядок и две стадии Ultimate Arcane ещё не проверены."
         }
       ],
-      "check": "Продолжение предыдущих этапов, а не независимый cold start. Переходить к burst при достаточном для цели Sunderization (не обязательно 12) и готовности Ultimate. Liino delayed Electrification должна разрешиться до дополнительного Bolt Rush, если тот вообще нужен; Gilberta Ultimate непосредственно под финальный Crush.",
-      "extra": "Последний условный Electric-пакет в burst — необязателен, если стаки уже набраны. Не затягивать короткое окно Gilberta Ultimate. Это собственная адаптация, не дословный Cake Buster и не validated DPS-optimal."
+      "check": "Продолжение предыдущих этапов, а не независимый cold start. Переходить к burst при достаточном для цели Sunderization (не обязательно 12) и готовности Ultimate. Liino delayed Electrification должна разрешиться до дополнительного Bolt Rush, если тот вообще нужен; Gilberta Ultimate непосредственно под финальный Crush. Дополнительный пакет — единый необязательный блок из трёх следующих друг за другом действий; если решение пропустить принято на первом действии, следующие два также пропускаются.",
+      "extra": "Последний условный Electric-пакет в burst — необязателен, если стаки уже набраны. Не затягивать короткое окно Gilberta Ultimate. Это собственная адаптация, не дословный Cake Buster и не validated DPS-optimal. Индикаторы на дополнительном пакете показывают ожидаемые локальные Electric I→II→Electrification III, но не суммарное Sunderization на цели. Gilberta Ultimate добавляет Nature Infliction и может вызвать Corrosion при оставшемся Electric; Liino Ultimate накладывает Electrification не сразу.",
+      "artsCheckpoints": [
+        {
+          "id": "burst-liino-after",
+          "anchor": {
+            "actionIndex": 0,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "reaction",
+            "reaction": "electrification",
+            "level": null,
+            "assessment": "conditional"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/liino",
+            "note": "Liino Ultimate накладывает forced Electrification с задержкой после каста; уровень/попадание не привязаны к точной точке hitframe и это НЕ Sunderization от Argent. Число — цель при выполнении условий, не измерение combat footage."
+          },
+          "condition": "Только после фактического delayed-hit Electrifying Extravaganza по этой цели; не считать иконку мгновенным результатом нажатия Ultimate."
+        },
+        {
+          "id": "burst-argent-extra-before",
+          "anchor": {
+            "actionIndex": 1,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 0,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "Дополнительный Electric-пакет начинается только при его выборе, после расходования прошлых Electric. До действия. Число — цель при выполнении условий, не измерение combat footage."
+          }
+        },
+        {
+          "id": "burst-argent-extra-after",
+          "anchor": {
+            "actionIndex": 1,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 1,
+            "assessment": "conditional"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "Дополнительный Electric-пакет начинается только при его выборе, после расходования прошлых Electric. После попадания. Число — цель при выполнении условий, не измерение combat footage."
+          },
+          "condition": "Только если дополнительный пакет выбран, Combo Argent открыто новой Vulnerability и на цели нет оставшихся Electric Infliction.",
+          "dependsOn": "burst-argent-extra-before"
+        },
+        {
+          "id": "burst-arcane-extra-before",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
+            "note": "WILL Arcane копирует Electric I внутри выбранного дополнительного пакета. До действия. Число — цель при выполнении условий, не измерение combat footage."
+          }
+        },
+        {
+          "id": "burst-arcane-extra-after",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 2,
+            "assessment": "conditional"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
+            "note": "WILL Arcane копирует Electric I внутри выбранного дополнительного пакета. После попадания. Число — цель при выполнении условий, не измерение combat footage."
+          },
+          "condition": "Только если дополнительный пакет выбран, WILL>INT, предыдущее Electric I сохранилось и Arcane Combo доступно.",
+          "dependsOn": "burst-arcane-extra-before"
+        },
+        {
+          "id": "burst-bolt-extra-after",
+          "anchor": {
+            "actionIndex": 3,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "reaction",
+            "reaction": "electrification",
+            "level": 3,
+            "assessment": "conditional"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "Третий уровень соответствует только двум Electric непосредственно перед Bolt Rush; +3 Sunderization за пакет, если Argent владеет эффектом. Число — цель при выполнении условий, не измерение combat footage."
+          },
+          "condition": "Только если дополнительный пакет выбран и Argent Bolt Rush поглотил ровно два Electric; не суммировать слепо предыдущие накопления."
+        },
+        {
+          "id": "burst-gilberta-nature-after",
+          "anchor": {
+            "actionIndex": 4,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "nature",
+            "stacks": 1,
+            "assessment": "conditional"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/gilberta",
+            "note": "Ultimate Gilberta при попадании добавляет Nature Infliction; наличие предыдущих Nature/Electric меняет результат и может дать Corrosion вместо Nature I. Число — цель при выполнении условий, не измерение combat footage."
+          },
+          "condition": "Только если перед попаданием Ultimate на цели нет Electric и Nature Infliction и Nature-аппликация не поглощается иной реакцией."
+        },
+        {
+          "id": "burst-argent-ultimate-after",
+          "anchor": {
+            "actionIndex": 5,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "reaction",
+            "reaction": "electrification",
+            "level": null,
+            "assessment": "conditional"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/guides/elements-and-reactions",
+            "note": "Ult Argent накладывает Electric и позднее Crush; уровень Electrification зависит от реально оставшейся Nature после Gilberta Ultimate и задержки Liino. Число — цель при выполнении условий, не измерение combat footage."
+          },
+          "condition": "Только если перед Electric hit от Ultimate на цели ещё есть Nature Infliction; количество и статус самого Sunderization неизвестны без боевого лога."
+        }
+      ]
     },
     "cakeHot": {
       "person": "argent-flow",
@@ -510,8 +772,210 @@
           "hint": "Это порядок из описания Cake Buster. Вторая стадия Ultimate Arcane не восстанавливается автоматически из одной записи."
         }
       ],
-      "check": "Hot start требует уже готовых Ultimate, Combo triggers и ресурса. Ни Gilbertа K, ни Argent K не открываются нажатием сами по себе. Конкретный pre-state из описания видео не восстановлен.",
-      "extra": "Источник 06.11.2026: https://www.youtube.com/watch?v=8NhMS6V2Cbc. Последовательность сохранена как опубликовано; не выдавать за executable zero-energy opener или verified optimal."
+      "check": "Hot start требует уже готовых Ultimate, Combo triggers и ресурса. Ни Gilbertа K, ни Argent K не открываются нажатием сами по себе. Конкретный pre-state из описания видео не восстановлен. Входной Arts state не задан автором полностью; значения иконок I→II→III здесь отражают только условную чистую Electric-ветку, а не гарантированный hot start.",
+      "extra": "Источник 06.11.2026: https://www.youtube.com/watch?v=8NhMS6V2Cbc. Последовательность сохранена как опубликовано; не выдавать за executable zero-energy opener или verified optimal.",
+      "artsCheckpoints": [
+        {
+          "id": "cake-liino-after",
+          "anchor": {
+            "actionIndex": 0,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "reaction",
+            "reaction": "electrification",
+            "level": null,
+            "assessment": "conditional"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/liino",
+            "note": "Liino Ultimate forced Electrification происходит delayed; стартовое состояние Cake Buster неизвестно, это не мгновенный proc. Число — цель при выполнении условий, не измерение combat footage."
+          },
+          "condition": "Только после delayed hit по той же цели; фактический уровень реакции в hot start из описания не восстановлен."
+        },
+        {
+          "id": "cake-argent-before",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": null,
+            "assessment": "unknown"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "После Stars Shifted условный Electric I если на цели нет прежних Electric; hot pre-state исходного ролика неизвестен. До действия. Число — цель при выполнении условий, не измерение combat footage."
+          }
+        },
+        {
+          "id": "cake-argent-after",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 1,
+            "assessment": "conditional"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "После Stars Shifted условный Electric I если на цели нет прежних Electric; hot pre-state исходного ролика неизвестен. После попадания. Число — цель при выполнении условий, не измерение combat footage."
+          },
+          "condition": "Только если новый Stars Shifted попал по цели без существующих Electric, нет уже наложенного Nature; при ином pre-state число отличается.",
+          "dependsOn": "cake-argent-before"
+        },
+        {
+          "id": "cake-arcane-before",
+          "anchor": {
+            "actionIndex": 3,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
+            "note": "Arcane WILL Combo наращивает Electric при сохраняющемся предыдущем стака. До действия. Число — цель при выполнении условий, не измерение combat footage."
+          }
+        },
+        {
+          "id": "cake-arcane-after",
+          "anchor": {
+            "actionIndex": 3,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 2,
+            "assessment": "conditional"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
+            "note": "Arcane WILL Combo наращивает Electric при сохраняющемся предыдущем стака. После попадания. Число — цель при выполнении условий, не измерение combat footage."
+          },
+          "condition": "Только если Electric I от Argent Combo ещё доступен и WILL>INT; на цели нет Nature, поглощающего Electric.",
+          "dependsOn": "cake-arcane-before"
+        },
+        {
+          "id": "cake-bolt-after",
+          "anchor": {
+            "actionIndex": 4,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "reaction",
+            "reaction": "electrification",
+            "level": 3,
+            "assessment": "conditional"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "Если Bolt Rush поглощает два Electric, он применяет Electrification III и может дать +3 Sunderization от Argent; hot pre-state не восстановлен. Число — цель при выполнении условий, не измерение combat footage."
+          },
+          "condition": "Только если перед попаданием Bolt Rush действительно Electric II на той же цели; не заявлять этот результат гарантированным для Cake Buster."
+        },
+        {
+          "id": "cake-gilberta-nature-after",
+          "anchor": {
+            "actionIndex": 5,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "nature",
+            "stacks": 1,
+            "assessment": "conditional"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/gilberta",
+            "note": "Ultimate Gilberta применяет Nature при попадании, которая при оставшемся Electric может вызвать Corrosion вместо Nature I. Число — цель при выполнении условий, не измерение combat footage."
+          },
+          "condition": "Только при отсутствии Electric и Nature на цели перед попаданием Ultimate; стартовый hot state требует проверки."
+        },
+        {
+          "id": "cake-arcane-nature-before",
+          "anchor": {
+            "actionIndex": 6,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "nature",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
+            "note": "Arcane Battle Skill добавляет Nature, если Gilberta Ultimate уже наложила Nature I и между ними не было другой реакции. До действия. Число — цель при выполнении условий, не измерение combat footage."
+          }
+        },
+        {
+          "id": "cake-arcane-nature-after",
+          "anchor": {
+            "actionIndex": 6,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "nature",
+            "stacks": 2,
+            "assessment": "conditional"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
+            "note": "Arcane Battle Skill добавляет Nature, если Gilberta Ultimate уже наложила Nature I и между ними не было другой реакции. После попадания. Число — цель при выполнении условий, не измерение combat footage."
+          },
+          "condition": "Только если Gilberta Ultimate создала Nature I, и на цели не появился Electric между попаданиями, включая delayed Liino Ultimate.",
+          "dependsOn": "cake-arcane-nature-before"
+        },
+        {
+          "id": "cake-argent-ultimate-after",
+          "anchor": {
+            "actionIndex": 7,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "reaction",
+            "reaction": "electrification",
+            "level": null,
+            "assessment": "conditional"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/guides/elements-and-reactions",
+            "note": "Argent Ultimate создаёт Electric при Nature от Gilberta и Arcane; уровень реакции неизвестен без восстановленного hot pre-state и точного hit order. Число — цель при выполнении условий, не измерение combat footage."
+          },
+          "condition": "Только если Nature Infliction оставалась на той же цели до Electric hit от Argent Ultimate; Crush идёт отдельным событием."
+        }
+      ]
     },
     "recoveryNote": {
       "person": "argent-flow",
