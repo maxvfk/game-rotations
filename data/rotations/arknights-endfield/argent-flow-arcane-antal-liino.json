@@ -125,9 +125,7 @@
             "kind": "combo",
             "actor": "arcane"
           },
-          "hint": "Copies existing Electric I; WILL>INT.",
-          "optional": true,
-          "condition": "Только если Electric I уже на цели и WILL>INT; дождаться реального попадания Argent Combo."
+          "hint": "Copies existing Electric I; WILL>INT.\nТребуется для выполнения: Только если Electric I уже на цели и WILL>INT; дождаться реального попадания Argent Combo."
         },
         {
           "text": "(1.5) Antal К #1 → Electric III",
@@ -136,9 +134,7 @@
             "kind": "combo",
             "actor": "antal"
           },
-          "hint": "Copies LAST Arts Infliction on Focus target; must be Electric, NOT Vulnerability.",
-          "optional": true,
-          "condition": "Только если Focus на этой цели, Combo Antal готово и последним наложен именно Electric."
+          "hint": "Copies LAST Arts Infliction on Focus target; must be Electric, NOT Vulnerability.\nТребуется для выполнения: Только если Focus на этой цели, Combo Antal готово и последним наложен именно Electric."
         },
         {
           "text": "FS Arcane #2 · полная BA-цепочка",
@@ -183,9 +179,7 @@
             "kind": "skill",
             "actor": "argent-flow"
           },
-          "hint": "After Electric III, 4 Sunderization conditional; hit within transformation (20s). Must land after 18s CD to enable CS #2 from Vulnerability.",
-          "optional": true,
-          "condition": "Только если 3 Electric Infliction поглощены, цель остаётся та же, Combo #2 готово к моменту новой Vulnerability."
+          "hint": "After Electric III, 4 Sunderization conditional; hit within transformation (20s). Must land after 18s CD to enable CS #2 from Vulnerability.\nТребуется для выполнения: Только если 3 Electric Infliction поглощены, цель остаётся та же, Combo #2 готово к моменту новой Vulnerability."
         }
       ],
       "check": "Антал Focus активен; Electric последовательно I→II→III, затем Bolt Rush → Electrification IV и +4 Sunderization при попадании. Первый Bolt Rush надо совместить с концом cooldown Argent Combo: на rank 12 окно 18–20 s, ниже rank 12 — 19–20 s.",
@@ -413,9 +407,7 @@
             "kind": "combo",
             "actor": "liino"
           },
-          "hint": "Requires Arts Reaction and Vocalist Stance (before Liino Ultimate).",
-          "optional": true,
-          "condition": "Только если Arts Reaction действительно открыла Combo и Liino находится в Vocalist Stance."
+          "hint": "Requires Arts Reaction and Vocalist Stance (before Liino Ultimate).\nТребуется для выполнения: Только если Arts Reaction действительно открыла Combo и Liino находится в Vocalist Stance."
         },
         {
           "text": "(5) Stars Shifted #2 → Electric I",
@@ -424,9 +416,7 @@
             "kind": "combo",
             "actor": "argent-flow"
           },
-          "hint": "Triggered by Vulnerability from (4) Bolt Rush if cooldown done. Critically tied to 18s-vs-20s window.",
-          "optional": true,
-          "condition": "Только если Bolt Rush (4) наложил Vulnerability после восстановления 18s/19s cooldown Stars Shifted."
+          "hint": "Triggered by Vulnerability from (4) Bolt Rush if cooldown done. Critically tied to 18s-vs-20s window.\nТребуется для выполнения: Только если Bolt Rush (4) наложил Vulnerability после восстановления 18s/19s cooldown Stars Shifted."
         },
         {
           "text": "FS Arcane #7 · полная BA-цепочка",
@@ -444,9 +434,7 @@
             "kind": "combo",
             "actor": "arcane"
           },
-          "hint": "Copy Electric from Argent CS #2; own CD ~18s.",
-          "optional": true,
-          "condition": "Только при реальном Electric I на этой же цели и готовом Arcane К."
+          "hint": "Copy Electric from Argent CS #2; own CD ~18s.\nТребуется для выполнения: Только при реальном Electric I на этой же цели и готовом Arcane К."
         },
         {
           "text": "(6.5) Antal К #2 → Electric III",
@@ -455,9 +443,7 @@
             "kind": "combo",
             "actor": "antal"
           },
-          "hint": "Copy latest Electric on focused target; own CD ~24s.",
-          "optional": true,
-          "condition": "Только если на цели Focus и последним был Electric, Combo Antal готово."
+          "hint": "Copy latest Electric on focused target; own CD ~24s.\nТребуется для выполнения: Только если на цели Focus и последним был Electric, Combo Antal готово."
         },
         {
           "text": "FS Arcane #8 · полная BA-цепочка",
@@ -475,9 +461,7 @@
             "kind": "skill",
             "actor": "arcane"
           },
-          "hint": "100 SP. Nature on Electric III consumes Electric; creates Corrosion III if no different status intervenes.",
-          "optional": true,
-          "condition": "Только если 3 Electric Infliction доступны непосредственно перед попаданием Nature по одной цели."
+          "hint": "100 SP. Nature on Electric III consumes Electric; creates Corrosion III if no different status intervenes.\nТребуется для выполнения: Только если 3 Electric Infliction доступны непосредственно перед попаданием Nature по одной цели."
         },
         {
           "text": "(8) Liino К #2",
@@ -486,9 +470,7 @@
             "kind": "combo",
             "actor": "liino"
           },
-          "hint": "Trigger from Arts Reaction; Vocalist Stance must persist.",
-          "optional": true,
-          "condition": "Только если была Arts Reaction и доступен Combo Liino до Cosmovoice."
+          "hint": "Trigger from Arts Reaction; Vocalist Stance must persist.\nТребуется для выполнения: Только если была Arts Reaction и доступен Combo Liino до Cosmovoice."
         },
         {
           "text": "FS Arcane #9 · полная BA-цепочка",
@@ -515,9 +497,7 @@
             "kind": "skill",
             "actor": "argent-flow"
           },
-          "hint": "USER-AGREED: Argent Combo at (5) transforms BS. Electric consumed by Corrosion (7.5), so theoretical forced Electrification I and +1 Sunderization. Status refresh uncertain.",
-          "optional": true,
-          "condition": "Только если (5) действительно открыл Bolt Rush, он ещё активен и SP ≥100; отсутствие Electric надо проверить перед применением."
+          "hint": "USER-AGREED: Argent Combo at (5) transforms BS. Electric consumed by Corrosion (7.5), so theoretical forced Electrification I and +1 Sunderization. Status refresh uncertain.\nТребуется для выполнения: Только если (5) действительно открыл Bolt Rush, он ещё активен и SP ≥100; отсутствие Electric надо проверить перед применением."
         }
       ],
       "check": "Вторая серия Electric I→II→III расходуется Arcane BS (7.5) для Corrosion III. Поэтому (9.5) — усиленный Bolt Rush (от Stars Shifted (5)) при нулевых Electric stacks, ожидаемо Electrification I / +1 Sunderization, но refresh сильного предыдущего статуса не проверен.",
@@ -717,9 +697,7 @@
             "kind": "combo",
             "actor": "liino"
           },
-          "hint": "Last Liino Combo before Ultimate switches stance.",
-          "optional": true,
-          "condition": "Только если новое Arts Reaction trigger открыло К, и Liino ещё в Vocalist Stance."
+          "hint": "Last Liino Combo before Ultimate switches stance.\nТребуется для выполнения: Только если новое Arts Reaction trigger открыло К, и Liino ещё в Vocalist Stance."
         },
         {
           "text": "(10.5) Antal U · Electric Amp",
@@ -746,9 +724,7 @@
             "kind": "skill",
             "actor": "argent-flow"
           },
-          "hint": "USER-AGREED: at 9.5 Bolt Rush was used; NO Argent Combo between 9.5 and 11.5. Ordinary Battle Skill applies Lift / Vulnerability.",
-          "optional": true,
-          "condition": "Только если усиленный Bolt Rush действительно был использован на (9.5), трансформация закончилась и SP ≥100."
+          "hint": "USER-AGREED: at 9.5 Bolt Rush was used; NO Argent Combo between 9.5 and 11.5. Ordinary Battle Skill applies Lift / Vulnerability.\nТребуется для выполнения: Только если усиленный Bolt Rush действительно был использован на (9.5), трансформация закончилась и SP ≥100."
         },
         {
           "text": "FS Arcane #11 · полная BA-цепочка",
@@ -766,9 +742,7 @@
             "kind": "finisher",
             "actor": "arcane"
           },
-          "hint": "Only at an actually Staggered enemy; SP recovery.",
-          "optional": true,
-          "condition": "Только если враг находится в Stagger / доступно окно Finisher."
+          "hint": "Only at an actually Staggered enemy; SP recovery.\nТребуется для выполнения: Только если враг находится в Stagger / доступно окно Finisher."
         },
         {
           "text": "(13) Stars Shifted #3 → Electric I",
@@ -777,9 +751,7 @@
             "kind": "combo",
             "actor": "argent-flow"
           },
-          "hint": "Vulnerability from (11.5) Darkness Cowed triggers it if cooldown recovered.",
-          "optional": true,
-          "condition": "Только если Vulnerability появилась после cooldown третьего Combo и trigger window не истекло."
+          "hint": "Vulnerability from (11.5) Darkness Cowed triggers it if cooldown recovered.\nТребуется для выполнения: Только если Vulnerability появилась после cooldown третьего Combo и trigger window не истекло."
         },
         {
           "text": "(13.5) Argent · Bolt Rush #3 → Electrification II",
@@ -788,9 +760,7 @@
             "kind": "skill",
             "actor": "argent-flow"
           },
-          "hint": "Consume 1 Electric from Stars Shifted #3; +2 Sunderization, conditional on actual target status.",
-          "optional": true,
-          "condition": "Только если Electric I был поглощён и Bolt Rush доступен/есть 100 SP."
+          "hint": "Consume 1 Electric from Stars Shifted #3; +2 Sunderization, conditional on actual target status.\nТребуется для выполнения: Только если Electric I был поглощён и Bolt Rush доступен/есть 100 SP."
         }
       ],
       "check": "Ульты Antal и Liino готовят окно урона. На (11.5) именно ОБЫЧНЫЙ Argent Darkness Cowed (после Bolt Rush (9.5) без нового Combo), что создаёт Vulnerability для Stars Shifted #3 на (13). Bolt Rush (13.5) поглощает 1 Electric → Electrification II (условно).",
@@ -928,9 +898,7 @@
             "kind": "ultimate",
             "actor": "arcane"
           },
-          "hint": "WILL form FIRST Ultimate phase copies existing Nature I; DO NOT invent phase 2 here.",
-          "optional": true,
-          "condition": "Только если Arcane WILL>INT и Nature I активен; это именно первая стадия Ultimate."
+          "hint": "WILL form FIRST Ultimate phase copies existing Nature I; DO NOT invent phase 2 here.\nТребуется для выполнения: Только если Arcane WILL>INT и Nature I активен; это именно первая стадия Ultimate."
         },
         {
           "text": "(15.5) Arcane WILL К #3 → Nature III",
@@ -939,9 +907,7 @@
             "kind": "combo",
             "actor": "arcane"
           },
-          "hint": "Copy Nature Infliction on that target.",
-          "optional": true,
-          "condition": "Только если Combo готово и Nature II на цели."
+          "hint": "Copy Nature Infliction on that target.\nТребуется для выполнения: Только если Combo готово и Nature II на цели."
         },
         {
           "text": "(15.5) Antal К #3 → Nature IV",
@@ -950,9 +916,7 @@
             "kind": "combo",
             "actor": "antal"
           },
-          "hint": "Focus still active; copies MOST RECENT Nature, not Electric.",
-          "optional": true,
-          "condition": "Только если Focus активен, Combo Antal вне cooldown, последним наложена Nature III."
+          "hint": "Focus still active; copies MOST RECENT Nature, not Electric.\nТребуется для выполнения: Только если Focus активен, Combo Antal вне cooldown, последним наложена Nature III."
         },
         {
           "text": "(16) Argent Flow U → Electrification IV → Crush / Sunderization Detonation",
@@ -961,9 +925,7 @@
             "kind": "ultimate",
             "actor": "argent-flow"
           },
-          "hint": "Own reconstruction: his Electric application onto Nature IV creates Electrification IV, then his Ultimate applies Crush. Confirm real hit order and ownership.",
-          "optional": true,
-          "condition": "Только если Nature IV дожила до попадания Electric от Ultimate, имеются Sunderization и Vulnerability на этой же цели, Ultimate готов."
+          "hint": "Own reconstruction: his Electric application onto Nature IV creates Electrification IV, then his Ultimate applies Crush. Confirm real hit order and ownership.\nТребуется для выполнения: Только если Nature IV дожила до попадания Electric от Ultimate, имеются Sunderization и Vulnerability на этой же цели, Ultimate готов."
         }
       ],
       "check": "Arcane BS → Nature I, WILL U1 → II, Arcane Combo → III, Antal Combo → IV. Argent Ultimate должен наложить Electric поверх Nature IV и завершиться Crush по накопленной Sunderization. Это механическая гипотеза, не измеренный trace.",

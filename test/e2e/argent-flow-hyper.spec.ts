@@ -8,6 +8,9 @@ test('Prydwen Argent Flow Hyper: four ordered phases and correct skill identity'
  await expect(page.locator('#tabs button')).toHaveCount(1);
  await expect(page.locator('.stage')).toHaveCount(4);
  await expect(page.locator('.action')).toHaveCount(38);
+ // A required action with a combat trigger is not a skippable action.
+ await expect(page.locator('.action.optional-action')).toHaveCount(0);
+ await expect(page.locator('.action-optional')).toHaveCount(0);
  await expect(page.locator('.action-label').filter({hasText:'(9.5) Argent · Bolt Rush #2'})).toHaveCount(1);
  await expect(page.locator('.action-label').filter({hasText:'(11.5) Argent · Darkness Cowed (ОБЫЧНЫЙ)'})).toHaveCount(1);
  await expect(page.locator('.action-label').filter({hasText:'(15.5) Antal К #3'})).toHaveCount(1);
@@ -20,6 +23,7 @@ test('Prydwen Argent Flow Hyper: four ordered phases and correct skill identity'
  const imgs=page.locator('.action-portrait');
  await expect(imgs).toHaveCount(38);
  await page.locator('#layout-compact').click();
+ await expect(page.locator('.action-compact-condition')).toHaveCount(0);
  await expect(page.locator('.action-portrait')).toHaveCount(38);
  await page.setViewportSize({width:320,height:740});
  expect(await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
