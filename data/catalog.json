@@ -221,6 +221,48 @@
               "verification": "partial"
             }
           ]
+        },
+        {
+          "id": "argent-flow-arcane-antal-liino",
+          "name": "Argent Flow / WILL Arcane / Antal / Liino",
+          "subtitle": "Prydwen Hyper · 4 фазы (partial)",
+          "characters": [
+            {
+              "id": "argent-flow",
+              "name": "Argent Flow",
+              "investment": "P0S1 · Lunar Calling (user team context)",
+              "portrait": "portraits/arknights-endfield/argent-flow.png"
+            },
+            {
+              "id": "arcane",
+              "name": "Arcane (WILL)",
+              "investment": "P1 · signature; WILL > INT required",
+              "portrait": "portraits/arknights-endfield/arcane.png"
+            },
+            {
+              "id": "antal",
+              "name": "Antal",
+              "investment": "P5 in analyzed Prydwen setup; account investment not rechecked",
+              "portrait": "portraits/arknights-endfield/antal.png"
+            },
+            {
+              "id": "liino",
+              "name": "Liino",
+              "investment": "P0R1 · signature (user team context)",
+              "portrait": "portraits/arknights-endfield/liino.png"
+            }
+          ],
+          "status": "research-adapted",
+          "statusDescription": "Реконструкция ранее обсуждённого скриншота Prydwen. 4 фазы, (9.5)=Bolt Rush, (11.5)=ordinary. SP/CD/UGE, боевые состояния и source image ещё не верифицированы.",
+          "gameVersion": "Global live 1.6 (2026-11-08)",
+          "source": "https://github.com/maxvfk/Games/blob/main/guides/arknights-endfield/ARGENT_FLOW_ARCANE_ANTAL_LIINO_PRYDWEN_HYPER.md",
+          "variants": [
+            {
+              "id": "prydwen-hyper",
+              "name": "Prydwen Hyper",
+              "verification": "partial"
+            }
+          ]
         }
       ]
     },

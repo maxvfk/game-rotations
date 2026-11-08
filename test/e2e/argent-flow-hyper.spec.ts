@@ -1,0 +1,56 @@
+import {test,expect} from '@playwright/test';
+const team='?team=argent-flow-arcane-antal-liino';
+
+test('Prydwen Argent Flow Hyper: four ordered phases and correct skill identity',async({page},testInfo)=>{
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto(team);
+ await expect(page.locator('#opener')).toHaveAttribute('aria-pressed','true');
+ await expect(page.locator('#tabs button')).toHaveCount(1);
+ await expect(page.locator('.stage')).toHaveCount(4);
+ await expect(page.locator('.action')).toHaveCount(38);
+ await expect(page.locator('.action-label').filter({hasText:'(9.5) Argent · Bolt Rush #2'})).toHaveCount(1);
+ await expect(page.locator('.action-label').filter({hasText:'(11.5) Argent · Darkness Cowed (ОБЫЧНЫЙ)'})).toHaveCount(1);
+ await expect(page.locator('.action-label').filter({hasText:'(15.5) Antal К #3'})).toHaveCount(1);
+ await expect(page.locator('.action-label').filter({hasText:'(16) Argent Flow U'})).toHaveCount(1);
+ await expect(page.locator('.action.kind-final-strike')).toHaveCount(12);
+ await expect(page.locator('.action.arts-annotated')).not.toHaveCount(0);
+ await expect(page.locator('.action.physical-annotated')).not.toHaveCount(0);
+ const altas=page.locator('.action-label').filter({hasText:'Antal К #3'}).first();
+ await expect(altas).toBeVisible();
+ const imgs=page.locator('.action-portrait');
+ await expect(imgs).toHaveCount(38);
+ await page.locator('#layout-compact').click();
+ await expect(page.locator('.action-portrait')).toHaveCount(38);
+ await page.setViewportSize({width:320,height:740});
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
+ await page.screenshot({path:testInfo.outputPath('argent-flow-hyper-320px.png'),fullPage:true,animations:'disabled'});
+ expect(errors).toEqual([]);
+});
+
+test('Prydwen Argent Flow Hyper: Arts/Physical toggles persist offline; old team untouched',async({page,context})=>{
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto(team);
+ await expect(page.locator('#arts-visibility-toggle')).toHaveAttribute('aria-pressed','true');
+ await expect(page.locator('#physical-visibility-toggle')).toHaveAttribute('aria-pressed','true');
+ await page.locator('#arts-visibility-toggle').click();
+ await expect(page.locator('.arts-action-annotations')).toHaveCount(0);
+ await page.locator('#arts-visibility-toggle').click();
+ await expect(page.locator('.arts-action-annotations')).not.toHaveCount(0);
+ await page.locator('#physical-visibility-toggle').click();
+ await expect(page.locator('.physical-action-annotations')).toHaveCount(0);
+ await page.locator('#physical-visibility-toggle').click();
+ await expect(page.locator('.physical-action-annotations')).not.toHaveCount(0);
+ await page.evaluate(async()=>{await navigator.serviceWorker.ready});
+ await page.reload();
+ await page.waitForFunction(()=>navigator.serviceWorker.controller!==null);
+ await context.setOffline(true);await page.reload({waitUntil:'domcontentloaded'});
+ await expect(page.locator('.stage')).toHaveCount(4);
+ const img=page.locator('.action-portrait[src$="/antal.png"]').first();
+ await img.scrollIntoViewIfNeeded();
+ await expect.poll(()=>img.evaluate(i=>(i as HTMLImageElement).naturalWidth)).toBe(150);
+ await context.setOffline(false);
+ await page.goto('?team=argent-flow-arcane-gilberta-liino');
+ await expect(page.locator('#tabs button')).toHaveCount(2);
+ await expect(page.locator('.stage')).toHaveCount(3);
+ expect(errors).toEqual([]);
+});

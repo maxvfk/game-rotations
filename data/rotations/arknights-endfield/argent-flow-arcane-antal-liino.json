@@ -1,0 +1,1214 @@
+{
+  "schemaVersion": 1,
+  "id": "argent-flow-arcane-antal-liino",
+  "game": "arknights-endfield",
+  "title": "Argent Flow / WILL Arcane / Antal / Liino",
+  "gameVersion": "Global live 1.6 (2026-11-08)",
+  "source": "https://github.com/maxvfk/Games/blob/main/guides/arknights-endfield/ARGENT_FLOW_ARCANE_ANTAL_LIINO_PRYDWEN_HYPER.md",
+  "verificationNote": "Prydwen Argent Flow Hyper: EXACT screenshot was not available for reinspection; order is a transcript from preceding discussion, not a directly fetched Prydwen Builder export. At (9.5) BS is Bolt Rush; at (11.5) BS is ordinary Darkness Cowed, as user explicitly settled. First combo -> 20s Bolt Rush vs 18/19s Combo cooldown yields narrow timing gate. 12 Arcane FS, 3 Liino Combo before Ult, Stagger-gated Finisher, final Nature IV is conditional own live-kit reconstruction. No measured 0→16 timing, no SP/UGE trace; all Arts/Physical checkpoints conditional/target, not observed. Link and source map in Games guide.",
+  "controls": "arknights-endfield",
+  "defaultSlots": {
+    "argent-flow": "1",
+    "arcane": "2",
+    "antal": "3",
+    "liino": "4"
+  },
+  "characters": [
+    {
+      "id": "argent-flow",
+      "name": "Argent Flow",
+      "glyph": "⚡",
+      "color": "#dcbf71",
+      "portrait": "portraits/arknights-endfield/argent-flow.png",
+      "investment": "P0S1 · Lunar Calling (user team context)"
+    },
+    {
+      "id": "arcane",
+      "name": "Arcane (WILL)",
+      "glyph": "✧",
+      "color": "#acd9b2",
+      "portrait": "portraits/arknights-endfield/arcane.png",
+      "investment": "P1 · signature; WILL > INT required"
+    },
+    {
+      "id": "antal",
+      "name": "Antal",
+      "glyph": "⚗",
+      "color": "#ebcb85",
+      "portrait": "portraits/arknights-endfield/antal.png",
+      "investment": "P5 in analyzed Prydwen setup; account investment not rechecked"
+    },
+    {
+      "id": "liino",
+      "name": "Liino",
+      "glyph": "✦",
+      "color": "#8fd2f3",
+      "portrait": "portraits/arknights-endfield/liino.png",
+      "investment": "P0R1 · signature (user team context)"
+    }
+  ],
+  "variants": [
+    {
+      "id": "prydwen-hyper",
+      "label": "Prydwen Hyper",
+      "sub": "Electric → Corrosion → Amp → Nature IV",
+      "type": "Prydwen Hyper",
+      "intro": "ПРЕДВАРИТЕЛЬНАЯ реконструкция Prydwen: 4 фазы, (9.5) Bolt Rush, (11.5) обычный Darkness Cowed. 0–16 — условные координаты Builder, не секунды; исходный скриншот повторно не проверен. Arts/Physical annotations — модельные цели, не combat observations.",
+      "verification": "partial",
+      "opener": [
+        "hyperElectric",
+        "hyperCorrosion",
+        "hyperAmp",
+        "hyperNature"
+      ],
+      "loop": [
+        "hyperRecovery"
+      ],
+      "loopCaution": "После Crush стаки израсходованы, а Combo/UGE/SP требуют восстановления. Prydwen Builder 0–16 не показывает реальное время, fixed repeat не доказан."
+    }
+  ],
+  "stages": {
+    "hyperElectric": {
+      "person": "argent-flow",
+      "title": "01 · Electric IV и первый Bolt Rush",
+      "sub": "Builder 0–4 (условные позиции, не секунды)",
+      "actions": [
+        {
+          "text": "(0) Antal · Focus",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "antal"
+          },
+          "hint": "100 SP; target-specific Focus, required for later Antal Combo. 60 s on target."
+        },
+        {
+          "text": "(0) Liino · Vocalist Stance",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "liino"
+          },
+          "hint": "25 SP; heal, team ATK. Liino Combo only before Cosmovoice."
+        },
+        {
+          "text": "(0) Argent · Darkness Cowed (ОБЫЧНЫЙ)",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "argent-flow"
+          },
+          "hint": "100 SP; Lift → Vulnerability to open first Stars Shifted."
+        },
+        {
+          "text": "(0.5) Stars Shifted #1 → Electric I",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "argent-flow"
+          },
+          "hint": "Requires Vulnerability. Rank 12 CD 18s (ranks 1–11: 19s). Changes BS to Bolt Rush for 20s."
+        },
+        {
+          "text": "FS Arcane #1 · полная BA-цепочка",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "arcane"
+          },
+          "hint": "FS = complete Basic Attack chain until Final Strike, not a single Basic Attack. Builder positions aren't seconds."
+        },
+        {
+          "text": "(1.5) Arcane WILL К #1 → Electric II",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "arcane"
+          },
+          "hint": "Copies existing Electric I; WILL>INT.",
+          "optional": true,
+          "condition": "Только если Electric I уже на цели и WILL>INT; дождаться реального попадания Argent Combo."
+        },
+        {
+          "text": "(1.5) Antal К #1 → Electric III",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "antal"
+          },
+          "hint": "Copies LAST Arts Infliction on Focus target; must be Electric, NOT Vulnerability.",
+          "optional": true,
+          "condition": "Только если Focus на этой цели, Combo Antal готово и последним наложен именно Electric."
+        },
+        {
+          "text": "FS Arcane #2 · полная BA-цепочка",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "arcane"
+          },
+          "hint": "FS = complete Basic Attack chain until Final Strike, not a single Basic Attack. Builder positions aren't seconds."
+        },
+        {
+          "text": "FS Arcane #3 · полная BA-цепочка",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "arcane"
+          },
+          "hint": "FS = complete Basic Attack chain until Final Strike, not a single Basic Attack. Builder positions aren't seconds."
+        },
+        {
+          "text": "FS Arcane #4 · полная BA-цепочка",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "arcane"
+          },
+          "hint": "FS = complete Basic Attack chain until Final Strike, not a single Basic Attack. Builder positions aren't seconds."
+        },
+        {
+          "text": "FS Arcane #5 · полная BA-цепочка",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "arcane"
+          },
+          "hint": "FS = complete Basic Attack chain until Final Strike, not a single Basic Attack. Builder positions aren't seconds."
+        },
+        {
+          "text": "(4) Argent · Bolt Rush #1 → Electrification IV",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "argent-flow"
+          },
+          "hint": "After Electric III, 4 Sunderization conditional; hit within transformation (20s). Must land after 18s CD to enable CS #2 from Vulnerability.",
+          "optional": true,
+          "condition": "Только если 3 Electric Infliction поглощены, цель остаётся та же, Combo #2 готово к моменту новой Vulnerability."
+        }
+      ],
+      "check": "Антал Focus активен; Electric последовательно I→II→III, затем Bolt Rush → Electrification IV и +4 Sunderization при попадании. Первый Bolt Rush надо совместить с концом cooldown Argent Combo: на rank 12 окно 18–20 s, ниже rank 12 — 19–20 s.",
+      "extra": "A-start SP требует 225 SP суммарно: Antal 100 + Liino 25 + Argent 100; 0 не реальная секунда. FS Arcane #1–5 восстанавливают SP и занимают время. Точные timelocks не наблюдались.",
+      "artsCheckpoints": [
+        {
+          "id": "a-argent-electric-pre",
+          "anchor": {
+            "actionIndex": 3,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 0,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "Целевое состояние перед действием (построено по live-kit), не измерено. Argent Combo first hit applies Electric."
+          }
+        },
+        {
+          "id": "a-argent-electric-post",
+          "anchor": {
+            "actionIndex": 3,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "Сценарное состояние после действия, НЕ observed. Argent Combo first hit applies Electric."
+          },
+          "condition": "Только если целевая Infliction electric действительно применена к той же цели без интерференции; проверять cooldown и ownership.",
+          "dependsOn": "a-argent-electric-pre"
+        },
+        {
+          "id": "a-arcane-electric-pre",
+          "anchor": {
+            "actionIndex": 5,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
+            "note": "Целевое состояние перед действием (построено по live-kit), не измерено. WILL Combo copies existing Electric."
+          }
+        },
+        {
+          "id": "a-arcane-electric-post",
+          "anchor": {
+            "actionIndex": 5,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 2,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
+            "note": "Сценарное состояние после действия, НЕ observed. WILL Combo copies existing Electric."
+          },
+          "condition": "Только если целевая Infliction electric действительно применена к той же цели без интерференции; проверять cooldown и ownership.",
+          "dependsOn": "a-arcane-electric-pre"
+        },
+        {
+          "id": "a-antal-electric-pre",
+          "anchor": {
+            "actionIndex": 6,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 2,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/antal",
+            "note": "Целевое состояние перед действием (построено по live-kit), не измерено. Antal copies LAST Infliction on Focus target."
+          }
+        },
+        {
+          "id": "a-antal-electric-post",
+          "anchor": {
+            "actionIndex": 6,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 3,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/antal",
+            "note": "Сценарное состояние после действия, НЕ observed. Antal copies LAST Infliction on Focus target."
+          },
+          "condition": "Только если целевая Infliction electric действительно применена к той же цели без интерференции; проверять cooldown и ownership.",
+          "dependsOn": "a-antal-electric-pre"
+        },
+        {
+          "id": "a-bolt-post",
+          "anchor": {
+            "actionIndex": 11,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "reaction",
+            "reaction": "electrification",
+            "level": 4,
+            "assessment": "conditional"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "Argent Bolt Rush forces Electrification IV when consuming three Electric; +4 Sunderization text-only."
+          },
+          "condition": "Только 3 Electric Infliction consumed and same target; no conflicting refresh or stagger state."
+        }
+      ],
+      "physicalCheckpoints": [
+        {
+          "id": "a-ordinary-lift",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "effect",
+            "effect": "lift",
+            "assessment": "conditional"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "Normal Darkness Cowed applies Lift to vulnerable enemies."
+          },
+          "condition": "Only when ordinary BS lands on a liftable target; CC-immune enemies require separate verification."
+        },
+        {
+          "id": "a-first-vulnerability",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 1,
+            "assessment": "conditional"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "Lift creates Vulnerability that opens Stars Shifted."
+          },
+          "condition": "Only if Lift generates Vulnerability on this target and prior Vulnerability state allows target I."
+        },
+        {
+          "id": "a-bolt-vulnerability",
+          "anchor": {
+            "actionIndex": 11,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 1,
+            "assessment": "conditional"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "Bolt Rush applies Vulnerability after consuming Electric stacks."
+          },
+          "condition": "Only if Bolt Rush consumes the 3 Electric stacks and applies Vulnerability to same target; previous physical stack amount may differ."
+        }
+      ]
+    },
+    "hyperCorrosion": {
+      "person": "arcane",
+      "title": "02 · Corrosion III и Bolt Rush",
+      "sub": "Builder 4.5–9.5",
+      "actions": [
+        {
+          "text": "FS Arcane #6 · полная BA-цепочка",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "arcane"
+          },
+          "hint": "FS = complete Basic Attack chain until Final Strike, not a single Basic Attack. Builder positions aren't seconds."
+        },
+        {
+          "text": "(5) Liino К #1",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "liino"
+          },
+          "hint": "Requires Arts Reaction and Vocalist Stance (before Liino Ultimate).",
+          "optional": true,
+          "condition": "Только если Arts Reaction действительно открыла Combo и Liino находится в Vocalist Stance."
+        },
+        {
+          "text": "(5) Stars Shifted #2 → Electric I",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "argent-flow"
+          },
+          "hint": "Triggered by Vulnerability from (4) Bolt Rush if cooldown done. Critically tied to 18s-vs-20s window.",
+          "optional": true,
+          "condition": "Только если Bolt Rush (4) наложил Vulnerability после восстановления 18s/19s cooldown Stars Shifted."
+        },
+        {
+          "text": "FS Arcane #7 · полная BA-цепочка",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "arcane"
+          },
+          "hint": "FS = complete Basic Attack chain until Final Strike, not a single Basic Attack. Builder positions aren't seconds."
+        },
+        {
+          "text": "(6) Arcane WILL К #2 → Electric II",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "arcane"
+          },
+          "hint": "Copy Electric from Argent CS #2; own CD ~18s.",
+          "optional": true,
+          "condition": "Только при реальном Electric I на этой же цели и готовом Arcane К."
+        },
+        {
+          "text": "(6.5) Antal К #2 → Electric III",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "antal"
+          },
+          "hint": "Copy latest Electric on focused target; own CD ~24s.",
+          "optional": true,
+          "condition": "Только если на цели Focus и последним был Electric, Combo Antal готово."
+        },
+        {
+          "text": "FS Arcane #8 · полная BA-цепочка",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "arcane"
+          },
+          "hint": "FS = complete Basic Attack chain until Final Strike, not a single Basic Attack. Builder positions aren't seconds."
+        },
+        {
+          "text": "(7.5) Jadecrushing Grid → Corrosion III",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "arcane"
+          },
+          "hint": "100 SP. Nature on Electric III consumes Electric; creates Corrosion III if no different status intervenes.",
+          "optional": true,
+          "condition": "Только если 3 Electric Infliction доступны непосредственно перед попаданием Nature по одной цели."
+        },
+        {
+          "text": "(8) Liino К #2",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "liino"
+          },
+          "hint": "Trigger from Arts Reaction; Vocalist Stance must persist.",
+          "optional": true,
+          "condition": "Только если была Arts Reaction и доступен Combo Liino до Cosmovoice."
+        },
+        {
+          "text": "FS Arcane #9 · полная BA-цепочка",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "arcane"
+          },
+          "hint": "FS = complete Basic Attack chain until Final Strike, not a single Basic Attack. Builder positions aren't seconds."
+        },
+        {
+          "text": "FS Arcane #10 · полная BA-цепочка",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "arcane"
+          },
+          "hint": "FS = complete Basic Attack chain until Final Strike, not a single Basic Attack. Builder positions aren't seconds."
+        },
+        {
+          "text": "(9.5) Argent · Bolt Rush #2 (НЕ обычный)",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "argent-flow"
+          },
+          "hint": "USER-AGREED: Argent Combo at (5) transforms BS. Electric consumed by Corrosion (7.5), so theoretical forced Electrification I and +1 Sunderization. Status refresh uncertain.",
+          "optional": true,
+          "condition": "Только если (5) действительно открыл Bolt Rush, он ещё активен и SP ≥100; отсутствие Electric надо проверить перед применением."
+        }
+      ],
+      "check": "Вторая серия Electric I→II→III расходуется Arcane BS (7.5) для Corrosion III. Поэтому (9.5) — усиленный Bolt Rush (от Stars Shifted (5)) при нулевых Electric stacks, ожидаемо Electrification I / +1 Sunderization, но refresh сильного предыдущего статуса не проверен.",
+      "extra": "Argent Combo (5) должно открыться Vulnerability от первого Bolt Rush при восстановившемся CD; три Liino Combo до Liino Ultimate; Antal К копирует только последнюю Arts Infliction.",
+      "artsCheckpoints": [
+        {
+          "id": "b-argent-electric-pre",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 0,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "Целевое состояние перед действием (построено по live-kit), не измерено. Argent Combo second application."
+          }
+        },
+        {
+          "id": "b-argent-electric-post",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "Сценарное состояние после действия, НЕ observed. Argent Combo second application."
+          },
+          "condition": "Только если целевая Infliction electric действительно применена к той же цели без интерференции; проверять cooldown и ownership.",
+          "dependsOn": "b-argent-electric-pre"
+        },
+        {
+          "id": "b-arcane-electric-pre",
+          "anchor": {
+            "actionIndex": 4,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
+            "note": "Целевое состояние перед действием (построено по live-kit), не измерено. Arcane WILL copy."
+          }
+        },
+        {
+          "id": "b-arcane-electric-post",
+          "anchor": {
+            "actionIndex": 4,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 2,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
+            "note": "Сценарное состояние после действия, НЕ observed. Arcane WILL copy."
+          },
+          "condition": "Только если целевая Infliction electric действительно применена к той же цели без интерференции; проверять cooldown и ownership.",
+          "dependsOn": "b-arcane-electric-pre"
+        },
+        {
+          "id": "b-antal-electric-pre",
+          "anchor": {
+            "actionIndex": 5,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 2,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/antal",
+            "note": "Целевое состояние перед действием (построено по live-kit), не измерено. Antal copy."
+          }
+        },
+        {
+          "id": "b-antal-electric-post",
+          "anchor": {
+            "actionIndex": 5,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 3,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/antal",
+            "note": "Сценарное состояние после действия, НЕ observed. Antal copy."
+          },
+          "condition": "Только если целевая Infliction electric действительно применена к той же цели без интерференции; проверять cooldown и ownership.",
+          "dependsOn": "b-antal-electric-pre"
+        },
+        {
+          "id": "b-corrosion-pre",
+          "anchor": {
+            "actionIndex": 7,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 3,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Arts_Reaction",
+            "note": "Сценарное количество Electric перед Arcane Nature Battle Skill; реального лога нет."
+          }
+        },
+        {
+          "id": "b-corrosion-post",
+          "anchor": {
+            "actionIndex": 7,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "reaction",
+            "reaction": "corrosion",
+            "level": 3,
+            "assessment": "conditional"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Arts_Reaction",
+            "note": "Nature-triggered Corrosion при поглощении Electric III. Число и refresh требуют боевой проверки."
+          },
+          "condition": "Только если именно Electric III оставались на цели перед Arcane Nature Skill, и нет более сильного статуса/interference.",
+          "dependsOn": "b-corrosion-pre"
+        },
+        {
+          "id": "b-bolt-post",
+          "anchor": {
+            "actionIndex": 11,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "reaction",
+            "reaction": "electrification",
+            "level": 1,
+            "assessment": "conditional"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "Bolt Rush (9.5) after Electric consumed by Arcane Nature: theoretical forced Electrification I; unknown refresh behavior; +1 Sunderization only theoretically."
+          },
+          "condition": "Только если Bolt Rush is available from Combo (5), there are zero Electric stacks and game's forced reaction does not retain a stronger previous level."
+        }
+      ]
+    },
+    "hyperAmp": {
+      "person": "liino",
+      "title": "03 · Stagger, Amp и третий Bolt Rush",
+      "sub": "Builder 10–13.5",
+      "actions": [
+        {
+          "text": "(10) Liino К #3",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "liino"
+          },
+          "hint": "Last Liino Combo before Ultimate switches stance.",
+          "optional": true,
+          "condition": "Только если новое Arts Reaction trigger открыло К, и Liino ещё в Vocalist Stance."
+        },
+        {
+          "text": "(10.5) Antal U · Electric Amp",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate",
+            "actor": "antal"
+          },
+          "hint": "Ultimate energy ready; buff window must cover final Argent Ultimate."
+        },
+        {
+          "text": "(11) Liino U · Cosmovoice",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate",
+            "actor": "liino"
+          },
+          "hint": "160 Ultimate Energy; delayed forced Electrification can alter existing status. Her Combo unavailable during Cosmovoice."
+        },
+        {
+          "text": "(11.5) Argent · Darkness Cowed (ОБЫЧНЫЙ)",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "argent-flow"
+          },
+          "hint": "USER-AGREED: at 9.5 Bolt Rush was used; NO Argent Combo between 9.5 and 11.5. Ordinary Battle Skill applies Lift / Vulnerability.",
+          "optional": true,
+          "condition": "Только если усиленный Bolt Rush действительно был использован на (9.5), трансформация закончилась и SP ≥100."
+        },
+        {
+          "text": "FS Arcane #11 · полная BA-цепочка",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "arcane"
+          },
+          "hint": "FS = complete Basic Attack chain until Final Strike, not a single Basic Attack. Builder positions aren't seconds."
+        },
+        {
+          "text": "(12.5) Arcane Finisher (Stagger)",
+          "tone": "key",
+          "input": {
+            "kind": "finisher",
+            "actor": "arcane"
+          },
+          "hint": "Only at an actually Staggered enemy; SP recovery.",
+          "optional": true,
+          "condition": "Только если враг находится в Stagger / доступно окно Finisher."
+        },
+        {
+          "text": "(13) Stars Shifted #3 → Electric I",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "argent-flow"
+          },
+          "hint": "Vulnerability from (11.5) Darkness Cowed triggers it if cooldown recovered.",
+          "optional": true,
+          "condition": "Только если Vulnerability появилась после cooldown третьего Combo и trigger window не истекло."
+        },
+        {
+          "text": "(13.5) Argent · Bolt Rush #3 → Electrification II",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "argent-flow"
+          },
+          "hint": "Consume 1 Electric from Stars Shifted #3; +2 Sunderization, conditional on actual target status.",
+          "optional": true,
+          "condition": "Только если Electric I был поглощён и Bolt Rush доступен/есть 100 SP."
+        }
+      ],
+      "check": "Ульты Antal и Liino готовят окно урона. На (11.5) именно ОБЫЧНЫЙ Argent Darkness Cowed (после Bolt Rush (9.5) без нового Combo), что создаёт Vulnerability для Stars Shifted #3 на (13). Bolt Rush (13.5) поглощает 1 Electric → Electrification II (условно).",
+      "extra": "Finisher Arcane на (12.5) возможен только при Stagger; 12-секундный Antal Amp нужно проверить относительно последнего удара Argent U, а Liino U может затронуть Electrification delayed hit.",
+      "artsCheckpoints": [
+        {
+          "id": "c-argent-electric-pre",
+          "anchor": {
+            "actionIndex": 6,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 0,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "Целевое состояние перед действием (построено по live-kit), не измерено. Third Stars Shifted triggers from ordinary Darkness Cowed."
+          }
+        },
+        {
+          "id": "c-argent-electric-post",
+          "anchor": {
+            "actionIndex": 6,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "Сценарное состояние после действия, НЕ observed. Third Stars Shifted triggers from ordinary Darkness Cowed."
+          },
+          "condition": "Только если целевая Infliction electric действительно применена к той же цели без интерференции; проверять cooldown и ownership.",
+          "dependsOn": "c-argent-electric-pre"
+        },
+        {
+          "id": "c-bolt-post",
+          "anchor": {
+            "actionIndex": 7,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "reaction",
+            "reaction": "electrification",
+            "level": 2,
+            "assessment": "conditional"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "Third Bolt Rush consumes one Electric, theoretical Electrification II; +2 Sunderization."
+          },
+          "condition": "Только if Electric I survives and Bolt Rush actually consumes exactly one Electric stack."
+        }
+      ],
+      "physicalCheckpoints": [
+        {
+          "id": "c-ordinary-lift",
+          "anchor": {
+            "actionIndex": 3,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "effect",
+            "effect": "lift",
+            "assessment": "conditional"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "Ordinary Darkness Cowed at builder (11.5), not Bolt Rush."
+          },
+          "condition": "Only if former Bolt Rush was spent at 9.5 and target susceptible to Lift."
+        },
+        {
+          "id": "c-ordinary-vulnerability",
+          "anchor": {
+            "actionIndex": 3,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 1,
+            "assessment": "conditional"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "The Lift-associated Vulnerability can open Argent Combo (13)."
+          },
+          "condition": "Only if this normal BS generates a new Vulnerability after Stars Shifted cooldown; target starting physical stack count assumed 0."
+        }
+      ]
+    },
+    "hyperNature": {
+      "person": "arcane",
+      "title": "04 · Nature IV и финальный Crush",
+      "sub": "Builder 14–16",
+      "actions": [
+        {
+          "text": "FS Arcane #12 · полная BA-цепочка",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "arcane"
+          },
+          "hint": "FS = complete Basic Attack chain until Final Strike, not a single Basic Attack. Builder positions aren't seconds."
+        },
+        {
+          "text": "(14.5) Arcane Jadecrushing Grid → Nature I",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "arcane"
+          },
+          "hint": "Nature Infliction on current target, assuming no other element consumes it."
+        },
+        {
+          "text": "(15) Arcane U1 · Gloompurger Array → Nature II",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate",
+            "actor": "arcane"
+          },
+          "hint": "WILL form FIRST Ultimate phase copies existing Nature I; DO NOT invent phase 2 here.",
+          "optional": true,
+          "condition": "Только если Arcane WILL>INT и Nature I активен; это именно первая стадия Ultimate."
+        },
+        {
+          "text": "(15.5) Arcane WILL К #3 → Nature III",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "arcane"
+          },
+          "hint": "Copy Nature Infliction on that target.",
+          "optional": true,
+          "condition": "Только если Combo готово и Nature II на цели."
+        },
+        {
+          "text": "(15.5) Antal К #3 → Nature IV",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "antal"
+          },
+          "hint": "Focus still active; copies MOST RECENT Nature, not Electric.",
+          "optional": true,
+          "condition": "Только если Focus активен, Combo Antal вне cooldown, последним наложена Nature III."
+        },
+        {
+          "text": "(16) Argent Flow U → Electrification IV → Crush / Sunderization Detonation",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate",
+            "actor": "argent-flow"
+          },
+          "hint": "Own reconstruction: his Electric application onto Nature IV creates Electrification IV, then his Ultimate applies Crush. Confirm real hit order and ownership.",
+          "optional": true,
+          "condition": "Только если Nature IV дожила до попадания Electric от Ultimate, имеются Sunderization и Vulnerability на этой же цели, Ultimate готов."
+        }
+      ],
+      "check": "Arcane BS → Nature I, WILL U1 → II, Arcane Combo → III, Antal Combo → IV. Argent Ultimate должен наложить Electric поверх Nature IV и завершиться Crush по накопленной Sunderization. Это механическая гипотеза, не измеренный trace.",
+      "extra": "Arcane Ultimate phase 2 здесь отсутствует; для неё нужны два FS/Finisher во время массива. Sunderization условно 4+1+2+4=11 до взрыва, но число не подтверждено Prydwen/тестом.",
+      "artsCheckpoints": [
+        {
+          "id": "d-nature-bs-pre",
+          "anchor": {
+            "actionIndex": 1,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "nature",
+            "stacks": 0,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
+            "note": "Целевое состояние перед действием (построено по live-kit), не измерено. Own reconstruction: assumes fresh Nature status on same target."
+          }
+        },
+        {
+          "id": "d-nature-bs-post",
+          "anchor": {
+            "actionIndex": 1,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "nature",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
+            "note": "Сценарное состояние после действия, НЕ observed. Own reconstruction: assumes fresh Nature status on same target."
+          },
+          "condition": "Только если целевая Infliction nature действительно применена к той же цели без интерференции; проверять cooldown и ownership.",
+          "dependsOn": "d-nature-bs-pre"
+        },
+        {
+          "id": "d-nature-ult-pre",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "nature",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
+            "note": "Целевое состояние перед действием (построено по live-kit), не измерено. WILL Ultimate phase one copies Nature."
+          }
+        },
+        {
+          "id": "d-nature-ult-post",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "nature",
+            "stacks": 2,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
+            "note": "Сценарное состояние после действия, НЕ observed. WILL Ultimate phase one copies Nature."
+          },
+          "condition": "Только если целевая Infliction nature действительно применена к той же цели без интерференции; проверять cooldown и ownership.",
+          "dependsOn": "d-nature-ult-pre"
+        },
+        {
+          "id": "d-nature-arcane-pre",
+          "anchor": {
+            "actionIndex": 3,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "nature",
+            "stacks": 2,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
+            "note": "Целевое состояние перед действием (построено по live-kit), не измерено. WILL Combo duplicates Nature."
+          }
+        },
+        {
+          "id": "d-nature-arcane-post",
+          "anchor": {
+            "actionIndex": 3,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "nature",
+            "stacks": 3,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
+            "note": "Сценарное состояние после действия, НЕ observed. WILL Combo duplicates Nature."
+          },
+          "condition": "Только если целевая Infliction nature действительно применена к той же цели без интерференции; проверять cooldown и ownership.",
+          "dependsOn": "d-nature-arcane-pre"
+        },
+        {
+          "id": "d-nature-antal-pre",
+          "anchor": {
+            "actionIndex": 4,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "nature",
+            "stacks": 3,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/antal",
+            "note": "Целевое состояние перед действием (построено по live-kit), не измерено. Antal copies latest Nature on Focus target."
+          }
+        },
+        {
+          "id": "d-nature-antal-post",
+          "anchor": {
+            "actionIndex": 4,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "nature",
+            "stacks": 4,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://www.prydwen.gg/arknights-endfield/characters/antal",
+            "note": "Сценарное состояние после действия, НЕ observed. Antal copies latest Nature on Focus target."
+          },
+          "condition": "Только если целевая Infliction nature действительно применена к той же цели без интерференции; проверять cooldown и ownership.",
+          "dependsOn": "d-nature-antal-pre"
+        },
+        {
+          "id": "d-final-nature-pre",
+          "anchor": {
+            "actionIndex": 5,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "nature",
+            "stacks": 4,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Arts_Reaction",
+            "note": "Nature IV required for last Electrification IV; source screenshot numbers not rechecked."
+          }
+        },
+        {
+          "id": "d-final-electric-post",
+          "anchor": {
+            "actionIndex": 5,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "reaction",
+            "reaction": "electrification",
+            "level": 4,
+            "assessment": "conditional"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Arts_Reaction",
+            "note": "Own theory: Argent Ultimate Electric application triggers Electrification IV from Nature IV before Crush."
+          },
+          "condition": "Only if all 4 Nature stacks survive until Ultimate's Electric hit, no intervening reaction and correct timing.",
+          "dependsOn": "d-final-nature-pre"
+        }
+      ],
+      "physicalCheckpoints": [
+        {
+          "id": "d-final-crush",
+          "anchor": {
+            "actionIndex": 5,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "effect",
+            "effect": "crush",
+            "assessment": "conditional"
+          },
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Minghe",
+            "note": "Ultimate ground hit applies Crush and detonates existing Sunderization."
+          },
+          "condition": "Only if Ultimate reaches final ground strike, target is Vulnerable and has Sunderization; timing/ownership needs combat verification."
+        }
+      ]
+    },
+    "hyperRecovery": {
+      "person": "argent-flow",
+      "title": "Повтор не верифицирован",
+      "sub": "После Crush заново подготовить ресурсы",
+      "actions": [
+        {
+          "text": "FS до восстановления SP и cooldown",
+          "tone": "flow",
+          "input": {
+            "kind": "final-strike",
+            "actor": "arcane"
+          },
+          "hint": "Не мгновенный бесконечный цикл; при новой цели/волне заново собрать Nature/Electric и Sunderization."
+        }
+      ],
+      "check": "Это не проверенный sustained loop. Убедиться в реальных SP, Combo cooldown, UGE Antal/Liino, статусах и target reset.",
+      "extra": "Условные позиции 0–16 из источника не описывают реальные секунды."
+    }
+  }
+}
