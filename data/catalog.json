@@ -178,7 +178,7 @@
         {
           "id": "argent-flow-arcane-gilberta-liino",
           "name": "Argent Flow / WILL Arcane / Gilberta / Liino",
-          "subtitle": "Buildup · Prepared burst · Cake Buster (provisional)",
+          "subtitle": "Накопление + Burst · Cake Buster (provisional)",
           "characters": [
             {
               "id": "argent-flow",
@@ -206,18 +206,13 @@
             }
           ],
           "status": "research-adapted",
-          "statusDescription": "Три выбранных preliminary routes, SP/CD/trigger validation и реальное время не проверены; hot start сохранён по Cake Buster.",
+          "statusDescription": "Два предварительных маршрута: полный conditional buildup→burst и отдельный Cake Buster hot start; SP/CD/trigger и реальный timing ещё не проверены.",
           "gameVersion": "Global live 1.6 (2026-11-08)",
           "source": "https://github.com/maxvfk/Games/blob/main/guides/arknights-endfield/ARGENT_FLOW_ARCANE_GILBERTA_LIINO_ROTATIONS.md",
           "variants": [
             {
               "id": "buildup",
-              "name": "Накопление",
-              "verification": "experimental"
-            },
-            {
-              "id": "prepared",
-              "name": "Burst после накопления",
+              "name": "Накопление + Burst",
               "verification": "experimental"
             },
             {
