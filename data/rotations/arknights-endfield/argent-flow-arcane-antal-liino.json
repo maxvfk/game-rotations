@@ -52,8 +52,8 @@
       "id": "prydwen-hyper",
       "label": "Prydwen Hyper",
       "sub": "Electric → Corrosion → Amp → Nature IV",
-      "type": "Prydwen · partial reconstruction",
-      "intro": "Четырёхфазная расшифровка ранее обсуждённого скриншота Prydwen: (9.5) Bolt Rush, (11.5) ОБЫЧНЫЙ Darkness Cowed. Позиции 0–16 — не секунды. Arts/Physical — условные checkpoints по live-kit, NOT observed/verified.",
+      "type": "Prydwen Hyper",
+      "intro": "ПРЕДВАРИТЕЛЬНАЯ реконструкция Prydwen: 4 фазы, (9.5) Bolt Rush, (11.5) обычный Darkness Cowed. 0–16 — условные координаты Builder, не секунды; исходный скриншот повторно не проверен. Arts/Physical annotations — модельные цели, не combat observations.",
       "verification": "partial",
       "opener": [
         "hyperElectric",
