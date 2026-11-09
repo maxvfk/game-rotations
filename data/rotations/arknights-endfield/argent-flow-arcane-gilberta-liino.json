@@ -376,12 +376,12 @@
             "kind": "infliction",
             "element": "electric",
             "stacks": 1,
-            "assessment": "conditional"
+            "assessment": "target"
           },
           "evidence": {
             "basis": "live-mechanic",
             "url": "https://endfield.wiki.gg/wiki/Minghe",
-            "note": "Stars Shifted накладывает один Electric после нового Vulnerability; здесь показано начало очередного пакета при отсутствии Electric после предыдущего Bolt Rush. После попадания. Число — цель при выполнении условий, не измерение combat footage."
+            "note": "Stars Shifted накладывает один Electric после нового Vulnerability; здесь показано начало очередного пакета при отсутствии Electric после предыдущего Bolt Rush. После попадания. Число — цель при выполнении условий, не измерение combat footage. Статус target — условная числовая цель, не observed; предпосылки перечислены в condition."
           },
           "condition": "Только если новая Vulnerability появилась после восстановления Combo, прошлый Bolt Rush поглотил Electric, и нет чужих инфликций на цели.",
           "dependsOn": "repeat-argent-before"
@@ -416,12 +416,12 @@
             "kind": "infliction",
             "element": "electric",
             "stacks": 2,
-            "assessment": "conditional"
+            "assessment": "target"
           },
           "evidence": {
             "basis": "live-mechanic",
             "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
-            "note": "WILL Arcane Combo копирует Electric I на том же противнике для двухстакового пакета. После попадания. Число — цель при выполнении условий, не измерение combat footage."
+            "note": "WILL Arcane Combo копирует Electric I на том же противнике для двухстакового пакета. После попадания. Число — цель при выполнении условий, не измерение combat footage. Статус target — условная числовая цель, не observed; предпосылки перечислены в condition."
           },
           "condition": "Только когда Arcane находится в WILL form (WILL>INT), Combo готово и предыдущее Electric I ещё активно.",
           "dependsOn": "repeat-arcane-before"
@@ -573,12 +573,12 @@
             "kind": "infliction",
             "element": "electric",
             "stacks": 1,
-            "assessment": "conditional"
+            "assessment": "target"
           },
           "evidence": {
             "basis": "live-mechanic",
             "url": "https://endfield.wiki.gg/wiki/Minghe",
-            "note": "Дополнительный Electric-пакет начинается только при его выборе, после расходования прошлых Electric. После попадания. Число — цель при выполнении условий, не измерение combat footage."
+            "note": "Дополнительный Electric-пакет начинается только при его выборе, после расходования прошлых Electric. После попадания. Число — цель при выполнении условий, не измерение combat footage. Статус target — условная числовая цель, не observed; предпосылки перечислены в condition."
           },
           "condition": "Только если дополнительный пакет выбран, Combo Argent открыто новой Vulnerability и на цели нет оставшихся Electric Infliction.",
           "dependsOn": "burst-argent-extra-before"
@@ -613,12 +613,12 @@
             "kind": "infliction",
             "element": "electric",
             "stacks": 2,
-            "assessment": "conditional"
+            "assessment": "target"
           },
           "evidence": {
             "basis": "live-mechanic",
             "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
-            "note": "WILL Arcane копирует Electric I внутри выбранного дополнительного пакета. После попадания. Число — цель при выполнении условий, не измерение combat footage."
+            "note": "WILL Arcane копирует Electric I внутри выбранного дополнительного пакета. После попадания. Число — цель при выполнении условий, не измерение combat footage. Статус target — условная числовая цель, не observed; предпосылки перечислены в condition."
           },
           "condition": "Только если дополнительный пакет выбран, WILL>INT, предыдущее Electric I сохранилось и Arcane Combo доступно.",
           "dependsOn": "burst-arcane-extra-before"
@@ -654,12 +654,12 @@
             "kind": "infliction",
             "element": "nature",
             "stacks": 1,
-            "assessment": "conditional"
+            "assessment": "target"
           },
           "evidence": {
             "basis": "live-mechanic",
             "url": "https://www.prydwen.gg/arknights-endfield/characters/gilberta",
-            "note": "Ultimate Gilberta при попадании добавляет Nature Infliction; наличие предыдущих Nature/Electric меняет результат и может дать Corrosion вместо Nature I. Число — цель при выполнении условий, не измерение combat footage."
+            "note": "Ultimate Gilberta при попадании добавляет Nature Infliction; наличие предыдущих Nature/Electric меняет результат и может дать Corrosion вместо Nature I. Число — цель при выполнении условий, не измерение combat footage. Статус target — условная числовая цель, не observed; предпосылки перечислены в condition."
           },
           "condition": "Только если перед попаданием Ultimate на цели нет Electric и Nature Infliction и Nature-аппликация не поглощается иной реакцией."
         },
@@ -825,12 +825,12 @@
             "kind": "infliction",
             "element": "electric",
             "stacks": 1,
-            "assessment": "conditional"
+            "assessment": "target"
           },
           "evidence": {
             "basis": "live-mechanic",
             "url": "https://endfield.wiki.gg/wiki/Minghe",
-            "note": "После Stars Shifted условный Electric I если на цели нет прежних Electric; hot pre-state исходного ролика неизвестен. После попадания. Число — цель при выполнении условий, не измерение combat footage."
+            "note": "После Stars Shifted условный Electric I если на цели нет прежних Electric; hot pre-state исходного ролика неизвестен. После попадания. Число — цель при выполнении условий, не измерение combat footage. Статус target — условная числовая цель, не observed; предпосылки перечислены в condition."
           },
           "condition": "Только если новый Stars Shifted попал по цели без существующих Electric, нет уже наложенного Nature; при ином pre-state число отличается.",
           "dependsOn": "cake-argent-before"
@@ -865,12 +865,12 @@
             "kind": "infliction",
             "element": "electric",
             "stacks": 2,
-            "assessment": "conditional"
+            "assessment": "target"
           },
           "evidence": {
             "basis": "live-mechanic",
             "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
-            "note": "Arcane WILL Combo наращивает Electric при сохраняющемся предыдущем стака. После попадания. Число — цель при выполнении условий, не измерение combat footage."
+            "note": "Arcane WILL Combo наращивает Electric при сохраняющемся предыдущем стака. После попадания. Число — цель при выполнении условий, не измерение combat footage. Статус target — условная числовая цель, не observed; предпосылки перечислены в condition."
           },
           "condition": "Только если Electric I от Argent Combo ещё доступен и WILL>INT; на цели нет Nature, поглощающего Electric.",
           "dependsOn": "cake-arcane-before"
@@ -906,12 +906,12 @@
             "kind": "infliction",
             "element": "nature",
             "stacks": 1,
-            "assessment": "conditional"
+            "assessment": "target"
           },
           "evidence": {
             "basis": "live-mechanic",
             "url": "https://www.prydwen.gg/arknights-endfield/characters/gilberta",
-            "note": "Ultimate Gilberta применяет Nature при попадании, которая при оставшемся Electric может вызвать Corrosion вместо Nature I. Число — цель при выполнении условий, не измерение combat footage."
+            "note": "Ultimate Gilberta применяет Nature при попадании, которая при оставшемся Electric может вызвать Corrosion вместо Nature I. Число — цель при выполнении условий, не измерение combat footage. Статус target — условная числовая цель, не observed; предпосылки перечислены в condition."
           },
           "condition": "Только при отсутствии Electric и Nature на цели перед попаданием Ultimate; стартовый hot state требует проверки."
         },
@@ -945,12 +945,12 @@
             "kind": "infliction",
             "element": "nature",
             "stacks": 2,
-            "assessment": "conditional"
+            "assessment": "target"
           },
           "evidence": {
             "basis": "live-mechanic",
             "url": "https://www.prydwen.gg/arknights-endfield/characters/arcane",
-            "note": "Arcane Battle Skill добавляет Nature, если Gilberta Ultimate уже наложила Nature I и между ними не было другой реакции. После попадания. Число — цель при выполнении условий, не измерение combat footage."
+            "note": "Arcane Battle Skill добавляет Nature, если Gilberta Ultimate уже наложила Nature I и между ними не было другой реакции. После попадания. Число — цель при выполнении условий, не измерение combat footage. Статус target — условная числовая цель, не observed; предпосылки перечислены в condition."
           },
           "condition": "Только если Gilberta Ultimate создала Nature I, и на цели не появился Electric между попаданиями, включая delayed Liino Ultimate.",
           "dependsOn": "cake-arcane-nature-before"
