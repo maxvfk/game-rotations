@@ -15,8 +15,14 @@ test('Argent Flow Arts: unified cold buildup to burst and separate Cake Buster h
  await expect(page.locator('.action.arts-annotated')).toHaveCount(12);
  const sunder=page.locator('.stage').first().locator('.action.sunderization-annotated');
  await expect(sunder).toHaveCount(1);
+ await expect(page.locator('.sunderization-annotated')).toHaveCount(4);
+ await expect(page.locator('.stage').nth(1).locator('.sunderization-gain-count')).toHaveText('+3');
+ await expect(page.locator('.stage').nth(2).locator('.sunderization-gain-count')).toHaveText(['+3','+?']);
+ // Liino Ultimate, Gilberta Ultimate, Arcane Ultimate must NOT create Argent Sunderization.
+ await expect(page.locator('.action').filter({hasText:'Cosmovoice: Amp'}).locator('.sunderization-gain')).toHaveCount(0);
+ await expect(page.locator('.action').filter({hasText:'Arts Susceptibility: открыть'}).locator('.sunderization-gain')).toHaveCount(0);
  await expect(sunder.locator('.sunderization-gain-count')).toHaveText('+3');
- await expect(sunder.locator('.sunderization-gain')).toHaveAttribute('aria-label',/условный прирост, не итог/);
+ await expect(sunder.locator('.sunderization-gain')).toHaveAttribute('aria-label',/условный прирост \+3 \(не суммарные стаки\)/);
  const sunderIcon=sunder.locator('.sunderization-gain img');
  await expect(sunderIcon).toHaveAttribute('src',/effects\/arknights-endfield\/sunderization\.webp$/);
  await sunderIcon.scrollIntoViewIfNeeded();
@@ -45,7 +51,7 @@ test('Argent Flow Arts: unified cold buildup to burst and separate Cake Buster h
  await expect(page.locator('.action').filter({hasText:'Если доп. пакет выбран: WILL Arcane'}).locator('.action-optional')).toHaveCount(0);
  await expect(page.locator('.action').filter({hasText:'Если доп. пакет выбран: Bolt Rush'}).locator('.action-optional')).toHaveCount(0);
  await page.locator('#layout-compact').click();
- await expect(page.locator('.sunderization-gain-count')).toHaveText('+3');
+ await expect(page.locator('.sunderization-gain-count')).toHaveText(['+3','+3','+3','+?']);
  await page.setViewportSize({width:320,height:740});
  const overflow=await page.evaluate(()=>{
   const viewport=document.documentElement.clientWidth;
@@ -61,6 +67,8 @@ test('Argent Flow Arts: unified cold buildup to burst and separate Cake Buster h
  await expect(page.locator('#tabs button')).toHaveCount(2);
  await expect(page.locator('.action')).toHaveCount(9);
  await expect(page.locator('.action.arts-annotated')).toHaveCount(7);
+ await expect(page.locator('.sunderization-gain-count')).toHaveText(['+?','+?']);
+ await expect(page.locator('.sunderization-annotated')).toHaveCount(2);
  await expect(page.locator('.action.optional-action')).toHaveCount(0);
  await expect(page.locator('.action-label').filter({hasText:'Nature Infliction'})).toHaveCount(1);
  await page.locator('#layout-compact').click();
@@ -80,7 +88,7 @@ test('Argent Flow: Arts toggle persists, local portraits work in offline PWA',as
  await page.locator('#arts-visibility-toggle').click();
  await expect(page.locator('.arts-action-annotations')).toHaveCount(0);
  // Distinct Sunderization remains visible when Arts annotations are hidden.
- await expect(page.locator('.sunderization-gain')).toHaveCount(1);
+ await expect(page.locator('.sunderization-gain')).toHaveCount(4);
  await page.locator('#arts-visibility-toggle').click();
  await expect(page.locator('.arts-action-annotations')).toHaveCount(12);
  await page.evaluate(async()=>{await navigator.serviceWorker.ready});
@@ -91,9 +99,11 @@ test('Argent Flow: Arts toggle persists, local portraits work in offline PWA',as
  await expect(page.locator('.action.arts-annotated')).toHaveCount(12);
  await expect(page.locator('.stage')).toHaveCount(3);
  const sunderOffline=page.locator('.sunderization-gain img');
- await expect(sunderOffline).toHaveCount(1);
- await sunderOffline.scrollIntoViewIfNeeded();
- await expect.poll(()=>sunderOffline.evaluate(i=>(i as HTMLImageElement).naturalWidth)).toBeGreaterThan(1);
+ await expect(sunderOffline).toHaveCount(4);
+ await sunderOffline.first().scrollIntoViewIfNeeded();
+ for(const index of [0,1,2,3]){
+  await expect.poll(()=>sunderOffline.nth(index).evaluate(i=>(i as HTMLImageElement).naturalWidth)).toBeGreaterThan(1);
+ }
  const icon=page.locator('.action-portrait[src$="argent-flow.png"]').first();
  await icon.scrollIntoViewIfNeeded();
  await expect.poll(()=>icon.evaluate(el=>(el as HTMLImageElement).naturalWidth)).toBe(112);
