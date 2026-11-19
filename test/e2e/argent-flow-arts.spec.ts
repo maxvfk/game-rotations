@@ -47,7 +47,15 @@ test('Argent Flow Arts: unified cold buildup to burst and separate Cake Buster h
  await page.locator('#layout-compact').click();
  await expect(page.locator('.sunderization-gain-count')).toHaveText('+3');
  await page.setViewportSize({width:320,height:740});
- expect(await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
+ const overflow=await page.evaluate(()=>{
+  const viewport=document.documentElement.clientWidth;
+  const elements=Array.from(document.querySelectorAll<HTMLElement>('.rotation-app *')).filter(node=>{
+   const rect=node.getBoundingClientRect();
+   return rect.width>0&&rect.right>viewport+1&&getComputedStyle(node).visibility!=='hidden';
+  }).slice(0,10).map(node=>({tag:node.tagName,cls:node.className,text:node.textContent?.slice(0,40),right:Math.round(node.getBoundingClientRect().right)}));
+  return {pixels:document.documentElement.scrollWidth-viewport,elements};
+ });
+ expect(overflow.pixels,JSON.stringify(overflow.elements)).toBeLessThanOrEqual(1);
  await page.screenshot({path:testInfo.outputPath('argent-sunderization-compact-320px.png'),fullPage:true,animations:'disabled'});
  await tab(page,'Cake Buster').click();
  await expect(page.locator('#tabs button')).toHaveCount(2);
