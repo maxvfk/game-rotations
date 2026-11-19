@@ -1,5 +1,5 @@
 export type InputKind = 'intro' | 'outro' | 'swap' | 'basic' | 'heavy' | 'skill' | 'ultimate' | 'echo' | 'dodge' | 'auto' | 'combo' | 'final-strike' | 'finisher' | 'dive';
-export type Action = {text:string;tone:'normal'|'key'|'vital'|'swap'|'flow'|'sensitive';input:{kind:InputKind;count?:number;repeat?:boolean;target?:string;actor?:string;press?:'tap'|'hold'};optional?:boolean;condition?:string;hint?:string;sunderization?:{gain:1|2|3|4;assessment:'conditional';condition:string;source:string}};
+export type Action = {text:string;tone:'normal'|'key'|'vital'|'swap'|'flow'|'sensitive';input:{kind:InputKind;count?:number;repeat?:boolean;target?:string;actor?:string;press?:'tap'|'hold'};optional?:boolean;condition?:string;hint?:string;sunderization?:{gain:1|2|3|4|null;assessment:'conditional';condition:string;source:string}};
 // Semantic snapshots only. Presentation (PNG paths, CSS sizes, ring/level rendering)
 // belongs to src/arts-indicators.ts and can be replaced without rewriting rotations.
 export type ArtsCheckpointStatus =

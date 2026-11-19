@@ -5,7 +5,7 @@
   "title": "Argent Flow / WILL Arcane / Gilberta / Liino",
   "gameVersion": "Global live 1.6 (2026-11-08)",
   "source": "https://github.com/maxvfk/Games/blob/main/guides/arknights-endfield/ARGENT_FLOW_ARCANE_GILBERTA_LIINO_ROTATIONS.md",
-  "verificationNote": "Выбраны ДВА самостоятельных UI-варианта: (1) Накопление + Burst — единый experimental route из coldBuildup → 0–3 условных повторов buildupRepeat → preparedBurst, с восстановлением SP/CD/UGE, а не гарантированным endless-loop; (2) Cake Buster — исходный source hot start из описания ролика 06.11.2026, partial. Обе последовательности не validated optimal; нет полного SP/CD/UGE trace и независимого подтверждения реального timing. Arts target/reaction — условные результаты live-kit, не measured combat observations. Все источники/таймкоды — в Games guide. Arts расширены на повторный пакет, подготовленный burst и Cake Buster: numeric checkpoints относятся к локальным событиям с условиями, а не к непрерывно измеренной сумме Sunderization. Liino Ultimate delayed trigger и Gilberta Ultimate Nature/Corrosion branching имеют неопределённые уровни. Пропускаемые действия разнесены по смыслу: 1 optional gate для доп. пакета, его 2 дочерних шага обязательны только если gate выбран; WILL Arcane Combo в полном 2-Electric repeat — обязательный шаг. Другие optional (SP FS, Liino/Gilberta Combo, альтернативы Vulnerability, Arcane U после burst) реально можно пропустить. Gameplay status не повышен. Пробный Sunderization +3 на первом Bolt Rush coldBuildup: оригинальный игровой sprite, условный прирост (не измеренный total); остальные действия не аннотированы и это не означает нулевых стаков.",
+  "verificationNote": "Выбраны ДВА самостоятельных UI-варианта: (1) Накопление + Burst — единый experimental route из coldBuildup → 0–3 условных повторов buildupRepeat → preparedBurst, с восстановлением SP/CD/UGE, а не гарантированным endless-loop; (2) Cake Buster — исходный source hot start из описания ролика 06.11.2026, partial. Обе последовательности не validated optimal; нет полного SP/CD/UGE trace и независимого подтверждения реального timing. Arts target/reaction — условные результаты live-kit, не measured combat observations. Все источники/таймкоды — в Games guide. Arts расширены на повторный пакет, подготовленный burst и Cake Buster: numeric checkpoints относятся к локальным событиям с условиями, а не к непрерывно измеренной сумме Sunderization. Liino Ultimate delayed trigger и Gilberta Ultimate Nature/Corrosion branching имеют неопределённые уровни. Пропускаемые действия разнесены по смыслу: 1 optional gate для доп. пакета, его 2 дочерних шага обязательны только если gate выбран; WILL Arcane Combo в полном 2-Electric repeat — обязательный шаг. Другие optional (SP FS, Liino/Gilberta Combo, альтернативы Vulnerability, Arcane U после burst) реально можно пропустить. Gameplay status не повышен. Пробный Sunderization +3 на первом Bolt Rush coldBuildup: оригинальный игровой sprite, условный прирост (не измеренный total); остальные действия не аннотированы и это не означает нулевых стаков. Все Argent-owned источники Sunderization в обеих вкладках снабжены отдельными action-local иконками дельты +N/ +?; Liino Electrification не добавляет Argent Sunderization. На Ultimate — условный прирост ДО Crush, который затем детонирует/сбрасывает стаки. Running total 0–12 не моделируется.",
   "controls": "arknights-endfield",
   "characters": [
     {
@@ -346,7 +346,13 @@
             "kind": "skill",
             "actor": "argent-flow"
           },
-          "hint": "Для базового 2×Electric-пакета — ожидаемое +3 Sunderization на той же цели. При Electric I вместо II получится Electrification II и +2. Суммарные накопленные стаки нельзя гарантировать: следить за реальным временем жизни 60 c, текущим target, SP и cooldown."
+          "hint": "Для базового 2×Electric-пакета — ожидаемое +3 Sunderization на той же цели. При Electric I вместо II получится Electrification II и +2. Суммарные накопленные стаки нельзя гарантировать: следить за реальным временем жизни 60 c, текущим target, SP и cooldown.",
+          "sunderization": {
+            "gain": 3,
+            "assessment": "conditional",
+            "condition": "Только если этот повторный Bolt Rush поглотил ровно Electric II и сам наложил Electrification III на ту же живую цель. Повтор этапа не гарантирован; +3 — за одно попадание, а не общий накопленный счёт.",
+            "source": "https://endfield.wiki.gg/wiki/Argent_Flow"
+          }
         }
       ],
       "check": "Не обязательный фиксированный второй пакет: повторить данный этап нужное число раз лишь при реальных trigger/cooldown, 100 SP для Bolt Rush и новых Electric. Если Sunderization уже хватает, пропустить этот этап и перейти к Burst. Sunderization хранится на той же живой цели до 60 s, до Crush; 3→6→9→12 — сценарий, а не тайминг. Полный пакет этого этапа использует WILL Arcane Combo между Stars Shifted и Bolt Rush; если он недоступен, не считать это тем же 2-stack пакетом.",
@@ -495,7 +501,13 @@
             "kind": "skill",
             "actor": "argent-flow"
           },
-          "hint": "Требуется для этого пакета: Если усиленный Battle Skill доступен, есть SP, и новый пакет окупается до окончания коротких buff windows. Исполнять лишь если выбран дополнительный Electric-пакет. При отказе от пакета пропустить оба последующих шага."
+          "hint": "Требуется для этого пакета: Если усиленный Battle Skill доступен, есть SP, и новый пакет окупается до окончания коротких buff windows. Исполнять лишь если выбран дополнительный Electric-пакет. При отказе от пакета пропустить оба последующих шага.",
+          "sunderization": {
+            "gain": 3,
+            "assessment": "conditional",
+            "condition": "Только если дополнительный трёхшаговый пакет был выбран, перед Bolt Rush остались Electric II и Argent Flow сам наложил Electrification III. Если пакет пропущен, этого прироста нет.",
+            "source": "https://endfield.wiki.gg/wiki/Argent_Flow"
+          }
         },
         {
           "text": "Arts Susceptibility: открыть финальное окно",
@@ -513,7 +525,13 @@
             "kind": "ultimate",
             "actor": "argent-flow"
           },
-          "hint": "Нужна Vulnerability на цели и накопленные Sunderization stacks; именно Crush взрывает их."
+          "hint": "Нужна Vulnerability на цели и накопленные Sunderization stacks; именно Crush взрывает их.",
+          "sunderization": {
+            "gain": null,
+            "assessment": "conditional",
+            "condition": "Только если Electric Infliction от Argent Ultimate встретил оставшуюся Nature на той же цели и вызвал Electrification от самого Argent Flow до завершающего Crush. Уровень не восстановлен; Crush затем расходует все Sunderization.",
+            "source": "https://endfield.wiki.gg/wiki/Argent_Flow"
+          }
         },
         {
           "text": "Ultimate Arcane: следующий цикл / дополнительный урон",
@@ -739,7 +757,13 @@
             "kind": "skill",
             "actor": "argent-flow"
           },
-          "hint": "Результат Electrification зависит от фактических stacks; не приписывать гарантированные III/IV для hot start."
+          "hint": "Результат Electrification зависит от фактических stacks; не приписывать гарантированные III/IV для hot start.",
+          "sunderization": {
+            "gain": null,
+            "assessment": "conditional",
+            "condition": "Cake Buster — hot start без проверенного исходного состояния: Bolt Rush даёт Sunderization лишь при фактическом наложении собственной Electrification. При ровно Electric II возможен +3, но исходное количество стаков неизвестно.",
+            "source": "https://endfield.wiki.gg/wiki/Argent_Flow"
+          }
         },
         {
           "text": "Arts Susceptibility перед финальным ударом",
@@ -766,7 +790,13 @@
             "kind": "ultimate",
             "actor": "argent-flow"
           },
-          "hint": "Подготовленные на этой цели Sunderization; в источнике это ключевой взрыв."
+          "hint": "Подготовленные на этой цели Sunderization; в источнике это ключевой взрыв.",
+          "sunderization": {
+            "gain": null,
+            "assessment": "conditional",
+            "condition": "Только если Electric от Argent Ultimate взаимодействует с сохранившейся Nature после Gilberta/Arcane и сам вызывает Electrification до Crush. Из-за неизвестного hot-start, Liino delayed proc и смены Arts уровня точный прирост не выводим.",
+            "source": "https://endfield.wiki.gg/wiki/Argent_Flow"
+          }
         },
         {
           "text": "Ultimate Arcane после burst",

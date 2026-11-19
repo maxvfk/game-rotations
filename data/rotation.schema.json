@@ -277,7 +277,10 @@
                     ],
                     "properties": {
                       "gain": {
-                        "type": "integer",
+                        "type": [
+                          "integer",
+                          "null"
+                        ],
                         "minimum": 1,
                         "maximum": 4
                       },
