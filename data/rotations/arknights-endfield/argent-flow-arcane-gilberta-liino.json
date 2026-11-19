@@ -5,7 +5,7 @@
   "title": "Argent Flow / WILL Arcane / Gilberta / Liino",
   "gameVersion": "Global live 1.6 (2026-11-08)",
   "source": "https://github.com/maxvfk/Games/blob/main/guides/arknights-endfield/ARGENT_FLOW_ARCANE_GILBERTA_LIINO_ROTATIONS.md",
-  "verificationNote": "Выбраны ДВА самостоятельных UI-варианта: (1) Накопление + Burst — единый experimental route из coldBuildup → 0–3 условных повторов buildupRepeat → preparedBurst, с восстановлением SP/CD/UGE, а не гарантированным endless-loop; (2) Cake Buster — исходный source hot start из описания ролика 06.11.2026, partial. Обе последовательности не validated optimal; нет полного SP/CD/UGE trace и независимого подтверждения реального timing. Arts target/reaction — условные результаты live-kit, не measured combat observations. Все источники/таймкоды — в Games guide. Arts расширены на повторный пакет, подготовленный burst и Cake Buster: numeric checkpoints относятся к локальным событиям с условиями, а не к непрерывно измеренной сумме Sunderization. Liino Ultimate delayed trigger и Gilberta Ultimate Nature/Corrosion branching имеют неопределённые уровни. Пропускаемые действия разнесены по смыслу: 1 optional gate для доп. пакета, его 2 дочерних шага обязательны только если gate выбран; WILL Arcane Combo в полном 2-Electric repeat — обязательный шаг. Другие optional (SP FS, Liino/Gilberta Combo, альтернативы Vulnerability, Arcane U после burst) реально можно пропустить. Gameplay status не повышен.",
+  "verificationNote": "Выбраны ДВА самостоятельных UI-варианта: (1) Накопление + Burst — единый experimental route из coldBuildup → 0–3 условных повторов buildupRepeat → preparedBurst, с восстановлением SP/CD/UGE, а не гарантированным endless-loop; (2) Cake Buster — исходный source hot start из описания ролика 06.11.2026, partial. Обе последовательности не validated optimal; нет полного SP/CD/UGE trace и независимого подтверждения реального timing. Arts target/reaction — условные результаты live-kit, не measured combat observations. Все источники/таймкоды — в Games guide. Arts расширены на повторный пакет, подготовленный burst и Cake Buster: numeric checkpoints относятся к локальным событиям с условиями, а не к непрерывно измеренной сумме Sunderization. Liino Ultimate delayed trigger и Gilberta Ultimate Nature/Corrosion branching имеют неопределённые уровни. Пропускаемые действия разнесены по смыслу: 1 optional gate для доп. пакета, его 2 дочерних шага обязательны только если gate выбран; WILL Arcane Combo в полном 2-Electric repeat — обязательный шаг. Другие optional (SP FS, Liino/Gilberta Combo, альтернативы Vulnerability, Arcane U после burst) реально можно пропустить. Gameplay status не повышен. Пробный Sunderization +3 на первом Bolt Rush coldBuildup: оригинальный игровой sprite, условный прирост (не измеренный total); остальные действия не аннотированы и это не означает нулевых стаков.",
   "controls": "arknights-endfield",
   "characters": [
     {
@@ -141,7 +141,13 @@
             "kind": "skill",
             "actor": "argent-flow"
           },
-          "hint": "Усиленный Battle Skill после Stars Shifted. Только если два Electric stacks реально были поглощены; 100 SP."
+          "hint": "Усиленный Battle Skill после Stars Shifted. Только если два Electric stacks реально были поглощены; 100 SP.",
+          "sunderization": {
+            "gain": 3,
+            "assessment": "conditional",
+            "condition": "Только если этот Bolt Rush поглотил ровно две Electric Infliction на той же цели и Argent Flow применил Electrification III; +3 — прирост Sunderization от действия, а не суммарные стаки.",
+            "source": "https://endfield.wiki.gg/wiki/Minghe"
+          }
         },
         {
           "text": "Lift и Vulnerability для следующего пакета",

@@ -300,6 +300,22 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
       if(compact)chip.setAttribute('aria-label',(chip.getAttribute('aria-label')||a.text)+' · '+explanation);
      }
     }
+    if(book.game==='arknights-endfield'&&a.sunderization){
+     // A per-hit gain only; not Arts or Physical, and never a running total.
+     const data=a.sunderization,primary=chip.querySelector<HTMLElement>('.action-primary')!;
+     const effect=node('span','sunderization-gain');
+     const icon=document.createElement('img');
+     icon.src=base+'effects/arknights-endfield/sunderization.webp';
+     icon.alt='';icon.setAttribute('aria-hidden','true');icon.width=24;icon.height=24;
+     icon.loading='lazy';
+     const description='Sunderization: +'+data.gain+' стака (условный прирост, не итог). '+data.condition;
+     effect.setAttribute('role','img');effect.setAttribute('aria-label',description);
+     effect.title=description+' Источник: '+data.source;
+     effect.append(icon,node('span','sunderization-gain-count','+'+data.gain));
+     chip.classList.add('sunderization-annotated');primary.append(effect);
+     chip.title+='\n'+description;
+     if(compact)chip.setAttribute('aria-label',(chip.getAttribute('aria-label')||a.text)+' · '+description);
+    }
     seq.append(chip);
    }
    body.append(seq);

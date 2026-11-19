@@ -156,3 +156,19 @@ h1{font-family:Georgia,"Times New Roman",serif;font-weight:500;letter-spacing:-.
  .rotation-app.game-arknights-endfield.compact-actions .stage-body{padding:6px 12px 13px}
  .rotation-app.game-arknights-endfield.compact-actions .stage-compact-line{font-size:12px}
 }
+
+/* One native Sunderization gain indicator. This is not a measured target total. */
+.rotation-app.game-arknights-endfield .action.endfield-action.sunderization-annotated .action-primary{flex-wrap:wrap;row-gap:3px}
+.rotation-app.game-arknights-endfield .sunderization-gain{display:inline-flex;align-items:center;gap:2px;flex:0 0 auto;color:#fbd132;white-space:nowrap;vertical-align:middle}
+.rotation-app.game-arknights-endfield .sunderization-gain img{display:block;width:24px;height:24px;object-fit:contain}
+.rotation-app.game-arknights-endfield .sunderization-gain-count{font-size:13px;font-weight:900;line-height:1;color:#ffd13b;text-shadow:0 1px 3px #080a16}
+@media(max-width:360px){.rotation-app.game-arknights-endfield .sunderization-gain-count{font-size:12px}}
+
+/* Endfield compact metadata contains long Russian status labels. On narrow
+   phones the badge and the description must stack instead of widening body. */
+@media(max-width:360px){
+ .rotation-app.game-arknights-endfield .meta{flex-wrap:wrap}
+ .rotation-app.game-arknights-endfield .meta-badge{white-space:normal;max-width:100%;overflow-wrap:anywhere}
+ .rotation-app.game-arknights-endfield .meta p{min-width:0;overflow-wrap:anywhere}
+ .rotation-app.game-arknights-endfield .tab strong{overflow-wrap:anywhere}
+}
