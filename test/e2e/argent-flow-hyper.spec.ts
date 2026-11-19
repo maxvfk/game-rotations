@@ -4,6 +4,7 @@ const team='?team=argent-flow-arcane-antal-liino';
 test('Prydwen Argent Flow Hyper: four ordered phases and correct skill identity',async({page},testInfo)=>{
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto(team);
+ await expect(page.locator('.sunderization-gain-count')).toHaveText(['+4','+1','+2','Detonation']);
  await expect(page.locator('#opener')).toHaveAttribute('aria-pressed','true');
  await expect(page.locator('#tabs button')).toHaveCount(1);
  await expect(page.locator('.stage')).toHaveCount(4);

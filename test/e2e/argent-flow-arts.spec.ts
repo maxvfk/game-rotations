@@ -57,9 +57,13 @@ test('Argent Flow Arts: unified cold buildup to burst and separate Cake Buster h
  });
  expect(overflow.pixels,JSON.stringify(overflow.elements)).toBeLessThanOrEqual(1);
  await page.screenshot({path:testInfo.outputPath('argent-sunderization-compact-320px.png'),fullPage:true,animations:'disabled'});
+ await expect(page.locator('.sunderization-gain')).toHaveCount(5);
+ await expect(page.locator('.sunderization-detonation')).toHaveCount(1);
+ await expect(page.locator('.sunderization-gain-count')).toHaveText(['+3','+3','+3','+3','Detonation']);
  await tab(page,'Cake Buster').click();
  await expect(page.locator('#tabs button')).toHaveCount(2);
  await expect(page.locator('.action')).toHaveCount(9);
+ await expect(page.locator('.sunderization-gain-count')).toHaveText(['+3','Detonation']);
  await expect(page.locator('.action.arts-annotated')).toHaveCount(7);
  await expect(page.locator('.action.optional-action')).toHaveCount(0);
  await expect(page.locator('.action-label').filter({hasText:'Nature Infliction'})).toHaveCount(1);

@@ -308,10 +308,14 @@ export function mountRotation(root:HTMLDivElement,id:string,backUrl:string,base:
      icon.src=base+'effects/arknights-endfield/sunderization.webp';
      icon.alt='';icon.setAttribute('aria-hidden','true');icon.width=24;icon.height=24;
      icon.loading='lazy';
-     const description='Sunderization: +'+data.gain+' стака (условный прирост, не итог). '+data.condition;
+     const isDetonation=data.event==='detonation';
+     const description=isDetonation
+      ?'Sunderization: Detonation при Crush (условно). '+data.condition
+      :'Sunderization: +'+data.gain+' стака (условный прирост, не итог). '+data.condition;
+     if(isDetonation)effect.classList.add('sunderization-detonation');
      effect.setAttribute('role','img');effect.setAttribute('aria-label',description);
      effect.title=description+' Источник: '+data.source;
-     effect.append(icon,node('span','sunderization-gain-count','+'+data.gain));
+     effect.append(icon,node('span','sunderization-gain-count',isDetonation?'Detonation':'+'+data.gain));
      chip.classList.add('sunderization-annotated');primary.append(effect);
      chip.title+='\n'+description;
      if(compact)chip.setAttribute('aria-label',(chip.getAttribute('aria-label')||a.text)+' · '+description);

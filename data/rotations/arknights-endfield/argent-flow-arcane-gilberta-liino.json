@@ -346,7 +346,13 @@
             "kind": "skill",
             "actor": "argent-flow"
           },
-          "hint": "Для базового 2×Electric-пакета — ожидаемое +3 Sunderization на той же цели. При Electric I вместо II получится Electrification II и +2. Суммарные накопленные стаки нельзя гарантировать: следить за реальным временем жизни 60 c, текущим target, SP и cooldown."
+          "hint": "Для базового 2×Electric-пакета — ожидаемое +3 Sunderization на той же цели. При Electric I вместо II получится Electrification II и +2. Суммарные накопленные стаки нельзя гарантировать: следить за реальным временем жизни 60 c, текущим target, SP и cooldown.",
+          "sunderization": {
+            "gain": 3,
+            "assessment": "conditional",
+            "condition": "Если новый пакет создал ровно две Electric Infliction на той же цели и Bolt Rush поглотил обе, ожидается Electrification III и +3 Sunderization. Этап может повторяться, но total здесь не вычисляется.",
+            "source": "https://endfield.wiki.gg/wiki/Minghe"
+          }
         }
       ],
       "check": "Не обязательный фиксированный второй пакет: повторить данный этап нужное число раз лишь при реальных trigger/cooldown, 100 SP для Bolt Rush и новых Electric. Если Sunderization уже хватает, пропустить этот этап и перейти к Burst. Sunderization хранится на той же живой цели до 60 s, до Crush; 3→6→9→12 — сценарий, а не тайминг. Полный пакет этого этапа использует WILL Arcane Combo между Stars Shifted и Bolt Rush; если он недоступен, не считать это тем же 2-stack пакетом.",
@@ -495,7 +501,13 @@
             "kind": "skill",
             "actor": "argent-flow"
           },
-          "hint": "Требуется для этого пакета: Если усиленный Battle Skill доступен, есть SP, и новый пакет окупается до окончания коротких buff windows. Исполнять лишь если выбран дополнительный Electric-пакет. При отказе от пакета пропустить оба последующих шага."
+          "hint": "Требуется для этого пакета: Если усиленный Battle Skill доступен, есть SP, и новый пакет окупается до окончания коротких buff windows. Исполнять лишь если выбран дополнительный Electric-пакет. При отказе от пакета пропустить оба последующих шага.",
+          "sunderization": {
+            "gain": 3,
+            "assessment": "conditional",
+            "condition": "Только если необязательный пакет действительно выбран, две Electric Infliction присутствуют на одной цели к Bolt Rush, и он накладывает Electrification III. При пропуске пакета прироста нет.",
+            "source": "https://endfield.wiki.gg/wiki/Minghe"
+          }
         },
         {
           "text": "Arts Susceptibility: открыть финальное окно",
@@ -513,7 +525,13 @@
             "kind": "ultimate",
             "actor": "argent-flow"
           },
-          "hint": "Нужна Vulnerability на цели и накопленные Sunderization stacks; именно Crush взрывает их."
+          "hint": "Нужна Vulnerability на цели и накопленные Sunderization stacks; именно Crush взрывает их.",
+          "sunderization": {
+            "event": "detonation",
+            "assessment": "conditional",
+            "condition": "Только если Ultimate Argent Flow действительно завершает Crush на цели с накопленным Sunderization; расход/сброс стаков не показан числом.",
+            "source": "https://endfield.wiki.gg/wiki/Minghe"
+          }
         },
         {
           "text": "Ultimate Arcane: следующий цикл / дополнительный урон",
@@ -739,7 +757,13 @@
             "kind": "skill",
             "actor": "argent-flow"
           },
-          "hint": "Результат Electrification зависит от фактических stacks; не приписывать гарантированные III/IV для hot start."
+          "hint": "Результат Electrification зависит от фактических stacks; не приписывать гарантированные III/IV для hot start.",
+          "sunderization": {
+            "gain": 3,
+            "assessment": "conditional",
+            "condition": "Hot start: если Combo Argent и WILL Arcane сформировали ровно две Electric Infliction на одной цели и Bolt Rush их поглотил, ожидается Electrification III и +3. Начальный enemy state не подтверждён.",
+            "source": "https://endfield.wiki.gg/wiki/Minghe"
+          }
         },
         {
           "text": "Arts Susceptibility перед финальным ударом",
@@ -766,7 +790,13 @@
             "kind": "ultimate",
             "actor": "argent-flow"
           },
-          "hint": "Подготовленные на этой цели Sunderization; в источнике это ключевой взрыв."
+          "hint": "Подготовленные на этой цели Sunderization; в источнике это ключевой взрыв.",
+          "sunderization": {
+            "event": "detonation",
+            "assessment": "conditional",
+            "condition": "Hot start: Ultimate должен выполнить Crush по цели с накопленным Sunderization; точный total до детонации неизвестен.",
+            "source": "https://endfield.wiki.gg/wiki/Minghe"
+          }
         },
         {
           "text": "Ultimate Arcane после burst",

@@ -179,7 +179,13 @@
             "kind": "skill",
             "actor": "argent-flow"
           },
-          "hint": "After Electric III, 4 Sunderization conditional; hit within transformation (20s). Must land after 18s CD to enable CS #2 from Vulnerability.\nТребуется для выполнения: Только если 3 Electric Infliction поглощены, цель остаётся та же, Combo #2 готово к моменту новой Vulnerability."
+          "hint": "After Electric III, 4 Sunderization conditional; hit within transformation (20s). Must land after 18s CD to enable CS #2 from Vulnerability.\nТребуется для выполнения: Только если 3 Electric Infliction поглощены, цель остаётся та же, Combo #2 готово к моменту новой Vulnerability.",
+          "sunderization": {
+            "gain": 4,
+            "assessment": "conditional",
+            "condition": "Если Electric I→II→III на одной цели сохранились до Bolt Rush #1 и он поглотил все три, ожидается Electrification IV и +4 Sunderization; не считать гарантированным total.",
+            "source": "https://endfield.wiki.gg/wiki/Minghe"
+          }
         }
       ],
       "check": "Антал Focus активен; Electric последовательно I→II→III, затем Bolt Rush → Electrification IV и +4 Sunderization при попадании. Первый Bolt Rush надо совместить с концом cooldown Argent Combo: на rank 12 окно 18–20 s, ниже rank 12 — 19–20 s.",
@@ -497,7 +503,13 @@
             "kind": "skill",
             "actor": "argent-flow"
           },
-          "hint": "USER-AGREED: Argent Combo at (5) transforms BS. Electric consumed by Corrosion (7.5), so theoretical forced Electrification I and +1 Sunderization. Status refresh uncertain.\nТребуется для выполнения: Только если (5) действительно открыл Bolt Rush, он ещё активен и SP ≥100; отсутствие Electric надо проверить перед применением."
+          "hint": "USER-AGREED: Argent Combo at (5) transforms BS. Electric consumed by Corrosion (7.5), so theoretical forced Electrification I and +1 Sunderization. Status refresh uncertain.\nТребуется для выполнения: Только если (5) действительно открыл Bolt Rush, он ещё активен и SP ≥100; отсутствие Electric надо проверить перед применением.",
+          "sunderization": {
+            "gain": 1,
+            "assessment": "conditional",
+            "condition": "По текущей гипотезе Electric-стаки из второго пакета уже израсходованы Arcane Skill на Corrosion III; Bolt Rush #2 при нуле Electric может дать Electrification I и +1 Sunderization. Refresh более сильного статуса не проверен.",
+            "source": "https://endfield.wiki.gg/wiki/Minghe"
+          }
         }
       ],
       "check": "Вторая серия Electric I→II→III расходуется Arcane BS (7.5) для Corrosion III. Поэтому (9.5) — усиленный Bolt Rush (от Stars Shifted (5)) при нулевых Electric stacks, ожидаемо Electrification I / +1 Sunderization, но refresh сильного предыдущего статуса не проверен.",
@@ -760,7 +772,13 @@
             "kind": "skill",
             "actor": "argent-flow"
           },
-          "hint": "Consume 1 Electric from Stars Shifted #3; +2 Sunderization, conditional on actual target status.\nТребуется для выполнения: Только если Electric I был поглощён и Bolt Rush доступен/есть 100 SP."
+          "hint": "Consume 1 Electric from Stars Shifted #3; +2 Sunderization, conditional on actual target status.\nТребуется для выполнения: Только если Electric I был поглощён и Bolt Rush доступен/есть 100 SP.",
+          "sunderization": {
+            "gain": 2,
+            "assessment": "conditional",
+            "condition": "Если после Stars Shifted #3 на той же цели ровно один Electric Infliction и Bolt Rush #3 его поглощает, ожидается Electrification II и +2 Sunderization. Delayed эффекты Liino и pre-state могут изменить результат.",
+            "source": "https://endfield.wiki.gg/wiki/Minghe"
+          }
         }
       ],
       "check": "Ульты Antal и Liino готовят окно урона. На (11.5) именно ОБЫЧНЫЙ Argent Darkness Cowed (после Bolt Rush (9.5) без нового Combo), что создаёт Vulnerability для Stars Shifted #3 на (13). Bolt Rush (13.5) поглощает 1 Electric → Electrification II (условно).",
@@ -925,7 +943,13 @@
             "kind": "ultimate",
             "actor": "argent-flow"
           },
-          "hint": "Own reconstruction: his Electric application onto Nature IV creates Electrification IV, then his Ultimate applies Crush. Confirm real hit order and ownership.\nТребуется для выполнения: Только если Nature IV дожила до попадания Electric от Ultimate, имеются Sunderization и Vulnerability на этой же цели, Ultimate готов."
+          "hint": "Own reconstruction: his Electric application onto Nature IV creates Electrification IV, then his Ultimate applies Crush. Confirm real hit order and ownership.\nТребуется для выполнения: Только если Nature IV дожила до попадания Electric от Ultimate, имеются Sunderization и Vulnerability на этой же цели, Ultimate готов.",
+          "sunderization": {
+            "event": "detonation",
+            "assessment": "conditional",
+            "condition": "Только если Ultimate Argent Flow после Nature IV действительно завершает Crush на той же цели с Sunderization; точный total, refresh и результат детонации в live trace не подтверждены.",
+            "source": "https://endfield.wiki.gg/wiki/Minghe"
+          }
         }
       ],
       "check": "Arcane BS → Nature I, WILL U1 → II, Arcane Combo → III, Antal Combo → IV. Argent Ultimate должен наложить Electric поверх Nature IV и завершиться Crush по накопленной Sunderization. Это механическая гипотеза, не измеренный trace.",

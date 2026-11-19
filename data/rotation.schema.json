@@ -267,33 +267,64 @@
                     "minLength": 1
                   },
                   "sunderization": {
-                    "type": "object",
-                    "additionalProperties": false,
-                    "required": [
-                      "gain",
-                      "assessment",
-                      "condition",
-                      "source"
-                    ],
-                    "properties": {
-                      "gain": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "maximum": 4
+                    "oneOf": [
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "gain",
+                          "assessment",
+                          "condition",
+                          "source"
+                        ],
+                        "properties": {
+                          "gain": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 4
+                          },
+                          "assessment": {
+                            "const": "conditional"
+                          },
+                          "condition": {
+                            "type": "string",
+                            "minLength": 12
+                          },
+                          "source": {
+                            "type": "string",
+                            "format": "uri",
+                            "pattern": "^https://"
+                          }
+                        }
                       },
-                      "assessment": {
-                        "const": "conditional"
-                      },
-                      "condition": {
-                        "type": "string",
-                        "minLength": 12
-                      },
-                      "source": {
-                        "type": "string",
-                        "format": "uri",
-                        "pattern": "^https://"
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "event",
+                          "assessment",
+                          "condition",
+                          "source"
+                        ],
+                        "properties": {
+                          "event": {
+                            "const": "detonation"
+                          },
+                          "assessment": {
+                            "const": "conditional"
+                          },
+                          "condition": {
+                            "type": "string",
+                            "minLength": 12
+                          },
+                          "source": {
+                            "type": "string",
+                            "format": "uri",
+                            "pattern": "^https://"
+                          }
+                        }
                       }
-                    }
+                    ]
                   }
                 },
                 "allOf": [

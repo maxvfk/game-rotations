@@ -1,17 +1,19 @@
-# Sunderization — пробный индикатор (Endfield)
+# Sunderization — action-local индикаторы Endfield
 
-**19 ноября 2026:** один action-local индикатор в `argent-flow-arcane-gilberta-liino` → `coldBuildup` → Bolt Rush, actionIndex **5** (zero-based). **Остальные действия и команды не менялись.**
+**19.11.2026:** первоначальный [PR #40](https://github.com/maxvfk/game-rotations/pull/40) проверил единственный оригинальный game-native индикатор. Теперь он расширен на **все известные точки применения Sunderization в опубликованных ротациях Argent Flow**.
 
-## Источник оригинальной иконки
+## Asset и источник
 
-Game buff `buff_chr_0037_minghe_thundertrigger`, `hasIcon:true`, `iconConfig._spritePath:"icon_battle_buff_minghe_thundertrigger"`, `showInHeadBarCommon:true`. [Ресурс клиента / EndfieldData](https://github.com/rmxlinux/EndfieldData/blob/main/Json/BuffData/buff_chr_0037_minghe_thundertrigger.json); [Endaxis generated buff presentation](https://github.com/Lieyuan621/Endaxis/blob/main/src/data/operators/minghe.generated.ts) сопоставляет его с `effects.name.sunderization`.
+Game buff `buff_chr_0037_minghe_thundertrigger`: [BuffData](https://github.com/rmxlinux/EndfieldData/blob/main/Json/BuffData/buff_chr_0037_minghe_thundertrigger.json), `hasIcon:true`, sprite `icon_battle_buff_minghe_thundertrigger`; [Endaxis generated](https://github.com/Lieyuan621/Endaxis/blob/main/src/data/operators/minghe.generated.ts) `effects.name.sunderization`. Точные исходные WebP-байты из [Endaxis](https://github.com/Lieyuan621/Endaxis/blob/main/public/icons/icon_battle_buff_minghe_thundertrigger.webp), blob `efbb65ba047976046ca0fcd11297a713198eccb6`, локальная копия `public/effects/arknights-endfield/sunderization.webp`.
 
-Источник точных байтов WebP: [Endaxis public/icons](https://github.com/Lieyuan621/Endaxis/blob/main/public/icons/icon_battle_buff_minghe_thundertrigger.webp), source Git blob `efbb65ba047976046ca0fcd11297a713198eccb6`. Копия без перерисовки: `public/effects/arknights-endfield/sunderization.webp` (VitePWA precache `*.webp`).
+## Семантика
 
-## Модель
+`action.sunderization` — discriminated union:
+- `{gain:1..4,assessment:"conditional",condition,source}` — **условный прирост**, не total.
+- `{event:"detonation",assessment:"conditional",condition,source}` — **событие Crush / Detonation**, не фиктивное число списанных стаков.
 
-`action.sunderization?: {gain,assessment,condition,source}` задаёт **прирост** от данного действия (1–4), сейчас только `assessment:"conditional"`. Пример: два Electric Infliction → Argent Flow Bolt Rush → Electrification III → возможные **+3 Sunderization**. Внешняя иконка 24×24 с подписью `+3` рядом с Arts-индикатором, с полными условиями в tooltip/ARIA. Это не подсчёт общего числа 0–12; не измерение, не подтверждение фактического попадания и не гарантия выполнения триггеров.
+Gilberta/Liino: `coldBuildup[5] +3`, `buildupRepeat[5] +3`, `preparedBurst[3] +3` (опциональный пакет), `preparedBurst[5] Detonation`, `cakeHot[4] +3`, `cakeHot[7] Detonation`.
 
-Индикатор независим от Arts toggle (Sunderization — отдельный дебафф). Проверки: 320 px, Full/Compact, отсутствие горизонтального overflow, доступность изображения и PWA offline, сохранность остальных ротаций.
+Antal/Liino: `hyperElectric[11] +4`, `hyperCorrosion[11] +1` (**слабый статус может не обновить сильный, не проверено**), `hyperAmp[7] +2`, `hyperNature[5] Detonation`. Это интерпретация существующей экспериментальной ротации, **не наблюдение в combat log**.
 
-Перед полным внедрением потребуется семантическая модель суммы стаков на конкретной цели, lifetime, reset при Crush, delayed Liino Electrification и зависимостей в боевой ротации.
+Индикатор — оригинальная иконка 24×24, подпись `+N` или `Detonation`, tooltip/ARIA с точным условием; независим от Arts toggle и виден в Full/Compact/offline. **Не моделируется** total 0–12, время жизни 60 s, reset/refresh, перенос между целями, фактическое срабатывание в игре. Отсутствие иконки у другого действия не означает отсутствия Sunderization на цели.
