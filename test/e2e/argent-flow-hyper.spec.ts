@@ -8,6 +8,11 @@ test('Prydwen Argent Flow Hyper: four ordered phases and correct skill identity'
  await expect(page.locator('#tabs button')).toHaveCount(1);
  await expect(page.locator('.stage')).toHaveCount(4);
  await expect(page.locator('.action')).toHaveCount(38);
+ await expect(page.locator('.sunderization-annotated')).toHaveCount(4);
+ await expect(page.locator('.sunderization-gain-count')).toHaveText(['+4','+1','+2','+4']);
+ await expect(page.locator('.stage').last().locator('.sunderization-gain-count')).toHaveText('+4');
+ await expect(page.locator('.action').filter({hasText:'(11) Liino U'}).locator('.sunderization-gain')).toHaveCount(0);
+ await expect(page.locator('.action').filter({hasText:'(15) Arcane U1'}).locator('.sunderization-gain')).toHaveCount(0);
  // A required action with a combat trigger is not a skippable action.
  await expect(page.locator('.action.optional-action')).toHaveCount(0);
  await expect(page.locator('.action-optional')).toHaveCount(0);
@@ -25,6 +30,7 @@ test('Prydwen Argent Flow Hyper: four ordered phases and correct skill identity'
  await page.locator('#layout-compact').click();
  await expect(page.locator('.action-compact-condition')).toHaveCount(0);
  await expect(page.locator('.action-portrait')).toHaveCount(38);
+ await expect(page.locator('.sunderization-gain-count')).toHaveText(['+4','+1','+2','+4']);
  await page.setViewportSize({width:320,height:740});
  expect(await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
  await page.screenshot({path:testInfo.outputPath('argent-flow-hyper-320px.png'),fullPage:true,animations:'disabled'});
@@ -38,6 +44,7 @@ test('Prydwen Argent Flow Hyper: Arts/Physical toggles persist offline; old team
  await expect(page.locator('#physical-visibility-toggle')).toHaveAttribute('aria-pressed','true');
  await page.locator('#arts-visibility-toggle').click();
  await expect(page.locator('.arts-action-annotations')).toHaveCount(0);
+ await expect(page.locator('.sunderization-gain')).toHaveCount(4);
  await page.locator('#arts-visibility-toggle').click();
  await expect(page.locator('.arts-action-annotations')).not.toHaveCount(0);
  await page.locator('#physical-visibility-toggle').click();
@@ -49,6 +56,10 @@ test('Prydwen Argent Flow Hyper: Arts/Physical toggles persist offline; old team
  await page.waitForFunction(()=>navigator.serviceWorker.controller!==null);
  await context.setOffline(true);await page.reload({waitUntil:'domcontentloaded'});
  await expect(page.locator('.stage')).toHaveCount(4);
+ const sunderImg=page.locator('.sunderization-gain img').first();
+ await expect(page.locator('.sunderization-gain')).toHaveCount(4);
+ await sunderImg.scrollIntoViewIfNeeded();
+ await expect.poll(()=>sunderImg.evaluate(i=>(i as HTMLImageElement).naturalWidth)).toBeGreaterThan(1);
  const img=page.locator('.action-portrait[src$="/antal.png"]').first();
  await img.scrollIntoViewIfNeeded();
  await expect.poll(()=>img.evaluate(i=>(i as HTMLImageElement).naturalWidth)).toBe(150);
