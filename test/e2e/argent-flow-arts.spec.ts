@@ -22,7 +22,7 @@ test('Argent Flow Arts: unified cold buildup to burst and separate Cake Buster h
  await expect(page.locator('.action').filter({hasText:'Cosmovoice: Amp'}).locator('.sunderization-gain')).toHaveCount(0);
  await expect(page.locator('.action').filter({hasText:'Arts Susceptibility: открыть'}).locator('.sunderization-gain')).toHaveCount(0);
  await expect(sunder.locator('.sunderization-gain-count')).toHaveText('+3');
- await expect(sunder.locator('.sunderization-gain')).toHaveAttribute('aria-label',/условный прирост, не итог/);
+ await expect(sunder.locator('.sunderization-gain')).toHaveAttribute('aria-label',/условный прирост \+3 \(не суммарные стаки\)/);
  const sunderIcon=sunder.locator('.sunderization-gain img');
  await expect(sunderIcon).toHaveAttribute('src',/effects\/arknights-endfield\/sunderization\.webp$/);
  await sunderIcon.scrollIntoViewIfNeeded();
@@ -100,8 +100,10 @@ test('Argent Flow: Arts toggle persists, local portraits work in offline PWA',as
  await expect(page.locator('.stage')).toHaveCount(3);
  const sunderOffline=page.locator('.sunderization-gain img');
  await expect(sunderOffline).toHaveCount(4);
- await sunderOffline.scrollIntoViewIfNeeded();
- await expect.poll(()=>sunderOffline.evaluate(i=>(i as HTMLImageElement).naturalWidth)).toBeGreaterThan(1);
+ await sunderOffline.first().scrollIntoViewIfNeeded();
+ for(const index of [0,1,2,3]){
+  await expect.poll(()=>sunderOffline.nth(index).evaluate(i=>(i as HTMLImageElement).naturalWidth)).toBeGreaterThan(1);
+ }
  const icon=page.locator('.action-portrait[src$="argent-flow.png"]').first();
  await icon.scrollIntoViewIfNeeded();
  await expect.poll(()=>icon.evaluate(el=>(el as HTMLImageElement).naturalWidth)).toBe(112);
