@@ -472,25 +472,6 @@
           }
         },
         {
-          "id": "breach-prep-6-electric-before",
-          "anchor": {
-            "actionIndex": 6,
-            "relative": "before"
-          },
-          "subject": "primary-target",
-          "status": {
-            "kind": "infliction",
-            "element": "electric",
-            "stacks": 1,
-            "assessment": "target"
-          },
-          "evidence": {
-            "basis": "tc-intent",
-            "url": "https://youtu.be/E2q9i2TOvrU?t=2067",
-            "note": "Ожидаемая E1 от Combo Argent до Bolt Rush; требуется совпадение цели и отсутствие расходования ранее."
-          }
-        },
-        {
           "id": "breach-prep-6-electrification-after",
           "anchor": {
             "actionIndex": 6,
@@ -503,12 +484,11 @@
             "level": 2,
             "assessment": "conditional"
           },
-          "dependsOn": "breach-prep-6-electric-before",
           "condition": "Если Bolt Rush поглощает ровно один Electric Infliction той же цели и накладывает Argent Electrification II; возможный прежний EL overwrites.",
           "evidence": {
             "basis": "live-mechanic",
             "url": "https://endfield.wiki.gg/wiki/Argent_Flow",
-            "note": "По live kit: 1 Electric Infliction → forced Electrification II; числовой уровень — условная модель, не combat observation."
+            "note": "По live kit: 1 Electric Infliction → forced Electrification II; числовой уровень — условная модель, не combat observation. Forced Electrification от Bolt Rush не есть обычная двухэлементная Arts Reaction; E1 показан на предшествующем Argent Combo, без одношаговой before→after пары в UI."
           }
         }
       ]
@@ -793,25 +773,6 @@
           }
         },
         {
-          "id": "crush-setup-7-electric-before",
-          "anchor": {
-            "actionIndex": 7,
-            "relative": "before"
-          },
-          "subject": "primary-target",
-          "status": {
-            "kind": "infliction",
-            "element": "electric",
-            "stacks": 1,
-            "assessment": "target"
-          },
-          "evidence": {
-            "basis": "tc-intent",
-            "url": "https://youtu.be/E2q9i2TOvrU?t=2067",
-            "note": "Ожидаемая E1 от Combo Argent до Bolt Rush; требуется совпадение цели и отсутствие расходования ранее."
-          }
-        },
-        {
           "id": "crush-setup-7-electrification-after",
           "anchor": {
             "actionIndex": 7,
@@ -824,12 +785,11 @@
             "level": 2,
             "assessment": "conditional"
           },
-          "dependsOn": "crush-setup-7-electric-before",
           "condition": "Если Bolt Rush поглощает ровно один Electric Infliction той же цели и накладывает Argent Electrification II; возможный прежний EL overwrites.",
           "evidence": {
             "basis": "live-mechanic",
             "url": "https://endfield.wiki.gg/wiki/Argent_Flow",
-            "note": "По live kit: 1 Electric Infliction → forced Electrification II; числовой уровень — условная модель, не combat observation."
+            "note": "По live kit: 1 Electric Infliction → forced Electrification II; числовой уровень — условная модель, не combat observation. Forced Electrification от Bolt Rush не есть обычная двухэлементная Arts Reaction; E1 показан на предшествующем Argent Combo, без одношаговой before→after пары в UI."
           }
         }
       ]
@@ -1200,25 +1160,6 @@
           }
         },
         {
-          "id": "shield-bridge-6-electric-before",
-          "anchor": {
-            "actionIndex": 6,
-            "relative": "before"
-          },
-          "subject": "primary-target",
-          "status": {
-            "kind": "infliction",
-            "element": "electric",
-            "stacks": 1,
-            "assessment": "target"
-          },
-          "evidence": {
-            "basis": "tc-intent",
-            "url": "https://youtu.be/E2q9i2TOvrU?t=2067",
-            "note": "Ожидаемая E1 от Combo Argent до Bolt Rush; требуется совпадение цели и отсутствие расходования ранее."
-          }
-        },
-        {
           "id": "shield-bridge-6-electrification-after",
           "anchor": {
             "actionIndex": 6,
@@ -1231,12 +1172,11 @@
             "level": 2,
             "assessment": "conditional"
           },
-          "dependsOn": "shield-bridge-6-electric-before",
           "condition": "Если Bolt Rush поглощает ровно один Electric Infliction той же цели и накладывает Argent Electrification II; возможный прежний EL overwrites.",
           "evidence": {
             "basis": "live-mechanic",
             "url": "https://endfield.wiki.gg/wiki/Argent_Flow",
-            "note": "По live kit: 1 Electric Infliction → forced Electrification II; числовой уровень — условная модель, не combat observation."
+            "note": "По live kit: 1 Electric Infliction → forced Electrification II; числовой уровень — условная модель, не combat observation. Forced Electrification от Bolt Rush не есть обычная двухэлементная Arts Reaction; E1 показан на предшествующем Argent Combo, без одношаговой before→after пары в UI."
           }
         }
       ]
