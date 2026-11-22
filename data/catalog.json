@@ -126,7 +126,7 @@
       "mark": "▣",
       "accent": "#a8c0c8",
       "status": "available",
-      "subtitle": "Cryo: Si hyper · Electric: Argent Flow",
+      "subtitle": "Cryo / Electric / Physical · ротации операторов",
       "teams": [
         {
           "id": "si-tangtang-arcane-xaihi",
@@ -260,6 +260,48 @@
             {
               "id": "prydwen-hyper",
               "name": "Prydwen Hyper",
+              "verification": "partial"
+            }
+          ]
+        },
+        {
+          "id": "mifu-chen-pogranichnik-argent-flow",
+          "name": "Mi Fu / Chen / Pogranichnik / Argent Flow",
+          "subtitle": "Lin-0 · Breach IV → двойной Crush/Stagger",
+          "characters": [
+            {
+              "id": "mifu",
+              "name": "Mifu",
+              "portrait": "portraits/arknights-endfield/mifu.png",
+              "investment": "P0R1 · сигнатура"
+            },
+            {
+              "id": "chen-qianyu",
+              "name": "Chen Qianyu",
+              "portrait": "portraits/arknights-endfield/chen-qianyu.png",
+              "investment": "Potential и оружие не уточнены"
+            },
+            {
+              "id": "pogranichnik",
+              "name": "Pogranichnik",
+              "portrait": "portraits/arknights-endfield/pogranichnik.png",
+              "investment": "P0R0 · без сигнатуры"
+            },
+            {
+              "id": "argent-flow",
+              "name": "Argent Flow",
+              "portrait": "portraits/arknights-endfield/argent-flow.png",
+              "investment": "P0S1 · сигнатура"
+            }
+          ],
+          "status": "research-adapted",
+          "statusDescription": "39 действий Lin-0 (8 ноября): источник + условные Physical/Arts checkpoints. Точные тайминги Global live, gear/SP, боевое исполнение и повторный цикл требуют проверки.",
+          "gameVersion": "Global live 1.6 (2026-11-22)",
+          "source": "https://github.com/maxvfk/Games/blob/main/guides/arknights-endfield/MI_FU_CHEN_POGRANICHNIK_ARGENT_FLOW_LIN0_ROTATION.md",
+          "variants": [
+            {
+              "id": "lin0",
+              "name": "Lin-0 · Boss/Stagger",
               "verification": "partial"
             }
           ]
