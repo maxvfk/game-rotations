@@ -272,26 +272,26 @@
             {
               "id": "mifu",
               "name": "Mifu",
-              "portrait": "portraits/arknights-endfield/mifu.png",
-              "investment": "P0R1 · сигнатура"
+              "investment": "P0R1 · сигнатура",
+              "portrait": "portraits/arknights-endfield/mifu.png"
             },
             {
               "id": "chen-qianyu",
               "name": "Chen Qianyu",
-              "portrait": "portraits/arknights-endfield/chen-qianyu.png",
-              "investment": "Potential и оружие не уточнены"
+              "investment": "Potential и оружие не уточнены",
+              "portrait": "portraits/arknights-endfield/chen-qianyu.png"
             },
             {
               "id": "pogranichnik",
               "name": "Pogranichnik",
-              "portrait": "portraits/arknights-endfield/pogranichnik.png",
-              "investment": "P0R0 · без сигнатуры"
+              "investment": "P0R0 · без сигнатуры",
+              "portrait": "portraits/arknights-endfield/pogranichnik.png"
             },
             {
               "id": "argent-flow",
               "name": "Argent Flow",
-              "portrait": "portraits/arknights-endfield/argent-flow.png",
-              "investment": "P0S1 · сигнатура"
+              "investment": "P0S1 · сигнатура",
+              "portrait": "portraits/arknights-endfield/argent-flow.png"
             }
           ],
           "status": "research-adapted",
