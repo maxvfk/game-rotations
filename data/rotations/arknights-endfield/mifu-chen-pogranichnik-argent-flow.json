@@ -1,0 +1,1444 @@
+{
+  "schemaVersion": 1,
+  "id": "mifu-chen-pogranichnik-argent-flow",
+  "game": "arknights-endfield",
+  "title": "Mi Fu / Chen / Pogranichnik / Argent Flow",
+  "gameVersion": "Global live 1.6 (2026-11-22)",
+  "source": "https://github.com/maxvfk/Games/blob/main/guides/arknights-endfield/MI_FU_CHEN_POGRANICHNIK_ARGENT_FLOW_LIN0_ROTATION.md",
+  "verificationNote": "Lin-0 (видео 08.11.2026, разбор 34:27–37:38), source-derived 39 action timeline из скриншота и пояснения автора. GLOBAL 1.6; часть видео создана на Creator Experience Server. No self-verified combat timing for this account. Physical/Arts checkpoints are CONDITIONAL TARGETS reconstructed from live-kit and TC intent, NOT actual observed states. Ultimate Argent intentionally lands after Mi Fu BS2; 5 Shieldguards depend on timing. Chen Potential and gear not recorded; SP/UGE/gear, repeated loop and boss/Stagger behavior require practical checks.",
+  "controls": "arknights-endfield",
+  "characters": [
+    {
+      "id": "mifu",
+      "name": "Mifu",
+      "glyph": "✦",
+      "color": "#f1b88d",
+      "portrait": "portraits/arknights-endfield/mifu.png",
+      "investment": "P0R1 · сигнатура"
+    },
+    {
+      "id": "chen-qianyu",
+      "name": "Chen Qianyu",
+      "glyph": "✧",
+      "color": "#e2b57e",
+      "portrait": "portraits/arknights-endfield/chen-qianyu.png",
+      "investment": "Potential и оружие не уточнены"
+    },
+    {
+      "id": "pogranichnik",
+      "name": "Pogranichnik",
+      "glyph": "◆",
+      "color": "#a3b7c6",
+      "portrait": "portraits/arknights-endfield/pogranichnik.png",
+      "investment": "P0R0 · без сигнатуры"
+    },
+    {
+      "id": "argent-flow",
+      "name": "Argent Flow",
+      "glyph": "⚡",
+      "color": "#b7a8ed",
+      "portrait": "portraits/arknights-endfield/argent-flow.png",
+      "investment": "P0S1 · сигнатура"
+    }
+  ],
+  "defaultSlots": {
+    "mifu": "1",
+    "chen-qianyu": "2",
+    "pogranichnik": "3",
+    "argent-flow": "4"
+  },
+  "variants": [
+    {
+      "id": "lin0",
+      "label": "Lin-0",
+      "sub": "Breach IV → 2× Crush в Stagger",
+      "type": "Boss / Stagger",
+      "intro": "Source-derived single-target burst Lin-0: V4→Breach IV; V4→Mi Fu BS2/BS3; delayed Argent Ultimate по V0 создаёт V1; затем повторное V4→Mi Fu BS2/BS3. Основной фокус — точный hit order и 5 Steel Oath triggers. Источник частично Creator Experience Server, авторская последовательность сохранена; live/account execution не проверено.",
+      "verification": "partial",
+      "opener": [
+        "breachPrep",
+        "crushSetup",
+        "firstBurst",
+        "shieldBridge",
+        "secondBurst"
+      ],
+      "loop": [
+        "recoveryNote"
+      ],
+      "loopCaution": "Только одиночная boss/Stagger burst ось: repeated cycle, SP/UGE reset, Combo cooldown и после-Stagger recovery НЕ подтверждены. Не считать этот пункт бесконечной ротацией."
+    }
+  ],
+  "stages": {
+    "breachPrep": {
+      "person": "mifu",
+      "title": "1. Breach IV · первый V4",
+      "sub": "Chen → Argent → Pogranichnik",
+      "actions": [
+        {
+          "text": "01 · Chen BS → Lift, V0→V1",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "chen-qianyu"
+          },
+          "hint": "Стартовать за Mi Fu; Chen наносит первый Physical Status."
+        },
+        {
+          "text": "02 · Chen CS → Lift, V1→V2",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "chen-qianyu"
+          },
+          "hint": "После Vulnerability от Chen BS, при доступном Combo."
+        },
+        {
+          "text": "03 · Argent CS → Electric Infliction I",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "argent-flow"
+          },
+          "hint": "От реакции на Vulnerability; открывает Bolt Rush."
+        },
+        {
+          "text": "04 · Mi Fu FS №1",
+          "tone": "normal",
+          "input": {
+            "kind": "final-strike",
+            "actor": "mifu"
+          },
+          "hint": "Завершить полную BA-цепочку за Mi Fu для SP/Stagger."
+        },
+        {
+          "text": "05 · Mi Fu FS №2",
+          "tone": "normal",
+          "input": {
+            "kind": "final-strike",
+            "actor": "mifu"
+          },
+          "hint": "Ждём готовности Chen Combo; полный FS, не одиночный BA."
+        },
+        {
+          "text": "06 · Mi Fu FS №3",
+          "tone": "normal",
+          "input": {
+            "kind": "final-strike",
+            "actor": "mifu"
+          },
+          "hint": "Ориентир по cooldown, не фиксированная длительность."
+        },
+        {
+          "text": "07 · Argent Bolt Rush №1 → EL II / Sunderization; V2→V3",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "argent-flow"
+          },
+          "hint": "Требуется E1 от Argent CS. Перед применением можно перевести контроль на Pogranichnik.",
+          "sunderization": {
+            "gain": 2,
+            "assessment": "conditional",
+            "condition": "Только при поглощении ровно E1 и попадании Bolt Rush по той же цели: Argent Electrification II создаёт +2 Sunderization; суммарное число не установлено.",
+            "source": "https://endfield.wiki.gg/wiki/Argent_Flow"
+          }
+        },
+        {
+          "text": "08 · Chen CS → Lift, V3→V4",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "chen-qianyu"
+          },
+          "hint": "Только после восстановления Combo CD (15 с, либо 12 с на P5)."
+        },
+        {
+          "text": "09 · Mi Fu CS → Physical Susceptibility",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "mifu"
+          },
+          "hint": "Открывает shortcut BS2, но НЕ используем BS2 — V4 сохраняем для Breach."
+        },
+        {
+          "text": "10 · Pogranichnik FS",
+          "tone": "normal",
+          "input": {
+            "kind": "final-strike",
+            "actor": "pogranichnik"
+          },
+          "hint": "Полный BA→FS под собственным контролем; SP/Stagger."
+        },
+        {
+          "text": "11 · Pogranichnik BS → Breach IV, V4→V0",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "pogranichnik"
+          },
+          "hint": "Поглощает все 4 Vulnerability. Pog CS пока НЕ нажимать: придержать до общего Combo-пакета."
+        }
+      ],
+      "check": "Cold-start V0. Chen CS CD позволяет второй Lift; после Argent Bolt Rush V3, затем Chen Combo V4 → Pogranichnik BS поглощает V4 и создаёт Breach IV.",
+      "extra": "Pogranichnik Combo, открывшееся после Breach, УДЕРЖАТЬ до следующей фазы. FS — полноценная BA-цепочка активного оператора, не просто обычный удар.",
+      "physicalCheckpoints": [
+        {
+          "id": "breach-prep-0-v-before",
+          "anchor": {
+            "actionIndex": 0,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 0,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://youtu.be/E2q9i2TOvrU?t=2067",
+            "note": "Исходная ожидаемая цель Lin-0; значение до действия выведено из sequence, не измеренное состояние."
+          }
+        },
+        {
+          "id": "breach-prep-0-v-after",
+          "anchor": {
+            "actionIndex": 0,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 1,
+            "assessment": "conditional"
+          },
+          "dependsOn": "breach-prep-0-v-before",
+          "condition": "При первом Lift Chen BS по уязвимой к Physical Status основной цели.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Physical_Status",
+            "note": "Условная live-kit реконструкция изменения Vulnerability при правильном порядке попаданий."
+          }
+        },
+        {
+          "id": "breach-prep-0-physical-effect",
+          "anchor": {
+            "actionIndex": 0,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "effect",
+            "effect": "lift",
+            "assessment": "conditional"
+          },
+          "condition": "При первом Lift Chen BS по уязвимой к Physical Status основной цели.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Physical_Status",
+            "note": "Физическое событие lift при выполнении trigger; не подтверждено combat-observation."
+          }
+        },
+        {
+          "id": "breach-prep-1-v-before",
+          "anchor": {
+            "actionIndex": 1,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://youtu.be/E2q9i2TOvrU?t=2067",
+            "note": "Исходная ожидаемая цель Lin-0; значение до действия выведено из sequence, не измеренное состояние."
+          }
+        },
+        {
+          "id": "breach-prep-1-v-after",
+          "anchor": {
+            "actionIndex": 1,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 2,
+            "assessment": "conditional"
+          },
+          "dependsOn": "breach-prep-1-v-before",
+          "condition": "Если Chen Combo попало, cooldown готов и V1 сохраняется.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Physical_Status",
+            "note": "Условная live-kit реконструкция изменения Vulnerability при правильном порядке попаданий."
+          }
+        },
+        {
+          "id": "breach-prep-1-physical-effect",
+          "anchor": {
+            "actionIndex": 1,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "effect",
+            "effect": "lift",
+            "assessment": "conditional"
+          },
+          "condition": "Если Chen Combo попало, cooldown готов и V1 сохраняется.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Physical_Status",
+            "note": "Физическое событие lift при выполнении trigger; не подтверждено combat-observation."
+          }
+        },
+        {
+          "id": "breach-prep-6-v-before",
+          "anchor": {
+            "actionIndex": 6,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 2,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://youtu.be/E2q9i2TOvrU?t=2067",
+            "note": "Исходная ожидаемая цель Lin-0; значение до действия выведено из sequence, не измеренное состояние."
+          }
+        },
+        {
+          "id": "breach-prep-6-v-after",
+          "anchor": {
+            "actionIndex": 6,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 3,
+            "assessment": "conditional"
+          },
+          "dependsOn": "breach-prep-6-v-before",
+          "condition": "Если Bolt Rush попал после E1 и создаёт Vulnerability на той же цели.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Physical_Status",
+            "note": "Условная live-kit реконструкция изменения Vulnerability при правильном порядке попаданий."
+          }
+        },
+        {
+          "id": "breach-prep-7-v-before",
+          "anchor": {
+            "actionIndex": 7,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 3,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://youtu.be/E2q9i2TOvrU?t=2067",
+            "note": "Исходная ожидаемая цель Lin-0; значение до действия выведено из sequence, не измеренное состояние."
+          }
+        },
+        {
+          "id": "breach-prep-7-v-after",
+          "anchor": {
+            "actionIndex": 7,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 4,
+            "assessment": "conditional"
+          },
+          "dependsOn": "breach-prep-7-v-before",
+          "condition": "Если второй Chen Combo готов и попал после первого Bolt Rush.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Physical_Status",
+            "note": "Условная live-kit реконструкция изменения Vulnerability при правильном порядке попаданий."
+          }
+        },
+        {
+          "id": "breach-prep-7-physical-effect",
+          "anchor": {
+            "actionIndex": 7,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "effect",
+            "effect": "lift",
+            "assessment": "conditional"
+          },
+          "condition": "Если второй Chen Combo готов и попал после первого Bolt Rush.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Physical_Status",
+            "note": "Физическое событие lift при выполнении trigger; не подтверждено combat-observation."
+          }
+        },
+        {
+          "id": "breach-prep-10-v-before",
+          "anchor": {
+            "actionIndex": 10,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 4,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://youtu.be/E2q9i2TOvrU?t=2067",
+            "note": "Исходная ожидаемая цель Lin-0; значение до действия выведено из sequence, не измеренное состояние."
+          }
+        },
+        {
+          "id": "breach-prep-10-v-after",
+          "anchor": {
+            "actionIndex": 10,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 0,
+            "assessment": "conditional"
+          },
+          "dependsOn": "breach-prep-10-v-before",
+          "condition": "Если Pog BS расходует все V4 на одной цели до первого Crush.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Physical_Status",
+            "note": "Условная live-kit реконструкция изменения Vulnerability при правильном порядке попаданий."
+          }
+        },
+        {
+          "id": "breach-prep-10-physical-effect",
+          "anchor": {
+            "actionIndex": 10,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "effect",
+            "effect": "breach",
+            "assessment": "conditional"
+          },
+          "condition": "Если Pog BS расходует все V4 на одной цели до первого Crush.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Physical_Status",
+            "note": "Физическое событие breach при выполнении trigger; не подтверждено combat-observation."
+          }
+        }
+      ],
+      "artsCheckpoints": [
+        {
+          "id": "breach-prep-2-electric-one",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "condition": "При попадании Combo Argent по основной цели, если нет другого сохранившегося Electric Infliction.",
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://youtu.be/E2q9i2TOvrU?t=2067",
+            "note": "Условная целевая Electric Infliction I из Combo Argent в ротации Lin-0, не измеренный snapshot."
+          }
+        },
+        {
+          "id": "breach-prep-6-electric-before",
+          "anchor": {
+            "actionIndex": 6,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://youtu.be/E2q9i2TOvrU?t=2067",
+            "note": "Ожидаемая E1 от Combo Argent до Bolt Rush; требуется совпадение цели и отсутствие расходования ранее."
+          }
+        },
+        {
+          "id": "breach-prep-6-electrification-after",
+          "anchor": {
+            "actionIndex": 6,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "reaction",
+            "reaction": "electrification",
+            "level": 2,
+            "assessment": "conditional"
+          },
+          "dependsOn": "breach-prep-6-electric-before",
+          "condition": "Если Bolt Rush поглощает ровно один Electric Infliction той же цели и накладывает Argent Electrification II; возможный прежний EL overwrites.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Argent_Flow",
+            "note": "По live kit: 1 Electric Infliction → forced Electrification II; числовой уровень — условная модель, не combat observation."
+          }
+        }
+      ]
+    },
+    "crushSetup": {
+      "person": "mifu",
+      "title": "2. Подготовить первый Crush",
+      "sub": "V0→V3, Electric / Sunderization",
+      "actions": [
+        {
+          "text": "12 · Mi Fu FS №4",
+          "tone": "normal",
+          "input": {
+            "kind": "final-strike",
+            "actor": "mifu"
+          },
+          "hint": "Вернуться к Mi Fu как основному on-fielder."
+        },
+        {
+          "text": "13 · Mi Fu FS №5",
+          "tone": "normal",
+          "input": {
+            "kind": "final-strike",
+            "actor": "mifu"
+          },
+          "hint": "SP/Stagger; следующий Chen Combo должен быть доступен."
+        },
+        {
+          "text": "14 · Chen BS → Lift, V0→V1",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "chen-qianyu"
+          },
+          "hint": "Создать новый пакет Vulnerability; открыть Chen/Argent Combo."
+        },
+        {
+          "text": "15 · Chen CS → Lift, V1→V2",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "chen-qianyu"
+          },
+          "hint": "Должно быть доступно по CD."
+        },
+        {
+          "text": "16 · Pogranichnik CS (отложенное) → SP",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "pogranichnik"
+          },
+          "hint": "Использовать удержанное после Breach Combo СЕЙЧАС, с Chen/Argent Combo, чтобы buffs экипировки дожили до Stagger."
+        },
+        {
+          "text": "17 · Argent CS → Electric Infliction I",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "argent-flow"
+          },
+          "hint": "Срабатывает от Vulnerability Chen; подготовка Bolt Rush №2."
+        },
+        {
+          "text": "18 · Mi Fu FS №6",
+          "tone": "normal",
+          "input": {
+            "kind": "final-strike",
+            "actor": "mifu"
+          },
+          "hint": "Набор SP/Stagger; перед критическим окном управление переводится на Chen."
+        },
+        {
+          "text": "19 · Argent Bolt Rush №2 → EL / S; V2→V3",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "argent-flow"
+          },
+          "hint": "Поглотить E1; создать Sunderization к первому Crush Mi Fu.",
+          "sunderization": {
+            "gain": 2,
+            "assessment": "conditional",
+            "condition": "Только при поглощении ровно E1 и попадании Bolt Rush по той же цели: Argent Electrification II создаёт +2 Sunderization; суммарное число не установлено.",
+            "source": "https://endfield.wiki.gg/wiki/Argent_Flow"
+          }
+        },
+        {
+          "text": "20 · Mi Fu CS → Physical Susceptibility",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "mifu"
+          },
+          "hint": "Условие V≥3, открывает BS2. Дождаться окончания Combo при Chen FS."
+        },
+        {
+          "text": "21 · Chen FS №1 · зарядка",
+          "tone": "normal",
+          "input": {
+            "kind": "final-strike",
+            "actor": "chen-qianyu"
+          },
+          "hint": "Подготовить Stagger, следить за моментом начала зарядки FS."
+        }
+      ],
+      "check": "Chen BS+Combo создают V2; Argent Combo создаёт E1, Bolt Rush №2 → V3 и новый Sunderization. Дождись Mi Fu Combo CD и Chen FS.",
+      "extra": "Pogranichnik CS №1 умышленно отложено; совместное применение с Chen/Argent Combo помогает сохранить buffs Frontier's / Thermite Cutter при соответствующей экипировке.",
+      "physicalCheckpoints": [
+        {
+          "id": "crush-setup-2-v-before",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 0,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://youtu.be/E2q9i2TOvrU?t=2067",
+            "note": "Исходная ожидаемая цель Lin-0; значение до действия выведено из sequence, не измеренное состояние."
+          }
+        },
+        {
+          "id": "crush-setup-2-v-after",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 1,
+            "assessment": "conditional"
+          },
+          "dependsOn": "crush-setup-2-v-before",
+          "condition": "Если Breach ранее обнулил V и Chen BS попал по прежней цели.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Physical_Status",
+            "note": "Условная live-kit реконструкция изменения Vulnerability при правильном порядке попаданий."
+          }
+        },
+        {
+          "id": "crush-setup-2-physical-effect",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "effect",
+            "effect": "lift",
+            "assessment": "conditional"
+          },
+          "condition": "Если Breach ранее обнулил V и Chen BS попал по прежней цели.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Physical_Status",
+            "note": "Физическое событие lift при выполнении trigger; не подтверждено combat-observation."
+          }
+        },
+        {
+          "id": "crush-setup-3-v-before",
+          "anchor": {
+            "actionIndex": 3,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://youtu.be/E2q9i2TOvrU?t=2067",
+            "note": "Исходная ожидаемая цель Lin-0; значение до действия выведено из sequence, не измеренное состояние."
+          }
+        },
+        {
+          "id": "crush-setup-3-v-after",
+          "anchor": {
+            "actionIndex": 3,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 2,
+            "assessment": "conditional"
+          },
+          "dependsOn": "crush-setup-3-v-before",
+          "condition": "Если Chen Combo готов и Lift добавляет второй stack.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Physical_Status",
+            "note": "Условная live-kit реконструкция изменения Vulnerability при правильном порядке попаданий."
+          }
+        },
+        {
+          "id": "crush-setup-3-physical-effect",
+          "anchor": {
+            "actionIndex": 3,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "effect",
+            "effect": "lift",
+            "assessment": "conditional"
+          },
+          "condition": "Если Chen Combo готов и Lift добавляет второй stack.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Physical_Status",
+            "note": "Физическое событие lift при выполнении trigger; не подтверждено combat-observation."
+          }
+        },
+        {
+          "id": "crush-setup-7-v-before",
+          "anchor": {
+            "actionIndex": 7,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 2,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://youtu.be/E2q9i2TOvrU?t=2067",
+            "note": "Исходная ожидаемая цель Lin-0; значение до действия выведено из sequence, не измеренное состояние."
+          }
+        },
+        {
+          "id": "crush-setup-7-v-after",
+          "anchor": {
+            "actionIndex": 7,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 3,
+            "assessment": "conditional"
+          },
+          "dependsOn": "crush-setup-7-v-before",
+          "condition": "Если Bolt Rush №2 попал по цели после E1 Argent.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Physical_Status",
+            "note": "Условная live-kit реконструкция изменения Vulnerability при правильном порядке попаданий."
+          }
+        }
+      ],
+      "artsCheckpoints": [
+        {
+          "id": "crush-setup-5-electric-one",
+          "anchor": {
+            "actionIndex": 5,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "condition": "При попадании Combo Argent по основной цели, если нет другого сохранившегося Electric Infliction.",
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://youtu.be/E2q9i2TOvrU?t=2067",
+            "note": "Условная целевая Electric Infliction I из Combo Argent в ротации Lin-0, не измеренный snapshot."
+          }
+        },
+        {
+          "id": "crush-setup-7-electric-before",
+          "anchor": {
+            "actionIndex": 7,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://youtu.be/E2q9i2TOvrU?t=2067",
+            "note": "Ожидаемая E1 от Combo Argent до Bolt Rush; требуется совпадение цели и отсутствие расходования ранее."
+          }
+        },
+        {
+          "id": "crush-setup-7-electrification-after",
+          "anchor": {
+            "actionIndex": 7,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "reaction",
+            "reaction": "electrification",
+            "level": 2,
+            "assessment": "conditional"
+          },
+          "dependsOn": "crush-setup-7-electric-before",
+          "condition": "Если Bolt Rush поглощает ровно один Electric Infliction той же цели и накладывает Argent Electrification II; возможный прежний EL overwrites.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Argent_Flow",
+            "note": "По live kit: 1 Electric Infliction → forced Electrification II; числовой уровень — условная модель, не combat observation."
+          }
+        }
+      ]
+    },
+    "firstBurst": {
+      "person": "mifu",
+      "title": "3. Первый Crush · Stagger",
+      "sub": "Тайминг попаданий важнее порядка нажатий",
+      "actions": [
+        {
+          "text": "22 · Argent Ultimate — ЗАПУСТИТЬ заранее",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate",
+            "actor": "argent-flow"
+          },
+          "hint": "КРИТИЧНО: завершение Ultimate/Crush должно ПОПАСТЬ после Mi Fu BS2; не ждать его попадания."
+        },
+        {
+          "text": "23 · Chen FS №2 · продолжение окна",
+          "tone": "normal",
+          "input": {
+            "kind": "final-strike",
+            "actor": "chen-qianyu"
+          },
+          "hint": "Зарядка/попадание FS и анимации задают узкое окно для двух Battle Skills."
+        },
+        {
+          "text": "24 · Chen BS → Lift, V3→V4, Stagger",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "chen-qianyu"
+          },
+          "hint": "Сразу после запуска Argent Ult. Chen BS быстрее Mi Fu BS2."
+        },
+        {
+          "text": "25 · Mi Fu BS2 → Crush IV, V4→V0, взрыв S",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "mifu"
+          },
+          "hint": "ДОЛЖНО ПОПАСТЬ после Chen BS и до последнего удара Argent Ult. После BS2 поздний Crush Argent Ultimate по V0 даёт V1."
+        },
+        {
+          "text": "26 · Mi Fu BS3 — World Splitter №1",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "mifu"
+          },
+          "hint": "Нажать после успешного расхода ≥3 Vulnerability в BS2. Не ожидать второй взрыв S без нового применения."
+        }
+      ],
+      "check": "Строгое попадание: Chen BS (V3→V4, Stagger) → Mi Fu BS2 (V4→0, первый Sunderization explosion) → ЗАПАЗДЫВАЮЩИЙ Crush Argent Ultimate по V0 (создаёт V1) → Mi Fu BS3.",
+      "extra": "Поскольку Argent Ultimate НАЖАТ раньше, его Physical event нельзя подписывать как мгновенное after на карточке Ult. V1 возникает между BS2 и BS3. Ошибка тайминга разрушает всю финальную V-цепочку.",
+      "physicalCheckpoints": [
+        {
+          "id": "first-burst-2-v-before",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 3,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://youtu.be/E2q9i2TOvrU?t=2067",
+            "note": "Исходная ожидаемая цель Lin-0; значение до действия выведено из sequence, не измеренное состояние."
+          }
+        },
+        {
+          "id": "first-burst-2-v-after",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 4,
+            "assessment": "conditional"
+          },
+          "dependsOn": "first-burst-2-v-before",
+          "condition": "Если Chen BS №3 попадает раньше Mi Fu BS2 и раньше Crush Argent Ultimate.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Physical_Status",
+            "note": "Условная live-kit реконструкция изменения Vulnerability при правильном порядке попаданий."
+          }
+        },
+        {
+          "id": "first-burst-2-physical-effect",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "effect",
+            "effect": "lift",
+            "assessment": "conditional"
+          },
+          "condition": "Если Chen BS №3 попадает раньше Mi Fu BS2 и раньше Crush Argent Ultimate.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Physical_Status",
+            "note": "Физическое событие lift при выполнении trigger; не подтверждено combat-observation."
+          }
+        },
+        {
+          "id": "first-burst-3-v-before",
+          "anchor": {
+            "actionIndex": 3,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 4,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://youtu.be/E2q9i2TOvrU?t=2067",
+            "note": "Исходная ожидаемая цель Lin-0; значение до действия выведено из sequence, не измеренное состояние."
+          }
+        },
+        {
+          "id": "first-burst-3-v-after",
+          "anchor": {
+            "actionIndex": 3,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 0,
+            "assessment": "conditional"
+          },
+          "dependsOn": "first-burst-3-v-before",
+          "condition": "Если Mi Fu BS2 попал по V4 прежде отложенного Argent Ult Crush; после этого Ult по V0 создаёт отдельный V1.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Physical_Status",
+            "note": "Условная live-kit реконструкция изменения Vulnerability при правильном порядке попаданий."
+          }
+        },
+        {
+          "id": "first-burst-3-physical-effect",
+          "anchor": {
+            "actionIndex": 3,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "effect",
+            "effect": "crush",
+            "assessment": "conditional"
+          },
+          "condition": "Если Mi Fu BS2 попал по V4 прежде отложенного Argent Ult Crush; после этого Ult по V0 создаёт отдельный V1.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Physical_Status",
+            "note": "Физическое событие crush при выполнении trigger; не подтверждено combat-observation."
+          }
+        }
+      ]
+    },
+    "shieldBridge": {
+      "person": "chen-qianyu",
+      "title": "4. Steel Oath · подготовка второго Crush",
+      "sub": "5 Shieldguards, Chen Finisher, Argent BS2",
+      "actions": [
+        {
+          "text": "27 · Chen CS → Lift, V1→V2",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "chen-qianyu"
+          },
+          "hint": "Combo от Vulnerability V1 после ЗАПАЗДЫВАЮЩЕГО попадания Argent Ult; удержать момент попадания."
+        },
+        {
+          "text": "28 · Pogranichnik Ultimate → Steel Oath ×5",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate",
+            "actor": "pogranichnik"
+          },
+          "hint": "Нажать ДО попадания Chen CS; после её Lift срабатывает Shieldguard №1. Длинная анимация даёт время для Argent CS CD."
+        },
+        {
+          "text": "29 · Pogranichnik CS от Crush Mi Fu",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "pogranichnik"
+          },
+          "hint": "SP recovery, ещё три Shieldguard (№2–4) при выполнении условий Steel Oath."
+        },
+        {
+          "text": "30 · Chen Ultimate · animation/time-stop cancel",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate",
+            "actor": "chen-qianyu"
+          },
+          "hint": "Отменить затяжное восстановление Chen CS/Pog CS и сохранить Stagger burst."
+        },
+        {
+          "text": "31 · Argent CS → Electric Infliction I",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "argent-flow"
+          },
+          "hint": "После восстановления CD; открыть Bolt Rush №3, но ПОКА НЕ НАЖИМАТЬ."
+        },
+        {
+          "text": "32 · Chen Finisher в Stagger",
+          "tone": "vital",
+          "input": {
+            "kind": "finisher",
+            "actor": "chen-qianyu"
+          },
+          "hint": "Сначала Finisher. Если Stagger ещё не наступил/закончился — этот маршрут не воспроизводится."
+        },
+        {
+          "text": "33 · Argent Bolt Rush №3 → EL / S, V2→V3",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "argent-flow"
+          },
+          "hint": "Попадание должно прийти ПОСЛЕ готовности Chen CS: запускает Chen CS и Mi Fu CS, вызывает подготовку последнего Shieldguard.",
+          "sunderization": {
+            "gain": 2,
+            "assessment": "conditional",
+            "condition": "Только при поглощении ровно E1 и попадании Bolt Rush по той же цели: Argent Electrification II создаёт +2 Sunderization; суммарное число не установлено.",
+            "source": "https://endfield.wiki.gg/wiki/Argent_Flow"
+          }
+        }
+      ],
+      "check": "Перед попаданием Chen CS активировать Pog Ultimate (Steel Oath×5). Chen CS → V2, Shieldguard №1; Pog CS → №2–4; после Chen Finisher Bolt Rush создаёт V3 и готовит последнее Combo.",
+      "extra": "Пог Ult служит ещё и timing buffer для CD Argent. Не нажимай Bolt Rush №3 сразу после Argent Combo: сначала Chen Finisher и восстановление Chen CS.",
+      "physicalCheckpoints": [
+        {
+          "id": "shield-bridge-0-v-before",
+          "anchor": {
+            "actionIndex": 0,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://youtu.be/E2q9i2TOvrU?t=2067",
+            "note": "Исходная ожидаемая цель Lin-0; значение до действия выведено из sequence, не измеренное состояние."
+          }
+        },
+        {
+          "id": "shield-bridge-0-v-after",
+          "anchor": {
+            "actionIndex": 0,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 2,
+            "assessment": "conditional"
+          },
+          "dependsOn": "shield-bridge-0-v-before",
+          "condition": "Если отложенное Argent Ult попало по V0 сразу после первого Mi Fu BS2 и до Chen Combo.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Physical_Status",
+            "note": "Условная live-kit реконструкция изменения Vulnerability при правильном порядке попаданий."
+          }
+        },
+        {
+          "id": "shield-bridge-0-physical-effect",
+          "anchor": {
+            "actionIndex": 0,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "effect",
+            "effect": "lift",
+            "assessment": "conditional"
+          },
+          "condition": "Если отложенное Argent Ult попало по V0 сразу после первого Mi Fu BS2 и до Chen Combo.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Physical_Status",
+            "note": "Физическое событие lift при выполнении trigger; не подтверждено combat-observation."
+          }
+        },
+        {
+          "id": "shield-bridge-6-v-before",
+          "anchor": {
+            "actionIndex": 6,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 2,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://youtu.be/E2q9i2TOvrU?t=2067",
+            "note": "Исходная ожидаемая цель Lin-0; значение до действия выведено из sequence, не измеренное состояние."
+          }
+        },
+        {
+          "id": "shield-bridge-6-v-after",
+          "anchor": {
+            "actionIndex": 6,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 3,
+            "assessment": "conditional"
+          },
+          "dependsOn": "shield-bridge-6-v-before",
+          "condition": "Если Bolt Rush №3 попадает после Chen Finisher при готовом Combo Chen.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Physical_Status",
+            "note": "Условная live-kit реконструкция изменения Vulnerability при правильном порядке попаданий."
+          }
+        }
+      ],
+      "artsCheckpoints": [
+        {
+          "id": "shield-bridge-4-electric-one",
+          "anchor": {
+            "actionIndex": 4,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "condition": "При попадании Combo Argent по основной цели, если нет другого сохранившегося Electric Infliction.",
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://youtu.be/E2q9i2TOvrU?t=2067",
+            "note": "Условная целевая Electric Infliction I из Combo Argent в ротации Lin-0, не измеренный snapshot."
+          }
+        },
+        {
+          "id": "shield-bridge-6-electric-before",
+          "anchor": {
+            "actionIndex": 6,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://youtu.be/E2q9i2TOvrU?t=2067",
+            "note": "Ожидаемая E1 от Combo Argent до Bolt Rush; требуется совпадение цели и отсутствие расходования ранее."
+          }
+        },
+        {
+          "id": "shield-bridge-6-electrification-after",
+          "anchor": {
+            "actionIndex": 6,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "reaction",
+            "reaction": "electrification",
+            "level": 2,
+            "assessment": "conditional"
+          },
+          "dependsOn": "shield-bridge-6-electric-before",
+          "condition": "Если Bolt Rush поглощает ровно один Electric Infliction той же цели и накладывает Argent Electrification II; возможный прежний EL overwrites.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Argent_Flow",
+            "note": "По live kit: 1 Electric Infliction → forced Electrification II; числовой уровень — условная модель, не combat observation."
+          }
+        }
+      ]
+    },
+    "secondBurst": {
+      "person": "mifu",
+      "title": "5. Второй Crush · завершение",
+      "sub": "V3→V4→0 · World Splitter №2",
+      "actions": [
+        {
+          "text": "34 · Chen CS → Lift, V3→V4",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "chen-qianyu"
+          },
+          "hint": "Пятый Shieldguard, расход последнего Steel Oath, заметный возврат SP."
+        },
+        {
+          "text": "35 · Mi Fu CS → Physical Susceptibility",
+          "tone": "key",
+          "input": {
+            "kind": "combo",
+            "actor": "mifu"
+          },
+          "hint": "Shortcut к BS2 при V≥3, последний пакет Crush."
+        },
+        {
+          "text": "36 · Mi Fu BS2 → Crush IV, V4→V0, взрыв S",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "mifu"
+          },
+          "hint": "Второй Sunderization explosion от Bolt Rush №3."
+        },
+        {
+          "text": "37 · Mi Fu BS3 — World Splitter №2",
+          "tone": "key",
+          "input": {
+            "kind": "skill",
+            "actor": "mifu"
+          },
+          "hint": "Двойной Crush-пакет завершён во время Stagger."
+        },
+        {
+          "text": "38 · Chen FS №3",
+          "tone": "normal",
+          "input": {
+            "kind": "final-strike",
+            "actor": "chen-qianyu"
+          },
+          "hint": "Финальный добор SP/урона; требуется Chen on-field для полноценного FS."
+        },
+        {
+          "text": "39 · Mi Fu Ultimate — опциональная добивка",
+          "tone": "vital",
+          "input": {
+            "kind": "ultimate",
+            "actor": "mifu"
+          },
+          "hint": "Lin-0: можно успеть первый удар Ult внутрь Stagger при достаточной Energy. Для генерации V оба BS2 без него работают.",
+          "optional": true,
+          "condition": "Только если Mi Fu накопила Ultimate Energy и ещё доступно окно Stagger."
+        }
+      ],
+      "check": "Chen CS после Bolt Rush даёт V4 и Shieldguard №5; Mi Fu Combo → BS2 Crush IV, второй Sunderization explosion → BS3. Mi Fu Ult необязателен.",
+      "extra": "Этот блок требует ещё активного Stagger и достаточного SP. Сохранить порядок Chen Combo до Mi Fu BS2; собственный Ult Mi Fu не нужен для генерации Vulnerability.",
+      "physicalCheckpoints": [
+        {
+          "id": "second-burst-0-v-before",
+          "anchor": {
+            "actionIndex": 0,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 3,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://youtu.be/E2q9i2TOvrU?t=2067",
+            "note": "Исходная ожидаемая цель Lin-0; значение до действия выведено из sequence, не измеренное состояние."
+          }
+        },
+        {
+          "id": "second-burst-0-v-after",
+          "anchor": {
+            "actionIndex": 0,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 4,
+            "assessment": "conditional"
+          },
+          "dependsOn": "second-burst-0-v-before",
+          "condition": "Если Chen Combo готов, попадание Lift по той же цели вызывает Shieldguard №5.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Physical_Status",
+            "note": "Условная live-kit реконструкция изменения Vulnerability при правильном порядке попаданий."
+          }
+        },
+        {
+          "id": "second-burst-0-physical-effect",
+          "anchor": {
+            "actionIndex": 0,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "effect",
+            "effect": "lift",
+            "assessment": "conditional"
+          },
+          "condition": "Если Chen Combo готов, попадание Lift по той же цели вызывает Shieldguard №5.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Physical_Status",
+            "note": "Физическое событие lift при выполнении trigger; не подтверждено combat-observation."
+          }
+        },
+        {
+          "id": "second-burst-2-v-before",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "before"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 4,
+            "assessment": "target"
+          },
+          "evidence": {
+            "basis": "tc-intent",
+            "url": "https://youtu.be/E2q9i2TOvrU?t=2067",
+            "note": "Исходная ожидаемая цель Lin-0; значение до действия выведено из sequence, не измеренное состояние."
+          }
+        },
+        {
+          "id": "second-burst-2-v-after",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "vulnerability",
+            "stacks": 0,
+            "assessment": "conditional"
+          },
+          "dependsOn": "second-burst-2-v-before",
+          "condition": "Если Mi Fu BS2 расходует V4 и снова детонирует Sunderization.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Physical_Status",
+            "note": "Условная live-kit реконструкция изменения Vulnerability при правильном порядке попаданий."
+          }
+        },
+        {
+          "id": "second-burst-2-physical-effect",
+          "anchor": {
+            "actionIndex": 2,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "effect",
+            "effect": "crush",
+            "assessment": "conditional"
+          },
+          "condition": "Если Mi Fu BS2 расходует V4 и снова детонирует Sunderization.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Physical_Status",
+            "note": "Физическое событие crush при выполнении trigger; не подтверждено combat-observation."
+          }
+        }
+      ]
+    },
+    "recoveryNote": {
+      "person": "mifu",
+      "title": "Повтор — только после восстановления",
+      "sub": "Не готовая бесконечная ось",
+      "actions": [
+        {
+          "text": "Восстановить SP / Combo CD / Ultimate Energy перед новым боем",
+          "tone": "flow",
+          "input": {
+            "kind": "basic",
+            "actor": "mifu"
+          },
+          "hint": "У Lin-0 отсутствует проверенный повторяемый cold-start loop; это только напоминание о recovery."
+        }
+      ],
+      "check": "НЕ воспроизводить стадии 1–5 автоматически с теми же стартовыми ресурсами.",
+      "extra": "Исходная ротация представляет одну подготовку → два Crush в Stagger; время повторного цикла и reset статусов не проверены."
+    }
+  }
+}
