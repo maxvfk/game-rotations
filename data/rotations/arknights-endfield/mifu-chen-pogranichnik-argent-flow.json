@@ -5,7 +5,7 @@
   "title": "Mi Fu / Chen / Pogranichnik / Argent Flow",
   "gameVersion": "Global live 1.6 (2026-11-22)",
   "source": "https://github.com/maxvfk/Games/blob/main/guides/arknights-endfield/MI_FU_CHEN_POGRANICHNIK_ARGENT_FLOW_LIN0_ROTATION.md",
-  "verificationNote": "Lin-0 (видео 08.11.2026, разбор 34:27–37:38), source-derived 39 action timeline из скриншота и пояснения автора. GLOBAL 1.6; часть видео создана на Creator Experience Server. No self-verified combat timing for this account. Physical/Arts checkpoints are CONDITIONAL TARGETS reconstructed from live-kit and TC intent, NOT actual observed states. Ultimate Argent intentionally lands after Mi Fu BS2; 5 Shieldguards depend on timing. Chen Potential and gear not recorded; SP/UGE/gear, repeated loop and boss/Stagger behavior require practical checks.",
+  "verificationNote": "Lin-0 (видео 08.11.2026, разбор 34:27–37:38), source-derived 39 action timeline из скриншота и пояснения автора. GLOBAL 1.6; часть видео создана на Creator Experience Server. No self-verified combat timing for this account. Physical/Arts checkpoints are CONDITIONAL TARGETS reconstructed from live-kit and TC intent, NOT actual observed states. Ultimate Argent intentionally lands after Mi Fu BS2; 5 Shieldguards depend on timing. Chen Potential and gear not recorded; SP/UGE/gear, repeated loop and boss/Stagger behavior require practical checks. Исправление 22.11: Ult Argent накладывает Electric Infliction I (Cleansing Cleave), НЕ автоматически Electrification; при сохранении E1 до Argent Combo №3 целевой E2 → Bolt Rush #3 условно EL III/+3 S, вместо ошибочного EL II/+2 S. Arts checkpoint Ultimate связан с источником эффекта, а не мгновенным временем нажатия.",
   "controls": "arknights-endfield",
   "characters": [
     {
@@ -53,7 +53,7 @@
       "label": "Lin-0",
       "sub": "Breach IV → 2× Crush в Stagger",
       "type": "Boss / Stagger",
-      "intro": "Source-derived single-target burst Lin-0: V4→Breach IV; V4→Mi Fu BS2/BS3; delayed Argent Ultimate по V0 создаёт V1; затем повторное V4→Mi Fu BS2/BS3. Основной фокус — точный hit order и 5 Steel Oath triggers. Источник частично Creator Experience Server, авторская последовательность сохранена; live/account execution не проверено.",
+      "intro": "Source-derived single-target burst Lin-0: V4→Breach IV; V4→Mi Fu BS2/BS3; delayed Argent Ultimate по V0 создаёт V1; затем повторное V4→Mi Fu BS2/BS3. Основной фокус — точный hit order и 5 Steel Oath triggers. Источник частично Creator Experience Server, авторская последовательность сохранена; live/account execution не проверено. Обновление: поздний Cleansing Cleave Ultimate оставляет E1 для третьего Argent Combo, условно E2 перед последним Bolt Rush.",
       "verification": "partial",
       "opener": [
         "breachPrep",
@@ -800,13 +800,13 @@
       "sub": "Тайминг попаданий важнее порядка нажатий",
       "actions": [
         {
-          "text": "22 · Argent Ultimate — ЗАПУСТИТЬ заранее",
+          "text": "22 · Argent Ultimate — запуск; при попадании Electric Infliction +1, затем Crush",
           "tone": "vital",
           "input": {
             "kind": "ultimate",
             "actor": "argent-flow"
           },
-          "hint": "КРИТИЧНО: завершение Ultimate/Crush должно ПОПАСТЬ после Mi Fu BS2; не ждать его попадания."
+          "hint": "ДВА отложенных попадания: Cleansing Cleave накладывает Electric Infliction I, затем финальный удар наносит Crush. Нажать ДО Chen BS и Mi Fu BS2; ключевое условие: финальный Crush попадает ПОСЛЕ BS2 Mi Fu. Индикатор Arts привязан к Ultimate, но НЕ означает E1 сразу при нажатии."
         },
         {
           "text": "23 · Chen FS №2 · продолжение окна",
@@ -833,7 +833,7 @@
             "kind": "skill",
             "actor": "mifu"
           },
-          "hint": "ДОЛЖНО ПОПАСТЬ после Chen BS и до последнего удара Argent Ult. После BS2 поздний Crush Argent Ultimate по V0 даёт V1."
+          "hint": "ДОЛЖНО ПОПАСТЬ после Chen BS, но до финального Crush Argent Ult; поздний Crush по V0 создаёт V1. Cleansing Cleave того же Ultimate накладывает Electric Infliction I независимо от Physical статуса (при попадании по той же цели)."
         },
         {
           "text": "26 · Mi Fu BS3 — World Splitter №1",
@@ -846,7 +846,7 @@
         }
       ],
       "check": "Строгое попадание: Chen BS (V3→V4, Stagger) → Mi Fu BS2 (V4→0, первый Sunderization explosion) → ЗАПАЗДЫВАЮЩИЙ Crush Argent Ultimate по V0 (создаёт V1) → Mi Fu BS3.",
-      "extra": "Поскольку Argent Ultimate НАЖАТ раньше, его Physical event нельзя подписывать как мгновенное after на карточке Ult. V1 возникает между BS2 и BS3. Ошибка тайминга разрушает всю финальную V-цепочку.",
+      "extra": "Поскольку Argent Ultimate НАЖАТ раньше, его Physical event нельзя подписывать как мгновенное after на карточке Ult. V1 возникает между BS2 и BS3. Ошибка тайминга разрушает всю финальную V-цепочку. Arts-индикатор Ult показывает эффект от ПОЗДНЕГО попадания Cleansing Cleave, а не стаки в момент нажатия. E1 от Ult может сохраниться до Argent Combo №3 (20 с); проверять фактический порядок попаданий.",
       "physicalCheckpoints": [
         {
           "id": "first-burst-2-v-before",
@@ -962,6 +962,28 @@
             "note": "Физическое событие crush при выполнении trigger; не подтверждено combat-observation."
           }
         }
+      ],
+      "artsCheckpoints": [
+        {
+          "id": "argent-ult-delayed-electric-one",
+          "anchor": {
+            "actionIndex": 0,
+            "relative": "after"
+          },
+          "subject": "primary-target",
+          "status": {
+            "kind": "infliction",
+            "element": "electric",
+            "stacks": 1,
+            "assessment": "target"
+          },
+          "condition": "Только после фактического попадания Cleansing Cleave Ultimate Argent (НЕ при нажатии кнопки); после Bolt Rush №2 предыдущая Electric Infliction поглощена, иных элементов на цели нет.",
+          "evidence": {
+            "basis": "live-mechanic",
+            "url": "https://endfield.wiki.gg/wiki/Argent_Flow",
+            "note": "Live-kit Heavens Sundered: Cleansing Cleave накладывает 1 Electric Infliction перед финальным Crush. Индикатор привязан к кнопке, однако попадание происходит позднее, между действиями Mi Fu/Chen; NOT observed timeline."
+          }
+        }
       ]
     },
     "shieldBridge": {
@@ -1006,13 +1028,13 @@
           "hint": "Отменить затяжное восстановление Chen CS/Pog CS и сохранить Stagger burst."
         },
         {
-          "text": "31 · Argent CS → Electric Infliction I",
+          "text": "31 · Argent CS → Electric Infliction I→II (если Ult E1 сохранился)",
           "tone": "key",
           "input": {
             "kind": "combo",
             "actor": "argent-flow"
           },
-          "hint": "После восстановления CD; открыть Bolt Rush №3, но ПОКА НЕ НАЖИМАТЬ."
+          "hint": "После восстановившегося cooldown. Ult Argent ранее накладывает E1; при попадании CS по той же цели до истечения 20 c будет E2 и Electric Burst. Bolt Rush №3 пока удержать."
         },
         {
           "text": "32 · Chen Finisher в Stagger",
@@ -1024,23 +1046,23 @@
           "hint": "Сначала Finisher. Если Stagger ещё не наступил/закончился — этот маршрут не воспроизводится."
         },
         {
-          "text": "33 · Argent Bolt Rush №3 → EL / S, V2→V3",
+          "text": "33 · Argent Bolt Rush №3 → условно Electrification III / S×3, V2→V3",
           "tone": "key",
           "input": {
             "kind": "skill",
             "actor": "argent-flow"
           },
-          "hint": "Попадание должно прийти ПОСЛЕ готовности Chen CS: запускает Chen CS и Mi Fu CS, вызывает подготовку последнего Shieldguard.",
+          "hint": "Если E1 от Ultimate сохранился и CS Argent №3 добавил E2, Bolt Rush поглотит 2 Electric stacks → forced Electrification III и +3 Sunderization (точное наложение поверх старого Electrification надо проверить). Должен попадать после восстановления Chen CS, перед финальным Crush Mi Fu.",
           "sunderization": {
-            "gain": 2,
+            "gain": 3,
             "assessment": "conditional",
-            "condition": "Только при поглощении ровно E1 и попадании Bolt Rush по той же цели: Argent Electrification II создаёт +2 Sunderization; суммарное число не установлено.",
+            "condition": "Если E1 от Cleansing Cleave Ultimate сохраняется до Argent Combo #3 (E2) и Bolt Rush #3 поглощает именно E2 по той же цели, целевая forced Electrification III создаёт +3 Sunderization. Реальный Status refresh/старые stacks требуют теста.",
             "source": "https://endfield.wiki.gg/wiki/Argent_Flow"
           }
         }
       ],
-      "check": "Перед попаданием Chen CS активировать Pog Ultimate (Steel Oath×5). Chen CS → V2, Shieldguard №1; Pog CS → №2–4; после Chen Finisher Bolt Rush создаёт V3 и готовит последнее Combo.",
-      "extra": "Пог Ult служит ещё и timing buffer для CD Argent. Не нажимай Bolt Rush №3 сразу после Argent Combo: сначала Chen Finisher и восстановление Chen CS.",
+      "check": "Перед Argent Combo №3 должен сохраниться E1 от Ult, тогда Combo создаёт E2 и Electric Burst; после Chen Finisher Bolt Rush №3 потенциально даёт Electrification III / S×3 и V3. Уровень условный — проверить refresh и elapsed time.",
+      "extra": "Пог Ult служит ещё и timing buffer для CD Argent. Не нажимай Bolt Rush №3 сразу после Argent Combo: сначала Chen Finisher и восстановление Chen CS. Electric Infliction после Ult и Combo складываются до E2 при 20-секундном окне; это исправление source-derived resource model, не новое авторское measured наблюдение.",
       "physicalCheckpoints": [
         {
           "id": "shield-bridge-0-v-before",
@@ -1140,7 +1162,7 @@
       ],
       "artsCheckpoints": [
         {
-          "id": "shield-bridge-4-electric-one",
+          "id": "shield-bridge-4-electric-two",
           "anchor": {
             "actionIndex": 4,
             "relative": "after"
@@ -1149,14 +1171,14 @@
           "status": {
             "kind": "infliction",
             "element": "electric",
-            "stacks": 1,
+            "stacks": 2,
             "assessment": "target"
           },
-          "condition": "При попадании Combo Argent по основной цели, если нет другого сохранившегося Electric Infliction.",
+          "condition": "Если поздний Cleansing Cleave от Argent Ult оставил E1, и новый Argent Combo попал по той же цели в течение 20 с без промежуточного Arts consume: E1→E2; происходит Electric Burst.",
           "evidence": {
             "basis": "tc-intent",
             "url": "https://youtu.be/E2q9i2TOvrU?t=2067",
-            "note": "Условная целевая Electric Infliction I из Combo Argent в ротации Lin-0, не измеренный snapshot."
+            "note": "Ожидаемое состояние из live-kit: Argent Ult Cleansing Cleave E1 + третье Argent Combo E1 → E2, если нет расходования/истечения; source-derived inference, NOT Lin-0's stated numeric count or combat-observed."
           }
         },
         {
@@ -1169,14 +1191,14 @@
           "status": {
             "kind": "reaction",
             "reaction": "electrification",
-            "level": 2,
+            "level": 3,
             "assessment": "conditional"
           },
-          "condition": "Если Bolt Rush поглощает ровно один Electric Infliction той же цели и накладывает Argent Electrification II; возможный прежний EL overwrites.",
+          "condition": "Только если перед Bolt Rush №3 существуют E2 (Ult Cleansing Cleave E1 + Argent Combo E1), оба поглощены; forced Electrification при существующем статусе может иметь правила refresh/level override — итоговый уровень условный.",
           "evidence": {
             "basis": "live-mechanic",
             "url": "https://endfield.wiki.gg/wiki/Argent_Flow",
-            "note": "По live kit: 1 Electric Infliction → forced Electrification II; числовой уровень — условная модель, не combat observation. Forced Electrification от Bolt Rush не есть обычная двухэлементная Arts Reaction; E1 показан на предшествующем Argent Combo, без одношаговой before→after пары в UI."
+            "note": "Live kit forced Electrification зависит от числа поглощённых E. В исходной версии ошибочно считалось E1, пропущен Electric Infliction от Argent Ultimate. Теперь условный target III при E2; NOT observed. Проверить поведение с уже существующим Electrification."
           }
         }
       ]
